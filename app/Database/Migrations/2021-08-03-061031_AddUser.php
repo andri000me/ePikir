@@ -36,6 +36,8 @@ class AddUser extends Migration
 			'active'      => [
 				'type'           => 'tinyint',
 				'constraint'     => 1,
+				'comment'		 => '1=>active; 0=>not active',
+				'default'        => '1',
 			],
 		]);
 
@@ -43,7 +45,7 @@ class AddUser extends Migration
 		$this->forge->addKey('id_user', TRUE);
 
 		// Membuat foreign key
-		$this->forge->addForeignKey('id_role','tbl_role','id_role','CASCADE','CASCADE');
+		$this->forge->addForeignKey('id_role', 'tbl_role', 'id_role', 'CASCADE', 'CASCADE');
 
 		// Membuat tabel
 		$this->forge->createTable('tbl_user', TRUE);

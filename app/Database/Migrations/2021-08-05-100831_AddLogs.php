@@ -4,12 +4,12 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class AddRencanaKerja extends Migration
+class AddLogs extends Migration
 {
 	public function up()
 	{
 		$this->forge->addField([
-			'id_rk'  	 => [
+			'id_logs'  	 => [
 				'type'           => 'INT',
 				'constraint'     => '11',
 				'unsigned'       => true,
@@ -19,38 +19,25 @@ class AddRencanaKerja extends Migration
 				'type'           => 'INT',
 				'constraint'     => '11',
 				'unsigned'       => true,
-				'comment'		 => 'User yg membuat',
+				'comment'		 => 'User yg login',
 			],
-			'judul_rk'	=> [
-				'type'           => 'TEXT',
-			],
-			'isi_rk'	=> [
-				'type'           => 'TEXT',
-			],
-			'bulan_rk'   =>  [
+			'ip_address'	=> [
 				'type'           => 'varchar',
-				'constraint'     => '20',
+				'constraint'     => '50',
 			],
-			'waktu_buat'   => [
+			'waktu_logs'	=> [
 				'type'           => 'datetime',
 				'null'			 => TRUE,
 			],
-			'status'   => [
-				'type'           => 'tinyint',
-				'constraint'     => 1,
-				'comment'		 => '1=>active; 0=>not active',
-				'default'        => '1',
-			],
-
 		]);
 
-		$this->forge->addKey('id_rk', TRUE);
+		$this->forge->addKey('id_logs', TRUE);
 		$this->forge->addForeignKey('id_user', 'tbl_user', 'id_user', 'CASCADE', 'CASCADE');
-		$this->forge->createTable('tbl_rencana_kerja', TRUE);
+		$this->forge->createTable('tbl_logs', TRUE);
 	}
 
 	public function down()
 	{
-		$this->forge->dropTable('tbl_rencana_kerja');
+		$this->forge->dropTable('tbl_logs');
 	}
 }

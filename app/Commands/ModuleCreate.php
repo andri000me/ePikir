@@ -1,4 +1,6 @@
-<?php namespace App\Commands;
+<?php
+
+namespace App\Commands;
 
 use CodeIgniter\CLI\BaseCommand;
 use CodeIgniter\CLI\CLI;
@@ -45,7 +47,7 @@ class ModuleCreate extends BaseCommand
      *
      * @var array
      */
-    protected $arguments    = [ 'ModuleName' => 'Module name to be created' ];
+    protected $arguments    = ['ModuleName' => 'Module name to be created'];
 
     /**
      * the Command's Options
@@ -84,8 +86,7 @@ class ModuleCreate extends BaseCommand
 
         $this->module_name = $params[0];
 
-        if(!isset($this->module_name))
-        {
+        if (!isset($this->module_name)) {
             CLI::error("Module name must be set!");
             return;
         }
@@ -103,8 +104,7 @@ class ModuleCreate extends BaseCommand
 
         mkdir(APPPATH .  $this->module_folder . '/' . $this->module_name);
 
-        try
-        {
+        try {
             $this->createConfig();
             $this->createBaseController();
             // $this->createController();
@@ -112,9 +112,7 @@ class ModuleCreate extends BaseCommand
             $this->createView();
 
             CLI::write('Module created!');
-        }
-        catch (\Exception $e)
-        {
+        } catch (\Exception $e) {
             CLI::error($e);
         }
     }
@@ -128,8 +126,7 @@ class ModuleCreate extends BaseCommand
 
         mkdir($configPath);
 
-        if (!file_exists($configPath . '/Routes.php'))
-        {
+        if (!file_exists($configPath . '/Routes.php')) {
             $routeName = strtolower($this->module_name);
 
             $template = "<?php namespace App\Modules\\$this->module_name\\Config;
@@ -148,9 +145,7 @@ if(!isset(\$routes))
 });";
 
             file_put_contents($configPath . '/Routes.php', $template);
-        }
-        else
-        {
+        } else {
             CLI::error("Can't Create Routes Config! Old File Exists!");
         }
     }
@@ -164,8 +159,7 @@ if(!isset(\$routes))
 
         mkdir($controllerPath);
 
-        if (!file_exists($controllerPath . '/BaseController.php'))
-        {
+        if (!file_exists($controllerPath . '/BaseController.php')) {
             $template = "<?php namespace App\Modules\\$this->module_name\\Controllers;
 
 /**
@@ -213,9 +207,7 @@ class BaseController extends Controller
 ";
             file_put_contents($controllerPath . '/BaseController.php', $template);
             $this->createController();
-        }
-        else
-        {
+        } else {
             CLI::error("Can't Create BaseController! Old File Exists!");
         }
     }
@@ -229,8 +221,7 @@ class BaseController extends Controller
 
         // mkdir($controllerPath);
 
-        if (!file_exists($controllerPath . '/Dashboard.php'))
-        {
+        if (!file_exists($controllerPath . '/Dashboard.php')) {
             $template = "<?php namespace App\Modules\\$this->module_name\\Controllers;
 
 use App\Modules\\$this->module_name\\Models\UserModel;
@@ -261,9 +252,7 @@ class Dashboard extends BaseController
 }
 ";
             file_put_contents($controllerPath . '/Dashboard.php', $template);
-        }
-        else
-        {
+        } else {
             CLI::error("Can't Create Controller! Old File Exists!");
         }
     }
@@ -333,14 +322,11 @@ class UserEntity
 }";
 
             file_put_contents($modelPath . '/UserEntity.php', $template);
-        }
-        else
-        {
+        } else {
             CLI::error("Can't Create UserEntity! Old File Exists!");
         }
 
-        if (!file_exists($modelPath . '/UserModel.php'))
-        {
+        if (!file_exists($modelPath . '/UserModel.php')) {
 
             $template = "<?php namespace App\Modules\\$this->module_name\\Models;
 
@@ -356,9 +342,7 @@ class UserModel
     }
 }";
             file_put_contents($modelPath . '/UserModel.php', $template);
-        }
-        else
-        {
+        } else {
             CLI::error("Can't Create UserModel! Old File Exists!");
         }
     }
@@ -368,15 +352,14 @@ class UserModel
      */
     protected function createView()
     {
-        if($this->view_folder !== $this->module_folder)
-            $view_path = APPPATH . $this->view_folder . '/' . strtolower($this->module_name);
-        else
-            $view_path = APPPATH . $this->module_folder . '/' . $this->module_name . '/Views';
+        // if($this->view_folder !== $this->module_folder)
+        //     $view_path = APPPATH . $this->view_folder . '/' . strtolower($this->module_name);
+        // else
+        $view_path = APPPATH . $this->module_folder . '/' . $this->module_name . '/Views';
 
         mkdir($view_path);
 
-        if (!file_exists($view_path . '/dashboard.php'))
-        {
+        if (!file_exists($view_path . '/dashboard.php')) {
             $template = '<section>
 
 	<h1>Dashboard Page</h1>
@@ -400,21 +383,17 @@ class UserModel
 
 	<p>If you would like to edit this page you will find it located at:</p>
 
-	<pre><code>app/Views/'. strtolower($this->module_name) .'/dashboard.php</code></pre>
+	<pre><code>app/Views/' . strtolower($this->module_name) . '/dashboard.php</code></pre>
 
 	<p>The corresponding controller for this page can be found at:</p>
 
-	<pre><code>app/Modules/'. $this->module_name .'/Controllers/Dashboard.php</code></pre>
+	<pre><code>app/Modules/' . $this->module_name . '/Controllers/Dashboard.php</code></pre>
 
 </section>';
 
             file_put_contents($view_path . '/dashboard.php', $template);
-        }
-        else
-        {
+        } else {
             CLI::error("Can't Create View! Old File Exists!");
         }
-
     }
-
 }

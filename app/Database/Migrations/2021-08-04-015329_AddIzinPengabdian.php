@@ -38,11 +38,12 @@ class AddIzinPengabdian extends Migration
 				'type'           => 'tinyint',
 				'constraint'     => 1,
 				'comment'		 => '1=>Masuk; 2=>Disetujui; 3=>Ditolak',
+				'default'        => '1',
 			],
 		]);
 
 		$this->forge->addKey('id_ipb', TRUE);
-		$this->forge->addForeignKey('id_rpb','tbl_rekomendasi_pengabdian','id_rpb','CASCADE','CASCADE');
+		$this->forge->addForeignKey('id_rpb', 'tbl_rekomendasi_pengabdian', 'id_rpb', 'CASCADE', 'CASCADE');
 		$this->forge->createTable('tbl_izin_pengabdian', TRUE);
 	}
 

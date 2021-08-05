@@ -35,6 +35,12 @@ class AddProfil extends Migration
 				'type'           => 'datetime',
 				'null'			 => TRUE,
 			],
+			'status'   => [
+				'type'           => 'tinyint',
+				'constraint'     => 1,
+				'comment'		 => '1=>active; 0=>not active',
+				'default'        => '1',
+			],
 		]);
 
 		$this->forge->addKey('id_profil', TRUE);

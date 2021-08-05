@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Modules\Admin\Controllers;
 
 use App\Modules\Admin\Controllers\BaseController;
@@ -80,7 +81,7 @@ class Admin extends BaseController
         $data = array(
             'header' => $this->head,
             'menu'   => $this->menu,
-            'konten' => 'admin/pages/dashboard',
+            'konten' => 'dashboard',
             'footer' => $this->foot,
             'cont'   => $cont,
         );
@@ -123,7 +124,7 @@ class Admin extends BaseController
                     });";
         // ================================================================
         $id_surat = decode($surat);
-        
+
         if (!$id_surat) {
             return redirect()->to(base_url('admin'));
             exit();
@@ -144,7 +145,7 @@ class Admin extends BaseController
         $data = array(
             'header' => $this->head,
             'menu'   => $this->menu,
-            'konten' => 'admin/pages/form_permohonan',
+            'konten' => 'form_permohonan',
             'footer' => $this->foot,
             'cont'   => $cont,
         );
@@ -267,7 +268,7 @@ class Admin extends BaseController
         $data = array(
             'header' => $this->head,
             'menu'   => $this->menu,
-            'konten' => 'admin/pages/form_edit_permohonan',
+            'konten' => 'form_edit_permohonan',
             'footer' => $this->foot,
             'cont'   => $cont,
         );
@@ -645,7 +646,7 @@ class Admin extends BaseController
         $data = array(
             'header' => $this->head,
             'menu'   => $this->menu,
-            'konten' => 'admin/pages/data_perizinan',
+            'konten' => 'data_perizinan',
             'footer' => $this->foot,
             'cont'   => $cont,
         );
@@ -762,7 +763,7 @@ class Admin extends BaseController
         $on     = "dn.id_pemohon = pm.id_pemohon";
         $method = 'left';
         $where  = "pm.status_pemohon = 'diproses'";
-        $dataSurat = $this->MasterData->selectJoin($select,$table,$join,$on,$method,$where)->getResult();
+        $dataSurat = $this->MasterData->selectJoin($select, $table, $join, $on, $method, $where)->getResult();
 
         $this->foot['script'] = $script;
         $this->menu['active'] = '4';
@@ -774,7 +775,7 @@ class Admin extends BaseController
         $data = array(
             'header' => $this->head,
             'menu'   => $this->menu,
-            'konten' => 'admin/pages/data_surat',
+            'konten' => 'data_surat',
             'footer' => $this->foot,
             'cont'   => $cont,
         );
@@ -868,7 +869,7 @@ class Admin extends BaseController
         $document = str_replace("#JABATAN_PEMOHON", $row['jabatan_pemohon'], $document);
         $document = str_replace("#NAMA_USAHA", $row['nama_usaha'], $document);
         $document = str_replace("#ALAMAT_USAHA", $row['alamat_usaha'] . ', ' . ucwords(strtolower($row['desa_usaha'])) . ', ' . ucwords(strtolower($row['kecamatan_usaha'])), $document);
-        $document = str_replace("#TGL_PELAKSANAAN", ($row['tgl_pelaksanaan_mulai']==$row['tgl_pelaksanaan_akhir']?formatTanggalTtd($row['tgl_pelaksanaan_mulai']):formatTanggalTtd($row['tgl_pelaksanaan_mulai']).' - '.formatTanggalTtd($row['tgl_pelaksanaan_akhir'])), $document);
+        $document = str_replace("#TGL_PELAKSANAAN", ($row['tgl_pelaksanaan_mulai'] == $row['tgl_pelaksanaan_akhir'] ? formatTanggalTtd($row['tgl_pelaksanaan_mulai']) : formatTanggalTtd($row['tgl_pelaksanaan_mulai']) . ' - ' . formatTanggalTtd($row['tgl_pelaksanaan_akhir'])), $document);
         $document = str_replace("#JML_PESERTA", $row['jml_peserta'], $document);
         $document = str_replace("#KAJIAN_PERIZINAN", $row['kajian_perizinan'], $document);
         $document = str_replace("#NAMA_KECAMATAN", ucwords(strtolower($row['kecamatan_usaha'])), $document);
@@ -902,7 +903,7 @@ class Admin extends BaseController
         $row = $this->MasterData->selectJoin($select, $table, $join, $on, $method, $where)->getRowArray();
 
         $document = file_get_contents(FCPATH . "assets/surat/SURAT_PERMOHONAN_KE_DINKES.rtf");
-        
+
         $document = str_replace("#TGL_SURAT", formatTanggalTtd($row['tgl_dinkes']), $document);
         $document = str_replace("#NOM_DIN", $row['nomor_dinkes'], $document);
         $document = str_replace("#NAMA_PEMOHON", $row['nama_pemohon'], $document);
@@ -910,7 +911,7 @@ class Admin extends BaseController
         $document = str_replace("#NO_URUT", $row['no_urut'], $document);
 
         // $this->response->setHeader('application/msword');
-        
+
         $response = service('response');
         $response->setHeader("Content-type", "application/msword");
         $response->setHeader("Content-disposition", "inline; filename=" . $row['no_pemohon'] . "_SURAT_PERMOHONAN_KE_DINKES.doc");
@@ -1071,9 +1072,9 @@ class Admin extends BaseController
             // $upload = upload_photo($name_post, $size_file, $overwrite, $path_file, $width, $height, TRUE, $new_path);
             $upload = upload_crop_photo($name_post, $size_file, $overwrite, $path_file, $width, $height, $x, $y);
             if ($upload['respons']) {
-                echo "File ".$upload['data']." berhasil diupload.";
+                echo "File " . $upload['data'] . " berhasil diupload.";
             } else {
-                echo "Gaga diupload. <br>".$upload['data'];
+                echo "Gaga diupload. <br>" . $upload['data'];
             }
         }
     }

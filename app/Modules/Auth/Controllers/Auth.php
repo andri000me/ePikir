@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Modules\Auth\Controllers;
 
 use App\Modules\Auth\Controllers\BaseController;
@@ -6,19 +7,19 @@ use App\Modules\Auth\Controllers\BaseController;
 class Auth extends BaseController
 {
 
-    /**
-     * Constructor.
-     */
-    // public function __construct()
-    // {
+	/**
+	 * Constructor.
+	 */
+	// public function __construct()
+	// {
 	// 	$this->MasterData = new MasterData();
 	// 	$this->db = \Config\Database::connect();
-    // }
+	// }
 
 	public function index()
 	{
 		$this->session->destroy();
-		return view('auth/login');
+		echo view('\App\Modules\Auth\Views\login');
 	}
 
 	public function cek_login()
@@ -71,7 +72,7 @@ class Auth extends BaseController
 			$data_status = $this->MasterData->getDataGroupOrderWhere($select, $table, $group, $by, $order, $where)->getResultArray();
 
 			if ($data_status) {
-				$this->session->setFlashdata('info_status',$data_status);
+				$this->session->setFlashdata('info_status', $data_status);
 			}
 
 			if ($role == 'admin') {

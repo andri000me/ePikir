@@ -1,14 +1,13 @@
 <?php
 
-if(!isset($routes))
-{ 
-    $routes = \Config\Services::routes(true);
+if (!isset($routes)) {
+	$routes = \Config\Services::routes(true);
 }
 
-$routes->group('admin', ['namespace' => 'App\Modules\Admin\Controllers'], function($subroutes){
+$routes->group('admin', ['namespace' => 'App\Modules\Admin\Controllers'], function ($subroutes) {
 
 	/*** Route for Admin ***/
-    $subroutes->add('', 'Admin::index');
+	$subroutes->add('', 'Admin::index');
 	$subroutes->get('addPemohon/(:any)', 'Admin::addPemohon/$1');
 	$subroutes->add('dataPemohon/(:any)', 'Admin::dataPemohon/$1');
 	$subroutes->add('editPemohon/(:any)', 'Admin::editPemohon/$1');
@@ -22,5 +21,4 @@ $routes->group('admin', ['namespace' => 'App\Modules\Admin\Controllers'], functi
 	$subroutes->post('deletePemohon', 'Admin::deletePemohon');
 	$subroutes->get('prosesPemohon/(:any)', 'Admin::prosesPemohon/$1');
 	$subroutes->get('cetakSuratDinkes/(:any)', 'Admin::cetakSuratDinkes/$1');
-
 });

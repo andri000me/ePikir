@@ -35,10 +35,16 @@ class AddGaleri extends Migration
 				'type'           => 'datetime',
 				'null'			 => TRUE,
 			],
+			'status'   => [
+				'type'           => 'tinyint',
+				'constraint'     => 1,
+				'comment'		 => '1=>active; 0=>not active',
+				'default'        => '1',
+			],
 		]);
 
 		$this->forge->addKey('id_galeri', TRUE);
-		$this->forge->addForeignKey('id_user','tbl_user','id_user','CASCADE','CASCADE');
+		$this->forge->addForeignKey('id_user', 'tbl_user', 'id_user', 'CASCADE', 'CASCADE');
 		$this->forge->createTable('tbl_galeri', TRUE);
 	}
 

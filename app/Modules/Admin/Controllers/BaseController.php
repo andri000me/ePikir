@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Modules\Admin\Controllers;
 
 /**
@@ -30,7 +31,7 @@ class BaseController extends Controller
 	 *
 	 * @var array
 	 */
-	protected $helpers = ['csrftoken','encrypt','alert','upload','striptag','searchbar','tanggal'];
+	protected $helpers = ['csrftoken', 'encrypt', 'alert', 'upload', 'striptag', 'searchbar', 'tanggal'];
 
 	// protected $secure;
 	// protected $session;
@@ -58,13 +59,13 @@ class BaseController extends Controller
 		// Preload any models, libraries, etc, here.
 		//--------------------------------------------------------------------
 		$this->MasterData = new MasterData();
-        $this->DataTablePemohon = new Data_table_pemohon();
-        $this->DataTablePerizinan = new Data_table_perizinan();
+		$this->DataTablePemohon = new Data_table_pemohon();
+		$this->DataTablePerizinan = new Data_table_perizinan();
 		$this->db = \Config\Database::connect();
-		
+
 		$this->secure = new Secure();
 		$this->secure->auth('Sim_jin_admin');
-		
+
 		$this->session = \Config\Services::session();
 
 		$this->username = $this->session->get('username');
@@ -74,63 +75,62 @@ class BaseController extends Controller
 
 		// ========================================================
 
-        $select = array(
-            'id_surat',
-            "COUNT('id_pemohon') jml_status",
-        );
-        $table  = 'tbl_pemohon';
-        $group  = 'id_surat';
-        $by     = 'id_surat';
-        $order  = 'ASC';
-        $where  = "status_pemohon = 'diajukan'";
-        $status_diajukan = $this->MasterData->getDataGroupOrderWhere($select,$table,$group,$by,$order,$where)->getResultArray();
-        $where  = "status_pemohon = 'diproses'";
-        $status_diproses = $this->MasterData->getDataGroupOrderWhere($select,$table,$group,$by,$order,$where)->getResultArray();
+		$select = array(
+			'id_surat',
+			"COUNT('id_pemohon') jml_status",
+		);
+		$table  = 'tbl_pemohon';
+		$group  = 'id_surat';
+		$by     = 'id_surat';
+		$order  = 'ASC';
+		$where  = "status_pemohon = 'diajukan'";
+		$status_diajukan = $this->MasterData->getDataGroupOrderWhere($select, $table, $group, $by, $order, $where)->getResultArray();
+		$where  = "status_pemohon = 'diproses'";
+		$status_diproses = $this->MasterData->getDataGroupOrderWhere($select, $table, $group, $by, $order, $where)->getResultArray();
 
-        $select = array(
-            "COUNT('id_pemohon') jml_status",
-        );
-        $where  = "status_pemohon = 'diajukan'";
-        $status_diajukan_all = $this->MasterData->getWhereData($select,$table,$where)->getRowArray();
-        $where  = "status_pemohon = 'diproses'";
-        $status_diproses_all = $this->MasterData->getWhereData($select,$table,$where)->getRowArray();
+		$select = array(
+			"COUNT('id_pemohon') jml_status",
+		);
+		$where  = "status_pemohon = 'diajukan'";
+		$status_diajukan_all = $this->MasterData->getWhereData($select, $table, $where)->getRowArray();
+		$where  = "status_pemohon = 'diproses'";
+		$status_diproses_all = $this->MasterData->getWhereData($select, $table, $where)->getRowArray();
 
 		$dataSurat = $this->MasterData->getData('tbl_surat')->getResultArray();
-		
-        $this->menu = array(
-            'data_surat'            => $dataSurat,
-            'status_diajukan'       => $status_diajukan,
-            'status_diproses'       => $status_diproses,
-            'status_diajukan_all'   => $status_diajukan_all,
-            'status_diproses_all'   => $status_diproses_all,
-        );
+
+		$this->menu = array(
+			'data_surat'            => $dataSurat,
+			'status_diajukan'       => $status_diajukan,
+			'status_diproses'       => $status_diproses,
+			'status_diajukan_all'   => $status_diajukan_all,
+			'status_diproses_all'   => $status_diproses_all,
+		);
 
 		$this->head['role'] = $this->role;
 		$this->head['username'] = $this->username;
 		$this->head['nama_user'] = $this->nama_user;
 		$this->head['css'] = array(
-            assets_url . "app-assets/css/vendors.css",
-            assets_url . "app-assets/css/app.css",
-            assets_url . "app-assets/css/core/menu/menu-types/vertical-menu-modern.css",
-            assets_url . "app-assets/css/core/colors/palette-gradient.css",
-            // assets_url . "assets/css/style.css",
-        );
+			assets_url . "app-assets/css/vendors.css",
+			assets_url . "app-assets/css/app.css",
+			assets_url . "app-assets/css/core/menu/menu-types/vertical-menu-modern.css",
+			assets_url . "app-assets/css/core/colors/palette-gradient.css",
+			// assets_url . "assets/css/style.css",
+		);
 
 		$this->foot['flash'] = $this->session->getFlashdata('info_status');
 		// var_dump($this->foot['flash']->getFlashdata());exit();
 		$this->foot['js'] = array(
-            assets_url . "app-assets/js/core/app-menu.js",
-            assets_url . "app-assets/js/core/app.js",
-            assets_url . "app-assets/js/scripts/customizer.js",
+			assets_url . "app-assets/js/core/app-menu.js",
+			assets_url . "app-assets/js/core/app.js",
+			assets_url . "app-assets/js/scripts/customizer.js",
 		);
-
 	}
 
-	public function template($temp) {
-		echo view('komponen/header',$temp['header']);
-		echo view('admin/menu',$temp['menu']);
-		if(isset($temp['konten']))echo view($temp['konten'], $temp['cont']);
-		echo view('komponen/footer',$temp['footer']);
+	public function template($temp)
+	{
+		echo view('komponen\header', $temp['header']);
+		echo view('\App\Modules\Admin\Views\menu', $temp['menu']);
+		if (isset($temp['konten'])) echo view(views . '\Admin\Views\pages' . '\/' . $temp['konten'], $temp['cont']);
+		echo view('komponen\footer', $temp['footer']);
 	}
-
 }

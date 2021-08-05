@@ -38,11 +38,12 @@ class AddIzinPenelitian extends Migration
 				'type'           => 'tinyint',
 				'constraint'     => 1,
 				'comment'		 => '1=>Masuk; 2=>Disetujui; 3=>Ditolak',
+				'default'        => '1',
 			],
 		]);
 
 		$this->forge->addKey('id_ipl', TRUE);
-		$this->forge->addForeignKey('id_rpl','tbl_rekomendasi_penelitian','id_rpl','CASCADE','CASCADE');
+		$this->forge->addForeignKey('id_rpl', 'tbl_rekomendasi_penelitian', 'id_rpl', 'CASCADE', 'CASCADE');
 		$this->forge->createTable('tbl_izin_penelitian', TRUE);
 	}
 

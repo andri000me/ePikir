@@ -51,13 +51,13 @@ class AddRekomendasiPenelitian extends Migration
 				'type'           => 'tinyint',
 				'constraint'     => 1,
 				'comment'		 => '1=>Masuk; 2=>Disetujui; 3=>Ditolak',
+				'default'        => '1',
 			],
 		]);
 
 		$this->forge->addKey('id_rpl', TRUE);
-		$this->forge->addForeignKey('id_user_pemohon','tbl_user_pemohon','id_user_pemohon','CASCADE','CASCADE');
+		$this->forge->addForeignKey('id_user_pemohon', 'tbl_user_pemohon', 'id_user_pemohon', 'CASCADE', 'CASCADE');
 		$this->forge->createTable('tbl_rekomendasi_penelitian', TRUE);
-
 	}
 
 	public function down()

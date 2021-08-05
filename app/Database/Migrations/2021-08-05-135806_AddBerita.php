@@ -21,6 +21,12 @@ class AddBerita extends Migration
 				'unsigned'       => true,
 				'comment'		 => 'User yg membuat',
 			],
+			'id_kb'  	 => [
+				'type'           => 'INT',
+				'constraint'     => '11',
+				'unsigned'       => true,
+				'comment'		 => 'ID kategori berita',
+			],
 			'judul_berita'	=> [
 				'type'           => 'TEXT',
 			],
@@ -34,10 +40,17 @@ class AddBerita extends Migration
 				'type'           => 'datetime',
 				'null'			 => TRUE,
 			],
+			'status'   => [
+				'type'           => 'tinyint',
+				'constraint'     => 1,
+				'comment'		 => '1=>active; 0=>not active',
+				'default'        => '1',
+			],
 		]);
 
 		$this->forge->addKey('id_berita', TRUE);
-		$this->forge->addForeignKey('id_user','tbl_user','id_user','CASCADE','CASCADE');
+		$this->forge->addForeignKey('id_user', 'tbl_user', 'id_user', 'CASCADE', 'CASCADE');
+		$this->forge->addForeignKey('id_kb', 'tbl_kategori_berita', 'id_kb', 'CASCADE', 'CASCADE');
 		$this->forge->createTable('tbl_berita', TRUE);
 	}
 

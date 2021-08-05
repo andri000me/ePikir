@@ -35,11 +35,17 @@ class AddAgenda extends Migration
 				'type'           => 'datetime',
 				'null'			 => TRUE,
 			],
-			
+			'active'      => [
+				'type'           => 'tinyint',
+				'constraint'     => 1,
+				'comment'		 => '1=>active; 0=>not active',
+				'default'        => '1',
+			],
+
 		]);
 
 		$this->forge->addKey('id_agenda', TRUE);
-		$this->forge->addForeignKey('id_user','tbl_user','id_user','CASCADE','CASCADE');
+		$this->forge->addForeignKey('id_user', 'tbl_user', 'id_user', 'CASCADE', 'CASCADE');
 		$this->forge->createTable('tbl_agenda', TRUE);
 	}
 

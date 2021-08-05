@@ -39,16 +39,10 @@ class AddKlinikPenelitian extends Migration
 				'type'           => 'datetime',
 				'null'			 => TRUE,
 			],
-			'status'   => [
-				'type'           => 'tinyint',
-				'constraint'     => 1,
-				'comment'		 => '1=>Masuk; 2=>Disetujui; 3=>Ditolak',
-			],
-			
 		]);
 
 		$this->forge->addKey('id_kpl', TRUE);
-		$this->forge->addForeignKey('id_ipl','tbl_izin_penelitian','id_ipl','CASCADE','CASCADE');
+		$this->forge->addForeignKey('id_ipl', 'tbl_izin_penelitian', 'id_ipl', 'CASCADE', 'CASCADE');
 		$this->forge->createTable('tbl_klinik_penelitian', TRUE);
 	}
 
