@@ -25,12 +25,6 @@ class AddProfil extends Migration
 				'type'           => 'TEXT',
 				'comment'		 => 'Bentuk file gambar',
 			],
-			'regulasi'    => [
-				'type'           => 'TEXT',
-			],
-			'kontak'   => [
-				'type'           => 'TEXT',
-			],
 			'waktu_update'   => [
 				'type'           => 'datetime',
 				'null'			 => TRUE,

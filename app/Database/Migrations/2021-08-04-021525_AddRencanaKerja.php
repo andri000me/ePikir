@@ -31,7 +31,7 @@ class AddRencanaKerja extends Migration
 				'type'           => 'varchar',
 				'constraint'     => '20',
 			],
-			'waktu_buat'   => [
+			'waktu_update'   => [
 				'type'           => 'datetime',
 				'null'			 => TRUE,
 			],
@@ -45,7 +45,7 @@ class AddRencanaKerja extends Migration
 		]);
 
 		$this->forge->addKey('id_rk', TRUE);
-		$this->forge->addForeignKey('id_user', 'tbl_user', 'id_user', 'CASCADE', 'CASCADE');
+		$this->forge->addForeignKey('id_user', 'tbl_user', 'id_user', 'CASCADE', 'NO ACTION');
 		$this->forge->createTable('tbl_rencana_kerja', TRUE);
 	}
 

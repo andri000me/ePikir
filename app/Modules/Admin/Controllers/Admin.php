@@ -362,7 +362,7 @@ class Admin extends BaseController
         $data = array(
             'header'    => $this->head,
             'menu'      => $this->menu,
-            'konten'    => 'admin/pages/data_permohonan',
+            'konten'    => 'data_permohonan',
             'footer'    => $this->foot,
             'cont'      => $cont,
         );

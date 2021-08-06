@@ -1,5 +1,7 @@
-<?php 
+<?php
+
 namespace App\Libraries;
+
 use App\ThirdParty\phpmailer\src\Exception;
 use App\ThirdParty\phpmailer\src\PHPMailer;
 use App\ThirdParty\phpmailer\src\SMTP;

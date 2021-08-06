@@ -36,7 +36,7 @@ class AddBerita extends Migration
 			'file_foto'   =>  [
 				'type'           => 'TEXT',
 			],
-			'waktu_buat'   => [
+			'waktu_update'   => [
 				'type'           => 'datetime',
 				'null'			 => TRUE,
 			],
@@ -49,7 +49,7 @@ class AddBerita extends Migration
 		]);
 
 		$this->forge->addKey('id_berita', TRUE);
-		$this->forge->addForeignKey('id_user', 'tbl_user', 'id_user', 'CASCADE', 'CASCADE');
+		$this->forge->addForeignKey('id_user', 'tbl_user', 'id_user', 'CASCADE', 'NO ACTION');
 		$this->forge->addForeignKey('id_kb', 'tbl_kategori_berita', 'id_kb', 'CASCADE', 'CASCADE');
 		$this->forge->createTable('tbl_berita', TRUE);
 	}

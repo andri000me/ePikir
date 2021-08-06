@@ -31,7 +31,7 @@ class AddGaleri extends Migration
 			'file_foto'   =>  [
 				'type'           => 'TEXT',
 			],
-			'waktu_buat'   => [
+			'waktu_update'   => [
 				'type'           => 'datetime',
 				'null'			 => TRUE,
 			],
@@ -44,7 +44,7 @@ class AddGaleri extends Migration
 		]);
 
 		$this->forge->addKey('id_galeri', TRUE);
-		$this->forge->addForeignKey('id_user', 'tbl_user', 'id_user', 'CASCADE', 'CASCADE');
+		$this->forge->addForeignKey('id_user', 'tbl_user', 'id_user', 'CASCADE', 'NO ACTION');
 		$this->forge->createTable('tbl_galeri', TRUE);
 	}
 

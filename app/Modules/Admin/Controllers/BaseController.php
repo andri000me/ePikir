@@ -130,7 +130,7 @@ class BaseController extends Controller
 	{
 		echo view('komponen\header', $temp['header']);
 		echo view('\App\Modules\Admin\Views\menu', $temp['menu']);
-		if (isset($temp['konten'])) echo view(views . '\Admin\Views\pages' . '\/' . $temp['konten'], $temp['cont']);
+		if (isset($temp['konten'])) echo view(views . 'Admin\Views\pages' . '\/' . $temp['konten'], $temp['cont']);
 		echo view('komponen\footer', $temp['footer']);
 	}
 }

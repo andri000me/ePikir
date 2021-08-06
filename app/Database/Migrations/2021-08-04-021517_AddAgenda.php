@@ -31,7 +31,7 @@ class AddAgenda extends Migration
 				'type'           => 'datetime',
 				'null'			 => TRUE,
 			],
-			'waktu_buat'   => [
+			'waktu_update'   => [
 				'type'           => 'datetime',
 				'null'			 => TRUE,
 			],
@@ -45,7 +45,7 @@ class AddAgenda extends Migration
 		]);
 
 		$this->forge->addKey('id_agenda', TRUE);
-		$this->forge->addForeignKey('id_user', 'tbl_user', 'id_user', 'CASCADE', 'CASCADE');
+		$this->forge->addForeignKey('id_user', 'tbl_user', 'id_user', 'CASCADE', 'NO ACTION');
 		$this->forge->createTable('tbl_agenda', TRUE);
 	}
 
