@@ -4,20 +4,28 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class AddKategoriBerita extends Migration
+class AddCarousel extends Migration
 {
 	public function up()
 	{
 		$this->forge->addField([
-			'id_kb'  	 => [
+			'id_carousel'  	 => [
 				'type'           => 'INT',
 				'constraint'     => '11',
 				'unsigned'       => true,
 				'auto_increment' => true
 			],
-			'nama_kategori'	=> [
+			'judul_carousel'	=> [
 				'type'           => 'varchar',
 				'constraint'     => '250',
+			],
+			'ket_carousel'	=> [
+				'type'           => 'text',
+				'null'			 => TRUE,
+			],
+			'file_carousel'	=> [
+				'type'           => 'text',
+				'comment'		 => 'File foto carousel',
 			],
 			'status'   => [
 				'type'           => 'tinyint',
@@ -27,12 +35,12 @@ class AddKategoriBerita extends Migration
 			],
 		]);
 
-		$this->forge->addKey('id_kb', TRUE);
-		$this->forge->createTable('tbl_kategori_berita', TRUE);
+		$this->forge->addKey('id_carousel', TRUE);
+		$this->forge->createTable('tbl_carousel', TRUE);
 	}
 
 	public function down()
 	{
-		$this->forge->dropTable('tbl_kategori_berita');
+		$this->forge->dropTable('tbl_carousel');
 	}
 }

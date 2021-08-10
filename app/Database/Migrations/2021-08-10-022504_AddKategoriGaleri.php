@@ -4,12 +4,12 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class AddKategoriBerita extends Migration
+class AddKategoriGaleri extends Migration
 {
 	public function up()
 	{
 		$this->forge->addField([
-			'id_kb'  	 => [
+			'id_kg'  	 => [
 				'type'           => 'INT',
 				'constraint'     => '11',
 				'unsigned'       => true,
@@ -27,12 +27,12 @@ class AddKategoriBerita extends Migration
 			],
 		]);
 
-		$this->forge->addKey('id_kb', TRUE);
-		$this->forge->createTable('tbl_kategori_berita', TRUE);
+		$this->forge->addKey('id_kg', TRUE);
+		$this->forge->createTable('tbl_kategori_galeri', TRUE);
 	}
 
 	public function down()
 	{
-		$this->forge->dropTable('tbl_kategori_berita');
+		$this->forge->dropTable('tbl_kategori_galeri');
 	}
 }

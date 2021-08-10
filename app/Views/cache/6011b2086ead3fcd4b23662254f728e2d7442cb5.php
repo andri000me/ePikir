@@ -3,18 +3,22 @@
 
 <head>
     <!-- Meta tag -->
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="Radix" content="Responsive Multipurpose Business Template">
-    <meta name='copyright' content='Radix'>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!-- ==== Document Meta ==== -->
+    <meta name="author" content="epikir.magelangkab.go.id">
+    <meta name="description" content="ePikir Kabupaten Magelang">
+    <meta property="og:url" content="https://epikir.magelangkab.go.id/" />
+    <meta name="keywords" content="ePikir Kabupaten Magelang, epikir, Kabupaten Magelang, litbang, riset, penelitian, bappeda, bappedalitbangda, litbang magelang">
+    <meta property="og:title" content="ePikir Kabupaten Magelang" />
 
     <!-- Title Tag -->
-    <title>Radix &#8739; Creative Business & Consulting HTML5 Template</title>
+    <title>e-Pikir &#8739; Kabupaten Magelang</title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="<?php echo e(assets_front); ?>images/favicon.png">
+    <link rel="icon" type="image/png" href="<?php echo e(base_url('assets/img/logo/logo_kab_sm.png')); ?>">
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700,800" rel="stylesheet">
@@ -47,14 +51,9 @@
     <link rel="stylesheet" href="<?php echo e(assets_front); ?>css/responsive.css">
 
     <!-- Radix Color CSS -->
-    <!-- <link rel="stylesheet" href="<?php echo e(assets_front); ?>css/color/color1.css"> -->
-    <!-- <link rel="stylesheet" href="<?php echo e(assets_front); ?>css/color/color2.css"> -->
-    <!-- <link rel="stylesheet" href="<?php echo e(assets_front); ?>css/color/color3.css"> -->
-    <!-- <link rel="stylesheet" href="<?php echo e(assets_front); ?>css/color/color4.css"> -->
-    <!-- <link rel="stylesheet" href="<?php echo e(assets_front); ?>css/color/color5.css"> -->
-    <!-- <link rel="stylesheet" href="<?php echo e(assets_front); ?>css/color/color6.css"> -->
+    
     <link rel="stylesheet" href="<?php echo e(assets_front); ?>css/color/color7.css">
-    <!-- <link rel="stylesheet" href="<?php echo e(assets_front); ?>css/color/color8.css"> -->
+    
     <link rel="stylesheet" href="#" id="colors">
 </head>
 
@@ -86,31 +85,21 @@
                         <!-- Contact -->
                         <ul class="contact">
                             <li><i class="fa fa-headphones"></i> +(123) 45678910</li>
-                            <li><i class="fa fa-envelope"></i> <a href="mailto:info@yourmail.com">info@yourmail.com</a>
-                            </li>
-                            <li><i class="fa fa-clock-o"></i>Opening: 09am-5pm</li>
+                            <li><i class="fa fa-envelope"></i> <a href="mailto:info@yourmail.com">info@yourmail.com</a></li>
+                            
                         </ul>
                         <!--/ End Contact -->
                     </div>
                     <div class="col-lg-6 col-12">
                         <div class="topbar-right">
-                            <!-- Search Form -->
-                            <div class="search-form active">
-                                <a class="icon" href="#"><i class="fa fa-search"></i></a>
-                                <form class="form" action="#">
-                                    <input placeholder="Search & Enter" type="search">
-                                </form>
-                            </div>
-                            <!--/ End Search Form -->
+                            
                             <!-- Social -->
                             <ul class="social">
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                <li style="border-right: 1px solid #cccccc; border-left: 1px solid #cccccc;"><a href="<?php echo e(base_url('Auth')); ?>" style="padding-inline: 10px"><i class="fa fa-user"></i> Login</a></li>
+                                
                             </ul>
                             <!--/ End Social -->
+                            
                         </div>
                     </div>
                 </div>
@@ -121,17 +110,20 @@
         <div class="middle-bar">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-2 col-12">
+                    <div class="col-xl-2 col-12">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="index.html"><img src="<?php echo e(assets_front); ?>images/logo.png" alt="logo"></a>
+                            <a href="javascript:void(0)">
+                                <img src="<?php echo e(base_url('assets/img/logo/logo_kab_lg.png')); ?>" width="75" alt="logo"> 
+                                <span class="d-lg-none d-xl-block">e-Pikir</span>
+                            </a>
                         </div>
-                        <div class="link"><a href="index.html"><span>R</span>adix</a></div>
+                        <div class="link"><a href="index.html"><span>e</span>Pikir</a></div>
                         <!--/ End Logo -->
                         <button class="mobile-arrow"><i class="fa fa-bars"></i></button>
                         <div class="mobile-menu"></div>
                     </div>
-                    <div class="col-lg-10 col-12">
+                    <div class="col-xl-10 col-12">
                         <!-- Main Menu -->
                         <div class="mainmenu">
                             <nav class="navigation">

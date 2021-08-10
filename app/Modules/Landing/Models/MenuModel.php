@@ -8,7 +8,7 @@ class MenuModel
             array(
                 "section"   => null,
                 "title"    => "Beranda",
-                "url"       => "landing/home",
+                "url"       => base_url('landing/home'),
                 "index"     => 1,
                 "icon"      => null,
                 "child"     => null,
@@ -22,21 +22,21 @@ class MenuModel
                 "child"     => array(
                     array(
                         "title"    => "Definisi",
-                        "url"       => 'landing/definisi',
+                        "url"       => base_url('landing/definisi'),
                         "index"     => 2.1,
                         "icon"      => null,
                         "child"     => null,
                     ),
                     array(
                         "title"    => "Tugas Pokok & Fungsi",
-                        "url"       => 'landing/tugaspokok',
+                        "url"       => base_url('landing/tugaspokok'),
                         "index"     => 2.2,
                         "icon"      => null,
                         "child"     => null,
                     ),
                     array(
                         "title"    => "Struktur Organisasi",
-                        "url"       => 'landing/organisasi',
+                        "url"       => base_url('landing/organisasi'),
                         "index"     => 2.3,
                         "icon"      => null,
                         "child"     => null,
@@ -52,35 +52,35 @@ class MenuModel
                 "child"     => array(
                     array(
                         "title"    => "SOP Kelitbangan",
-                        "url"       => 'landing/sop',
+                        "url"       => base_url('landing/sop'),
                         "index"     => 3.1,
                         "icon"      => null,
                         "child"     => null,
                     ),
                     array(
                         "title"    => "Agenda Kegiatan",
-                        "url"       => 'landing/agenda',
+                        "url"       => base_url('landing/agenda'),
                         "index"     => 3.2,
                         "icon"      => null,
                         "child"     => null,
                     ),
                     array(
                         "title"    => "Rencana Kerja",
-                        "url"       => 'landing/rencanakerja',
+                        "url"       => base_url('landing/rencanakerja'),
                         "index"     => 3.3,
                         "icon"      => null,
                         "child"     => null,
                     ),
                     array(
                         "title"    => "Berita/Artikel",
-                        "url"       => 'landing/berita',
+                        "url"       => base_url('landing/berita'),
                         "index"     => 3.4,
                         "icon"      => null,
                         "child"     => null,
                     ),
                     array(
                         "title"    => "Dokumentasi Kegiatan",
-                        "url"       => 'landing/galeri',
+                        "url"       => base_url('landing/galeri'),
                         "index"     => 3.5,
                         "icon"      => null,
                         "child"     => null,
@@ -96,14 +96,14 @@ class MenuModel
                 "child"     => array(
                     array(
                         "title"    => "Hasil Penelitian",
-                        "url"       => 'landing/hasilpenelitian',
+                        "url"       => base_url('landing/hasilpenelitian'),
                         "index"     => 4.1,
                         "icon"      => null,
                         "child"     => null,
                     ),
                     array(
                         "title"    => "Hasil Inovasi",
-                        "url"       => 'landing/hasilinovasi',
+                        "url"       => base_url('landing/hasilinovasi'),
                         "index"     => 4.2,
                         "icon"      => null,
                         "child"     => null,
@@ -119,35 +119,35 @@ class MenuModel
                 "child"     => array(
                     array(
                         "title"    => "Usulan Penelitian",
-                        "url"       => 'landing/usulanpenelitian',
+                        "url"       => base_url('landing/usulanpenelitian'),
                         "index"     => 5.1,
                         "icon"      => null,
                         "child"     => null,
                     ),
                     array(
                         "title"    => "Usulan Inovasi Daerah",
-                        "url"       => 'landing/usulaninovasi',
+                        "url"       => base_url('landing/usulaninovasi'),
                         "index"     => 5.2,
                         "icon"      => null,
                         "child"     => null,
                     ),
                     array(
                         "title"    => "Input Hasil Kelitbangan Perangkat Daerah",
-                        "url"       => 'landing/inputhasilkpd',
+                        "url"       => base_url('landing/inputhasilkpd'),
                         "index"     => 5.3,
                         "icon"      => null,
                         "child"     => null,
                     ),
                     array(
                         "title"    => "Input Hasil Kelitbangan Stakeholder",
-                        "url"       => 'landing/inputhasilsh',
+                        "url"       => base_url('landing/inputhasilsh'),
                         "index"     => 5.4,
                         "icon"      => null,
                         "child"     => null,
                     ),
                     array(
                         "title"    => "Kerjasama Penelitian",
-                        "url"       => 'landing/kerjasama',
+                        "url"       => base_url('landing/kerjasama'),
                         "index"     => 5.5,
                         "icon"      => null,
                         "child"     => null,
@@ -163,14 +163,14 @@ class MenuModel
                 "child"     => array(
                     array(
                         "title"    => "Izin Penelitian",
-                        "url"       => 'landing/izinpenelitian',
+                        "url"       => base_url('landing/izinpenelitian'),
                         "index"     => 6.1,
                         "icon"      => null,
                         "child"     => null,
                     ),
                     array(
                         "title"    => "Izin Pengabdian Masyarakat",
-                        "url"       => 'landing/izinpengabdian',
+                        "url"       => base_url('landing/izinpengabdian'),
                         "index"     => 6.2,
                         "icon"      => null,
                         "child"     => null,
@@ -180,7 +180,7 @@ class MenuModel
             array(
                 "section"   => null,
                 "title"    => "Klinik Penelitian",
-                "url"       => "landing/klinik",
+                "url"       => base_url('landing/klinik'),
                 "index"     => 7,
                 "icon"      => null,
                 "child"     => null,

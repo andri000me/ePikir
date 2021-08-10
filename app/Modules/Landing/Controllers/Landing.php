@@ -2,25 +2,26 @@
 
 namespace App\Modules\Landing\Controllers;
 
-// use App\Modules\Landing\Models\UserModel;
+use App\Modules\Landing\Models\CarouselModel;
 
 class Landing extends BaseController
 {
-    // private $userModel;
+    private $carouselModel;
 
     /**
      * Constructor.
      */
     public function __construct()
     {
-        // $this->userModel = new UserModel();
+        $this->carouselModel = new CarouselModel();
     }
 
     public function index()
     {
         $data = [
-            'menu'   => $this->list_menu->getMenu(),
-            'active' => 1,
+            'menu'      => $this->list_menu->getMenu(),
+            'carousel'  => $this->carouselModel->getData(),
+            'active'    => 1,
         ];
 
         return views('home', 'Landing', $data);
