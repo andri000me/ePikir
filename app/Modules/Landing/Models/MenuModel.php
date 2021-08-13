@@ -1,4 +1,6 @@
-<?php namespace App\Modules\Landing\Models;
+<?php
+
+namespace App\Modules\Landing\Models;
 
 class MenuModel
 {
@@ -175,16 +177,23 @@ class MenuModel
                         "icon"      => null,
                         "child"     => null,
                     ),
+                    array(
+                        "title"    => "Klinik Penelitian",
+                        "url"       => base_url('landing/klinik'),
+                        "index"     => 6.3,
+                        "icon"      => null,
+                        "child"     => null,
+                    ),
                 ),
             ),
-            array(
-                "section"   => null,
-                "title"    => "Klinik Penelitian",
-                "url"       => base_url('landing/klinik'),
-                "index"     => 7,
-                "icon"      => null,
-                "child"     => null,
-            ),
+            // array(
+            //     "section"   => null,
+            //     "title"    => "Klinik Penelitian",
+            //     "url"       => base_url('landing/klinik'),
+            //     "index"     => 7,
+            //     "icon"      => null,
+            //     "child"     => null,
+            // ),
         ];
 
         return $data;

@@ -45,6 +45,8 @@ class BaseController extends Controller
 		// E.g.:
 		// $this->session = \Config\Services::session();
 
-		$this->list_menu = new MenuModel;
+		//ambil list menu pada model MenuModel
+		$nav = new MenuModel;
+		$this->list_menu = $nav->getMenu();
 	}
 }

@@ -18,6 +18,7 @@ class AddCarousel extends Migration
 			'judul_carousel'	=> [
 				'type'           => 'varchar',
 				'constraint'     => '250',
+				'null'			 => TRUE,
 			],
 			'ket_carousel'	=> [
 				'type'           => 'text',

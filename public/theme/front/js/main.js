@@ -83,7 +83,7 @@ Version: 1.0
 		======================================*/ 	
 		$(".slider-area").owlCarousel({
 			loop:true,
-			autoplay:false,
+			autoplay:true,
 			smartSpeed: 700,
 			autoplayTimeout:3500,
 			singleItem: true,

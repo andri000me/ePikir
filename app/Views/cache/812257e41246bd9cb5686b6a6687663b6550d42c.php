@@ -1,7 +1,7 @@
 <!-- Start Header -->
 <header id="header" class="header">
     <!-- Topbar -->
-    {{-- <div class="topbar" style="border-bottom: 4px solid #ff9800;"> --}}
+    
     <div class="topbar">
         <div class="container">
             <div class="row">
@@ -11,35 +11,22 @@
                         <li><i class="fa fa-phone"></i> (0293) 45678910</li>
                         <li><i class="fa fa-envelope"></i> <a href="mailto:litbang@gmail.com">litbang@gmail.com</a>
                         </li>
-                        {{-- <li><i class="fa fa-clock-o"></i>Opening: 09am-5pm</li> --}}
+                        
                     </ul>
                     <!--/ End Contact -->
                 </div>
                 <div class="col-lg-6 col-12">
                     <div class="topbar-right">
-                        {{-- <!-- Search Form -->
-                            <div class="search-form active">
-                                <a class="icon" href="#"><i class="fa fa-search"></i></a>
-                                <form class="form" action="#">
-                                    <input placeholder="Search & Enter" type="search">
-                                </form>
-                            </div>
-                            <!--/ End Search Form --> --}}
+                        
                         <!-- Social -->
                         <ul class="social" style="margin-top: 0px !important; padding-block: 4px;">
                             <li style="border-right: 1px solid #cccccc; border-left: 1px solid #cccccc;"><a
-                                    href="{{ base_url('Auth') }}" style="padding-inline: 10px"><i
+                                    href="<?php echo e(base_url('Auth')); ?>" style="padding-inline: 10px"><i
                                         class="fa fa-user"></i> Login</a></li>
-                            {{-- <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                                <li><a href="#"><i class="fa fa-youtube"></i></a></li> --}}
+                            
                         </ul>
                         <!--/ End Social -->
-                        {{-- <div class="button">
-                                <a href="contact.html" class="btn">Login</a>
-                            </div> --}}
+                        
                     </div>
                 </div>
             </div>
@@ -54,7 +41,7 @@
                     <!-- Logo -->
                     <div class="logo">
                         <a href="javascript:void(0)">
-                            <img src="{{ base_url('assets/img/logo/logo_kab_lg.png') }}" width="75" alt="logo">
+                            <img src="<?php echo e(base_url('assets/img/logo/logo_kab_lg.png')); ?>" width="75" alt="logo">
                             <span class="d-lg-none d-xl-block">e-Pikir</span>
                         </a>
                     </div>
@@ -68,34 +55,34 @@
                     <div class="mainmenu">
                         <nav class="navigation">
                             <ul class="nav menu" style="padding-right: 130px !important">
-                                @foreach ($menu as $nav)
-                                    <li class="{{ $nav['index'] == $active ? 'active' : '' }}"
+                                <?php $__currentLoopData = $menu; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $nav): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <li class="<?php echo e($nav['index'] == $active ? 'active' : ''); ?>"
                                         style="margin-right: 30px;">
-                                        <a href="{{ $nav['url'] }}">{{ $nav['title'] }}<i
-                                                class="{{ $nav['child'] != null ? 'fa fa-caret-down' : '' }}"></i></a>
-                                        @if ($nav['child'] != null)
+                                        <a href="<?php echo e($nav['url']); ?>"><?php echo e($nav['title']); ?><i
+                                                class="<?php echo e($nav['child'] != null ? 'fa fa-caret-down' : ''); ?>"></i></a>
+                                        <?php if($nav['child'] != null): ?>
                                             <ul class="dropdown">
-                                                @foreach ($nav['child'] as $sub)
-                                                    <li class="{{ $sub['index'] == $active ? 'active' : '' }}">
-                                                        <a href="{{ $sub['url'] }}">{{ $sub['title'] }}<i
-                                                                class="{{ $sub['child'] != null ? 'fa fa-caret-right' : '' }}"></i></a>
-                                                        @if ($sub['child'] != null)
+                                                <?php $__currentLoopData = $nav['child']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sub): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <li class="<?php echo e($sub['index'] == $active ? 'active' : ''); ?>">
+                                                        <a href="<?php echo e($sub['url']); ?>"><?php echo e($sub['title']); ?><i
+                                                                class="<?php echo e($sub['child'] != null ? 'fa fa-caret-right' : ''); ?>"></i></a>
+                                                        <?php if($sub['child'] != null): ?>
                                                             <ul class="dropdown submenu">
-                                                                @foreach ($sub['child'] as $sub2)
+                                                                <?php $__currentLoopData = $sub['child']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sub2): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                     <li
-                                                                        class="{{ $sub2['index'] == $active ? 'active' : '' }}">
+                                                                        class="<?php echo e($sub2['index'] == $active ? 'active' : ''); ?>">
                                                                         <a
-                                                                            href="{{ $sub2['url'] }}">{{ $sub2['title'] }}</a>
+                                                                            href="<?php echo e($sub2['url']); ?>"><?php echo e($sub2['title']); ?></a>
                                                                     </li>
-                                                                @endforeach
+                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                             </ul>
-                                                        @endif
+                                                        <?php endif; ?>
                                                     </li>
-                                                @endforeach
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </ul>
-                                        @endif
+                                        <?php endif; ?>
                                     </li>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                             </ul>
                         </nav>
@@ -113,3 +100,4 @@
     <!--/ End Middle Bar -->
 </header>
 <!--/ End Header -->
+<?php /**PATH D:\PROJECT\CODE IGNITER 4\epikir_new\app\Modules\Landing\Views/template/header.blade.php ENDPATH**/ ?>

@@ -19,11 +19,11 @@ class Landing extends BaseController
     public function index()
     {
         $data = [
-            'menu'      => $this->list_menu->getMenu(),
+            'menu'      => $this->list_menu,
             'carousel'  => $this->carouselModel->getData(),
             'active'    => 1,
         ];
 
-        return views('home', 'Landing', $data);
+        return views('content/beranda/content', 'Landing', $data);
     }
 }

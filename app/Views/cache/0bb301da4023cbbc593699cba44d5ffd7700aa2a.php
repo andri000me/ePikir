@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer id="footer" class="footer wow fadeIn" style="background-image:url('{{ assets_front }}images/map.png')">
+<footer id="footer" class="footer wow fadeIn" style="background-image:url('<?php echo e(assets_front); ?>images/map.png')">
     <!-- Top Arrow -->
     <div class="top-arrow">
         <a href="#header" class="btn"><i class="fa fa-angle-up"></i></a>
@@ -69,7 +69,7 @@
                         <!--/ End Social -->
                         <!-- Copyright -->
                         <div class="copyright">
-                            <p>&copy; {{ date('Y') }} All Right Reserved. Design & Development By <a
+                            <p>&copy; <?php echo e(date('Y')); ?> All Right Reserved. Design & Development By <a
                                     href="diskominfo.magelangkab.go.id">Diskominfo Kab Magelang</a></p>
                         </div>
                         <!--/ End Copyright -->
@@ -81,3 +81,4 @@
     <!--/ End Footer Bottom -->
 </footer>
 <!--/ End footer -->
+<?php /**PATH D:\PROJECT\CODE IGNITER 4\epikir_new\app\Modules\Landing\Views/template/footer.blade.php ENDPATH**/ ?>
