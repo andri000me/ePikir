@@ -60,8 +60,13 @@
     {{-- <link rel="stylesheet" href="{{ assets_front }}css/color/color8.css"> --}}
     <link rel="stylesheet" href="#" id="colors">
 
+    <!-- Plugin CSS tambahan -->
     @stack('css_plugin')
+
+    <!-- Style CSS tambahan -->
     @stack('css_style')
+
+
 </head>
 
 <body>
@@ -135,7 +140,10 @@
     <!-- Main JS -->
     <script src="{{ assets_front }}js/main.js"></script>
 
+    <!-- Plugin JS tambahan -->
     @stack('js_plugin')
+
+    <!-- Script JS tambahan -->
     @stack('js_script')
 </body>
 

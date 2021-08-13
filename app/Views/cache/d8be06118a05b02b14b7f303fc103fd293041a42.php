@@ -6,10 +6,7 @@
                 <div class="section-title">
                     <span class="title-bg" style="color:#3d3565">Artikel</span>
                     <h1>Berita Terkini</h1>
-                    {{-- <p>Sed lorem enim, faucibus at erat eget, laoreet tincidunt tortor. Ut sed mi nec ligula
-                        bibendum
-                        aliquam. Sed scelerisque maximus magna, a vehicula turpis Proin
-                    <p> --}}
+                    
                 </div>
             </div>
         </div>
@@ -20,7 +17,7 @@
                         <!-- Single Blog -->
                         <div class="single-blog">
                             <div class="blog-head">
-                                <img src="{{ assets_front }}images/blogs/blog1.jpg" alt="#">
+                                <img src="<?php echo e(assets_front); ?>images/blogs/blog1.jpg" alt="#">
                             </div>
                             <div class="blog-bottom">
                                 <div class="blog-inner">
@@ -41,7 +38,7 @@
                         <!-- Single Blog -->
                         <div class="single-blog">
                             <div class="blog-head">
-                                <img src="{{ assets_front }}images/blogs/blog2.jpg" alt="#">
+                                <img src="<?php echo e(assets_front); ?>images/blogs/blog2.jpg" alt="#">
                             </div>
                             <div class="blog-bottom">
                                 <div class="blog-inner">
@@ -63,7 +60,7 @@
                         <!-- Single Blog -->
                         <div class="single-blog">
                             <div class="blog-head">
-                                <img src="{{ assets_front }}images/blogs/blog3.jpg" alt="#">
+                                <img src="<?php echo e(assets_front); ?>images/blogs/blog3.jpg" alt="#">
                             </div>
                             <div class="blog-bottom">
                                 <div class="blog-inner">
@@ -84,7 +81,7 @@
                         <!-- Single Blog -->
                         <div class="single-blog">
                             <div class="blog-head">
-                                <img src="{{ assets_front }}images/blogs/blog4.jpg" alt="#">
+                                <img src="<?php echo e(assets_front); ?>images/blogs/blog4.jpg" alt="#">
                             </div>
                             <div class="blog-bottom">
                                 <div class="blog-inner">
@@ -105,7 +102,7 @@
                         <!-- Single Blog -->
                         <div class="single-blog">
                             <div class="blog-head">
-                                <img src="{{ assets_front }}images/blogs/blog5.jpg" alt="#">
+                                <img src="<?php echo e(assets_front); ?>images/blogs/blog5.jpg" alt="#">
                             </div>
                             <div class="blog-bottom">
                                 <div class="blog-inner">
@@ -127,7 +124,7 @@
                         <!-- Single Blog -->
                         <div class="single-blog">
                             <div class="blog-head">
-                                <img src="{{ assets_front }}images/blogs/blog6.jpg" alt="#">
+                                <img src="<?php echo e(assets_front); ?>images/blogs/blog6.jpg" alt="#">
                             </div>
                             <div class="blog-bottom">
                                 <div class="blog-inner">
@@ -150,7 +147,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="button">
-                    <a class="btn primary" href="{{base_url('landing/berita')}}">Lihat Semua Berita</a>
+                    <a class="btn primary" href="<?php echo e(base_url('landing/berita')); ?>">Lihat Semua Berita</a>
                 </div>
             </div>
         </div>
@@ -158,7 +155,7 @@
 </section>
 <!--/ End Berita Terikini -->
 
-@push('css_style')
+<?php $__env->startPush('css_style'); ?>
     <style>
         .blogs-main {
             background: #2e2751;
@@ -178,5 +175,6 @@
             color: #2e2751;
         }
     </style>
-@endpush
+<?php $__env->stopPush(); ?>
 
+<?php /**PATH D:\PROJECT\xampp\htdocs\epikir_new\app\Modules\Landing\Views/content/beranda/berita.blade.php ENDPATH**/ ?>

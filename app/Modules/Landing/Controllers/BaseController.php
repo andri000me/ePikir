@@ -29,7 +29,7 @@ class BaseController extends Controller
 	 */
 	protected $helpers = ['csrftoken', 'encrypt', 'alert', 'tanggal', 'view'];
 
-	protected $list_menu;
+	protected $v_data = array();
 
 	/**
 	 * Constructor.
@@ -47,6 +47,6 @@ class BaseController extends Controller
 
 		//ambil list menu pada model MenuModel
 		$nav = new MenuModel;
-		$this->list_menu = $nav->getMenu();
+		$this->v_data['menu'] = $nav->getMenu();
 	}
 }

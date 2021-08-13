@@ -8,8 +8,8 @@
                 <div class="col-lg-6 col-12">
                     <!-- Contact -->
                     <ul class="contact" style="margin-top: 0px !important; padding-block: 4px;">
-                        <li><i class="fa fa-phone"></i> (0293) 45678910</li>
-                        <li><i class="fa fa-envelope"></i> <a href="mailto:litbang@gmail.com">litbang@gmail.com</a>
+                        <li><i class="fa fa-phone"></i> <a href="tel:0293788181">(0293)-788181</a> </li>
+                        <li><i class="fa fa-envelope"></i> <a href="mailto:bappeda@magelangkab.go.id">bappeda@magelangkab.go.id</a>
                         </li>
                         {{-- <li><i class="fa fa-clock-o"></i>Opening: 09am-5pm</li> --}}
                     </ul>
@@ -68,15 +68,24 @@
                     <div class="mainmenu">
                         <nav class="navigation">
                             <ul class="nav menu" style="padding-right: 130px !important">
+                                @php
+                                    $exp_active = explode(".", $active);
+                                    $active1 = $exp_active[0]; //diambil kode pertama untuk active menu pertama
+                                    $active2 = $active;
+                                    if (isset($exp_active[1])) {
+                                        $active2 = $exp_active[0] . "." . $exp_active[1]; //diambil 2 kode awal untuk active sub menu
+                                    }
+                                @endphp
+                                
                                 @foreach ($menu as $nav)
-                                    <li class="{{ $nav['index'] == $active ? 'active' : '' }}"
+                                    <li class="{{ $nav['index'] == $active1 ? 'active' : '' }}"
                                         style="margin-right: 30px;">
                                         <a href="{{ $nav['url'] }}">{{ $nav['title'] }}<i
                                                 class="{{ $nav['child'] != null ? 'fa fa-caret-down' : '' }}"></i></a>
                                         @if ($nav['child'] != null)
                                             <ul class="dropdown">
                                                 @foreach ($nav['child'] as $sub)
-                                                    <li class="{{ $sub['index'] == $active ? 'active' : '' }}">
+                                                    <li class="{{ $sub['index'] == $active2 ? 'active' : '' }}">
                                                         <a href="{{ $sub['url'] }}">{{ $sub['title'] }}<i
                                                                 class="{{ $sub['child'] != null ? 'fa fa-caret-right' : '' }}"></i></a>
                                                         @if ($sub['child'] != null)

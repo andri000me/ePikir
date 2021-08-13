@@ -13,7 +13,7 @@ class CarouselModel extends Model
     // protected $useSoftDeletes = true;
  
     // set untuk kolom yang dapat di insert atau diupdate adalah kolom name, dan price
-    protected $allowedFields = ['nama_carousel', 'ket_carousel', 'file_carousel', 'status'];
+    protected $allowedFields = ['judul_carousel', 'ket_carousel', 'file_carousel', 'status'];
     
     // set bagian useTimestamps kita set true agar mencatat bagian created_at dan updated_at
     // protected $useTimestamps = true;
@@ -24,10 +24,10 @@ class CarouselModel extends Model
     // protected $deletedField  = 'deleted_at';
 
  
-    public function getData($id = false)
+    public function getData($id = false, $limit = 5)
     {
         if($id === false){
-            return $this->findAll();
+            return $this->where('status', 1)->findAll($limit);
         }else{
             return $this->getWhere(['id_carousel' => $id]);
         }   
