@@ -18,9 +18,11 @@
                                 <p>BAPPEDA & LITBANGDA Pemda Kabupaten Magelang</p>
                                 <ul class="list">
                                     <li><i class="fa fa-map-marker"></i>Jln. Soekarno Hatta No. 59 Kota Mungkid</li>
-                                    <li><i class="fa fa-phone"></i>Phone: <a href="tel:0293788181">(0293)-788181</a></li>
+                                    <li><i class="fa fa-phone"></i>Phone: <a href="tel:0293788181">(0293)-788181</a>
+                                    </li>
                                     <li><i class="fa fa-fax"></i>Fax: (0293) - 788122</li>
-                                    <li><i class="fa fa-envelope"></i>Email: <a href="mailto:bappeda@magelangkab.go.id">bappeda@magelangkab.go.id</a></li>
+                                    <li><i class="fa fa-envelope"></i>Email: <a
+                                            href="mailto:bappeda@magelangkab.go.id">bappeda@magelangkab.go.id</a></li>
                                 </ul>
                             </div>
                             <!--/ End About Widget -->
@@ -30,9 +32,12 @@
                             <div class="single-widget about">
                                 <h2>Profil</h2>
                                 <ul class="list">
-                                    <li><a href="{{base_url('landing/definisi')}}"><i class="fa fa-caret-right"></i>Definisi</a></li>
-                                    <li><a href="{{base_url('landing/tugaspokok')}}"><i class="fa fa-caret-right"></i>Tugas Pokok & Fungsi</a></li>
-                                    <li><a href="{{base_url('landing/organisasi')}}"><i class="fa fa-caret-right"></i>Struktur Organisasi</a></li>
+                                    <li><a href="{{ base_url('landing/definisi') }}"><i
+                                                class="fa fa-caret-right"></i>Definisi</a></li>
+                                    <li><a href="{{ base_url('landing/tugaspokok') }}"><i
+                                                class="fa fa-caret-right"></i>Tugas Pokok & Fungsi</a></li>
+                                    <li><a href="{{ base_url('landing/organisasi') }}"><i
+                                                class="fa fa-caret-right"></i>Struktur Organisasi</a></li>
                                 </ul>
                             </div>
                             <!--/ End About Widget -->
@@ -51,34 +56,37 @@
                                             <i class="fa fa-users"></i> Hari Ini
                                         </div>
                                         <div class="col-2">:</div>
-                                        <div class="col-3 text-right">5</div>
+                                        <div class="col-3 text-right">{{ $p_hari_ini }}</div>
                                     </li>
                                     <li class="row">
                                         <div class="col-4">
                                             <i class="fa fa-users"></i> Kemarin
                                         </div>
                                         <div class="col-2">:</div>
-                                        <div class="col-3 text-right">25</div>
-                                    </li><li class="row">
+                                        <div class="col-3 text-right">{{ $p_kemarin }}</div>
+                                    </li>
+                                    <li class="row">
                                         <div class="col-4">
                                             <i class="fa fa-users"></i> Bulan Ini
                                         </div>
                                         <div class="col-2">:</div>
-                                        <div class="col-3 text-right">105</div>
-                                    </li><li class="row">
+                                        <div class="col-3 text-right">{{ $p_bln_ini }}</div>
+                                    </li>
+                                    <li class="row">
                                         <div class="col-4">
                                             <i class="fa fa-users"></i> Tahun Ini
                                         </div>
                                         <div class="col-2">:</div>
-                                        <div class="col-3 text-right">1115</div>
+                                        <div class="col-3 text-right">{{ $p_thn_ini }}</div>
                                     </li>
-                                </li><li class="row">
-                                    <div class="col-4">
-                                        <i class="fa fa-users"></i> Total
-                                    </div>
-                                    <div class="col-2">:</div>
-                                    <div class="col-3 text-right">19115</div>
-                                </li>
+                                    </li>
+                                    <li class="row">
+                                        <div class="col-4">
+                                            <i class="fa fa-users"></i> Total
+                                        </div>
+                                        <div class="col-2">:</div>
+                                        <div class="col-3 text-right">{{ $p_total }}</div>
+                                    </li>
                                 </ul>
                             </div>
                             <!--/ End Links Widget -->
@@ -90,17 +98,20 @@
                             <div class="single-widget about">
                                 <h2>Layanan</h2>
                                 <ul class="list">
-                                    <li><a href="{{base_url('landing/izinpenelitian')}}"><i class="fa fa-caret-right"></i>Izin Penelitian</a></li>
-                                    <li><a href="{{base_url('landing/izinpengadian')}}"><i class="fa fa-caret-right"></i>Izin Pengabdian Masyarakan</a></li>
-                                    <li><a href="{{base_url('landing/klinik')}}"><i class="fa fa-caret-right"></i>Klinik Penelitian</a></li>
+                                    <li><a href="{{ base_url('landing/izinpenelitian') }}"><i
+                                                class="fa fa-caret-right"></i>Izin Penelitian</a></li>
+                                    <li><a href="{{ base_url('landing/izinpengadian') }}"><i
+                                                class="fa fa-caret-right"></i>Izin Pengabdian Masyarakan</a></li>
+                                    <li><a href="{{ base_url('landing/klinik') }}"><i
+                                                class="fa fa-caret-right"></i>Klinik Penelitian</a></li>
                                 </ul>
                             </div>
                             <!--/ End About Widget -->
                         </div>
                     </div>
-                    
+
                 </div>
-                
+
                 <div class="col-lg-4 col-12 map-box" style="margin-top: 30px">
                     <div>
                         <iframe
@@ -109,7 +120,8 @@
                             loading="lazy"></iframe>
                     </div><!-- /.about-img -->
                     <div class="button">
-                        <a href="https://goo.gl/maps/AZR1L5jFyfB9G6qN6" target="_blank" class="btn"><i class="fa fa-map-marker"></i> Buka di Google Map</a>
+                        <a href="https://goo.gl/maps/AZR1L5jFyfB9G6qN6" target="_blank" class="btn"><i
+                                class="fa fa-map-marker"></i> Buka di Google Map</a>
                     </div>
                 </div><!-- /.col-lg-6 -->
             </div>
@@ -133,7 +145,7 @@
                         <!-- Copyright -->
                         <div class="copyright">
                             <p>&copy; {{ date('Y') }} All Right Reserved. Design & Development By <a
-                                    href="diskominfo.magelangkab.go.id">Diskominfo Kab Magelang</a></p>
+                                    href="https://diskominfo.magelangkab.go.id">Diskominfo Kab Magelang</a></p>
                         </div>
                         <!--/ End Copyright -->
                     </div>
@@ -165,7 +177,8 @@
         background: #fff;
         color: #2e2751;
     }
+
 </style>
 @push('css_script')
-    
+
 @endpush

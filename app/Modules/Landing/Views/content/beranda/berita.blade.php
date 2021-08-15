@@ -1,10 +1,11 @@
 <!-- Berita Terikini -->
-<section class="blogs-main section">
+<section class="blogs-main section"
+    style="background-image: url('{{ assets_front . 'images/background/bg-11.png' }}')">
     <div class="container">
         <div class="row">
             <div class="col-12 wow fadeInUp">
                 <div class="section-title">
-                    <span class="title-bg" style="color:#3d3565">Artikel</span>
+                    <span class="title-bg" style="color:#4b396d85">Artikel</span>
                     <h1>Berita Terkini</h1>
                     {{-- <p>Sed lorem enim, faucibus at erat eget, laoreet tincidunt tortor. Ut sed mi nec ligula
                         bibendum
@@ -13,147 +14,57 @@
                 </div>
             </div>
         </div>
-        <div class="row" style="margin-top: 40px">
-            <div class="col-12">
-                <div class="row blog-slider">
-                    <div class="col-lg-4 col-12">
-                        <!-- Single Blog -->
-                        <div class="single-blog">
-                            <div class="blog-head">
-                                <img src="{{ assets_front }}images/blogs/blog1.jpg" alt="#">
-                            </div>
-                            <div class="blog-bottom">
-                                <div class="blog-inner">
-                                    <h4><a href="blog-single.html">Recognizing the need is the primary</a></h4>
-                                    <p>Maecenas sapien erat, porta non porttitor non, dignissim et enim. Aenean ac
-                                        tincidunt tortor sedelon bond</p>
-                                    <div class="meta">
-                                        <span><i class="fa fa-bolt"></i><a href="#">Marketing</a></span>
-                                        <span><i class="fa fa-calendar"></i>03 May, 2018</span>
-                                        <span><i class="fa fa-eye"></i><a href="#">333k</a></span>
+        @if ($berita != null && $berita != '')
+            <div class="row" style="margin-top: 40px">
+                <div class="col-12">
+                    <div class="row blog-slider">
+                        @foreach ($berita as $item)
+                            <div class="{{ count($berita) > 3 ? 'col-lg-4' : '' }} col-12">
+                                <!-- Single Blog -->
+                                <div class="single-blog">
+                                    <div class="blog-head">
+                                        <img src="{{ base_url('upload/berita/' . $item->file_foto) }}" alt="#">
+                                    </div>
+                                    <div class="blog-bottom">
+                                        <div class="blog-inner">
+                                            <h4><a
+                                                    href="{{ base_url('landing/berita_detail/' . encode($item->id_berita)) }}">{{ $item->judul_berita }}</a>
+                                            </h4>
+                                            <p>{{ character_limiter($item->isi_berita, 100, '...') }}</p>
+                                            <div class="meta">
+                                                <span><i class="fa fa-bullhorn"></i><a
+                                                        href="{{ base_url('landing/berita/' . encode($item->id_kb)) }}">{{ $item->nama_kategori }}</a></span>
+                                                <span><i
+                                                        class="fa fa-calendar"></i>{{ date('d F Y', strtotime($item->waktu_update)) }}</span>
+                                                {{-- <span><i class="fa fa-eye"></i><a href="#">333k</a></span> --}}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                                <!-- End Single Blog -->
                             </div>
-                        </div>
-                        <!-- End Single Blog -->
-                    </div>
-                    <div class="col-lg-4 col-12">
-                        <!-- Single Blog -->
-                        <div class="single-blog">
-                            <div class="blog-head">
-                                <img src="{{ assets_front }}images/blogs/blog2.jpg" alt="#">
-                            </div>
-                            <div class="blog-bottom">
-                                <div class="blog-inner">
-                                    <h4><a href="blog-single.html">How to grow your business with blank table!</a>
-                                    </h4>
-                                    <p>Maecenas sapien erat, porta non porttitor non, dignissim et enim. Aenean ac
-                                        tincidunt tortor sedelon bond</p>
-                                    <div class="meta">
-                                        <span><i class="fa fa-bolt"></i><a href="#">Business</a></span>
-                                        <span><i class="fa fa-calendar"></i>28 April, 2018</span>
-                                        <span><i class="fa fa-eye"></i><a href="#">5m</a></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Blog -->
-                    </div>
-                    <div class="col-lg-4 col-12">
-                        <!-- Single Blog -->
-                        <div class="single-blog">
-                            <div class="blog-head">
-                                <img src="{{ assets_front }}images/blogs/blog3.jpg" alt="#">
-                            </div>
-                            <div class="blog-bottom">
-                                <div class="blog-inner">
-                                    <h4><a href="blog-single.html">10 ways to improve your startup Business</a></h4>
-                                    <p>Maecenas sapien erat, porta non porttitor non, dignissim et enim. Aenean ac
-                                        tincidunt tortor sedelon bond</p>
-                                    <div class="meta">
-                                        <span><i class="fa fa-bolt"></i><a href="#">Brand</a></span>
-                                        <span><i class="fa fa-calendar"></i>15 April, 2018</span>
-                                        <span><i class="fa fa-eye"></i><a href="#">10m</a></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Blog -->
-                    </div>
-                    <div class="col-lg-4 col-12">
-                        <!-- Single Blog -->
-                        <div class="single-blog">
-                            <div class="blog-head">
-                                <img src="{{ assets_front }}images/blogs/blog4.jpg" alt="#">
-                            </div>
-                            <div class="blog-bottom">
-                                <div class="blog-inner">
-                                    <h4><a href="blog-single.html">Recognizing the need is the primary</a></h4>
-                                    <p>Maecenas sapien erat, porta non porttitor non, dignissim et enim. Aenean ac
-                                        tincidunt tortor sedelon bond</p>
-                                    <div class="meta">
-                                        <span><i class="fa fa-bolt"></i><a href="#">Online</a></span>
-                                        <span><i class="fa fa-calendar"></i>25 March, 2018</span>
-                                        <span><i class="fa fa-eye"></i><a href="#">38k</a></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Blog -->
-                    </div>
-                    <div class="col-lg-4 col-12">
-                        <!-- Single Blog -->
-                        <div class="single-blog">
-                            <div class="blog-head">
-                                <img src="{{ assets_front }}images/blogs/blog5.jpg" alt="#">
-                            </div>
-                            <div class="blog-bottom">
-                                <div class="blog-inner">
-                                    <h4><a href="blog-single.html">How to grow your business with blank table!</a>
-                                    </h4>
-                                    <p>Maecenas sapien erat, porta non porttitor non, dignissim et enim. Aenean ac
-                                        tincidunt tortor sedelon bond</p>
-                                    <div class="meta">
-                                        <span><i class="fa fa-bolt"></i><a href="#">Marketing</a></span>
-                                        <span><i class="fa fa-calendar"></i>10 March, 2018</span>
-                                        <span><i class="fa fa-eye"></i><a href="#">100k</a></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Blog -->
-                    </div>
-                    <div class="col-lg-4 col-12">
-                        <!-- Single Blog -->
-                        <div class="single-blog">
-                            <div class="blog-head">
-                                <img src="{{ assets_front }}images/blogs/blog6.jpg" alt="#">
-                            </div>
-                            <div class="blog-bottom">
-                                <div class="blog-inner">
-                                    <h4><a href="blog-single.html">10 ways to improve your startup Business</a></h4>
-                                    <p>Maecenas sapien erat, porta non porttitor non, dignissim et enim. Aenean ac
-                                        tincidunt tortor sedelon bond</p>
-                                    <div class="meta">
-                                        <span><i class="fa fa-bolt"></i><a href="#">Website</a></span>
-                                        <span><i class="fa fa-calendar"></i>21 February, 2018</span>
-                                        <span><i class="fa fa-eye"></i><a href="#">320k</a></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Blog -->
+                        @endforeach
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="button">
-                    <a class="btn primary" href="{{base_url('landing/berita')}}">Lihat Semua Berita</a>
+            <div class="row">
+                <div class="col-12">
+                    <div class="button">
+                        <a class="btn primary" href="{{ base_url('landing/berita') }}">Lihat Semua Berita</a>
+                    </div>
                 </div>
             </div>
-        </div>
+        @else
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6 col-12 text-center font-italic">
+                    <div class="shadow p-3 mt-5 bg-white rounded"
+                        style="color: #2e2751; box-shadow: 0px 2px 8px #a7a7a77a;">
+                        <h5><i class="fa fa-newspaper-o"></i> Belum ada berita terkini.</h5>
+                    </div>
+                </div>
+            </div>
+        @endif
     </div>
 </section>
 <!--/ End Berita Terikini -->
@@ -177,6 +88,6 @@
             background: #fff;
             color: #2e2751;
         }
+
     </style>
 @endpush
-

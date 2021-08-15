@@ -1,10 +1,11 @@
 <!-- Bidang & Sub Bidang -->
-<section class="pricing-plan services section" style="background-image: url('{{assets_front . 'images/background/bg-1.png'}}')">
+<section class="pricing-plan services section"
+    style="background-image: url('{{ assets_front . 'images/background/bg-14.png' }}')">
     <div class="container">
         <div class="row">
             <div class="col-12 wow fadeInUp">
                 <div class="section-title">
-                    <span class="title-bg" style="text-transform: none !important; color: #e5e6e6ad">e-Pikir</span>
+                    <span class="title-bg" style="text-transform: none !important; color: #e2e2e2b3">e-Pikir</span>
                     <h1>Bidang Penelitian & Pengembangan</h1>
                     {{-- <p>Sed lorem enim, faucibus at erat eget, laoreet tincidunt tortor. Ut sed mi nec ligula bibendum
                         aliquam. Sed scelerisque maximus magna, a vehicula turpis Proin

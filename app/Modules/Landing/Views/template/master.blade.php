@@ -9,14 +9,29 @@
 
     <!-- ==== Document Meta ==== -->
     <meta name="author" content="epikir.magelangkab.go.id">
+    <meta name="description"
+        content="{{ isset($meta) ? $meta['description'] : 'Website e-Pikir BAPPEDA LITBANGDA Kabupaten Magelang' }}">
+    <meta property="og:url"
+        content="<?= $full_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ?>" />
+    <meta name="keywords"
+        content="{{ isset($meta) ? $meta['title'] . ', e-Pikir Kabupaten Magelang, epikir, Kabupaten Magelang, litbang, riset, penelitian, bappeda, litbangda, bappedalitbangda, litbang magelang' : 'e-Pikir Kabupaten Magelang, epikir, Kabupaten Magelang, litbang, riset, penelitian, bappeda, litbangda, bappedalitbangda, litbang magelang' }}">
+    <meta property="og:title"
+        content="{{ isset($meta) ? $meta['title'] : 'e-Pikir | BAPPEDA LITBANGDA Kab. Magelang' }}" />
+
+    <meta property="og:image"
+        content="{{ isset($meta) ? base_url('upload/berita/' . $meta['image']) : base_url('assets/img/logo/logo_kab_sm.png') }}" />
+
+
+    {{-- <!-- ==== Document Meta ==== -->
+    <meta name="author" content="epikir.magelangkab.go.id">
     <meta name="description" content="ePikir Kabupaten Magelang">
     <meta property="og:url" content="https://epikir.magelangkab.go.id/" />
     <meta name="keywords"
         content="ePikir Kabupaten Magelang, epikir, Kabupaten Magelang, litbang, riset, penelitian, bappeda, litbangda, bappedalitbangda, litbang magelang">
-    <meta property="og:title" content="ePikir Kabupaten Magelang" />
+    <meta property="og:title" content="ePikir Kabupaten Magelang" /> --}}
 
     <!-- Title Tag -->
-    <title>e-Pikir &#8739; BAPPEDA & LITBANGDA Kab. Magelang</title>
+    <title>e-Pikir &#8739; BAPPEDA LITBANGDA Kab. Magelang</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ base_url('assets/img/logo/logo_kab_sm.png') }}">

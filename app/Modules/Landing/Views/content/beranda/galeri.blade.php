@@ -1,10 +1,11 @@
 <!-- Galeri -->
-<section id="portfolio" class="portfolio section" style="background-image: url('{{assets_front . 'images/background/bg-1.png'}}')">
+<section id="portfolio" class="portfolio section"
+    style="background-image: url('{{ assets_front . 'images/background/bg-1.png' }}')">
     <div class="container">
         <div class="row" style="margin: 52px">
             <div class="col-12 wow fadeInUp">
                 <div class="section-title">
-                    <span class="title-bg" style="color: #e5e6e6ad">Galeri</span>
+                    <span class="title-bg" style="color: #e2e2e2b3">Galeri</span>
                     <h1>Dokumentasi Kegiatan Terkini</h1>
                     {{-- <p>Sed lorem enim, faucibus at erat eget, laoreet tincidunt tortor. Ut sed mi nec ligula
                         bibendum
@@ -13,6 +14,7 @@
                 </div>
             </div>
         </div>
+
         {{-- <div class="row">
             <div class="col-12">
                 <!-- portfolio Nav -->
@@ -41,142 +43,70 @@
                 <!--/ End portfolio Nav -->
             </div>
         </div> --}}
-        <div class="portfolio-inner">
-            <div class="row">
-                <div class="col-12">
-                    <div id="portfolio-item">
-                        <!-- Single portfolio -->
-                        <div class="cbp-item website animation printing">
-                            <div class="portfolio-single">
-                                <div class="portfolio-head">
-                                    <img src="{{ assets_front }}images/portfolio/p1.jpg" alt="#" />
-                                </div>
-                                <div class="portfolio-hover">
-                                    <h4><a href="portfolio-single.html">Creative Work</a></h4>
-                                    <p>Maecenas sapien erat, porta non porttitor non, dignissim et enim. Aenean ac
-                                        enim
-                                    </p>
-                                    <div class="button">
-                                        <a class="primary" data-fancybox="gallery"
-                                            href="{{ assets_front }}images/portfolio/p1.jpg"><i
-                                                class="fa fa-search"></i></a>
-                                        <a href="portfolio-single.html"><i class="fa fa-link"></i></a>
+
+        @if ($galeri != null && $galeri != '')
+            <div class="portfolio-inner">
+                <div class="row">
+                    <div class="col-12">
+                        <div id="portfolio-item">
+                            @foreach ($galeri as $item)
+                                <!-- Single portfolio -->
+                                <div class="cbp-item">
+                                    <div class="portfolio-single">
+                                        <div class="portfolio-head">
+                                            <img src="{{ $item->file_foto != null ? base_url('upload/galeri/' . $item->file_foto) : 'https://i.ytimg.com/vi_webp/' . get_segment($item->link_video) . '/sddefault.webp' }}"
+                                                alt="#" />
+                                        </div>
+                                        <div class="portfolio-hover" style="padding: 15px">
+                                            <h4 style="font-size: 12pt">
+                                                @if ($item->jenis_galeri == 1)
+                                                    <a data-fancybox="gallery1"
+                                                        href="{{ base_url('upload/galeri/' . $item->file_foto) }}">{{ $item->judul_galeri }}</a>
+                                                @else
+                                                    <a href="{{ $item->link_video }}"
+                                                        class="cbp-lightbox">{{ $item->judul_galeri }}</a>
+                                                @endif
+                                            </h4>
+                                            <p style="font-size: 0.7rem;">
+                                                {{ character_limiter($item->ket_galeri != null && $item->ket_galeri != '' ? $item->ket_galeri : $item->judul_galeri, 400, '...') }}
+                                            </p>
+                                            <div class="button" style="position: absolute; bottom: 15px;">
+                                                @if ($item->jenis_galeri == 1)
+                                                    <a class="primary" data-fancybox="gallery2"
+                                                        href="{{ base_url('upload/galeri/' . $item->file_foto) }}"><i
+                                                            class="fa fa-search"></i></a>
+                                                @else
+                                                    <a href="{{ $item->link_video }}" class="primary cbp-lightbox"><i
+                                                            class="fa fa-play"></i></a>
+                                                @endif
+
+                                                {{-- <a href="portfolio-single.html"><i class="fa fa-link"></i></a> --}}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                                <!--/ End portfolio -->
+                            @endforeach
                         </div>
-                        <!--/ End portfolio -->
-                        <!-- Single portfolio -->
-                        <div class="cbp-item website package development">
-                            <div class="portfolio-single">
-                                <div class="portfolio-head">
-                                    <img src="{{ assets_front }}images/portfolio/p2.jpg" alt="#" />
-                                </div>
-                                <div class="portfolio-hover">
-                                    <h4><a href="portfolio-single.html">Responsive Design</a></h4>
-                                    <p>Maecenas sapien erat, porta non porttitor non, dignissim et enim. Aenean ac
-                                        enim
-                                    </p>
-                                    <div class="button">
-                                        <a href="https://www.youtube.com/watch?v=E-2ocmhF6TA"
-                                            class="primary cbp-lightbox"><i class="fa fa-play"></i></a>
-                                        <a href="portfolio-single.html"><i class="fa fa-link"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/ End portfolio -->
-                        <!-- Single portfolio -->
-                        <div class="cbp-item website animation">
-                            <div class="portfolio-single">
-                                <div class="portfolio-head">
-                                    <img src="{{ assets_front }}images/portfolio/p3.jpg" alt="#" />
-                                </div>
-                                <div class="portfolio-hover">
-                                    <h4><a href="portfolio-single.html">Bootstrap Based</a></h4>
-                                    <p>Maecenas sapien erat, porta non porttitor non, dignissim et enim. Aenean ac
-                                        enim
-                                    </p>
-                                    <div class="button">
-                                        <a class="primary" data-fancybox="gallery"
-                                            href="{{ assets_front }}images/portfolio/p3.jpg"><i
-                                                class="fa fa-search"></i></a>
-                                        <a href="portfolio-single.html"><i class="fa fa-link"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/ End portfolio -->
-                        <!-- Single portfolio -->
-                        <div class="cbp-item development printing">
-                            <div class="portfolio-single">
-                                <div class="portfolio-head">
-                                    <img src="{{ assets_front }}images/portfolio/p4.jpg" alt="#" />
-                                </div>
-                                <div class="portfolio-hover">
-                                    <h4><a href="portfolio-single.html">Clean Design</a></h4>
-                                    <p>Maecenas sapien erat, porta non porttitor non, dignissim et enim. Aenean ac
-                                        enim
-                                    </p>
-                                    <div class="button">
-                                        <a href="https://www.youtube.com/watch?v=E-2ocmhF6TA"
-                                            class="primary cbp-lightbox"><i class="fa fa-play"></i></a>
-                                        <a href="portfolio-single.html"><i class="fa fa-link"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/ End portfolio -->
-                        <!-- Single portfolio -->
-                        <div class="cbp-item development package">
-                            <div class="portfolio-single">
-                                <div class="portfolio-head">
-                                    <img src="{{ assets_front }}images/portfolio/p5.jpg" alt="#" />
-                                </div>
-                                <div class="portfolio-hover">
-                                    <h4><a href="portfolio-single.html">Animation</a></h4>
-                                    <p>Maecenas sapien erat, porta non porttitor non, dignissim et enim. Aenean ac
-                                        enim
-                                    </p>
-                                    <div class="button">
-                                        <a class="primary" data-fancybox="gallery"
-                                            href="{{ assets_front }}images/portfolio/p5.jpg"><i
-                                                class="fa fa-search"></i></a>
-                                        <a href="portfolio-single.html"><i class="fa fa-link"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/ End portfolio -->
-                        <!-- Single portfolio -->
-                        <div class="cbp-item website animation printing">
-                            <div class="portfolio-single">
-                                <div class="portfolio-head">
-                                    <img src="{{ assets_front }}images/portfolio/p6.jpg" alt="#" />
-                                </div>
-                                <div class="portfolio-hover">
-                                    <h4><a href="portfolio-single.html">Parallax</a></h4>
-                                    <p>Maecenas sapien erat, porta non porttitor non, dignissim et enim. Aenean ac
-                                        enim
-                                    </p>
-                                    <div class="button">
-                                        <a href="https://www.youtube.com/watch?v=E-2ocmhF6TA"
-                                            class="primary cbp-lightbox"><i class="fa fa-play"></i></a>
-                                        <a href="portfolio-single.html"><i class="fa fa-link"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/ End portfolio -->
                     </div>
-                </div>
-                <div class="col-12">
-                    <div class="button">
-                        <a class="btn primary" href="{{ base_url('landing/galeri') }}">Lihat Semua Galeri</a>
+                    <div class="col-12">
+                        <div class="button">
+                            <a class="btn primary" href="{{ base_url('landing/galeri') }}">Lihat Semua Galeri</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @else
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6 col-12 text-center font-italic">
+                    <div class="shadow p-3 mt-5 bg-white rounded"
+                        style="color: #2e2751; box-shadow: 0px 2px 8px #a7a7a77a;">
+                        <h5><i class="fa fa-picture-o"></i> Belum ada dokumentasi kegiatan terkini.</h5>
+                    </div>
+                </div>
+            </div>
+        @endif
     </div>
 </section>
 <!--/ End Galeri -->

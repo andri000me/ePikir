@@ -8,8 +8,8 @@
                 <div class="col-lg-6 col-12">
                     <!-- Contact -->
                     <ul class="contact" style="margin-top: 0px !important; padding-block: 4px;">
-                        <li><i class="fa fa-phone"></i> (0293) 45678910</li>
-                        <li><i class="fa fa-envelope"></i> <a href="mailto:litbang@gmail.com">litbang@gmail.com</a>
+                        <li><i class="fa fa-phone"></i> <a href="tel:0293788181">(0293)-788181</a> </li>
+                        <li><i class="fa fa-envelope"></i> <a href="mailto:bappeda@magelangkab.go.id">bappeda@magelangkab.go.id</a>
                         </li>
                         
                     </ul>
@@ -55,15 +55,24 @@
                     <div class="mainmenu">
                         <nav class="navigation">
                             <ul class="nav menu" style="padding-right: 130px !important">
+                                <?php
+                                    $exp_active = explode(".", $active);
+                                    $active1 = $exp_active[0]; //diambil kode pertama untuk active menu pertama
+                                    $active2 = $active;
+                                    if (isset($exp_active[1])) {
+                                        $active2 = $exp_active[0] . "." . $exp_active[1]; //diambil 2 kode awal untuk active sub menu
+                                    }
+                                ?>
+                                
                                 <?php $__currentLoopData = $menu; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $nav): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <li class="<?php echo e($nav['index'] == $active ? 'active' : ''); ?>"
+                                    <li class="<?php echo e($nav['index'] == $active1 ? 'active' : ''); ?>"
                                         style="margin-right: 30px;">
                                         <a href="<?php echo e($nav['url']); ?>"><?php echo e($nav['title']); ?><i
                                                 class="<?php echo e($nav['child'] != null ? 'fa fa-caret-down' : ''); ?>"></i></a>
                                         <?php if($nav['child'] != null): ?>
                                             <ul class="dropdown">
                                                 <?php $__currentLoopData = $nav['child']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sub): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <li class="<?php echo e($sub['index'] == $active ? 'active' : ''); ?>">
+                                                    <li class="<?php echo e($sub['index'] == $active2 ? 'active' : ''); ?>">
                                                         <a href="<?php echo e($sub['url']); ?>"><?php echo e($sub['title']); ?><i
                                                                 class="<?php echo e($sub['child'] != null ? 'fa fa-caret-right' : ''); ?>"></i></a>
                                                         <?php if($sub['child'] != null): ?>
