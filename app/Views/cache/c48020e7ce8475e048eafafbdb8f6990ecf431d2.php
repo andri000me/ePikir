@@ -150,7 +150,7 @@
     
     
     <!-- Main JS -->
-    <script src="<?php echo e(assets_front); ?>js/main.js"></script>
+    <script src="<?php echo e(assets_front); ?>js/main-new.js"></script>
 
     <!-- Plugin JS tambahan -->
     <?php echo $__env->yieldPushContent('js_plugin'); ?>

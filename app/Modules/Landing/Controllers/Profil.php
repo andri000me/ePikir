@@ -3,6 +3,7 @@
 namespace App\Modules\Landing\Controllers;
 
 use App\Modules\Landing\Models\ProfilModel;
+use App\Modules\Landing\Models\RegulasiModel;
 
 class Profil extends BaseController
 {
@@ -45,11 +46,23 @@ class Profil extends BaseController
 
     public function regulasi()
     {
-        $m_profil = new ProfilModel();
+        $m_regulasi = new RegulasiModel();
 
-        $this->v_data['profil']     = $m_profil->getData()->struktur_organisasi;
+        $this->v_data['regulasi']     = $m_regulasi->getData();
         $this->v_data['active']     = '2.4';
 
         return views('content/profil/regulasi', 'Landing', $this->v_data);
+    }
+
+    public function regulasiDetail($id)
+    {
+        $m_regulasi = new RegulasiModel();
+        $this->v_data['regulasi']     = $m_regulasi->getData(decode($id));
+        $this->v_data['active']     = '2.4';
+        // $file = $m_regulasi->getData(decode($id))->file_regulasi;
+        // var_dump(file_get_contents(base_url('upload/regulasi/'.$file)));
+        // exit();
+
+        return views('content/profil/regulasi_detail', 'Landing', $this->v_data);
     }
 }

@@ -156,7 +156,7 @@
     {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnhgNBg6jrSuqhTeKKEFDWI0_5fZLx0vM"></script> --}}
     {{-- <script src="{{assets_front}}js/gmap.min.js"></script> --}}
     <!-- Main JS -->
-    <script src="{{ assets_front }}js/main.js"></script>
+    <script src="{{ assets_front }}js/main-new.js"></script>
 
     <!-- Plugin JS tambahan -->
     @stack('js_plugin')

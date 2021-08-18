@@ -24,6 +24,12 @@ class AddProfil extends Migration
 			'struktur_organisasi'    => [
 				'type'           => 'TEXT',
 				'comment'		 => 'Bentuk file gambar',
+				'null'			 => TRUE,
+			],
+			'sop_litbang'    => [
+				'type'           => 'TEXT',
+				'comment'		 => 'Bentuk file gambar',
+				'null'			 => TRUE,
 			],
 			'waktu_update'   => [
 				'type'           => 'datetime',

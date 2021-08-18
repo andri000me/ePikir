@@ -43,6 +43,7 @@ class InsertProfil extends Seeder
 				</p>',
 
 				'struktur_organisasi' => 'struktur_organisasi.jpg',
+				'sop_litbang' => 'sop_litbang.jpg',
 				'waktu_update' => date('Y-m-d H:i:s'),
 			),
 		);
