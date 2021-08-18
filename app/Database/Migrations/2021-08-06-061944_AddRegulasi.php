@@ -30,6 +30,7 @@ class AddRegulasi extends Migration
 			'file_regulasi'    => [
 				'type'           => 'TEXT',
 				'comment'		 => 'File regulasi PDF yg bisa diunduh',
+				'null'			 => TRUE,
 			],
 			'waktu_update'   => [
 				'type'           => 'datetime',

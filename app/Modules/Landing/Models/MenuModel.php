@@ -23,8 +23,8 @@ class MenuModel
                 "icon"      => null,
                 "child"     => array(
                     array(
-                        "title"    => "Definisi",
-                        "url"       => base_url('landing/definisi'),
+                        "title"    => "Tentang Kami",
+                        "url"       => base_url('landing/about'),
                         "index"     => 2.1,
                         "icon"      => null,
                         "child"     => null,
@@ -40,6 +40,13 @@ class MenuModel
                         "title"    => "Struktur Organisasi",
                         "url"       => base_url('landing/organisasi'),
                         "index"     => 2.3,
+                        "icon"      => null,
+                        "child"     => null,
+                    ),
+                    array(
+                        "title"    => "Regulasi Kelitbangan",
+                        "url"       => base_url('landing/regulasi'),
+                        "index"     => 2.4,
                         "icon"      => null,
                         "child"     => null,
                     ),

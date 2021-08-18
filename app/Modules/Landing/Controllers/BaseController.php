@@ -17,6 +17,7 @@ namespace App\Modules\Landing\Controllers;
 
 use CodeIgniter\Controller;
 use App\Modules\Landing\Models\MenuModel;
+use App\Modules\Landing\Models\PengunjungModel;
 
 class BaseController extends Controller
 {
@@ -46,7 +47,16 @@ class BaseController extends Controller
 		// $this->session = \Config\Services::session();
 
 		//ambil list menu pada model MenuModel
-		$nav = new MenuModel;
-		$this->v_data['menu'] = $nav->getMenu();
+		$m_nav = new MenuModel;
+		$this->v_data['menu'] = $m_nav->getMenu();
+
+		//Statistik Pengunjung
+		$m_pengunjung = new PengunjungModel();
+		$m_pengunjung->insertData();
+		$this->v_data['p_hari_ini']     = $m_pengunjung->getDataHariIni();
+		$this->v_data['p_kemarin']      = $m_pengunjung->getDataKemarin();
+		$this->v_data['p_bln_ini']      = $m_pengunjung->getDataBulanIni();
+		$this->v_data['p_thn_ini']      = $m_pengunjung->getDataTahunIni();
+		$this->v_data['p_total']        = $m_pengunjung->getDataTotal();
 	}
 }

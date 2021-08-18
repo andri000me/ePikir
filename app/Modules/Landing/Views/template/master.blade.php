@@ -53,7 +53,9 @@
     <link rel="stylesheet" href="{{ assets_front }}css/jquery.fancybox.min.css">
     <!-- Nice Select CSS -->
     <link rel="stylesheet" href="{{ assets_front }}css/niceselect.css">
-
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" href="{{ assets_front }}css/owl.theme.default.css">
+    <link rel="stylesheet" href="{{ assets_front }}css/owl.carousel.min.css">
     <!-- Slick Slider CSS -->
     <link rel="stylesheet" href="{{ assets_front }}css/slickslider.min.css">
     <!-- Animate CSS -->
@@ -61,7 +63,7 @@
 
     <!-- Radix StyleShet CSS -->
     <link rel="stylesheet" href="{{ assets_front }}css/reset.css">
-    <link rel="stylesheet" href="{{ assets_front }}style.css">
+    <link rel="stylesheet" href="{{ assets_front }}style_new.css">
     <link rel="stylesheet" href="{{ assets_front }}css/responsive.css">
 
     <!-- Radix Color CSS -->
@@ -130,7 +132,8 @@
     <script src="{{ assets_front }}js/jquery.fancybox.min.js"></script>
     <!-- Jquery Nav -->
     <script src="{{ assets_front }}js/jquery.nav.js"></script>
-
+    <!-- Owl Carousel JS -->
+    <script src="{{ assets_front }}js/owl.carousel.min.js"></script>
     <!-- Slick Slider JS -->
     <script src="{{ assets_front }}js/slickslider.min.js"></script>
     <!-- Cube Portfolio JS -->

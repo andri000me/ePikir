@@ -9,7 +9,8 @@
                     <!-- Contact -->
                     <ul class="contact" style="margin-top: 0px !important; padding-block: 4px;">
                         <li><i class="fa fa-phone"></i> <a href="tel:0293788181">(0293)-788181</a> </li>
-                        <li><i class="fa fa-envelope"></i> <a href="mailto:bappeda@magelangkab.go.id">bappeda@magelangkab.go.id</a>
+                        <li><i class="fa fa-envelope"></i> <a
+                                href="mailto:bappeda@magelangkab.go.id">bappeda@magelangkab.go.id</a>
                         </li>
                         
                     </ul>
@@ -54,19 +55,18 @@
                     <!-- Main Menu -->
                     <div class="mainmenu">
                         <nav class="navigation">
-                            <ul class="nav menu" style="padding-right: 130px !important">
+                            <ul class="nav menu">
                                 <?php
-                                    $exp_active = explode(".", $active);
+                                    $exp_active = explode('.', $active);
                                     $active1 = $exp_active[0]; //diambil kode pertama untuk active menu pertama
                                     $active2 = $active;
                                     if (isset($exp_active[1])) {
-                                        $active2 = $exp_active[0] . "." . $exp_active[1]; //diambil 2 kode awal untuk active sub menu
+                                        $active2 = $exp_active[0] . '.' . $exp_active[1]; //diambil 2 kode awal untuk active sub menu
                                     }
                                 ?>
-                                
+
                                 <?php $__currentLoopData = $menu; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $nav): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <li class="<?php echo e($nav['index'] == $active1 ? 'active' : ''); ?>"
-                                        style="margin-right: 30px;">
+                                    <li class="<?php echo e($nav['index'] == $active1 ? 'active' : ''); ?>">
                                         <a href="<?php echo e($nav['url']); ?>"><?php echo e($nav['title']); ?><i
                                                 class="<?php echo e($nav['child'] != null ? 'fa fa-caret-down' : ''); ?>"></i></a>
                                         <?php if($nav['child'] != null): ?>

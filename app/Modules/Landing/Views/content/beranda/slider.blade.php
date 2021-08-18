@@ -45,14 +45,3 @@
     <!--/ End Slider -->
 </section>
 <!--/ End Hero Area -->
-
-@push('css_plugin')
-    <!-- Owl Carousel CSS -->
-    <link rel="stylesheet" href="{{ assets_front }}css/owl.theme.default.css">
-    <link rel="stylesheet" href="{{ assets_front }}css/owl.carousel.min.css">
-@endpush
-
-@push('js_plugin')
-    <!-- Owl Carousel JS -->
-    <script src="{{ assets_front }}js/owl.carousel.min.js"></script>
-@endpush

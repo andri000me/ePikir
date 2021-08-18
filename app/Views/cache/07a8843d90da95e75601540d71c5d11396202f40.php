@@ -42,15 +42,4 @@
     <!--/ End Slider -->
 </section>
 <!--/ End Hero Area -->
-
-<?php $__env->startPush('css_plugin'); ?>
-    <!-- Owl Carousel CSS -->
-    <link rel="stylesheet" href="<?php echo e(assets_front); ?>css/owl.theme.default.css">
-    <link rel="stylesheet" href="<?php echo e(assets_front); ?>css/owl.carousel.min.css">
-<?php $__env->stopPush(); ?>
-
-<?php $__env->startPush('js_plugin'); ?>
-    <!-- Owl Carousel JS -->
-    <script src="<?php echo e(assets_front); ?>js/owl.carousel.min.js"></script>
-<?php $__env->stopPush(); ?>
 <?php /**PATH D:\PROJECT\xampp\htdocs\epikir_new\app\Modules\Landing\Views/content/beranda/slider.blade.php ENDPATH**/ ?>

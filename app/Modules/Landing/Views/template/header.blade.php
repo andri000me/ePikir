@@ -9,7 +9,8 @@
                     <!-- Contact -->
                     <ul class="contact" style="margin-top: 0px !important; padding-block: 4px;">
                         <li><i class="fa fa-phone"></i> <a href="tel:0293788181">(0293)-788181</a> </li>
-                        <li><i class="fa fa-envelope"></i> <a href="mailto:bappeda@magelangkab.go.id">bappeda@magelangkab.go.id</a>
+                        <li><i class="fa fa-envelope"></i> <a
+                                href="mailto:bappeda@magelangkab.go.id">bappeda@magelangkab.go.id</a>
                         </li>
                         {{-- <li><i class="fa fa-clock-o"></i>Opening: 09am-5pm</li> --}}
                     </ul>
@@ -67,19 +68,18 @@
                     <!-- Main Menu -->
                     <div class="mainmenu">
                         <nav class="navigation">
-                            <ul class="nav menu" style="padding-right: 130px !important">
+                            <ul class="nav menu">
                                 @php
-                                    $exp_active = explode(".", $active);
+                                    $exp_active = explode('.', $active);
                                     $active1 = $exp_active[0]; //diambil kode pertama untuk active menu pertama
                                     $active2 = $active;
                                     if (isset($exp_active[1])) {
-                                        $active2 = $exp_active[0] . "." . $exp_active[1]; //diambil 2 kode awal untuk active sub menu
+                                        $active2 = $exp_active[0] . '.' . $exp_active[1]; //diambil 2 kode awal untuk active sub menu
                                     }
                                 @endphp
-                                
+
                                 @foreach ($menu as $nav)
-                                    <li class="{{ $nav['index'] == $active1 ? 'active' : '' }}"
-                                        style="margin-right: 30px;">
+                                    <li class="{{ $nav['index'] == $active1 ? 'active' : '' }}">
                                         <a href="{{ $nav['url'] }}">{{ $nav['title'] }}<i
                                                 class="{{ $nav['child'] != null ? 'fa fa-caret-down' : '' }}"></i></a>
                                         @if ($nav['child'] != null)

@@ -8,7 +8,10 @@ if (!isset($routes)) {
 
 $routes->group('landing', ['namespace' => 'App\Modules\Landing\Controllers'], function ($subroutes) {
 
-	/*** Route for Dashboard ***/
-	$subroutes->add('', 'Landing::index');
-	$subroutes->add('home', 'Landing::index');
+	/*** Route for Landing Page ***/
+	$subroutes->get('', 'Beranda::index');
+	$subroutes->get('home', 'Beranda::index');
+	$subroutes->get('about', 'Profil::about');
+	$subroutes->get('tugaspokok', 'Profil::tugasPokok');
+	$subroutes->get('organisasi', 'Profil::strukturOrganisasi');
 });
