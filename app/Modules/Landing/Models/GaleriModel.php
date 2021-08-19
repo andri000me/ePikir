@@ -21,7 +21,7 @@ class GaleriModel extends Model
     public function getData($id = false, $limit = 0, $jenis = '')
     {
         if ($id === false) {
-            $where['tg.status'] = 1;
+            $where['tg.active'] = 1;
             if ($jenis != '') {
                 $where['tg.jenis_galeri'] = $jenis;
             }

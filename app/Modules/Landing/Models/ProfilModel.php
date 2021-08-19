@@ -20,6 +20,6 @@ class ProfilModel extends Model
 
     public function getData()
     {
-        return $this->where(['status' => 1, 'id_profil' => 1])->get()->getRow();
+        return $this->where(['active' => 1, 'id_profil' => 1])->get()->getRow();
     }
 }

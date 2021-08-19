@@ -36,7 +36,7 @@ class AddRegulasi extends Migration
 				'type'           => 'datetime',
 				'null'			 => TRUE,
 			],
-			'status'   => [
+			'active'   => [
 				'type'           => 'tinyint',
 				'constraint'     => 1,
 				'comment'		 => '1=>active; 0=>not active',

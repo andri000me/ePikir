@@ -29,7 +29,7 @@ class CarouselModel extends Model
     public function getData($id = false, $limit = 5)
     {
         if ($id === false) {
-            return $this->where('status', 1)->findAll($limit);
+            return $this->where('active', 1)->findAll($limit);
         } else {
             return $this->getWhere(['id_carousel' => $id]);
         }

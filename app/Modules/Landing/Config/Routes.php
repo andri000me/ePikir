@@ -21,4 +21,5 @@ $routes->group('landing', ['namespace' => 'App\Modules\Landing\Controllers'], fu
 	});
 	$subroutes->get('sop', 'Publikasi::sopLitbang');
 	$subroutes->get('agenda', 'Publikasi::agenda');
+	$subroutes->get('calendar', 'Publikasi::agendaCalendar');
 });

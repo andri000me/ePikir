@@ -56,7 +56,7 @@ class AddGaleri extends Migration
 				'comment'		 => '1=>foto; 2=>video',
 				'default'        => '1',
 			],
-			'status'   => [
+			'active'   => [
 				'type'           => 'tinyint',
 				'constraint'     => 1,
 				'comment'		 => '1=>active; 0=>not active',

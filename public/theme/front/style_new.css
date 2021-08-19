@@ -2493,9 +2493,9 @@ Version: 1.0
     margin-right: 10px;
 }
 
-.blogs-main.archives .post-tab .nav li:last-child a i {
+/* .blogs-main.archives .post-tab .nav li:last-child a i {
     margin-right: 0px;
-}
+} */
 
 .blogs-main.archives .post-tab .single-post {
     overflow: hidden;

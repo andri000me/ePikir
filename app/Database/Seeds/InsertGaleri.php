@@ -73,6 +73,8 @@ class InsertGaleri extends Seeder
 			],
 		);
 
-		$this->db->table('tbl_galeri')->insertBatch($data);
+		foreach ($data as $dt) {
+			$this->db->table('tbl_galeri')->insert($dt);
+		}
 	}
 }

@@ -27,7 +27,11 @@ class AddAgenda extends Migration
 			'isi_agenda'	=> [
 				'type'           => 'TEXT',
 			],
-			'waktu_agenda'   =>  [
+			'waktu_awal'   =>  [
+				'type'           => 'datetime',
+				'null'			 => TRUE,
+			],
+			'waktu_akhir'   =>  [
 				'type'           => 'datetime',
 				'null'			 => TRUE,
 			],

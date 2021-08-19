@@ -19,7 +19,7 @@ class AddKategoriBerita extends Migration
 				'type'           => 'varchar',
 				'constraint'     => '250',
 			],
-			'status'   => [
+			'active'   => [
 				'type'           => 'tinyint',
 				'constraint'     => 1,
 				'comment'		 => '1=>active; 0=>not active',

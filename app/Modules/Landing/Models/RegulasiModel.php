@@ -21,7 +21,7 @@ class RegulasiModel extends Model
     public function getData($id = null)
     {
         if ($id === null) {
-            return $this->where('status = 1')->findAll();
+            return $this->where('active = 1')->findAll();
         } else {
             return $this->getWhere(['id_regulasi' => $id])->getRow();
         }

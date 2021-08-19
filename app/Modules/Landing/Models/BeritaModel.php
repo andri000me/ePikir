@@ -21,7 +21,7 @@ class BeritaModel extends Model
     public function getData($id = false, $limit = 0)
     {
         if ($id === false) {
-            return $this->where('tb.status', 1)
+            return $this->where('tb.active', 1)
                 ->join('tbl_kategori_berita as tkb', 'tb.id_kb = tkb.id_kb', 'LEFT')
                 ->orderBy('tb.waktu_update', 'DESC')
                 ->findAll($limit);

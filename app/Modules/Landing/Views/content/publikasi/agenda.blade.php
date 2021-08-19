@@ -34,80 +34,91 @@
             <div class="row">
                 <div class="col-lg-12 col-12">
                     <!-- About Content -->
-                    <div class="about-content profil text-justify">
-                        <!-- Timeline agenda -->
-                        <div class="timeline"> 
-                            <div class="timeline__event  animated fadeInUp delay-3s timeline__event--type1">
-                              <div class="timeline__event__icon ">
-                                <i class="fa fa-calendar-check-o"></i>
-                              </div>
-                              <div class="timeline__event__date">
-                                20-08-2019
-                              </div>
-                              <div class="timeline__event__content ">
-                                <div class="timeline__event__title">
-                                  Birthday
-                                </div>
-                                <div class="timeline__event__description">
-                                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. </p>
-                                </div>
-                              </div>
-                            </div>
+                    <div class="about-content profil blogs-main archives text-justify" style="background: none">
 
-                            <div class="timeline__event animated fadeInUp delay-2s timeline__event--type2">
-                              <div class="timeline__event__icon">
-                                <i class="fa fa-calendar-check-o"></i>
-                              </div>
-                              <div class="timeline__event__date">
-                                20-08-2019
-                              </div>
-                              <div class="timeline__event__content">
-                                <div class="timeline__event__title">
-                                  Lunch
-                                </div>
-                                <div class="timeline__event__description">
-                                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, nam! Nam eveniet ut aliquam ab asperiores, accusamus iure veniam corporis incidunt reprehenderit accusantium id aut architecto harum quidem dolorem in!</p>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="timeline__event animated fadeInUp delay-1s timeline__event--type3">
-                              <div class="timeline__event__icon">
-                                <i class="fa fa-calendar-check-o"></i>
-                          
-                              </div>
-                              <div class="timeline__event__date">
-                                20-08-2019
-                              </div>
-                              <div class="timeline__event__content">
-                                <div class="timeline__event__title">
-                                  Exercise
-                                </div>
-                                <div class="timeline__event__description">
-                                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, nam! Nam eveniet ut aliquam ab asperiores, accusamus iure veniam corporis incidunt reprehenderit accusantium id aut architecto harum quidem dolorem in!</p>
-                                </div>
-                          
-                              </div>
-                            </div>
-
-                            <div class="timeline__event animated fadeInUp timeline__event--type1">
-                              <div class="timeline__event__icon">
-                                <i class="fa fa-calendar-check-o"></i>
-                          
-                              </div>
-                              <div class="timeline__event__date">
-                                20-08-2019
-                              </div>
-                              <div class="timeline__event__content">
-                                <div class="timeline__event__title">
-                                  Birthday
-                                </div>
-                                <div class="timeline__event__description">
-                                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, nam! Nam eveniet ut aliquam ab asperiores, accusamus iure veniam corporis incidunt reprehenderit accusantium id aut architecto harum quidem dolorem in!</p>
-                                </div>
-                              </div>
-                            </div>
+                      <div class="single-sidebar post-tab">
+                        <!-- Tab Nav -->
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <ul class="nav nav-tabs justify-content-center col-md-6" id="myTab" role="tablist">
+                              <li class="nav-item col-md-6 mb-3">
+                                <a class="nav-link text-center active" data-toggle="tab" href="#perBulan" role="tab" style="border-radius: 30px;">
+                                  <i class="fa fa-calendar"></i>Timeline</a>
+                              </li>
+                              <li class="nav-item col-md-6">
+                                <a class="nav-link text-center" data-toggle="tab" href="#perTahun" role="tab" style="border-radius: 30px;">
+                                  <i class="fa fa-calendar"></i>Kalender</a>
+                              </li>
+                            </ul>
                         </div>
+                        <!--/ End Tab Nav -->
+                        <div class="tab-content" id="myTabContent">
+                            <!-- Agenda Per Bulan -->
+                            <div class="tab-pane fade show active" id="perBulan" role="tabpanel">
+                                <!-- Timeline agenda per bulan-->
+                                <div class="timeline"> 
+                                    @php
+                                        //merubah string menjadi bilangan desimal
+                                        $jml_agenda = floatval('0.'.(count($agenda_bln) * 2 + 4));
+                                    @endphp
+                                    @foreach ($agenda_bln as $index => $item)
+                                        @if ($index % 3 == 0)
+                                            @php
+                                                $type = 'type1';
+                                            @endphp
+                                        @elseif ($index % 3 == 1)
+                                            @php
+                                                $type = 'type2';
+                                            @endphp
+                                        @else
+                                            @php
+                                                $type = 'type3';
+                                            @endphp
+                                        @endif
+
+                                        @if ($index % 2 == 0)
+                                            @php
+                                                $fade = 'fadeInLeft';
+                                            @endphp
+                                        @else
+                                            @php
+                                                $fade = 'fadeInRight';
+                                            @endphp
+                                        @endif
+
+                                        <div class="timeline__event animated wow {{$fade}} timeline__event--{{$type}}" data-wow-delay="{{$jml_agenda}}s">
+                                            <div class="timeline__event__icon ">
+                                            <i class="fa fa-calendar-check-o"></i>
+                                            </div>
+                                            <div class="timeline__event__date">
+                                            {{date('d/m/Y', strtotime($item->waktu_awal)) == date('d/m/Y', strtotime($item->waktu_akhir))?date('d/m/Y', strtotime($item->waktu_awal)):date('d/m/Y', strtotime($item->waktu_awal)).' - '.date('d/m/Y', strtotime($item->waktu_akhir))}}
+                                            </div>
+                                            <div class="timeline__event__content ">
+                                            <div class="timeline__event__title">
+                                                {{$item->judul_agenda}}
+                                            </div>
+                                            <div class="timeline__event__description">
+                                                <p>{{$item->isi_agenda}}</p>
+                                            </div>
+                                            </div>
+                                        </div>
+
+                                        @php
+                                            //setiap looping akan bertambah 0.2 detik
+                                            $jml_agenda+=0.2;
+                                        @endphp
+                                    @endforeach
+                                </div>
+                            </div>
+                            <!--/ End Agenda Per Bulan -->
+                            <!-- Agenda Per Tahun -->
+                            <div class="tab-pane fade show" id="perTahun" role="tabpanel">
+                                {{-- <div id='calendar'></div> --}}
+                                <iframe src="{{base_url('landing/calendar')}}" style="width:100%; height:115vh;" frameborder="0" ></iframe>
+                            </div>
+                            <!--/ End Agenda Per Tahun -->
+                        </div>
+                      </div>
                     </div>
                     <!--/ End About Content -->
                 </div>
@@ -119,4 +130,122 @@
 
 @push('css_plugin')
     <link rel="stylesheet" type="text/css" href="{{base_url('assets/css/timeline.css')}}"/>
+    {{-- <link rel="stylesheet" type="text/css" href="{{base_url('assets/external/FullCalendar/main.min.css')}}"/> --}}
 @endpush
+
+{{-- @push('css_style')
+    <style>
+        .fc h2 {
+            border-bottom: none !important;
+            padding-bottom: 0px !important;
+            font-size: 18.7pt !important;
+        }
+
+        .fc button {
+            top: auto;
+            width: auto !important;
+            height: auto !important;
+            /* background-color: #2e2751 !important; */
+            position: relative !important;
+        }
+
+        .fc a {
+            color: #ff8605;
+        }
+
+        @media(max-width: 480px){
+            .fc-toolbar {
+                display: block !important;
+            }
+        }
+    </style>
+@endpush --}}
+
+{{-- @push('js_plugin')
+    <script src="{{base_url('assets/external/FullCalendar/main.min.js')}}"></script>
+    <script src='{{base_url('assets/external/FullCalendar/locales-all.js')}}'></script>
+@endpush --}}
+
+{{-- @push('js_script')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+      
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                // themeSystem: themeSystem,
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                },
+                // timeZone: 'UTC',
+                locale: 'id',
+                initialDate: '{{date('Y-m-d')}}',
+                weekNumbers: true,
+                navLinks: true, // can click day/week names to navigate views
+                // editable: true,
+                selectable: true,
+                nowIndicator: true,
+                dayMaxEvents: true, // allow "more" link when too many events
+                // showNonCurrentDates: false,
+                events: [
+                    {
+                        title: 'All Day Event',
+                        start: '2020-09-01'
+                    },
+                    {
+                        title: 'Long Event',
+                        start: '2020-09-07',
+                        end: '2020-09-10'
+                    },
+                    {
+                        // groupId: 999,
+                        title: 'Repeating Event',
+                        start: '2020-09-09T16:00:00'
+                    },
+                    {
+                        // groupId: 999,
+                        title: 'Repeating Event',
+                        start: '2020-09-16T16:00:00'
+                    },
+                    {
+                        title: 'Conference',
+                        start: '2020-09-11',
+                        end: '2020-09-13'
+                    },
+                    {
+                        title: 'Meeting',
+                        start: '2020-09-12T10:30:00',
+                        end: '2020-09-12T12:30:00'
+                    },
+                    {
+                        title: 'Lunch',
+                        start: '2020-09-12T12:00:00'
+                    },
+                    {
+                        title: 'Meeting',
+                        start: '2020-09-12T14:30:00'
+                    },
+                    {
+                        title: 'Happy Hour',
+                        start: '2020-09-12T17:30:00'
+                    },
+                    {
+                        title: 'Dinner',
+                        start: '2020-09-12T20:00:00'
+                    },
+                    {
+                        title: 'Birthday Party',
+                        start: '2020-09-13T07:00:00'
+                    },
+                    {
+                        title: 'Click for Google',
+                        url: 'http://google.com/',
+                        start: '2020-09-28'
+                    }
+                ]
+            });
+            calendar.render();
+        });
+    </script>
+@endpush --}}
