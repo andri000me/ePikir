@@ -39,7 +39,7 @@
                             <thead>
                                 <tr class="text-center">
                                     <th>No</th>
-                                    <th width="150">Peraturan</th>
+                                    <th>Peraturan</th>
                                     <th>Tentang</th>
                                     <th>File</th>
                                 </tr>
@@ -48,7 +48,7 @@
                                 @foreach ($regulasi as $key => $val)
                                     <tr>
                                         <td align="center">{{$key + 1}}</td>
-                                        <td><a href="{{base_url('landing/regulasi/detail/'.encode($val->id_regulasi))}}" title="Lihat Dokumen" class="text-danger">{{$val->nama_regulasi}}</a></td>
+                                        <td nowrap><a href="{{base_url('landing/regulasi/detail/'.encode($val->id_regulasi))}}" title="Lihat Dokumen" class="text-danger">{{$val->nama_regulasi}}</a></td>
                                         <td>{{$val->isi_regulasi}}</td>
                                         <td align="center"><a href="{{base_url('upload/regulasi/'.$val->file_regulasi)}}" title="Download" class="h4"><i class="fa fa-file-pdf-o text-danger"></i></a></td>
                                     </tr>
@@ -65,11 +65,11 @@
 @endsection
 
 @push('css_plugin')
-    <link rel="stylesheet" type="text/css" href="{{base_url('assets/vendor/DataTables/datatables.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{base_url('assets/external/DataTables/datatables.min.css')}}"/>
 @endpush
 
 @push('js_plugin') 
-    <script type="text/javascript" src="{{base_url('assets/vendor/DataTables/datatables.min.js')}}"></script>
+    <script type="text/javascript" src="{{base_url('assets/external/DataTables/datatables.min.js')}}"></script>
 @endpush
 
 @push('js_script')
