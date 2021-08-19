@@ -34,7 +34,8 @@
             <div class="row">
                 <div class="col-lg-12 col-12">
                     <!-- About Content -->
-                    <div class="about-content profil blogs-main archives text-justify" style="background: none">
+                    <div class="about-content profil blogs-main archives text-justify"
+                        style="background: none; margin-top: 10px;">
 
                         <div class="single-sidebar post-tab">
                             <!-- Tab Nav -->
