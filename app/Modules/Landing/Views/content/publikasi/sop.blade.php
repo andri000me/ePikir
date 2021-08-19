@@ -35,7 +35,8 @@
                 <div class="col-lg-12 col-12">
                     <!-- About Content -->
                     <div class="about-content profil text-justify">
-                        <img src="{{ base_url('upload/publikasi/' . $profil) }}" alt="" class="mx-auto" style="margin-top: 70px">
+                        <img src="{{ base_url('upload/publikasi/' . $profil) }}" alt="" class="mx-auto"
+                            style="margin-top: 70px">
                     </div>
                     <!--/ End About Content -->
                 </div>

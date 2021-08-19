@@ -47,10 +47,14 @@
                             <tbody>
                                 @foreach ($regulasi as $key => $val)
                                     <tr>
-                                        <td align="center">{{$key + 1}}</td>
-                                        <td nowrap><a href="{{base_url('landing/regulasi/detail/'.encode($val->id_regulasi))}}" title="Lihat Dokumen" class="text-danger">{{$val->nama_regulasi}}</a></td>
-                                        <td>{{$val->isi_regulasi}}</td>
-                                        <td align="center"><a href="{{base_url('upload/regulasi/'.$val->file_regulasi)}}" title="Download" class="h4"><i class="fa fa-file-pdf-o text-danger"></i></a></td>
+                                        <td align="center">{{ $key + 1 }}</td>
+                                        <td nowrap><a
+                                                href="{{ base_url('landing/regulasi/detail/' . encode($val->id_regulasi)) }}"
+                                                title="Lihat Dokumen" class="text-danger">{{ $val->nama_regulasi }}</a></td>
+                                        <td>{{ $val->isi_regulasi }}</td>
+                                        <td align="center"><a href="{{ base_url('upload/regulasi/' . $val->file_regulasi) }}"
+                                                title="Download" class="h4"><i class="fa fa-file-pdf-o text-danger"></i></a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -65,11 +69,11 @@
 @endsection
 
 @push('css_plugin')
-    <link rel="stylesheet" type="text/css" href="{{base_url('assets/external/DataTables/datatables.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{ base_url('assets/external/DataTables/datatables.min.css') }}" />
 @endpush
 
-@push('js_plugin') 
-    <script type="text/javascript" src="{{base_url('assets/external/DataTables/datatables.min.js')}}"></script>
+@push('js_plugin')
+    <script type="text/javascript" src="{{ base_url('assets/external/DataTables/datatables.min.js') }}"></script>
 @endpush
 
 @push('js_script')
@@ -77,6 +81,6 @@
         $('#tbl_regulasi').dataTable();
     </script>
     <script>
-        $('#tbl_regulasi_info').parent().parent().css("padding-block","30px");
+        $('#tbl_regulasi_info').parent().parent().css("padding-block", "30px");
     </script>
 @endpush

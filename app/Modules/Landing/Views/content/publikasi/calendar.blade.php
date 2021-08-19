@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="{{base_url('assets/external/FullCalendar/main.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{ base_url('assets/external/FullCalendar/main.min.css') }}" />
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700,800" rel="stylesheet">
     <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+            font-family: 'Open Sans', sans-serif;
             font-size: 14px;
         }
 
@@ -18,21 +21,31 @@
             color: #ff8605;
         }
 
-        @media(max-width: 480px){
+        .fc .fc-toolbar-chunk h2 {
+            margin-block: 10px !important;
+        }
+
+        @media(max-width: 480px) {
             .fc-toolbar {
                 display: block !important;
             }
         }
+
+        #calendar {
+            padding: 20px;
+        }
+
     </style>
 </head>
+
 <body>
     <div id='calendar'></div>
-    <script src="{{base_url('assets/external/FullCalendar/main.min.js')}}"></script>
-    <script src='{{base_url('assets/external/FullCalendar/locales-all.js')}}'></script>
+    <script src="{{ base_url('assets/external/FullCalendar/main.min.js') }}"></script>
+    <script src='{{ base_url('assets/external/FullCalendar/locales-all.js') }}'></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
-      
+
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 // themeSystem: themeSystem,
                 headerToolbar: {
@@ -42,7 +55,7 @@
                 },
                 // timeZone: 'UTC',
                 locale: 'id',
-                initialDate: '{{date('Y-m-d')}}',
+                initialDate: '{{ date('Y-m-d') }}',
                 weekNumbers: true,
                 navLinks: true, // can click day/week names to navigate views
                 // editable: true,
@@ -50,65 +63,11 @@
                 nowIndicator: true,
                 dayMaxEvents: true, // allow "more" link when too many events
                 // showNonCurrentDates: false,
-                events: [
-                    {
-                        title: 'All Day Event',
-                        start: '2020-09-01'
-                    },
-                    {
-                        title: 'Long Event',
-                        start: '2020-09-07',
-                        end: '2020-09-07'
-                    },
-                    {
-                        // groupId: 999,
-                        title: 'Repeating Event',
-                        start: '2020-09-09T16:00:00'
-                    },
-                    {
-                        // groupId: 999,
-                        title: 'Repeating Event',
-                        start: '2020-09-16T16:00:00'
-                    },
-                    {
-                        title: 'Conference',
-                        start: '2020-09-11',
-                        end: '2020-09-13'
-                    },
-                    {
-                        title: 'Meeting',
-                        start: '2020-09-12T10:30:00',
-                        end: '2020-09-12T12:30:00'
-                    },
-                    {
-                        title: 'Lunch',
-                        start: '2020-09-12T12:00:00'
-                    },
-                    {
-                        title: 'Meeting',
-                        start: '2020-09-12T14:30:00'
-                    },
-                    {
-                        title: 'Happy Hour',
-                        start: '2020-09-12T17:30:00'
-                    },
-                    {
-                        title: 'Dinner',
-                        start: '2020-09-12T20:00:00'
-                    },
-                    {
-                        title: 'Birthday Party',
-                        start: '2020-09-13T07:00:00'
-                    },
-                    {
-                        title: 'Click for Google',
-                        url: 'http://google.com/',
-                        start: '2020-09-28'
-                    }
-                ]
+                events: {!! json_encode($agenda_thn) !!}
             });
             calendar.render();
         });
     </script>
 </body>
+
 </html>

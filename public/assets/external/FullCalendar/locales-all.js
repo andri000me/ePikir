@@ -803,7 +803,7 @@
       month: 'Bulan',
       week: 'Minggu',
       day: 'Hari',
-      list: 'Daftar',
+      list: 'Agenda',
     },
     weekText: 'Mg',
     allDayText: 'Sehari penuh',

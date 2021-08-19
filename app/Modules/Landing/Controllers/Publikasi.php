@@ -29,21 +29,29 @@ class Publikasi extends BaseController
         $m_agenda = new AgendaModel();
 
         $this->v_data['agenda_bln']     = $m_agenda->getData('bulan');
-        $this->v_data['agenda_thn']     = $m_agenda->getData('tahun');
-        $this->v_data['active']     = '3.2';
+        $this->v_data['active']         = '3.2';
 
         return views('content/publikasi/agenda', 'Landing', $this->v_data);
     }
 
-    public function agendaCalendar()
+    public function agendaCalendar($time = false)
     {
         $m_agenda = new AgendaModel();
 
-        $this->v_data['agenda_bln']     = $m_agenda->getData('bulan');
-        $this->v_data['agenda_thn']     = $m_agenda->getData('tahun');
-        $this->v_data['active']     = '3.2';
+        $agenda_thn = $m_agenda->getData('tahun');
+
+        $agenda = array();
+        foreach ($agenda_thn as $val) {
+            $agenda[] = [
+                'title' => $val->judul_agenda,
+                'start' => date('Y-m-d', strtotime($val->waktu_awal)) . ($time ? 'T' . date('H:i:s', strtotime($val->waktu_awal)) : ''),
+                'end'   => ($time ? date('Y-m-d', strtotime($val->waktu_akhir)) : (date('Y-m-d', strtotime($val->waktu_awal)) == date('Y-m-d', strtotime($val->waktu_akhir)) ? date('Y-m-d', strtotime($val->waktu_akhir)) : date('Y-m-d', strtotime($val->waktu_akhir . '+1 days')))) . ($time ? 'T' . date('H:i:s', strtotime($val->waktu_akhir)) : ''),
+            ];
+        }
+
+        $this->v_data['agenda_thn']     = $agenda;
+        $this->v_data['active']         = '3.2';
 
         return views('content/publikasi/calendar', 'Landing', $this->v_data);
     }
-
 }

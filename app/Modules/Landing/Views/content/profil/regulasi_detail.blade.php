@@ -36,10 +36,12 @@
                     <!-- About Content -->
                     <div class="about-content profil text-justify">
                         <div class="button">
-                            <a href="{{base_url('landing/regulasi')}}" class="btn primary"><i class="fa fa-arrow-left"></i> Kembali</a>
+                            <a href="{{ base_url('landing/regulasi') }}" class="btn primary"><i
+                                    class="fa fa-arrow-left"></i> Kembali</a>
                         </div>
                         {{-- <embed src="{{base_url('upload/regulasi/'.$regulasi->file_regulasi)}}" type="application/pdf" width="100%" height="600px" /> --}}
-                        <iframe src="{{realpath('upload/regulasi/'.$regulasi->file_regulasi)}}" style="width:100%; height:80vh;" frameborder="0"></iframe>
+                        <iframe src="{{ realpath('upload/regulasi/' . $regulasi->file_regulasi) }}"
+                            style="width:100%; height:80vh;" frameborder="0"></iframe>
                         {{-- <iframe src="https://docs.google.com/viewer?url={{base_url('upload/regulasi/'.$regulasi->file_regulasi)}}&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe> --}}
                     </div>
                     <!--/ End About Content -->
@@ -51,7 +53,7 @@
 @endsection
 
 @push('css_plugin')
-    <link rel="stylesheet" type="text/css" href="{{base_url('assets/vendor/DataTables/datatables.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{ base_url('assets/vendor/DataTables/datatables.min.css') }}" />
 @endpush
 
 @push('css_style')
@@ -70,11 +72,12 @@
             background: #2e2751;
             color: #fff;
         }
+
     </style>
 @endpush
 
-@push('js_plugin') 
-    <script type="text/javascript" src="{{base_url('assets/vendor/DataTables/datatables.min.js')}}"></script>
+@push('js_plugin')
+    <script type="text/javascript" src="{{ base_url('assets/vendor/DataTables/datatables.min.js') }}"></script>
 @endpush
 
 @push('js_script')
@@ -82,6 +85,6 @@
         $('#tbl_regulasi').dataTable();
     </script>
     <script>
-        $('#tbl_regulasi_info').parent().parent().css("padding-block","30px");
+        $('#tbl_regulasi_info').parent().parent().css("padding-block", "30px");
     </script>
 @endpush
