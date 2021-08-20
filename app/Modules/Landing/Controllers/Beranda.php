@@ -23,8 +23,8 @@ class Beranda extends BaseController
         $m_galeri = new GaleriModel();
 
         $this->v_data['carousel']   = $m_carousel->getData();
-        $this->v_data['berita']     = $m_berita->getData(false, 5);
-        $this->v_data['galeri']     = $m_galeri->getData(false, 6);
+        $this->v_data['berita']     = $m_berita->getData(null, 5);
+        $this->v_data['galeri']     = $m_galeri->getData(null, 6);
 
         $this->v_data['active']     = '1';
 

@@ -1,24 +1,7 @@
 @extends('template/master')
 
 @section('content')
-    <!-- Breadcrumbs -->
-    <section class="breadcrumbs"
-        style="background-image: url({{ assets_front . 'images/background/wall-dark.jpg' }}); background-repeat: repeat; background-size: auto;">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    {{-- <h2><i class="fa fa-pencil"></i>Agenda</h2> --}}
-                    <ul>
-                        <li><a href="{{ base_url('landing/home') }}"><i class="fa fa-home"></i>Home</a></li>
-                        <li><a href="javascript:void(0)"><i class="fa fa-clone"></i>Publikasi</a></li>
-                        <li class="active"><a href="javascript:void(0)"><i class="fa fa-clone"></i>Agenda</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--/ End Breadcrumbs -->
+    @include('template.breadcumbs',['group' => 'Publikasi', 'label' => 'Agenda'])
 
     <!-- About Us -->
     <section class="about-us section">
@@ -175,8 +158,8 @@
     <script src='{{base_url('assets/external/FullCalendar/locales-all.js')}}'></script>
 @endpush --}}
 
-@push('js_script')
-    {{-- <script>
+{{-- @push('js_script')
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
       
@@ -256,12 +239,12 @@
             });
             calendar.render();
         });
-    </script> --}}
+    </script>
 
-    {{-- <script>
+    <script>
         var iframe = document.getElementById("agenda_calendar");
         iframe.onload = function() {
             iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 20 + 'px';
         }
-    </script> --}}
-@endpush
+    </script>
+@endpush --}}

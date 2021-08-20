@@ -23,12 +23,12 @@
                                 <!-- Single Blog -->
                                 <div class="single-blog">
                                     <div class="blog-head">
-                                        <img src="{{ base_url('upload/berita/' . $item->file_foto) }}" alt="#">
+                                        <img src="{{($item->file_foto != null?(!file_exists(realpath('upload/berita/'.$item->file_foto)))?base_url('assets/img/noimage/no_img3.jpg'):base_url('upload/berita/'.$item->file_foto):base_url('assets/img/noimage/no_img3.jpg') )}}" width="100%" height="265" alt="#">
                                     </div>
                                     <div class="blog-bottom">
                                         <div class="blog-inner">
                                             <h4><a
-                                                    href="{{ base_url('landing/berita_detail/' . encode($item->id_berita)) }}">{{ $item->judul_berita }}</a>
+                                                href="{{ base_url('landing/berita_detail/' . encode($item->id_berita)) }}">{{ character_limiter($item->judul_berita, 50, '...') }}</a>
                                             </h4>
                                             <p>{{ character_limiter($item->isi_berita, 100, '...') }}</p>
                                             <div class="meta">

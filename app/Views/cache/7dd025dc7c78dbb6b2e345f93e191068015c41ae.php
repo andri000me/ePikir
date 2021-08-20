@@ -42,32 +42,9 @@
     <div id='calendar'></div>
     <script src="<?php echo e(base_url('assets/external/FullCalendar/main.min.js')); ?>"></script>
     <script src='<?php echo e(base_url('assets/external/FullCalendar/locales-all.js')); ?>'></script>
+    <script src='<?php echo e(base_url('assets/js/calendar.js')); ?>'></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
-
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                // themeSystem: themeSystem,
-                headerToolbar: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
-                },
-                // timeZone: 'UTC',
-                locale: 'id',
-                initialDate: '<?php echo e(date('Y-m-d')); ?>',
-                weekNumbers: true,
-                navLinks: true, // can click day/week names to navigate views
-                // editable: true,
-                selectable: true,
-                nowIndicator: true,
-                dayMaxEvents: true, // allow "more" link when too many events
-                // showNonCurrentDates: false,
-                events: <?php echo json_encode($agenda_thn); ?>
-
-            });
-            calendar.render();
-        });
+        showCalendar(<?php echo json_encode($agenda_thn); ?>, '<?php echo e(date('Y-m-d')); ?>');
     </script>
 </body>
 

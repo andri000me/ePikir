@@ -3,6 +3,8 @@
 namespace App\Modules\Landing\Controllers;
 
 use App\Modules\Landing\Models\AgendaModel;
+use App\Modules\Landing\Models\BeritaModel;
+use App\Modules\Landing\Models\KategoriBeritaModel;
 use App\Modules\Landing\Models\ProfilModel;
 
 class Publikasi extends BaseController
@@ -53,5 +55,19 @@ class Publikasi extends BaseController
         $this->v_data['active']         = '3.2';
 
         return views('content/publikasi/calendar', 'Landing', $this->v_data);
+    }
+
+    public function berita()
+    {
+        helper('text');
+        $m_berita = new BeritaModel();
+        $m_kb = new KategoriBeritaModel();
+
+        $this->v_data['berita']    = $m_berita->getData(null, 1, true);
+        $this->v_data['kategori']  = $m_kb->getData();
+        $this->v_data['pager']     = $m_berita->pager;
+        $this->v_data['active']    = '3.4';
+
+        return views('content/publikasi/berita', 'Landing', $this->v_data);
     }
 }

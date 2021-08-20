@@ -26,9 +26,9 @@ class CarouselModel extends Model
     // protected $deletedField  = 'deleted_at';
 
 
-    public function getData($id = false, $limit = 5)
+    public function getData($id = null, $limit = 5)
     {
-        if ($id === false) {
+        if ($id === null) {
             return $this->where('active', 1)->findAll($limit);
         } else {
             return $this->getWhere(['id_carousel' => $id]);

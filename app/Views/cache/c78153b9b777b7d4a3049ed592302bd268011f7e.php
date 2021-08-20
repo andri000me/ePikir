@@ -1,24 +1,7 @@
 
 
 <?php $__env->startSection('content'); ?>
-    <!-- Breadcrumbs -->
-    <section class="breadcrumbs"
-        style="background-image: url(<?php echo e(assets_front . 'images/background/wall-dark.jpg'); ?>); background-repeat: repeat; background-size: auto;">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    
-                    <ul>
-                        <li><a href="<?php echo e(base_url('landing/home')); ?>"><i class="fa fa-home"></i>Home</a></li>
-                        <li><a href="javascript:void(0)"><i class="fa fa-clone"></i>Profil</a></li>
-                        <li class="active"><a href="javascript:void(0)"><i class="fa fa-clone"></i>Regulasi Kelitbangan</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--/ End Breadcrumbs -->
+    <?php echo $__env->make('template.breadcumbs',['group' => 'Profil', 'label' => 'Regulasi Kelitbangan'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <!-- About Us -->
     <section class="about-us section">
@@ -48,9 +31,13 @@
                                 <?php $__currentLoopData = $regulasi; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr>
                                         <td align="center"><?php echo e($key + 1); ?></td>
-                                        <td nowrap><a href="<?php echo e(base_url('landing/regulasi/detail/'.encode($val->id_regulasi))); ?>" title="Lihat Dokumen" class="text-danger"><?php echo e($val->nama_regulasi); ?></a></td>
+                                        <td nowrap><a
+                                                href="<?php echo e(base_url('landing/regulasi/detail/' . encode($val->id_regulasi))); ?>"
+                                                title="Lihat Dokumen" class="text-danger"><?php echo e($val->nama_regulasi); ?></a></td>
                                         <td><?php echo e($val->isi_regulasi); ?></td>
-                                        <td align="center"><a href="<?php echo e(base_url('upload/regulasi/'.$val->file_regulasi)); ?>" title="Download" class="h4"><i class="fa fa-file-pdf-o text-danger"></i></a></td>
+                                        <td align="center"><a href="<?php echo e(base_url('upload/regulasi/' . $val->file_regulasi)); ?>"
+                                                title="Download" class="h4"><i class="fa fa-file-pdf-o text-danger"></i></a>
+                                        </td>
                                     </tr>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>
@@ -65,10 +52,10 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startPush('css_plugin'); ?>
-    <link rel="stylesheet" type="text/css" href="<?php echo e(base_url('assets/external/DataTables/datatables.min.css')); ?>"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo e(base_url('assets/external/DataTables/datatables.min.css')); ?>" />
 <?php $__env->stopPush(); ?>
 
-<?php $__env->startPush('js_plugin'); ?> 
+<?php $__env->startPush('js_plugin'); ?>
     <script type="text/javascript" src="<?php echo e(base_url('assets/external/DataTables/datatables.min.js')); ?>"></script>
 <?php $__env->stopPush(); ?>
 
@@ -77,7 +64,7 @@
         $('#tbl_regulasi').dataTable();
     </script>
     <script>
-        $('#tbl_regulasi_info').parent().parent().css("padding-block","30px");
+        $('#tbl_regulasi_info').parent().parent().css("padding-block", "30px");
     </script>
 <?php $__env->stopPush(); ?>
 
