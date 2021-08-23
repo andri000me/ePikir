@@ -21,10 +21,13 @@ $routes->group('landing', ['namespace' => 'App\Modules\Landing\Controllers'], fu
 		$routes->get('', 'Profil::regulasi');
 		$routes->get('detail/(:any)', 'Profil::regulasiDetail/$1');
 	});
-	
+
 	//Publikasi
 	$subroutes->get('sop', 'Publikasi::sopLitbang');
 	$subroutes->get('agenda', 'Publikasi::agenda');
 	$subroutes->get('calendar', 'Publikasi::agendaCalendar');
-	$subroutes->get('berita', 'Publikasi::berita');
+	$subroutes->group('berita', function($routes) {
+		$routes->add('', 'Publikasi::berita');
+		$routes->get('detail/(:any)', 'Publikasi::beritaDetail/$1');
+	});
 });

@@ -1,7 +1,7 @@
-@extends('template.master')
 
-@section('content')
-    @include('template.breadcumbs',['group' => 'Publikasi', 'label' => 'Berita/Artikel'])
+
+<?php $__env->startSection('content'); ?>
+    <?php echo $__env->make('template.breadcumbs',['group' => 'Publikasi', 'label' => 'Berita/Artikel'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     
     <!-- Berita/Artikel Content -->
     <section class="blogs-main archives single section">
@@ -16,30 +16,24 @@
                                     <div class="sharethis-inline-share-buttons"></div>
                                 </div>
                                 <div class="blog-head">
-                                    <img src="{{($berita->file_foto != null?(!file_exists(realpath('upload/berita/'.$berita->file_foto)))?base_url('assets/img/noimage/no_img3.jpg'):base_url('upload/berita/'.$berita->file_foto):base_url('assets/img/noimage/no_img3.jpg') )}}" width="100%" height="500" alt="#">
+                                    <img src="<?php echo e(($berita->file_foto != null?(!file_exists(realpath('upload/berita/'.$berita->file_foto)))?base_url('assets/img/noimage/no_img3.jpg'):base_url('upload/berita/'.$berita->file_foto):base_url('assets/img/noimage/no_img3.jpg') )); ?>" width="100%" height="500" alt="#">
                                 </div>
                                 <div class="blog-inner">
                                     <div class="blog-top">
                                         <div class="meta">
-                                            <span><i class="fa fa-bullhorn"></i><a href="{{ base_url('landing/berita?kategori=' . encode($berita->id_kb)) }}">{{ $berita->nama_kategori }}</a></span>
-                                            <span><i class="fa fa-calendar"></i>{{ formatTanggalTtd($berita->waktu_update) }}</span>
-                                            {{-- <span><i class="fa fa-eye"></i><a href="#">333k</a></span> --}}
+                                            <span><i class="fa fa-bullhorn"></i><a href="<?php echo e(base_url('landing/berita?kategori=' . encode($berita->id_kb))); ?>"><?php echo e($berita->nama_kategori); ?></a></span>
+                                            <span><i class="fa fa-calendar"></i><?php echo e(formatTanggalTtd($berita->waktu_update)); ?></span>
+                                            
                                         </div>
-                                        {{-- <ul class="social-share">
-                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                        </ul> --}}
+                                        
                                     </div>
-                                    <h2>{{$berita->judul_berita}}</h2>
-                                    <p>{{$berita->isi_berita}}</p>
+                                    <h2><?php echo e($berita->judul_berita); ?></h2>
+                                    <p><?php echo e($berita->isi_berita); ?></p>
                                     <div class="bottom-area">
                                         <!-- Next Prev -->
                                         <ul class="arrow">
-                                            <li class="prev {{ $berita_prev == null ? 'btn-disabled' : '' }}"><a href="{{ $berita_prev != null ? base_url('landing/berita/detail/'.encode($berita_prev->id_berita)) : 'javascript:void(0)' }}"><i class="fa fa-angle-double-left"></i> Post Sebelumnya</a></li>
-                                            <li class="next {{ $berita_next == null ? 'btn-disabled' : '' }}"><a href="{{ $berita_next != null ? base_url('landing/berita/detail/'.encode($berita_next->id_berita)) : 'javascript:void(0)' }}">Post Selanjutnya <i class="fa fa-angle-double-right"></i></a></li>
+                                            <li class="prev <?php echo e($berita_prev == null ? 'btn-disabled' : ''); ?>"><a href="<?php echo e($berita_prev != null ? base_url('landing/berita/detail/'.encode($berita_prev->id_berita)) : 'javascript:void(0)'); ?>"><i class="fa fa-angle-double-left"></i> Post Sebelumnya</a></li>
+                                            <li class="next <?php echo e($berita_next == null ? 'btn-disabled' : ''); ?>"><a href="<?php echo e($berita_next != null ? base_url('landing/berita/detail/'.encode($berita_next->id_berita)) : 'javascript:void(0)'); ?>">Post Selanjutnya <i class="fa fa-angle-double-right"></i></a></li>
                                         </ul>
                                         <!--/ End Next Prev -->
                                     </div>
@@ -61,10 +55,11 @@
                     <aside class="blog-sidebar">
                         <!-- Form Cari Berita -->
                         <div class="blogs-main archives single" style="padding: 0px">
-                            {!! form_open(base_url('landing/berita'), 'class="form" id="formSearchBerita" method="GET"'); !!}
+                            <?php echo form_open(base_url('landing/berita'), 'class="form" id="formSearchBerita" method="GET"'); ?>
+
                                 <div class="form-group row">
                                     <div class="col-sm-10">
-                                        <input type="text" name="search" placeholder="Cari Berita & Enter" value="{{ $search != null ? $search : '' }}" required="required">
+                                        <input type="text" name="search" placeholder="Cari Berita & Enter" value="<?php echo e($search != null ? $search : ''); ?>" required="required">
                                     </div>
                                     <div class="col-sm-2 btn-search">
                                         <button type="submit" class="btn btn-primary" style="top: 0px" title="Cari"><i class="fa fa-search"></i></button>
@@ -76,17 +71,17 @@
                         <div class="single-sidebar post-tab">
                             <h2><span><i class="fa fa-newspaper-o"></i>Berita Terkini</span></h2>
                             <!-- Single Post -->
-                            @foreach ($berita_terkini as $item)
+                            <?php $__currentLoopData = $berita_terkini; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <div class="single-post">
                                     <div class="post-img">
-                                        <img src="{{($item->file_foto != null?(!file_exists(realpath('upload/berita/'.$item->file_foto)))?base_url('assets/img/noimage/no_img3.jpg'):base_url('upload/berita/'.$item->file_foto):base_url('assets/img/noimage/no_img3.jpg') )}}" alt="#">
+                                        <img src="<?php echo e(($item->file_foto != null?(!file_exists(realpath('upload/berita/'.$item->file_foto)))?base_url('assets/img/noimage/no_img3.jpg'):base_url('upload/berita/'.$item->file_foto):base_url('assets/img/noimage/no_img3.jpg') )); ?>" alt="#">
                                     </div>
                                     <div class="post-info">
-                                        <h4><a href="{{base_url('landing/berita/detail/'.encode($item->id_berita))}}">{{ character_limiter($item->judul_berita, 45, '...') }}</a></h4>
-                                        <p><i class="fa fa-calendar"></i>{{formatTanggalTtd($item->waktu_update)}}</p>
+                                        <h4><a href="<?php echo e(base_url('landing/berita/detail/'.encode($item->id_berita))); ?>"><?php echo e(character_limiter($item->judul_berita, 45, '...')); ?></a></h4>
+                                        <p><i class="fa fa-calendar"></i><?php echo e(formatTanggalTtd($item->waktu_update)); ?></p>
                                     </div>
                                 </div>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             <!--/ End Single Post -->
                         </div>
 
@@ -94,9 +89,9 @@
                         <div class="single-sidebar category">
                             <h2><span><i class="fa fa-pencil"></i>Kategori Berita</span></h2>
                             <ul>
-                                @foreach ($kategori as $item)
-                                    <li><a href="{{base_url('landing/berita?kategori='.encode($item->id_kb))}}"><i class="fa fa-caret-right"></i>{{$item->nama_kategori}}<span>({{$item->jml_berita}})</span></a></li>		
-                                @endforeach		
+                                <?php $__currentLoopData = $kategori; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <li><a href="<?php echo e(base_url('landing/berita?kategori='.encode($item->id_kb))); ?>"><i class="fa fa-caret-right"></i><?php echo e($item->nama_kategori); ?><span>(<?php echo e($item->jml_berita); ?>)</span></a></li>		
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>		
                             </ul>
                         </div>
                         	
@@ -107,9 +102,9 @@
         </div>
     </section>
     <!--/ End Berita/Artikel Content -->
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('css_style')
+<?php $__env->startPush('css_style'); ?>
     <!-- Button form search -->
     <style>
         @media(min-width: 768px) {
@@ -147,13 +142,13 @@
             background: #c7c7c7 !important;
         }
     </style>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@push('js_plugin')
+<?php $__env->startPush('js_plugin'); ?>
     <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5c1d0e8ab56cdb0011e86fe3&product=inline-share-buttons' async='async'></script>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@push('js_script')
+<?php $__env->startPush('js_script'); ?>
     <script>(function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
@@ -161,4 +156,6 @@
     js.src = "//connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v2.9";
     fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('template.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\PROJECT\xampp\htdocs\epikir_new\app\Modules\Landing\Views/content/publikasi/berita_detail.blade.php ENDPATH**/ ?>

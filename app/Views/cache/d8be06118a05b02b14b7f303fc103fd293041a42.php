@@ -25,14 +25,12 @@
                                     <div class="blog-bottom">
                                         <div class="blog-inner">
                                             <h4><a
-                                                href="<?php echo e(base_url('landing/berita_detail/' . encode($item->id_berita))); ?>"><?php echo e(character_limiter($item->judul_berita, 50, '...')); ?></a>
+                                                href="<?php echo e(base_url('landing/berita/detail/' . encode($item->id_berita))); ?>"><?php echo e(character_limiter($item->judul_berita, 50, '...')); ?></a>
                                             </h4>
                                             <p><?php echo e(character_limiter($item->isi_berita, 100, '...')); ?></p>
                                             <div class="meta">
-                                                <span><i class="fa fa-bullhorn"></i><a
-                                                        href="<?php echo e(base_url('landing/berita/' . encode($item->id_kb))); ?>"><?php echo e($item->nama_kategori); ?></a></span>
-                                                <span><i
-                                                        class="fa fa-calendar"></i><?php echo e(date('d F Y', strtotime($item->waktu_update))); ?></span>
+                                                <span><i class="fa fa-bullhorn"></i><a href="<?php echo e(base_url('landing/berita?kategori=' . encode($item->id_kb))); ?>"><?php echo e($item->nama_kategori); ?></a></span>
+                                                <span><i class="fa fa-calendar"></i><?php echo e(formatTanggalTtd($item->waktu_update)); ?></span>
                                                 
                                             </div>
                                         </div>
