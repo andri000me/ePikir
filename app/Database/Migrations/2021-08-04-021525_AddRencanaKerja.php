@@ -21,15 +21,24 @@ class AddRencanaKerja extends Migration
 				'unsigned'       => true,
 				'comment'		 => 'User yg membuat',
 			],
-			'judul_rk'	=> [
-				'type'           => 'TEXT',
+			// 'judul_rk'	=> [
+			// 	'type'           => 'TEXT',
+			// ],
+			// 'isi_rk'	=> [
+			// 	'type'           => 'TEXT',
+			// ],
+			// 'bulan_rk'   =>  [
+			// 	'type'           => 'varchar',
+			// 	'constraint'     => '20',
+			// ],
+			'tahun_rk'		=> [
+				'type'			=> 'char',
+				'constraint'     => '4',
 			],
-			'isi_rk'	=> [
+			'file_rk'    => [
 				'type'           => 'TEXT',
-			],
-			'bulan_rk'   =>  [
-				'type'           => 'varchar',
-				'constraint'     => '20',
+				'comment'		 => 'File rencana kerja PDF yg bisa diunduh',
+				// 'null'			 => TRUE,
 			],
 			'waktu_update'   => [
 				'type'           => 'datetime',

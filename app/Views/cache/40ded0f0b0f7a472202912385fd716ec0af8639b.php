@@ -19,7 +19,7 @@
                     <!-- About Content -->
                     <div class="about-content profil text-justify">
                         <div class="button">
-                            <a href="<?php echo e(base_url('landing/regulasi')); ?>" class="btn primary"><i
+                            <a href="<?php echo e(base_url('landing/regulasi')); ?>" class="btn primary" style="z-index: 999"><i
                                     class="fa fa-arrow-left"></i> Kembali</a>
                         </div>
                         
@@ -34,10 +34,6 @@
     </section>
     <!--/ End About Us -->
 <?php $__env->stopSection(); ?>
-
-<?php $__env->startPush('css_plugin'); ?>
-    <link rel="stylesheet" type="text/css" href="<?php echo e(base_url('assets/vendor/DataTables/datatables.min.css')); ?>" />
-<?php $__env->stopPush(); ?>
 
 <?php $__env->startPush('css_style'); ?>
     <style>
@@ -57,19 +53,6 @@
         }
 
     </style>
-<?php $__env->stopPush(); ?>
-
-<?php $__env->startPush('js_plugin'); ?>
-    <script type="text/javascript" src="<?php echo e(base_url('assets/vendor/DataTables/datatables.min.js')); ?>"></script>
-<?php $__env->stopPush(); ?>
-
-<?php $__env->startPush('js_script'); ?>
-    <script>
-        $('#tbl_regulasi').dataTable();
-    </script>
-    <script>
-        $('#tbl_regulasi_info').parent().parent().css("padding-block", "30px");
-    </script>
 <?php $__env->stopPush(); ?>
 
 <?php echo $__env->make('template/master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\PROJECT\xampp\htdocs\epikir_new\app\Modules\Landing\Views/content/profil/regulasi_detail.blade.php ENDPATH**/ ?>
