@@ -7,15 +7,6 @@ use App\Modules\Auth\Controllers\BaseController;
 class Auth extends BaseController
 {
 
-	/**
-	 * Constructor.
-	 */
-	// public function __construct()
-	// {
-	// 	$this->MasterData = new MasterData();
-	// 	$this->db = \Config\Database::connect();
-	// }
-
 	public function index()
 	{
 		$this->session->destroy();
@@ -28,10 +19,6 @@ class Auth extends BaseController
 		$username = htmlspecialchars_decode($this->request->getVar('username'));
 		$password = htmlspecialchars_decode($this->request->getVar('password'));
 		$pass = md5($password);
-
-		// echo $username.' AND '.$pass; exit();
-
-		// $where = "username = '$username' AND password = '$pass' AND active = 1";
 
 		$where = array(
 			'username' => $username,

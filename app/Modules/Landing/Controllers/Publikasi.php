@@ -4,7 +4,9 @@ namespace App\Modules\Landing\Controllers;
 
 use App\Modules\Landing\Models\AgendaModel;
 use App\Modules\Landing\Models\BeritaModel;
+use App\Modules\Landing\Models\GaleriModel;
 use App\Modules\Landing\Models\KategoriBeritaModel;
+use App\Modules\Landing\Models\KategoriGaleriModel;
 use App\Modules\Landing\Models\ProfilModel;
 use App\Modules\Landing\Models\RenjaModel;
 
@@ -91,7 +93,7 @@ class Publikasi extends BaseController
             $where = null;
         }
 
-        $this->v_data['berita']             = $m_berita->getData(null, 3, true, $search, $where);
+        $this->v_data['berita']             = $m_berita->getData(null, 6, true, $search, $where);
         $this->v_data['berita_count']       = $m_berita->getData(null, 0, false, $search, $where, 'DESC', true);
         $this->v_data['berita_terkini']     = $m_berita->getData(null, 5);
         $this->v_data['kategori']           = $m_kb->getData();
@@ -134,5 +136,17 @@ class Publikasi extends BaseController
         $this->v_data['active']         = '3.4';
 
         return views('content/publikasi/berita_detail', 'Landing', $this->v_data);
+    }
+
+    public function galeri()
+    {
+        helper('text');
+        $m_galeri = new GaleriModel();
+        $m_kg = new KategoriGaleriModel();
+        $this->v_data['galeri']    = $m_galeri->getData();
+        $this->v_data['kategori']  = $m_kg->getData();
+        $this->v_data['active']    = '3.5';
+
+        return views('content/publikasi/galeri', 'Landing', $this->v_data);
     }
 }

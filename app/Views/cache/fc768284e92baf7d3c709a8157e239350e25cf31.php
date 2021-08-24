@@ -1,25 +1,50 @@
-<!-- Galeri -->
-<section id="portfolio" class="portfolio section"
-    style="background-image: url('<?php echo e(assets_front . 'images/background/bg-1.png'); ?>')">
-    <div class="container">
-        <div class="row" style="margin: 52px">
-            <div class="col-12 wow fadeInUp">
-                <div class="section-title">
-                    <span class="title-bg" style="color: #e2e2e2b3">Galeri</span>
-                    <h1>Dokumentasi Kegiatan Terkini</h1>
-                    
+
+
+<?php $__env->startSection('content'); ?>
+    <?php echo $__env->make('template.breadcumbs',['group' => 'Publikasi', 'label' => 'Dokumentasi Kegiatan'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+    <!-- Galeri Section -->
+    <section id="portfolio" class="portfolio section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <span class="title-bg">Publikasi</span>
+                        <h1>Dokumentasi Kegiatan</h1>
+                        
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <?php if($galeri != null && $galeri != ''): ?>
+            <div class="row mt-4">
+                <div class="col-12">
+                    <!-- portfolio Nav -->
+                    <div class="portfolio-nav">
+                        <ul class="tr-list list-inline" id="portfolio-menu">
+                            <li data-filter="*" class="cbp-filter-item active">Semua Galeri<div class="cbp-filter-counter">
+                                </div>
+                            </li>
+                            <?php $__currentLoopData = $kategori; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <li data-filter=".<?php echo e(str_replace(' ', '-', strtolower($item->nama_kategori))); ?>-x<?php echo e($item->id_kg); ?>"
+                                    class="cbp-filter-item"><?php echo e($item->nama_kategori); ?><div class="cbp-filter-counter">
+                                    </div>
+                                </li>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <li data-filter=".videos" class="cbp-filter-item">Video<div class="cbp-filter-counter">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--/ End portfolio Nav -->
+                </div>
+            </div>
             <div class="portfolio-inner">
                 <div class="row">
                     <div class="col-12">
                         <div id="portfolio-item">
                             <?php $__currentLoopData = $galeri; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <!-- Single portfolio -->
-                                <div class="cbp-item">
+                                <!-- Galeri -->
+                                <div
+                                    class="cbp-item <?php echo e(str_replace(' ', '-', strtolower($item->nama_kategori))); ?>-x<?php echo e($item->id_kg); ?> <?php echo e($item->jenis_galeri == 2 ? 'videos' : ''); ?>">
                                     <div class="portfolio-single">
                                         <div class="portfolio-head">
                                             <img src="<?php echo e($item->file_foto != null ? (!file_exists(realpath('upload/galeri/' . $item->file_foto)) ? base_url('assets/img/noimage/no_img3.jpg') : base_url('upload/galeri/' . $item->file_foto)) : ($item->link_video != null ? 'https://i.ytimg.com/vi_webp/' . get_segment($item->link_video) . '/sddefault.webp' : base_url('assets/img/noimage/no_img3.jpg'))); ?>"
@@ -54,29 +79,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!--/ End portfolio -->
+                                <!--/ End Galeri -->
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="button">
-                            <a class="btn primary" href="<?php echo e(base_url('landing/galeri')); ?>">Lihat Semua Galeri</a>
+
                         </div>
                     </div>
                 </div>
             </div>
-        <?php else: ?>
-            <div class="row">
-                <div class="col-lg-3"></div>
-                <div class="col-lg-6 col-12 text-center font-italic">
-                    <div class="shadow p-3 mt-5 bg-white rounded"
-                        style="color: #2e2751; box-shadow: 0px 2px 8px #a7a7a77a;">
-                        <h5><i class="fa fa-picture-o"></i> Belum ada dokumentasi kegiatan terkini.</h5>
-                    </div>
-                </div>
-            </div>
-        <?php endif; ?>
-    </div>
-</section>
-<!--/ End Galeri -->
-<?php /**PATH D:\PROJECT\xampp\htdocs\epikir_new\app\Modules\Landing\Views/content/beranda/galeri.blade.php ENDPATH**/ ?>
+        </div>
+    </section>
+    <!--/ End Galeri -->
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('template/master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\PROJECT\xampp\htdocs\epikir_new\app\Modules\Landing\Views/content/publikasi/galeri.blade.php ENDPATH**/ ?>

@@ -26,9 +26,10 @@ class GaleriModel extends Model
                 $where['tg.jenis_galeri'] = $jenis;
             }
             return $this->where($where)
-                        ->join('tbl_kategori_galeri as tkg', 'tg.id_kg = tkg.id_kg', 'LEFT')
-                        ->orderBy('tg.waktu_update', 'DESC')
-                        ->findAll($limit);
+                ->join('tbl_kategori_galeri as tkg', 'tg.id_kg = tkg.id_kg', 'LEFT')
+                ->orderBy('tg.waktu_update', 'DESC')
+                ->orderBy('tg.id_galeri', 'DESC')
+                ->findAll($limit);
         } else {
             return $this->join('tbl_kategori_galeri as tkg', 'tg.id_kg = tkg.id_kg', 'LEFT')->getWhere(['id_galeri' => $id])->getResult();
         }

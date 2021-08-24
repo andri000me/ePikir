@@ -2,6 +2,18 @@
 
 namespace App\Modules\Admin\Controllers;
 
+use CodeIgniter\Controller;
+use CodeIgniter\HTTP\CLIRequest;
+use CodeIgniter\HTTP\IncomingRequest;
+use CodeIgniter\HTTP\RequestInterface;
+use CodeIgniter\HTTP\ResponseInterface;
+use Psr\Log\LoggerInterface;
+// ------------------------------------------
+use App\Models\MasterData;
+use App\Libraries\Secure;
+use App\Modules\Admin\Models\Data_table_pemohon;
+use App\Modules\Admin\Models\Data_table_perizinan;
+
 /**
  * Class BaseController
  *
@@ -11,18 +23,17 @@ namespace App\Modules\Admin\Controllers;
  *     class Home extends BaseController
  *
  * For security be sure to declare any new methods as protected or private.
- *
- * @package CodeIgniter
  */
 
-use App\Models\MasterData;
-use CodeIgniter\Controller;
-use App\Libraries\Secure;
-use App\Modules\Admin\Models\Data_table_pemohon;
-use App\Modules\Admin\Models\Data_table_perizinan;
 
 class BaseController extends Controller
 {
+	/**
+	 * Instance of the main Request object.
+	 *
+	 * @var IncomingRequest|CLIRequest
+	 */
+	protected $request;
 
 	/**
 	 * An array of helpers to be loaded automatically upon
@@ -47,17 +58,22 @@ class BaseController extends Controller
 	protected $head = array();
 	protected $foot = array();
 	protected $menu = array();
+
+	protected $v_data = array();
 	/**
 	 * Constructor.
 	 */
-	public function initController(\CodeIgniter\HTTP\RequestInterface $request, \CodeIgniter\HTTP\ResponseInterface $response, \Psr\Log\LoggerInterface $logger)
+	public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
 	{
 		// Do Not Edit This Line
 		parent::initController($request, $response, $logger);
 
+
 		//--------------------------------------------------------------------
 		// Preload any models, libraries, etc, here.
 		//--------------------------------------------------------------------
+		// E.g.: $this->session = \Config\Services::session();
+
 		$this->MasterData = new MasterData();
 		$this->DataTablePemohon = new Data_table_pemohon();
 		$this->DataTablePerizinan = new Data_table_perizinan();

@@ -31,4 +31,8 @@ $routes->group('landing', ['namespace' => 'App\Modules\Landing\Controllers'], fu
 		$routes->add('', 'Publikasi::berita');
 		$routes->get('detail/(:any)', 'Publikasi::beritaDetail/$1');
 	});
+	$subroutes->get('galeri', 'Publikasi::galeri');
+
+	//Layanan
+	$subroutes->get('izinpenelitian', 'Layanan::izinPenelitian');
 });

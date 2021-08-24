@@ -148,7 +148,7 @@
             }
         }
 
-        @media(max-width: 767px) {
+        @media(max-width: 575px) {
             .form .btn-search button {
                 margin-top: 15px !important;
             }

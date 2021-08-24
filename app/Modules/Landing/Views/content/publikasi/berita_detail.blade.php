@@ -8,13 +8,23 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-12">
+                    <div class="row nothing" style="padding-top: 31px; margin-bottom: -20px;">
+                        <div class="col-md-8">
+                            <div class="share-post-link" style="padding-block: 5px; margin-bottom: 5px;">
+                                <div class="sharethis-inline-share-buttons"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="button" style="margin-top: 0px;">
+                                <a class="btn primary w-100 float-right" href="{{ base_url('landing/berita') }}">Lihat
+                                    Semua Berita</a>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-12">
                             <!-- Single Blog -->
                             <div class="single-blog">
-                                <div class="share-post-link mb-3" style="padding-block: 5px;">
-                                    <div class="sharethis-inline-share-buttons"></div>
-                                </div>
                                 <div class="blog-head">
                                     <img src="{{ $berita->file_foto != null ? (!file_exists(realpath('upload/berita/' . $berita->file_foto)) ? base_url('assets/img/noimage/no_img3.jpg') : base_url('upload/berita/' . $berita->file_foto)) : base_url('assets/img/noimage/no_img3.jpg') }}"
                                         width="100%" height="500" alt="#">
@@ -153,9 +163,15 @@
             }
         }
 
-        @media(max-width: 767px) {
+        @media(max-width: 575px) {
             .form .btn-search button {
                 margin-top: 15px !important;
+            }
+        }
+
+        @media(max-width: 767px) {
+            .sharethis-inline-share-buttons {
+                text-align: center !important;
             }
         }
 
@@ -178,6 +194,23 @@
 
         .btn-disabled a {
             background: #c7c7c7 !important;
+        }
+
+    </style>
+
+    <style>
+        .nothing .button {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .nothing .button .btn {
+            border-radius: 30px;
+        }
+
+        .nothing .button .btn:hover {
+            background: #2e2751;
+            color: #fff;
         }
 
     </style>
