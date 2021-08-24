@@ -19,7 +19,7 @@
         content="{{ isset($meta) ? $meta['title'] : 'e-Pikir | BAPPEDA LITBANGDA Kab. Magelang' }}" />
 
     <meta property="og:image"
-        content="{{ isset($meta) ? base_url('upload/berita/' . $meta['image']) : base_url('assets/img/logo/logo_kab_sm.png') }}" />
+        content="{{ isset($meta) ? $meta['image'] : base_url('assets/img/logo/logo_kab_sm.png') }}" />
 
 
     {{-- <!-- ==== Document Meta ==== -->

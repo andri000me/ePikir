@@ -32,15 +32,21 @@
                                     </div>
                                     <h2><?php echo e($berita->judul_berita); ?></h2>
                                     <p><?php echo e($berita->isi_berita); ?></p>
-                                    <div class="bottom-area">
+                                    <div class="bottom-area btn-page-arrow row">
                                         <!-- Next Prev -->
-                                        <ul class="arrow">
-                                            <li class="prev <?php echo e($berita_prev == null ? 'btn-disabled' : ''); ?>"><a
+                                        <ul class="arrow col-md-8 offset-md-2 col-12 d-flex flex-wrap">
+                                            <li
+                                                class="prev <?php echo e($berita_prev == null ? 'btn-disabled' : ''); ?> col-md-6 col-12 border-0 mb-2 px-1">
+                                                <a
                                                     href="<?php echo e($berita_prev != null ? base_url('landing/berita/detail/' . encode($berita_prev->id_berita)) : 'javascript:void(0)'); ?>"><i
-                                                        class="fa fa-angle-double-left"></i> Post Sebelumnya</a></li>
-                                            <li class="next <?php echo e($berita_next == null ? 'btn-disabled' : ''); ?>"><a
+                                                        class="fa fa-angle-double-left"></i> Post Sebelumnya</a>
+                                            </li>
+                                            <li
+                                                class="next <?php echo e($berita_next == null ? 'btn-disabled' : ''); ?> col-md-6 col-12 px-1">
+                                                <a
                                                     href="<?php echo e($berita_next != null ? base_url('landing/berita/detail/' . encode($berita_next->id_berita)) : 'javascript:void(0)'); ?>">Post
-                                                    Selanjutnya <i class="fa fa-angle-double-right"></i></a></li>
+                                                    Selanjutnya <i class="fa fa-angle-double-right"></i></a>
+                                            </li>
                                         </ul>
                                         <!--/ End Next Prev -->
                                     </div>
@@ -129,6 +135,16 @@
 
             .form .btn-search button {
                 height: 100%;
+            }
+        }
+
+        @media(min-width: 991px) {
+            .btn-page-arrow .prev {
+                padding-left: 40px !important;
+            }
+
+            .btn-page-arrow .next {
+                padding-right: 40px !important;
             }
         }
 

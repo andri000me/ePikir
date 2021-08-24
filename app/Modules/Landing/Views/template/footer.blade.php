@@ -18,7 +18,7 @@
                                 <p>BAPPEDA & LITBANGDA Pemda Kabupaten Magelang</p>
                                 <ul class="list">
                                     <li><i class="fa fa-map-marker"></i>Jln. Soekarno Hatta No. 59 Kota Mungkid</li>
-                                    <li><i class="fa fa-phone"></i>Phone: <a href="tel:0293788181">(0293)-788181</a>
+                                    <li><i class="fa fa-phone"></i>Phone: <a href="tel:0293788181">(0293) - 788181</a>
                                     </li>
                                     <li><i class="fa fa-fax"></i>Fax: (0293) - 788122</li>
                                     <li><i class="fa fa-envelope"></i>Email: <a
@@ -32,8 +32,8 @@
                             <div class="single-widget about">
                                 <h2>Profil</h2>
                                 <ul class="list">
-                                    <li><a href="{{ base_url('landing/definisi') }}"><i
-                                                class="fa fa-caret-right"></i>Definisi</a></li>
+                                    <li><a href="{{ base_url('landing/about') }}"><i
+                                                class="fa fa-caret-right"></i>Tentang Kami</a></li>
                                     <li><a href="{{ base_url('landing/tugaspokok') }}"><i
                                                 class="fa fa-caret-right"></i>Tugas Pokok & Fungsi</a></li>
                                     <li><a href="{{ base_url('landing/organisasi') }}"><i
