@@ -179,6 +179,6 @@
     }
 
 </style>
-@push('css_script')
+@push('css_style')
 
 @endpush

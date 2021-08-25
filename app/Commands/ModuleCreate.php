@@ -91,7 +91,7 @@ class ModuleCreate extends BaseCommand
             return;
         }
 
-        $this->module_name = ucfirst($this->module_name);
+        $this->module_name = ucfirst(strtolower($this->module_name));
 
         if (!file_exists(APPPATH .  'Modules')) {
             mkdir(APPPATH .  'Modules'); //Create folder Modules
@@ -139,8 +139,8 @@ if(!isset(\$routes))
 \$routes->group('$routeName', ['namespace' => 'App\Modules\\$this->module_name\\Controllers'], function(\$subroutes){
 
 	/*** Route for Dashboard ***/
-	\$subroutes->add('', 'Dashboard::index');
-	\$subroutes->add('dashboard', 'Dashboard::index');
+	\$subroutes->add('', '" . $this->module_name . "::index');
+	\$subroutes->add('dashboard', '" . $this->module_name . "::index');
 
 });";
 
@@ -233,12 +233,12 @@ class BaseController extends Controller
 
         // mkdir($controllerPath);
 
-        if (!file_exists($controllerPath . '/Dashboard.php')) {
+        if (!file_exists($controllerPath . '/' . $this->module_name . '.php')) {
             $template = "<?php namespace App\Modules\\$this->module_name\\Controllers;
 
 use App\Modules\\$this->module_name\\Models\UserModel;
 
-class Dashboard extends BaseController
+class " . $this->module_name . " extends BaseController
 {
     private \$userModel;
 
@@ -254,7 +254,7 @@ class Dashboard extends BaseController
 	{
 		\$data = [
 		    'title' => 'Dashboard Page',
-            'view' => '" . strtolower($this->module_name) . "/dashboard',
+            'view' => '\App\/" . $this->module_folder . '\/' . $this->module_name . '\Views' . "\dashboard',
             'data' => \$this->userModel->getUsers(),
         ];
 
@@ -263,7 +263,7 @@ class Dashboard extends BaseController
 
 }
 ";
-            file_put_contents($controllerPath . '/Dashboard.php', $template);
+            file_put_contents($controllerPath . '/' . $this->module_name . '.php', $template);
         } else {
             CLI::error("Can't Create Controller! Old File Exists!");
         }

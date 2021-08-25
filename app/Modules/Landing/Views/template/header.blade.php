@@ -29,7 +29,7 @@
                         <!-- Social -->
                         <ul class="social" style="margin-top: 0px !important; padding-block: 4px;">
                             <li style="border-right: 1px solid #cccccc; border-left: 1px solid #cccccc;"><a
-                                    href="{{ base_url('Auth') }}" style="padding-inline: 10px"><i
+                                    href="{{ base_url('auth') }}" style="padding-inline: 10px"><i
                                         class="fa fa-user"></i> Login</a></li>
                             {{-- <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>

@@ -10,67 +10,74 @@ class Auth extends BaseController
 	public function index()
 	{
 		$this->session->destroy();
-		echo view('\App\Modules\Auth\Views\login');
+		return views('login', 'Auth', $this->v_data);
 	}
 
 	public function cek_login()
 	{
+		$secret = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe';
 
-		$username = htmlspecialchars_decode($this->request->getVar('username'));
-		$password = htmlspecialchars_decode($this->request->getVar('password'));
-		$pass = md5($password);
-
-		$where = array(
-			'username' => $username,
-			'password' => $pass,
-			'active' => 1
+		$credential = array(
+			'secret' => $secret,
+			'response' => $this->request->getVar('g-recaptcha-response'),
+			'remoteip' => $_SERVER['REMOTE_ADDR']
 		);
 
-		$hasil = $this->MasterData->getWhereDataAll('tbl_user', $where);
+		$verify = curl_init();
+		curl_setopt($verify, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
+		curl_setopt($verify, CURLOPT_POST, true);
+		curl_setopt($verify, CURLOPT_POSTFIELDS, http_build_query($credential));
+		curl_setopt($verify, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($verify, CURLOPT_RETURNTRANSFER, true);
+		$response = curl_exec($verify);
 
-		if (count($hasil->getResultArray()) == 1) {
-			$role = $hasil->getRow()->role;
-			$sess_data['id_user'] = $hasil->getRow()->id_user;
-			$sess_data['nama_user'] = $hasil->getRow()->nama_user;
-			$sess_data['username'] = $hasil->getRow()->username;
-			$sess_data['role'] = $role;
-			$sess_data['logs'] = 'Sim_jin_' . $role;
+		$res = json_decode($response, true);
 
-			$ipaddress = get_client_ip();
-			$data = array(
-				'id_user' 		=> $hasil->getRow()->id_user,
-				'waktu_logs' 	=> date('Y-m-d H:i:s'),
-				'ip_address' 	=> $ipaddress
+		// if ($res['success'] == 1 && $res['score'] >= 0.5) {
+		if ($res['success']) {
+
+			$username = htmlspecialchars_decode($this->request->getVar('username'));
+			$password = htmlspecialchars_decode($this->request->getVar('password'));
+			$pass = md5($password);
+
+			$where = array(
+				'username' => $username,
+				'password' => $pass,
+				'active' => 1
 			);
-			$this->MasterData->inputData($data, 'tbl_logs');
-			$sess_data['id_logs'] = $this->db->insertID();
 
-			$this->session->set($sess_data);
+			$hasil = $this->MasterData->getWhereDataAll('tbl_user', $where);
 
-			$select = array(
-				'status_pemohon',
-				"COUNT('id_pemohon') jml_status",
-			);
-			$table 	= 'tbl_pemohon';
-			$group  = 'status_pemohon';
-			$by     = 'status_pemohon';
-			$order  = 'ASC';
-			$where 	= "status_pemohon = 'diproses' OR status_pemohon = 'diajukan'";
-			$data_status = $this->MasterData->getDataGroupOrderWhere($select, $table, $group, $by, $order, $where)->getResultArray();
+			if (count($hasil->getResultArray()) == 1) {
+				$id_role = $hasil->getRow()->id_role;
 
-			if ($data_status) {
-				$this->session->setFlashdata('info_status', $data_status);
-			}
+				$data_role = $this->MasterData->getWhereData('*', 'tbl_role', "id_role = $id_role")->getRow();
 
-			if ($role == 'admin') {
-				$link = base_url('admin');
+				$role = $data_role->nama_role;
+
+				$sess_data['id_user'] 	= $hasil->getRow()->id_user;
+				$sess_data['nama_user'] = $hasil->getRow()->nama_user;
+				$sess_data['username'] 	= $hasil->getRow()->username;
+				$sess_data['role'] 		= $role;
+				$sess_data['logs'] 		= 'SimEpikir' . ucfirst(strtolower($role));
+
+				$ipaddress = get_client_ip();
+				$data = array(
+					'id_user' 		=> $hasil->getRow()->id_user,
+					'ip_address' 	=> $ipaddress,
+					'waktu_logs' 	=> date('Y-m-d H:i:s'),
+				);
+				$this->MasterData->inputData($data, 'tbl_logs');
+				$sess_data['id_logs'] = $this->db->insertID();
+
+				$this->session->set($sess_data);
+
+				$datas = ['success' => true, 'role' => $role, 'link' => base_url(strtolower($role))];
 			} else {
-				$link = base_url('user');
+				$datas = ['success' => false, 'alert' => 'Username atau password salah.'];
 			}
-
-			$datas = ['success' => true, 'role' => $role, 'link' => $link];
 		} else {
-			$datas = ['success' => false];
+			$datas = ['success' => false, 'alert' => 'reCaptcha belum diverifikasi'];
 		}
 
 		echo json_encode($datas);

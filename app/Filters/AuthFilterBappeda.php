@@ -25,22 +25,21 @@ class AuthFilterBappeda implements FilterInterface
 	 * @return mixed
 	 */
 	public function before(RequestInterface $request, $arguments = null)
-    {
-    	if (session('logs') != 'SimEpikirBappeda')
-	    {
-            Services::session()->destroy();
+	{
+		if (session('logs') != 'SimEpikirBappeda') {
+			Services::session()->destroy();
 ?>
 
-            <script>
-                alert('Silahkan login dahulu!');
-                document.location = '<?=base_url('auth');?>';
-            </script>
+			<script>
+				alert('Silahkan login dahulu!');
+				document.location = '<?= base_url('auth'); ?>';
+			</script>
 <?php
-            //kembali ke halaman login dengan sekaligus set session flashdata error
-	        // return redirect()->to(base_url('auth'))->with('error','Silahkan login dahulu');
-	    }
-        // Do something here
-    }
+			//kembali ke halaman login dengan sekaligus set session flashdata error
+			// return redirect()->to(base_url('auth'))->with('error','Silahkan login dahulu');
+		}
+		// Do something here
+	}
 
 	/**
 	 * Allows After filters to inspect and modify the response

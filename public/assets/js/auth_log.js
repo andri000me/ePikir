@@ -8,7 +8,7 @@ $('#loginform').submit(function(e){
     if (username != '' && password != '') {
         $.ajax({
             type : "POST",
-            url  : protocol+"//"+host+":8080/auth/cekLogin",
+            url  : protocol+"//"+host+"/epikir_new/auth/cekLogin",
             dataType : "json",
             data : $(this).serialize(),
             success: function(data){
@@ -18,7 +18,7 @@ $('#loginform').submit(function(e){
                     window.location = data.link;
                 } else {
                     // $("#alert_login").fadeIn("slow").delay(1000).slideUp('slow');
-                    toastr.error('Username atau password salah.', 'Login Gagal!', {positionClass: 'toast-top-right', containerId: 'toast-top-right'});
+                    toastr.error(data.alert, 'Login Gagal!', {positionClass: 'toast-top-right', containerId: 'toast-top-right'});
                 }
             }
         });

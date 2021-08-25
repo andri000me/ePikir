@@ -179,7 +179,7 @@
     }
 
 </style>
-<?php $__env->startPush('css_script'); ?>
+<?php $__env->startPush('css_style'); ?>
 
 <?php $__env->stopPush(); ?>
 <?php /**PATH D:\PROJECT\xampp\htdocs\epikir_new\app\Modules\Landing\Views/template/footer.blade.php ENDPATH**/ ?>
