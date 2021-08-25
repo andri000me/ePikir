@@ -37,7 +37,10 @@ class AddRekomendasiPengabdian extends Migration
 			'file_lampiran'      => [
 				'type'           => 'TEXT',
 			],
-			'tgl_pelaksanaan'    => [
+			'tgl_pelaksanaan_mulai'    => [
+				'type'           => 'DATE',
+			],
+			'tgl_pelaksanaan_akhir'    => [
 				'type'           => 'DATE',
 			],
 			'waktu_pengajuan'    => [
