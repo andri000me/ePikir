@@ -29,7 +29,7 @@
 
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css"
-        href="{{ base_url('theme/login/vendor/bootstrap/css/bootstrap.min.css') }}">
+        href="{{ base_url('theme/login/external/bootstrap/css/bootstrap.min.css') }}">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css"
         href="{{ base_url('theme/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
@@ -37,12 +37,12 @@
     <link rel="stylesheet" type="text/css"
         href="{{ base_url('theme/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css') }}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ base_url('theme/login/vendor/animate/animate.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ base_url('theme/login/external/animate/animate.css') }}">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css"
-        href="{{ base_url('theme/login/vendor/css-hamburgers/hamburgers.min.css') }}">
+        href="{{ base_url('theme/login/external/css-hamburgers/hamburgers.min.css') }}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ base_url('theme/login/vendor/select2/select2.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ base_url('theme/login/external/select2/select2.min.css') }}">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{ base_url('theme/login/css/util.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ base_url('theme/login/css/main.css') }}">
@@ -148,12 +148,12 @@
     {{-- <script src="{{ assets_url . 'app-assets/js/scripts/customizer.js' }}" type="text/javascript"></script> --}}
     <!-- END MODERN JS-->
     <!--===============================================================================================-->
-    <script src="{{ base_url('theme/login/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ base_url('theme/login/external/jquery/jquery-3.2.1.min.js') }}"></script>
     <!--===============================================================================================-->
-    <script src="{{ base_url('theme/login/vendor/bootstrap/js/popper.js') }}"></script>
-    <script src="{{ base_url('theme/login/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ base_url('theme/login/external/bootstrap/js/popper.js') }}"></script>
+    <script src="{{ base_url('theme/login/external/bootstrap/js/bootstrap.min.js') }}"></script>
     <!--===============================================================================================-->
-    <script src="{{ base_url('theme/login/vendor/select2/select2.min.js') }}"></script>
+    <script src="{{ base_url('theme/login/external/select2/select2.min.js') }}"></script>
     <!--===============================================================================================-->
     <script src="{{ base_url('theme/login/js/main.js') }}"></script>
 

@@ -28,66 +28,70 @@ class Layanan extends BaseController
         $m_user = new UserPemohonModel();
         $m_rpl = new RekomendasiPenelitianModel();
         $post = $this->request->getPost();
+        $cek_token = $this->session->getTempdata('cektoken');
+        if ($cek_token) {
+            if ($post) {
+                $file = $this->request->getFile('file_lampiran');
+                $upload = upload_files($file, FCPATH . 'upload/permohonan/rpl');
 
-        if ($post) {
-            $file = $this->request->getFile('file_lampiran');
-            $upload = upload_files($file, FCPATH . 'upload/permohonan/rpl');
-
-            if ($upload) {
-                $data_user = array(
-                    'nama_pemohon'      => $post['nama_pemohon'],
-                    'pekerjaan_pemohon' => $post['pekerjaan_pemohon'],
-                    'alamat_pemohon'    => $post['alamat_pemohon'],
-                    'no_telp_pemohon'   => $post['no_telp_pemohon'],
-                    'email_pemohon'     => $post['email_pemohon'],
-                );
-                $save_user = $m_user->save($data_user);
-
-                $id_user = $this->db->insertID();
-
-                $no_surat = $this->db->table('tbl_no_surat')->where("tahun", date('Y'));
-                if ($no_surat->countAllResults() == 0) {
-                    $no_last = '001';
-                    $data = array(
-                        'kesbangpol'    => $no_last,
-                        'bappeda'       => $no_last,
-                        'dpmptsp'       => $no_last,
-                        'tahun'         => date('Y'),
+                if ($upload) {
+                    $data_user = array(
+                        'nama_pemohon'      => $post['nama_pemohon'],
+                        'pekerjaan_pemohon' => $post['pekerjaan_pemohon'],
+                        'alamat_pemohon'    => $post['alamat_pemohon'],
+                        'no_telp_pemohon'   => $post['no_telp_pemohon'],
+                        'email_pemohon'     => $post['email_pemohon'],
                     );
-                    $this->db->table('tbl_no_surat')->insert($data);
-                } else {
-                    $no_last = $no_surat->get()->getRow()->kesbangpol;
-                    $nos = (int) $no_last;
-                    $no_new = sprintf("%03s", $nos + 1);
+                    $save_user = $m_user->save($data_user);
 
-                    $this->db->table('tbl_no_surat')->set('kesbangpol', $no_new)->where("tahun", date('Y'))->update();
+                    $id_user = $this->db->insertID();
+
+                    $no_surat = $this->db->table('tbl_no_surat')->where("tahun", date('Y'));
+                    if ($no_surat->countAllResults() == 0) {
+                        $no_last = '001';
+                        $data = array(
+                            'kesbangpol'    => $no_last,
+                            'bappeda'       => $no_last,
+                            'dpmptsp'       => $no_last,
+                            'tahun'         => date('Y'),
+                        );
+                        $this->db->table('tbl_no_surat')->insert($data);
+                    } else {
+                        $no_last = $no_surat->get()->getRow()->kesbangpol;
+                        $nos = (int) $no_last;
+                        $no_new = sprintf("%03s", $nos + 1);
+
+                        $this->db->table('tbl_no_surat')->set('kesbangpol', $no_new)->where("tahun", date('Y'))->update();
+                    }
+
+                    $data_rpl = array(
+                        'no_rpl'                => '070/' . $no_last . '/47' . '/' . date('Y'),
+                        'id_user_pemohon'       => $id_user,
+                        'penanggung_jawab'      => $post['penanggung_jawab'],
+                        'lokasi'                => $post['lokasi'],
+                        'tujuan'                => $post['tujuan'],
+                        'file_lampiran'         => $upload['data'],
+                        'tgl_pelaksanaan_mulai' => date('Y-m-d', strtotime(str_replace('/', '-', $post['tgl_pelaksanaan_mulai']))),
+                        'tgl_pelaksanaan_akhir' => date('Y-m-d', strtotime(str_replace('/', '-', $post['tgl_pelaksanaan_akhir']))),
+                        'waktu_pengajuan'       => date('Y-m-d H:i:s'),
+                        // 'waktu_verifikasi'      => null,
+                        'status'                => 1,
+                    );
+                    $save_rpl = $m_rpl->save($data_rpl);
+
+                    if ($save_rpl) {
+                        $res = ['success' => true];
+                    } else {
+                        $res = ['success' => false, 'alert' => 'Data gagal disimpan.'];
+                    }
+                } else {
+                    $res = ['success' => false, 'alert' => $upload['data']];
                 }
 
-                $data_rpl = array(
-                    'no_rpl'                => '070/' . $no_last . '/47' . '/' . date('Y'),
-                    'id_user_pemohon'       => $id_user,
-                    'penanggung_jawab'      => $post['penanggung_jawab'],
-                    'lokasi'                => $post['lokasi'],
-                    'tujuan'                => $post['tujuan'],
-                    'file_lampiran'         => $upload['data'],
-                    'tgl_pelaksanaan_mulai' => date('Y-m-d', strtotime(str_replace('/', '-', $post['tgl_pelaksanaan_mulai']))),
-                    'tgl_pelaksanaan_akhir' => date('Y-m-d', strtotime(str_replace('/', '-', $post['tgl_pelaksanaan_akhir']))),
-                    'waktu_pengajuan'       => date('Y-m-d H:i:s'),
-                    // 'waktu_verifikasi'      => null,
-                    'status'                => 1,
-                );
-                $save_rpl = $m_rpl->save($data_rpl);
-
-                if ($save_rpl) {
-                    $res = ['success' => true];
-                } else {
-                    $res = ['success' => false, 'alert' => 'Data gagal disimpan.'];
-                }
+                echo json_encode($res);
             } else {
-                $res = ['success' => false, 'alert' => $upload['data']];
+                return redirect()->to(base_url('landing/izinpenelitian'));
             }
-
-            echo json_encode($res);
         } else {
             return redirect()->to(base_url('landing/izinpenelitian'));
         }
