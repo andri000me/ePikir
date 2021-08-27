@@ -33,12 +33,14 @@ class Filters extends BaseConfig
 	public $globals = [
 		'before' => [
 			//'honeypot'
-			'csrf' => ['except' => [
+			'csrf' => [
+				'except' => [
 					'auth/cekLogin',
 					'admin/getDataDesa',
 					'admin/getDataPemohon/.*?/.*+',
-					'admin/deletePemohon',
-					'admin/getDataPerizinan/.*?/.*+'
+					'admin/getDataPerizinan/.*?/.*+',
+					'landing/gettoken',
+					'landing/checktoken',
 				]
 			],
 		],

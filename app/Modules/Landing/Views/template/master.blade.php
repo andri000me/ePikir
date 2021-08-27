@@ -88,6 +88,8 @@
 
 <body>
 
+    @stack('loading')
+
     <!-- Preloader -->
     <div class="preloader">
         <div class="preloader-inner">
@@ -163,6 +165,12 @@
 
     <!-- Script JS tambahan -->
     @stack('js_script')
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#alts').fadeTo(3000, 500).slideUp(500);
+        });
+    </script>
 </body>
 
 </html>

@@ -31,6 +31,8 @@ class BaseController extends Controller
 	 * @var IncomingRequest|CLIRequest
 	 */
 	protected $request;
+	protected $session;
+	protected $db;
 
 	/**
 	 * An array of helpers to be loaded automatically upon
@@ -59,6 +61,9 @@ class BaseController extends Controller
 		// Preload any models, libraries, etc, here.
 		//--------------------------------------------------------------------
 		// E.g.: $this->session = \Config\Services::session();
+
+		$this->session = \Config\Services::session();
+		$this->db = \Config\Database::connect();
 
 		//ambil list menu pada model MenuModel
 		$m_nav = new MenuModel;

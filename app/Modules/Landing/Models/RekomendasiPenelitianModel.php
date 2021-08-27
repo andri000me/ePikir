@@ -4,7 +4,7 @@ namespace App\Modules\Landing\Models;
 
 use CodeIgniter\Model;
 
-class RekomendasiPenelitian extends Model
+class RekomendasiPenelitianModel extends Model
 {
     protected $table      = 'tbl_rekomendasi_penelitian';
     protected $primaryKey = 'id_rpl';
@@ -25,9 +25,5 @@ class RekomendasiPenelitian extends Model
         } else {
             return $this->getWhere(['id_rpl' => $id]);
         }
-    }
-
-    public function saveData()
-    {
     }
 }

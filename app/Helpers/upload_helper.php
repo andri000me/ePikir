@@ -1,13 +1,18 @@
 <?php
 if (!function_exists('upload_files')) {
-    function upload_files($file)
+    function upload_files($file, $path = '')
     {
-        $upload_path      = WRITEPATH.'uploads';
-        $file_name        = 'files_' . round(microtime(true) * 1000);
+        if ($path == '') {
+            $upload_path  = WRITEPATH . 'uploads';
+        } else {
+            $upload_path = $path;
+        }
+        $file_name  = 'files_' . round(microtime(true) * 1000) . '.' . $file->getClientExtension();
+        // $file_name = $file->getRandomName();
 
-        if ($file->isValid() && ! $file->hasMoved()) {
+        if ($file->isValid() && !$file->hasMoved()) {
             $file->move($upload_path, $file_name);
-            
+
             $name_file = $file->getName();
             $res = array(
                 'respons' => true,
@@ -33,13 +38,13 @@ if (!function_exists('upload_photo')) {
         if ($upload['respons']) {
             $file_name = $upload['data'];
             if ($thumb) {
-                $new_name = $file_name.'_thumb';
+                $new_name = $file_name . '_thumb';
             } else {
                 $new_name = $file_name;
             }
-            $imgLib ->withFile(WRITEPATH.'uploads/'.$file_name)
-                    ->resize($width, $height, true, 'width')
-                    ->save(WRITEPATH.'uploads/'.$new_name);
+            $imgLib->withFile(WRITEPATH . 'uploads/' . $file_name)
+                ->resize($width, $height, true, 'width')
+                ->save(WRITEPATH . 'uploads/' . $new_name);
 
             $res = array(
                 'respons' => true,
@@ -65,13 +70,13 @@ if (!function_exists('upload_crop_photo')) {
         if ($upload['respons']) {
             $file_name = $upload['data'];
             if ($thumb) {
-                $new_name = $file_name.'_thumb';
+                $new_name = $file_name . '_thumb';
             } else {
                 $new_name = $file_name;
             }
-            $imgLib ->withFile(WRITEPATH.'uploads/'.$file_name)
-                    ->fit($width, $height, $position)
-                    ->save(WRITEPATH.'uploads/'.$new_name);
+            $imgLib->withFile(WRITEPATH . 'uploads/' . $file_name)
+                ->fit($width, $height, $position)
+                ->save(WRITEPATH . 'uploads/' . $new_name);
 
             $res = array(
                 'respons' => true,

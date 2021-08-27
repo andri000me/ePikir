@@ -34,5 +34,10 @@ $routes->group('landing', ['namespace' => 'App\Modules\Landing\Controllers'], fu
 	$subroutes->get('galeri', 'Publikasi::galeri');
 
 	//Layanan
-	$subroutes->get('izinpenelitian', 'Layanan::izinPenelitian');
+	$subroutes->group('izinpenelitian', function ($routes) {
+		$routes->get('', 'Layanan::izinPenelitian');
+		$routes->add('saverpl', 'Layanan::saveRekomendasiPenelitian');
+	});
+	$subroutes->add('gettoken', 'Layanan::getToken');
+	$subroutes->add('checktoken', 'Layanan::checkToken');
 });

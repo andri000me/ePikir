@@ -17,6 +17,7 @@ class InsertAll extends Seeder
 		$this->call('InsertRegulasi');
 		$this->call('InsertAgenda');
 		$this->call('InsertRencanaKerja');
+		$this->call('InsertNoSurat');
 		$this->call('InsertKategoriGaleri');
 		$this->call('InsertGaleri');
 	}
