@@ -40,7 +40,7 @@ class BeritaModel extends Model
                     return $this->get()->getRow();
                 } else {
                     if ($count) {
-                        return $this->countAllResults();
+                        return $this->countAllResults(false);
                     } else {
                         return $this->findAll($limit);
                     }

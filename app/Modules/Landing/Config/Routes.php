@@ -37,7 +37,9 @@ $routes->group('landing', ['namespace' => 'App\Modules\Landing\Controllers'], fu
 	$subroutes->group('izinpenelitian', function ($routes) {
 		$routes->get('', 'Layanan::izinPenelitian');
 		$routes->add('saverpl', 'Layanan::saveRekomendasiPenelitian');
+		$routes->add('saveipl', 'Layanan::saveIzinPenelitian');
 	});
-	$subroutes->add('gettoken', 'Layanan::getToken');
+	$subroutes->add('selectnohp', 'Layanan::selectNoHp');
+	// $subroutes->add('gettoken', 'Layanan::getToken');
 	$subroutes->add('checktoken', 'Layanan::checkToken');
 });

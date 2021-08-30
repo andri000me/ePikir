@@ -26,8 +26,8 @@
                             <!-- Single Blog -->
                             <div class="single-blog">
                                 <div class="blog-head">
-                                    <img src="{{ $berita->file_foto != null ? (!file_exists(realpath('upload/berita/' . $berita->file_foto)) ? base_url('assets/img/noimage/no_img3.jpg') : base_url('upload/berita/' . $berita->file_foto)) : base_url('assets/img/noimage/no_img3.jpg') }}"
-                                        width="100%" height="500" alt="#">
+                                    <img src="{{ check_image($berita->file_foto, 'upload/berita') }}" width="100%"
+                                        height="500" alt="#">
                                 </div>
                                 <div class="blog-inner">
                                     <div class="blog-top">
@@ -105,8 +105,7 @@
                             @foreach ($berita_terkini as $item)
                                 <div class="single-post">
                                     <div class="post-img">
-                                        <img src="{{ $item->file_foto != null ? (!file_exists(realpath('upload/berita/' . $item->file_foto)) ? base_url('assets/img/noimage/no_img3.jpg') : base_url('upload/berita/' . $item->file_foto)) : base_url('assets/img/noimage/no_img3.jpg') }}"
-                                            alt="#">
+                                        <img src="{{ check_image($item->file_foto, 'upload/berita') }}" alt="#">
                                     </div>
                                     <div class="post-info">
                                         <h4><a

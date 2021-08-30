@@ -27,8 +27,8 @@
 
                                     <div class="col-lg-12 col-12">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="no_rpl" autocomplete="off"
-                                                placeholder="Nomor Surat Rekomendasi" required>
+                                            <input type="text" class="form-control" id="no_rpl" name="no_rpl"
+                                                autocomplete="off" placeholder="Nomor Surat Rekomendasi" required>
                                         </div>
                                     </div>
 
@@ -103,7 +103,7 @@
                                     <ul class="address rules">
                                         <li>
                                             <div class="float-left"><i class="fa fa-check-square-o"></i></div>
-                                            <div>Isi nomor surat rekomendasi yang didapat
+                                            <div style="padding-left: 25px;">Isi nomor surat rekomendasi yang didapat
                                                 dari KESBANGPOL </div>
                                         </li>
                                         <li>

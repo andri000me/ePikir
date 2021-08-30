@@ -22,7 +22,7 @@ class Beranda extends BaseController
         $m_berita = new BeritaModel();
         $m_galeri = new GaleriModel();
 
-        $this->v_data['carousel']   = $m_carousel->getData();
+        $this->v_data['carousel']   = $m_carousel->getData(null, 3);
         $this->v_data['berita']     = $m_berita->getData(null, 5);
         $this->v_data['galeri']     = $m_galeri->getData(null, 6);
 

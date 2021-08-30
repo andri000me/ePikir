@@ -29,8 +29,8 @@
                                     <!-- Single Blog -->
                                     <div class="single-blog">
                                         <div class="blog-head">
-                                            <img src="<?php echo e($item->file_foto != null ? (!file_exists(realpath('upload/berita/' . $item->file_foto)) ? base_url('assets/img/noimage/no_img3.jpg') : base_url('upload/berita/' . $item->file_foto)) : base_url('assets/img/noimage/no_img3.jpg')); ?>"
-                                                width="100%" height="265" alt="#">
+                                            <img src="<?php echo e(check_image($item->file_foto, 'upload/berita')); ?>" width="100%"
+                                                height="265" alt="#">
                                         </div>
                                         <div class="blog-bottom">
                                             <div class="blog-inner">
@@ -104,8 +104,7 @@
                             <?php $__currentLoopData = $berita_terkini; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <div class="single-post">
                                     <div class="post-img">
-                                        <img src="<?php echo e($item->file_foto != null ? (!file_exists(realpath('upload/berita/' . $item->file_foto)) ? base_url('assets/img/noimage/no_img3.jpg') : base_url('upload/berita/' . $item->file_foto)) : base_url('assets/img/noimage/no_img3.jpg')); ?>"
-                                            alt="#">
+                                        <img src="<?php echo e(check_image($item->file_foto, 'upload/berita')); ?>" alt="#">
                                     </div>
                                     <div class="post-info">
                                         <h4><a

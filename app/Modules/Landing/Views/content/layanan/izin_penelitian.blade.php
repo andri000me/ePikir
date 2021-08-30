@@ -13,12 +13,14 @@
                             <!-- Tab Nav -->
                             <ul class="nav nav-tabs row d-flex" id="myTab" role="tablist">
                                 <li class="nav-item col-6" style="padding-right: 0px">
-                                    <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab">Tahap I <br>
+                                    <a class="nav-link {{ $tab == 1 ? 'active' : '' }}" data-toggle="tab" href="#tab1"
+                                        role="tab">Tahap I <br>
                                         <span class="d-none d-lg-block">Permohonan Rekomendasi Penelitian</span>
                                     </a>
                                 </li>
                                 <li class="nav-item col-6" style="padding-left: 0px">
-                                    <a class="nav-link" data-toggle="tab" href="#tab2" role="tab">Tahap II <br>
+                                    <a class="nav-link {{ $tab == 2 ? 'active' : '' }}" data-toggle="tab" href="#tab2"
+                                        role="tab">Tahap II <br>
                                         <span class="d-none d-lg-block">Permohonan Izin Penelitian</span>
                                     </a>
                                 </li>
@@ -27,13 +29,13 @@
                         </div>
                         <div class="tab-content" id="myTabContent">
                             <!-- Tahap 1 - Rekomendasi Penelitian Tab -->
-                            <div class="tab-pane fade show active" id="tab1" role="tabpanel">
+                            <div class="tab-pane fade {{ $tab == 1 ? 'show active' : '' }}" id="tab1" role="tabpanel">
                                 @include('content/layanan/form_rpl')
                             </div>
                             <!--/ End Tahap 1 - Rekomendasi Penelitian Tab -->
 
                             <!-- Tahap 2 - Izin Penelitian Tab -->
-                            <div class="tab-pane fade" id="tab2" role="tabpanel">
+                            <div class="tab-pane fade {{ $tab == 2 ? 'show active' : '' }}" id="tab2" role="tabpanel">
                                 @include('content/layanan/form_ipl')
                             </div>
                             <!--/ End Tahap 2 - Izin Penelitian Tab -->
@@ -148,28 +150,43 @@
             var check_valid = form.checkValidity();
             if (check_valid) {
                 $("#loading-show").fadeIn("slow");
-                var no_hp = $('#no_telp_pemohon').val();
+                if (form.id == 'formInputRpl') {
+                    var no_hp = $('#' + form.id + ' #no_telp_pemohon').val();
+                    var data = {
+                        jenis: 'rpl',
+                        nomor: no_hp
+                    };
+                } else {
+                    var no_rpl = $('#' + form.id + ' #no_rpl').val();
+                    var data = {
+                        jenis: 'ipl',
+                        nomor: no_rpl
+                    };
+                }
                 $.ajax({
                     type: "POST",
-                    url: "{{ base_url('landing/gettoken') }}",
+                    url: "{{ base_url('landing/selectnohp') }}",
                     dataType: "json",
-                    data: {
-                        no_hp: no_hp
-                    },
+                    data: data,
                     success: function(data) {
                         $("#loading-show").fadeIn("slow").delay(20).fadeOut('slow');
                         if (data.success) {
-                            $('#inputform').slideUp();
-                            $('#checktoken').delay(500).slideDown();
+                            $('#' + form.id + ' #inputform').slideUp();
+                            $('#' + form.id + ' #checktoken').delay(500).slideDown();
                             timerToken(90, form.id);
                         } else {
-                            $('#inputform #alert_info #txt_alert').html(data.alert);
-                            $("#inputform #alert_info").fadeIn("slow").delay(1000).slideUp('slow');
+                            $('#' + form.id + ' #inputform #alert_info #txt_alert').html(data.alert);
+                            $('#' + form.id + ' #inputform #alert_info').fadeIn("slow").delay(1000).slideUp(
+                                'slow');
                         }
                     }
                 });
             } else {
-                alert('Isi semua data pada form yang tersedia! Pastikan email & nomor WhatsApp valid.')
+                if (form.id == 'formInputRpl') {
+                    alert('Isi semua data pada form yang tersedia! Pastikan email & nomor WhatsApp valid.')
+                } else {
+                    alert('Isi semua data pada form yang tersedia!')
+                }
             }
 
             return false;
@@ -197,8 +214,9 @@
                         if (data.success) {
                             saveData(form);
                         } else {
-                            $('#checktoken #alert_info #txt_alert').html(data.alert);
-                            $("#checktoken #alert_info").fadeIn("slow").delay(1000).slideUp('slow');
+                            $('#' + form.id + ' #checktoken #alert_info #txt_alert').html(data.alert);
+                            $('#' + form.id + ' #checktoken #alert_info').fadeIn("slow").delay(1000).slideUp(
+                                'slow');
                         }
                     }
                 });
@@ -225,18 +243,22 @@
                             title: "Sukses!",
                             text: "Data berhasil terkirim dan akan segera di tinjau oleh Admin!",
                             type: "success",
+                            icon: 'success',
                             timer: 2000
                         }).then(function() {
-                            location.reload();
+                            // location.reload();
+                            location.href = data.url;
                         });
                     } else {
                         swal({
                             title: "Gagal!",
                             text: data.alert,
                             type: "error",
+                            icon: "error",
                             timer: 2000
                         }).then(function() {
-                            location.reload();
+                            // location.reload();
+                            location.href = data.url;
                         });
                     }
                 }
@@ -256,6 +278,7 @@
                 if (timeleft == -1) {
                     clearInterval(tokenTimer);
                     $('#' + form_id)[0].reset();
+                    $('.dropify-clear').click();
                     $('#' + form_id + ' #checktoken').slideUp();
                     $('#' + form_id + ' #inputform').delay(500).slideDown();
                 }

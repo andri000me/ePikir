@@ -39,7 +39,8 @@ class Filters extends BaseConfig
 					'admin/getDataDesa',
 					'admin/getDataPemohon/.*?/.*+',
 					'admin/getDataPerizinan/.*?/.*+',
-					'landing/gettoken',
+					'landing/selectnohp',
+					// 'landing/gettoken',
 					'landing/checktoken',
 				]
 			],

@@ -53,7 +53,7 @@ class AddRekomendasiPengabdian extends Migration
 			'status'   => [
 				'type'           => 'tinyint',
 				'constraint'     => 1,
-				'comment'		 => '1=>Masuk; 2=>Disetujui; 3=>Ditolak',
+				'comment'		 => '1=>Masuk; 2=>Diproses; 3=>Disetujui; 4=>Ditolak',
 				'default'        => '1',
 			],
 		]);

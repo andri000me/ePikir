@@ -39,7 +39,6 @@ class AddUserPemohon extends Migration
 
 		$this->forge->addKey('id_user_pemohon', TRUE);
 		$this->forge->createTable('tbl_user_pemohon', TRUE);
-
 	}
 
 	public function down()

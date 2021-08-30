@@ -23,17 +23,20 @@
                                 <!-- Single Blog -->
                                 <div class="single-blog">
                                     <div class="blog-head">
-                                        <img src="{{($item->file_foto != null?(!file_exists(realpath('upload/berita/'.$item->file_foto)))?base_url('assets/img/noimage/no_img3.jpg'):base_url('upload/berita/'.$item->file_foto):base_url('assets/img/noimage/no_img3.jpg') )}}" width="100%" height="265" alt="#">
+                                        <img src="{{ check_image($item->file_foto, 'upload/berita') }}" width="100%"
+                                            height="265" alt="#">
                                     </div>
                                     <div class="blog-bottom">
                                         <div class="blog-inner">
                                             <h4><a
-                                                href="{{ base_url('landing/berita/detail/' . encode($item->id_berita)) }}">{{ character_limiter($item->judul_berita, 50, '...') }}</a>
+                                                    href="{{ base_url('landing/berita/detail/' . encode($item->id_berita)) }}">{{ character_limiter($item->judul_berita, 50, '...') }}</a>
                                             </h4>
                                             <p>{{ character_limiter($item->isi_berita, 100, '...') }}</p>
                                             <div class="meta">
-                                                <span><i class="fa fa-bullhorn"></i><a href="{{ base_url('landing/berita?kategori=' . encode($item->id_kb)) }}">{{ $item->nama_kategori }}</a></span>
-                                                <span><i class="fa fa-calendar"></i>{{ formatTanggalTtd($item->waktu_update) }}</span>
+                                                <span><i class="fa fa-bullhorn"></i><a
+                                                        href="{{ base_url('landing/berita?kategori=' . encode($item->id_kb)) }}">{{ $item->nama_kategori }}</a></span>
+                                                <span><i
+                                                        class="fa fa-calendar"></i>{{ formatTanggalTtd($item->waktu_update) }}</span>
                                                 {{-- <span><i class="fa fa-eye"></i><a href="#">333k</a></span> --}}
                                             </div>
                                         </div>

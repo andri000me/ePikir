@@ -4,10 +4,10 @@ namespace App\Modules\Landing\Models;
 
 use CodeIgniter\Model;
 
-class RekomendasiPenelitianModel extends Model
+class IzinPenelitianModel extends Model
 {
-    protected $table      = 'tbl_rekomendasi_penelitian';
-    protected $primaryKey = 'id_rpl';
+    protected $table      = 'tbl_izin_penelitian';
+    protected $primaryKey = 'id_ipl';
 
     protected $returnType     = 'object';
 
@@ -15,7 +15,7 @@ class RekomendasiPenelitianModel extends Model
     // protected $useSoftDeletes = true;
 
     // set untuk kolom yang dapat di insert atau diupdate 
-    protected $allowedFields = ['no_rpl', 'id_user_pemohon', 'penanggung_jawab', 'lokasi', 'tujuan', 'file_lampiran', 'tgl_pelaksanaan_mulai', 'tgl_pelaksanaan_akhir', 'waktu_pengajuan', 'waktu_verifikasi', 'status'];
+    protected $allowedFields = ['no_ipl', 'id_rpl', 'file_lampiran', 'waktu_pengajuan', 'waktu_verifikasi', 'status'];
 
 
     public function getData($id = null, $limit = 0)
@@ -23,7 +23,7 @@ class RekomendasiPenelitianModel extends Model
         if ($id === null) {
             return $this->findAll($limit);
         } else {
-            return $this->getWhere(['id_rpl' => $id]);
+            return $this->getWhere(['id_ipl' => $id]);
         }
     }
 }
