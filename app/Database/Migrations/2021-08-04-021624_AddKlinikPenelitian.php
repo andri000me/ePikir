@@ -39,6 +39,12 @@ class AddKlinikPenelitian extends Migration
 				'type'           => 'datetime',
 				'null'			 => TRUE,
 			],
+			'status'   => [
+				'type'           => 'tinyint',
+				'constraint'     => 1,
+				'comment'		 => '1=>Masuk; 2=>Diproses',
+				'default'        => '1',
+			],
 		]);
 
 		$this->forge->addKey('id_kpl', TRUE);

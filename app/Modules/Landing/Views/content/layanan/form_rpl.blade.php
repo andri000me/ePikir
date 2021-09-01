@@ -206,25 +206,20 @@
                                         </li>
                                         <li>
                                             <div class="float-left"><i class="fa fa-check-square-o"></i></div>
-                                            <div style="padding-left: 25px;">Admin
-                                                KESBANGPOL akan melakukan
+                                            <div style="padding-left: 25px;">Admin KESBANGPOL akan melakukan
                                                 validasi</div>
                                         </li>
                                         <li>
                                             <div class="float-left"><i class="fa fa-check-square-o"></i></div>
-                                            <div style="padding-left: 25px;">Pemohon
-                                                menerima notifikasi melalui
-                                                WhatsApp (disetujui/tidak disetujui)
+                                            <div style="padding-left: 25px;">Pemohon menerima notifikasi melalui
+                                                WhatsApp & Email (disetujui/tidak disetujui)
                                             </div>
                                         </li>
                                         <li>
                                             <div class="float-left"><i class="fa fa-check-square-o"></i></div>
-                                            <div style="padding-left: 25px;">Jika disetujui,
-                                                pemohon mengambil <b>Surat
-                                                    Rekomendasi</b> ke kantor KESBANGPOL
-                                                dengan membawa berkas
-                                                kelengkapan
-                                                sesuai yg diupload
+                                            <div style="padding-left: 25px;">Jika disetujui, pemohon mengambil <b>Surat
+                                                    Rekomendasi</b> ke kantor KESBANGPOL dengan membawa berkas
+                                                kelengkapan sesuai yg diupload
                                             </div>
                                         </li>
                                         <li>

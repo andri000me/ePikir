@@ -9,12 +9,22 @@ class InsertNoSurat extends Seeder
 	public function run()
 	{
 		$data = array(
-			'kesbangpol'	=> '001',
-			'dpmptsp'		=> '001',
-			'bappeda'		=> '001',
-			'tahun'			=> date('Y'),
+			array(
+				'kesbangpol'	=> '001',
+				'dpmptsp'		=> '001',
+				'bappeda'		=> '001',
+				'jenis'			=> 'penelitian',
+				'tahun'			=> date('Y'),
+			),
+			array(
+				'kesbangpol'	=> '001',
+				'dpmptsp'		=> '001',
+				'bappeda'		=> '001',
+				'jenis'			=> 'pengabdian',
+				'tahun'			=> date('Y'),
+			),
 		);
 
-		$this->db->table('tbl_no_surat')->insert($data);
+		$this->db->table('tbl_no_surat')->insertBatch($data);
 	}
 }

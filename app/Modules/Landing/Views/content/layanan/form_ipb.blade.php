@@ -1,24 +1,25 @@
-<!-- Start Form Izin Penelitian -->
+<!-- Start Form Izin Pengabdian -->
 <section id="contact-us tahap-2" class="contact-us section">
     <div class="container px-0">
         <div class="row">
             <div class="col-12">
                 <div class="contact-main" style="margin-top: -20px">
                     <div class="row">
-                        <!-- Izin Penelitian Form -->
+                        <!-- Izin Pengabdian Form -->
                         <div class="col-lg-8 col-12">
                             <div class="form-main">
                                 <div class="text-content">
-                                    <h2>Izin Penelitian</h2>
+                                    <h2>Izin Pengabdian</h2>
                                 </div>
 
-                                <?php echo form_open_multipart(base_url('landing/izinpenelitian/saveipl'), 'class="form" id="formInputIpl"'); ?>
-
+                                {!! form_open_multipart(base_url('landing/izinpengabdian/saveipb'), 'class="form" id="formInputIpb"') !!}
                                 <div class="row" id="inputform">
                                     <div class="col-12">
                                         <div id="alert_info" class="alert alert-danger alert-dismissible"
                                             style="width: 100%; border-radius: 50px; text-align: center; display: none;">
-                                            
+                                            {{-- <button type="button" class="close"
+                                                data-dismiss="alert"
+                                                aria-hidden="true">&times;</button> --}}
                                             <h4><i class="icon fa fa-ban"></i> Gagal!</h4>
                                             <span id="txt_alert"></span>
                                         </div>
@@ -26,7 +27,7 @@
 
                                     <div class="col-lg-12 col-12">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="no_rpl" name="no_rpl"
+                                            <input type="text" class="form-control" id="no_rpb" name="no_rpb"
                                                 autocomplete="off" placeholder="Nomor Surat Rekomendasi" required>
                                         </div>
                                     </div>
@@ -53,7 +54,9 @@
                                     <div class="col-12">
                                         <div id="alert_info" class="alert alert-danger alert-dismissible"
                                             style="width: 100%; border-radius: 50px; text-align: center; display: none;">
-                                            
+                                            {{-- <button type="button" class="close"
+                                                data-dismiss="alert"
+                                                aria-hidden="true">&times;</button> --}}
                                             <h4><i class="icon fa fa-ban"></i> Gagal!</h4>
                                             <span id="txt_alert"></span>
                                         </div>
@@ -63,8 +66,7 @@
                                         <div id="show_info" class="alert alert-success alert-dismissible"
                                             style="width: 100%; text-align: center;">
                                             <h4><i class="icon fa fa-clock-o"></i> <span id="timertoken">90</span></h4>
-                                            <span id="txt_alert">Token expired 90
-                                                detik</span><br>
+                                            <span id="txt_alert">Token expired 90 detik</span><br>
                                             <span>Token dikirim ke WhatsApp Anda.</span>
                                         </div>
                                     </div>
@@ -85,12 +87,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <?php echo form_close(); ?>
-
+                                {!! form_close() !!}
 
                             </div>
                         </div>
-                        <!--/ End Izin Penelitian Form -->
+                        <!--/ End Izin Pengabdian Form -->
 
                         <!-- Alur Permohonan -->
                         <div class="col-lg-4 col-12">
@@ -113,8 +114,7 @@
                                         </li>
                                         <li>
                                             <div class="float-left"><i class="fa fa-check-square-o"></i></div>
-                                            <div style="padding-left: 25px;">Admin DPMPTSP
-                                                akan melakukan validasi</div>
+                                            <div style="padding-left: 25px;">Admin DPMPTSP akan melakukan validasi</div>
                                         </li>
                                         <li>
                                             <div class="float-left"><i class="fa fa-check-square-o"></i></div>
@@ -125,20 +125,20 @@
                                         <li>
                                             <div class="float-left"><i class="fa fa-check-square-o"></i></div>
                                             <div style="padding-left: 25px;">Jika disetujui, pemohon mengambil <b>Surat
-                                                    Izin Penelitian</b> ke kantor DPMPTSP dengan membawa Surat
-                                                Rekomendasi dari KESBANGPOL sesuai yg diupload
+                                                    Izin Pengabdian Masyarakat</b> ke kantor DPMPTSP dengan membawa
+                                                Surat Rekomendasi dari KESBANGPOL sesuai yg diupload
                                             </div>
                                         </li>
                                         <li>
                                             <div class="float-left"><i class="fa fa-check-square-o"></i></div>
-                                            <div style="padding-left: 25px;">Pemohon menyampaikan Surat Izin Penelitian
-                                                di BAPPEDA & LITBANGDA
+                                            <div style="padding-left: 25px;">Pemohon menyampaikan Surat Izin Pengabdian
+                                                Masyarakat di BAPPEDA & LITBANGDA
                                             </div>
                                         </li>
                                         <li>
                                             <div class="float-left"><i class="fa fa-check-square-o"></i></div>
-                                            <div style="padding-left: 25px;">Siap melaksanakan kegiatan penelitian
-                                                dengan arahan dari BAPPEDA & LITBANGDA
+                                            <div style="padding-left: 25px;">Siap melaksanakan kegiatan pengabdian
+                                                masyarakat dengan arahan dari BAPPEDA & LITBANGDA
                                             </div>
                                         </li>
 
@@ -154,5 +154,4 @@
         </div>
     </div>
 </section>
-<!--/ End Form Izin Penelitian -->
-<?php /**PATH D:\PROJECT\xampp\htdocs\epikir_new\app\Modules\Landing\Views/content/layanan/form_ipl.blade.php ENDPATH**/ ?>
+<!--/ End Form Izin Pengabdian -->

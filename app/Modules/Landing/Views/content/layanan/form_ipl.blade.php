@@ -120,18 +120,15 @@
                                         </li>
                                         <li>
                                             <div class="float-left"><i class="fa fa-check-square-o"></i></div>
-                                            <div style="padding-left: 25px;">Pemohon
-                                                menerima notifikasi melalui WhatsApp
-                                                (disetujui/tidak disetujui)
+                                            <div style="padding-left: 25px;">Pemohon menerima notifikasi melalui
+                                                WhatsApp & Email (disetujui/tidak disetujui)
                                             </div>
                                         </li>
                                         <li>
                                             <div class="float-left"><i class="fa fa-check-square-o"></i></div>
-                                            <div style="padding-left: 25px;">Jika disetujui,
-                                                pemohon mengambil <b>Surat
-                                                    Izin Penelitian</b> ke kantor DPMPTSP
-                                                dengan membawa Surat Rekomendasi dari KESBANGPOL
-                                                sesuai yg diupload
+                                            <div style="padding-left: 25px;">Jika disetujui, pemohon mengambil <b>Surat
+                                                    Izin Penelitian</b> ke kantor DPMPTSP dengan membawa Surat
+                                                Rekomendasi dari KESBANGPOL sesuai yg diupload
                                             </div>
                                         </li>
                                         <li>

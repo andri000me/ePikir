@@ -39,6 +39,15 @@ $routes->group('landing', ['namespace' => 'App\Modules\Landing\Controllers'], fu
 		$routes->add('saverpl', 'Layanan::saveRekomendasiPenelitian');
 		$routes->add('saveipl', 'Layanan::saveIzinPenelitian');
 	});
+	$subroutes->group('izinpengabdian', function ($routes) {
+		$routes->get('', 'Layanan::izinPengabdian');
+		$routes->add('saverpb', 'Layanan::saveRekomendasiPengabdian');
+		$routes->add('saveipb', 'Layanan::saveIzinPengabdian');
+	});
+	$subroutes->group('klinik', function ($routes) {
+		$routes->get('', 'Layanan::klinikPenelitian');
+		$routes->add('savedata', 'Layanan::saveKlinikPenelitian');
+	});
 	$subroutes->add('selectnohp', 'Layanan::selectNoHp');
 	// $subroutes->add('gettoken', 'Layanan::getToken');
 	$subroutes->add('checktoken', 'Layanan::checkToken');

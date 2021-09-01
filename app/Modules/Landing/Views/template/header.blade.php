@@ -110,7 +110,8 @@
                         </nav>
                         <!-- Button -->
                         <div class="button">
-                            <a href="https://bappeda.magelangkab.go.id/" class="btn">BAPPEDA</a>
+                            <a href="https://bappeda.magelangkab.go.id/" target="_blank"
+                                class="btn">BAPPEDA</a>
                         </div>
                         <!--/ End Button -->
                     </div>

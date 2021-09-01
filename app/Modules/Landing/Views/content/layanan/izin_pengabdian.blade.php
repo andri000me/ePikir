@@ -1,7 +1,7 @@
 @extends('template/master')
 
 @section('content')
-    @include('template.breadcumbs',['group' => 'Layanan', 'label' => 'Izin Penelitian'])
+    @include('template.breadcumbs',['group' => 'Layanan', 'label' => 'Izin Pengabdian'])
 
     <!-- Radix Tabs -->
     <section id="radix-tabs" class="radix-tabs section">
@@ -15,30 +15,30 @@
                                 <li class="nav-item col-6" style="padding-right: 0px">
                                     <a class="nav-link {{ $tab == 1 ? 'active' : '' }}" data-toggle="tab" href="#tab1"
                                         role="tab">Tahap I <br>
-                                        <span class="d-none d-lg-block">Permohonan Rekomendasi Penelitian</span>
+                                        <span class="d-none d-lg-block">Permohonan Rekomendasi Pengabdian</span>
                                     </a>
                                 </li>
                                 <li class="nav-item col-6" style="padding-left: 0px">
                                     <a class="nav-link {{ $tab == 2 ? 'active' : '' }}" data-toggle="tab" href="#tab2"
                                         role="tab">Tahap II <br>
-                                        <span class="d-none d-lg-block">Permohonan Izin Penelitian</span>
+                                        <span class="d-none d-lg-block">Permohonan Izin Pengabdian</span>
                                     </a>
                                 </li>
                             </ul>
                             <!--/ End Tab Nav -->
                         </div>
                         <div class="tab-content" id="myTabContent">
-                            <!-- Tahap 1 - Rekomendasi Penelitian Tab -->
+                            <!-- Tahap 1 - Rekomendasi Pengabdian Tab -->
                             <div class="tab-pane fade {{ $tab == 1 ? 'show active' : '' }}" id="tab1" role="tabpanel">
-                                @include('content/layanan/form_rpl')
+                                @include('content/layanan/form_rpb')
                             </div>
-                            <!--/ End Tahap 1 - Rekomendasi Penelitian Tab -->
+                            <!--/ End Tahap 1 - Rekomendasi Pengabdian Tab -->
 
-                            <!-- Tahap 2 - Izin Penelitian Tab -->
+                            <!-- Tahap 2 - Izin Pengabdian Tab -->
                             <div class="tab-pane fade {{ $tab == 2 ? 'show active' : '' }}" id="tab2" role="tabpanel">
-                                @include('content/layanan/form_ipl')
+                                @include('content/layanan/form_ipb')
                             </div>
-                            <!--/ End Tahap 2 - Izin Penelitian Tab -->
+                            <!--/ End Tahap 2 - Izin Pengabdian Tab -->
                         </div>
                     </div>
                 </div>
@@ -151,17 +151,17 @@
             var check_valid = form.checkValidity();
             if (check_valid) {
                 $("#loading-show").fadeIn("slow");
-                if (form.id == 'formInputRpl') {
+                if (form.id == 'formInputRpb') {
                     var no_hp = $('#' + form.id + ' #no_telp_pemohon').val();
                     var data = {
-                        jenis: 'rpl',
+                        jenis: 'rpb',
                         nomor: no_hp
                     };
                 } else {
-                    var no_rpl = $('#' + form.id + ' #no_rpl').val();
+                    var no_rpb = $('#' + form.id + ' #no_rpb').val();
                     var data = {
-                        jenis: 'ipl',
-                        nomor: no_rpl
+                        jenis: 'ipb',
+                        nomor: no_rpb
                     };
                 }
                 $.ajax({
@@ -183,7 +183,7 @@
                     }
                 });
             } else {
-                if (form.id == 'formInputRpl') {
+                if (form.id == 'formInputRpb') {
                     alert('Isi semua data pada form yang tersedia! Pastikan email & nomor WhatsApp valid.')
                 } else {
                     alert('Isi semua data pada form yang tersedia!')

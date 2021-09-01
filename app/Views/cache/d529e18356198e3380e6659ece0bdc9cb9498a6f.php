@@ -1,7 +1,7 @@
-@extends('template/master')
 
-@section('content')
-    @include('template.breadcumbs',['group' => 'Layanan', 'label' => 'Izin Penelitian'])
+
+<?php $__env->startSection('content'); ?>
+    <?php echo $__env->make('template.breadcumbs',['group' => 'Layanan', 'label' => 'Izin Pengabdian'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <!-- Radix Tabs -->
     <section id="radix-tabs" class="radix-tabs section">
@@ -13,32 +13,32 @@
                             <!-- Tab Nav -->
                             <ul class="nav nav-tabs row d-flex" id="myTab" role="tablist">
                                 <li class="nav-item col-6" style="padding-right: 0px">
-                                    <a class="nav-link {{ $tab == 1 ? 'active' : '' }}" data-toggle="tab" href="#tab1"
+                                    <a class="nav-link <?php echo e($tab == 1 ? 'active' : ''); ?>" data-toggle="tab" href="#tab1"
                                         role="tab">Tahap I <br>
-                                        <span class="d-none d-lg-block">Permohonan Rekomendasi Penelitian</span>
+                                        <span class="d-none d-lg-block">Permohonan Rekomendasi Pengabdian</span>
                                     </a>
                                 </li>
                                 <li class="nav-item col-6" style="padding-left: 0px">
-                                    <a class="nav-link {{ $tab == 2 ? 'active' : '' }}" data-toggle="tab" href="#tab2"
+                                    <a class="nav-link <?php echo e($tab == 2 ? 'active' : ''); ?>" data-toggle="tab" href="#tab2"
                                         role="tab">Tahap II <br>
-                                        <span class="d-none d-lg-block">Permohonan Izin Penelitian</span>
+                                        <span class="d-none d-lg-block">Permohonan Izin Pengabdian</span>
                                     </a>
                                 </li>
                             </ul>
                             <!--/ End Tab Nav -->
                         </div>
                         <div class="tab-content" id="myTabContent">
-                            <!-- Tahap 1 - Rekomendasi Penelitian Tab -->
-                            <div class="tab-pane fade {{ $tab == 1 ? 'show active' : '' }}" id="tab1" role="tabpanel">
-                                @include('content/layanan/form_rpl')
+                            <!-- Tahap 1 - Rekomendasi Pengabdian Tab -->
+                            <div class="tab-pane fade <?php echo e($tab == 1 ? 'show active' : ''); ?>" id="tab1" role="tabpanel">
+                                <?php echo $__env->make('content/layanan/form_rpb', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                             </div>
-                            <!--/ End Tahap 1 - Rekomendasi Penelitian Tab -->
+                            <!--/ End Tahap 1 - Rekomendasi Pengabdian Tab -->
 
-                            <!-- Tahap 2 - Izin Penelitian Tab -->
-                            <div class="tab-pane fade {{ $tab == 2 ? 'show active' : '' }}" id="tab2" role="tabpanel">
-                                @include('content/layanan/form_ipl')
+                            <!-- Tahap 2 - Izin Pengabdian Tab -->
+                            <div class="tab-pane fade <?php echo e($tab == 2 ? 'show active' : ''); ?>" id="tab2" role="tabpanel">
+                                <?php echo $__env->make('content/layanan/form_ipb', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                             </div>
-                            <!--/ End Tahap 2 - Izin Penelitian Tab -->
+                            <!--/ End Tahap 2 - Izin Pengabdian Tab -->
                         </div>
                     </div>
                 </div>
@@ -46,25 +46,25 @@
         </div>
     </section>
     <!--/ End Radix Tabs -->
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('loading')
+<?php $__env->startPush('loading'); ?>
     <div class="loadingers" id="loading-show">
         <div style="top: 40%; position: relative; z-index: 30">
-            @include('template.loading')
+            <?php echo $__env->make('template.loading', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         </div>
     </div>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@push('css_plugin')
+<?php $__env->startPush('css_plugin'); ?>
     <link rel="stylesheet"
-        href="{{ assets_url . 'app-assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css' }}">
-    <link rel="stylesheet" href="{{ assets_url . 'app-assets/vendors/bootstrap-datepicker/style-datepicker.css' }}">
-    <link rel="stylesheet" href="{{ assets_url . 'app-assets/vendors/dropify/dist/css/dropify.min.css' }}">
-    <link rel="stylesheet" href="{{ assets_url . 'app-assets/vendors/css/extensions/sweetalert.css' }}">
-@endpush
+        href="<?php echo e(assets_url . 'app-assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo e(assets_url . 'app-assets/vendors/bootstrap-datepicker/style-datepicker.css'); ?>">
+    <link rel="stylesheet" href="<?php echo e(assets_url . 'app-assets/vendors/dropify/dist/css/dropify.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo e(assets_url . 'app-assets/vendors/css/extensions/sweetalert.css'); ?>">
+<?php $__env->stopPush(); ?>
 
-@push('css_style')
+<?php $__env->startPush('css_style'); ?>
     <style>
         .contact-address {
             height: auto !important;
@@ -101,16 +101,16 @@
         }
 
     </style>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@push('js_plugin')
-    <script src="{{ assets_url . 'app-assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js' }}"></script>
-    <script src="{{ assets_url . 'app-assets/vendors/dropify/dist/js/dropify.min.js' }}"></script>
-    <script src="{{ assets_url . 'app-assets/vendors/js/extensions/sweetalert.min.js' }}"></script>
-    <script src="{{ base_url('assets/js/block.js') }}"></script>
-@endpush
+<?php $__env->startPush('js_plugin'); ?>
+    <script src="<?php echo e(assets_url . 'app-assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js'); ?>"></script>
+    <script src="<?php echo e(assets_url . 'app-assets/vendors/dropify/dist/js/dropify.min.js'); ?>"></script>
+    <script src="<?php echo e(assets_url . 'app-assets/vendors/js/extensions/sweetalert.min.js'); ?>"></script>
+    <script src="<?php echo e(base_url('assets/js/block.js')); ?>"></script>
+<?php $__env->stopPush(); ?>
 
-@push('js_script')
+<?php $__env->startPush('js_script'); ?>
     <!-- Date Range Picker-->
     <script>
         $('.date-range').datepicker({
@@ -151,22 +151,22 @@
             var check_valid = form.checkValidity();
             if (check_valid) {
                 $("#loading-show").fadeIn("slow");
-                if (form.id == 'formInputRpl') {
+                if (form.id == 'formInputRpb') {
                     var no_hp = $('#' + form.id + ' #no_telp_pemohon').val();
                     var data = {
-                        jenis: 'rpl',
+                        jenis: 'rpb',
                         nomor: no_hp
                     };
                 } else {
-                    var no_rpl = $('#' + form.id + ' #no_rpl').val();
+                    var no_rpb = $('#' + form.id + ' #no_rpb').val();
                     var data = {
-                        jenis: 'ipl',
-                        nomor: no_rpl
+                        jenis: 'ipb',
+                        nomor: no_rpb
                     };
                 }
                 $.ajax({
                     type: "POST",
-                    url: "{{ base_url('landing/selectnohp') }}",
+                    url: "<?php echo e(base_url('landing/selectnohp')); ?>",
                     dataType: "json",
                     data: data,
                     success: function(data) {
@@ -183,7 +183,7 @@
                     }
                 });
             } else {
-                if (form.id == 'formInputRpl') {
+                if (form.id == 'formInputRpb') {
                     alert('Isi semua data pada form yang tersedia! Pastikan email & nomor WhatsApp valid.')
                 } else {
                     alert('Isi semua data pada form yang tersedia!')
@@ -204,7 +204,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "{{ base_url('landing/checktoken') }}",
+                    url: "<?php echo e(base_url('landing/checktoken')); ?>",
                     dataType: "json",
                     data: {
                         token: token
@@ -290,4 +290,6 @@
             return n > 9 ? "" + n : "0" + n;
         }
     </script>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('template/master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\PROJECT\xampp\htdocs\epikir_new\app\Modules\Landing\Views/content/layanan/izin_pengabdian.blade.php ENDPATH**/ ?>

@@ -27,6 +27,11 @@ class AddNoSurat extends Migration
 				'type'           => 'varchar',
 				'constraint'     => '5',
 			],
+			'jenis'     => [
+				'type'           => 'ENUM',
+				'constraint'     => ['penelitian', 'pengabdian'],
+				'default'        => 'penelitian',
+			],
 			'tahun'   => [
 				'type'           => 'char',
 				'constraint'     => '4',

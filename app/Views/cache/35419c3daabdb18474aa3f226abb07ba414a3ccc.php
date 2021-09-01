@@ -1,18 +1,18 @@
-<!-- Start Form Rekomendasi Penelitian -->
+<!-- Start Form Rekomendasi Pengabdian -->
 <section id="contact-us tahap-1" class="contact-us section">
     <div class="container px-0">
         <div class="row">
             <div class="col-12">
                 <div class="contact-main" style="margin-top: -20px">
                     <div class="row">
-                        <!-- Rekomendasi Penelitian Form -->
+                        <!-- Rekomendasi Pengabdian Form -->
                         <div class="col-lg-8 col-12">
                             <div class="form-main">
                                 <div class="text-content">
-                                    <h2>Rekomendasi Penelitian</h2>
+                                    <h2>Rekomendasi Pengabdian</h2>
                                 </div>
 
-                                <?php echo form_open_multipart(base_url('landing/izinpenelitian/saverpl'), 'class="form" id="formInputRpl"'); ?>
+                                <?php echo form_open_multipart(base_url('landing/izinpengabdian/saverpb'), 'class="form" id="formInputRpb"'); ?>
 
                                 <div class="row" id="inputform">
                                     <div class="col-12">
@@ -49,7 +49,7 @@
                                     <div class="col-lg-12 col-12">
                                         <div class="form-group">
                                             <textarea class="form-control" name="lokasi" rows="2"
-                                                placeholder="Lokasi kegiatan penelitian" autocomplete="off"
+                                                placeholder="Lokasi kegiatan pengabdian masyarakat" autocomplete="off"
                                                 style="height: unset !important;" required></textarea>
                                         </div>
                                     </div>
@@ -57,7 +57,7 @@
                                     <div class="col-lg-12 col-12">
                                         <div class="form-group">
                                             <textarea class="form-control" name="tujuan" rows="2"
-                                                placeholder="Tujuan kegiatan penelitian" autocomplete="off"
+                                                placeholder="Tujuan kegiatan pengabdian masyarakat" autocomplete="off"
                                                 style="height: unset !important;" required></textarea>
                                         </div>
                                     </div>
@@ -139,8 +139,7 @@
                                         <div id="show_info" class="alert alert-success alert-dismissible"
                                             style="width: 100%; text-align: center;">
                                             <h4><i class="icon fa fa-clock-o"></i> <span id="timertoken">90</span></h4>
-                                            <span id="txt_alert">Token expired 90
-                                                detik</span><br>
+                                            <span id="txt_alert">Token expired 90 detik</span><br>
                                             <span>Token dikirim ke WhatsApp Anda.</span>
                                         </div>
                                     </div>
@@ -166,7 +165,7 @@
 
                             </div>
                         </div>
-                        <!--/ End Rekomendasi Penelitian Form -->
+                        <!--/ End Rekomendasi Pengabdian Form -->
 
                         <!-- Alur Permohonan -->
                         <div class="col-lg-4 col-12">
@@ -188,24 +187,21 @@
                                         </li>
                                         <li>
                                             <div class="float-left"><i class="fa fa-check-square-o"></i></div>
-                                            <div style="padding-left: 25px;">Upload lampiran
-                                                berkas
-                                                kelengkapan
+                                            <div style="padding-left: 25px;">Upload lampiran berkas kelengkapan
                                                 dalam satu file (<b>pdf</b>) yang berisi :
                                             </div>
                                             <ul>
-                                                <li>Scan KTP</li>
-                                                <li>Scan surat permohonan penelitian dari
-                                                    perguruan tinggi/instansi
-                                                </li>
-                                                <li>Proposal penelitian</li>
-                                                <li>dll.</li>
+                                                <li>Scan pernyataan kesediaan menjadi lokasi pengabdian masyarakat (KKN)
+                                                    dari desa (yang sudah ditandatangani kepala desa)</li>
+                                                <li>Scan surat pengantar dari perguruan tinggi/instansi</li>
+                                                <li>Scan KTP penanggung jawab</li>
+                                                <li>Daftar peserta/anggota</li>
                                             </ul>
                                         </li>
                                         <li>
                                             <div class="float-left"><i class="fa fa-check-square-o"></i></div>
-                                            <div style="padding-left: 25px;">Admin KESBANGPOL akan melakukan
-                                                validasi</div>
+                                            <div style="padding-left: 25px;">Admin KESBANGPOL akan melakukan validasi
+                                            </div>
                                         </li>
                                         <li>
                                             <div class="float-left"><i class="fa fa-check-square-o"></i></div>
@@ -215,15 +211,14 @@
                                         </li>
                                         <li>
                                             <div class="float-left"><i class="fa fa-check-square-o"></i></div>
-                                            <div style="padding-left: 25px;">Jika disetujui, pemohon mengambil <b>Surat
-                                                    Rekomendasi</b> ke kantor KESBANGPOL dengan membawa berkas
-                                                kelengkapan sesuai yg diupload
+                                            <div style="padding-left: 25px;">Jika disetujui,
+                                                pemohon mengambil <b>Surat Rekomendasi</b> ke kantor KESBANGPOL
+                                                dengan membawa berkas kelengkapan sesuai yg diupload
                                             </div>
                                         </li>
                                         <li>
                                             <div class="float-left"><i class="fa fa-check-square-o"></i></div>
-                                            <div style="padding-left: 25px;">Lanjut tahap
-                                                selanjutnya
+                                            <div style="padding-left: 25px;">Lanjut tahap selanjutnya
                                             </div>
                                         </li>
 
@@ -239,5 +234,5 @@
         </div>
     </div>
 </section>
-<!--/ End Form Rekomendasi Penelitian -->
-<?php /**PATH D:\PROJECT\xampp\htdocs\epikir_new\app\Modules\Landing\Views/content/layanan/form_rpl.blade.php ENDPATH**/ ?>
+<!--/ End Form Rekomendasi Pengabdian -->
+<?php /**PATH D:\PROJECT\xampp\htdocs\epikir_new\app\Modules\Landing\Views/content/layanan/form_rpb.blade.php ENDPATH**/ ?>

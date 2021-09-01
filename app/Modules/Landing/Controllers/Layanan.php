@@ -3,7 +3,10 @@
 namespace App\Modules\Landing\Controllers;
 
 use App\Modules\Landing\Models\IzinPenelitianModel;
+use App\Modules\Landing\Models\IzinPengabdianModel;
+use App\Modules\Landing\Models\KlinikPenelitianModel;
 use App\Modules\Landing\Models\RekomendasiPenelitianModel;
+use App\Modules\Landing\Models\RekomendasiPengabdianModel;
 use App\Modules\Landing\Models\UserPemohonModel;
 use CodeIgniter\Database\BaseBuilder;
 
@@ -16,6 +19,7 @@ class Layanan extends BaseController
     {
     }
 
+    // PENELITIAN ==========================================
     public function izinPenelitian()
     {
         $getTab = $this->request->getGet('tab');
@@ -60,7 +64,7 @@ class Layanan extends BaseController
 
                     $id_user = $this->db->insertID();
 
-                    $no_surat = $this->noSurat('kesbangpol');
+                    $no_surat = $this->noSurat('kesbangpol', 'penelitian'); //ambil no surat jenis penelitian kolom kesbangpol
 
                     $data_rpl = array(
                         'no_rpl'                => '070/' . $no_surat . '/47' . '/' . date('Y'),
@@ -111,7 +115,7 @@ class Layanan extends BaseController
                 $data_rpl = $m_rpl->where($where);
                 if ($data_rpl->countAllResults(false) > 0) { //cek apakah no surat terdaftar & sudah disetujui
 
-                    $no_surat = $this->noSurat('dpmptsp');
+                    $no_surat = $this->noSurat('dpmptsp', 'penelitian'); //ambil no surat jenis penelitian kolom dpmptsp
                     $id_rpl = $data_rpl->get()->getRow()->id_rpl;
 
                     $ipl = $m_ipl->where('id_rpl', $id_rpl);
@@ -183,15 +187,259 @@ class Layanan extends BaseController
         }
     }
 
-    public function noSurat($kolom = '')
+    // END PENELITIAN ======================================
+
+    // PENGABDIAN ==========================================
+    public function izinPengabdian()
     {
-        $no_surat = $this->db->table('tbl_no_surat')->where("tahun", date('Y'));
+        $getTab = $this->request->getGet('tab');
+
+        if ($getTab != null) {
+            if ($getTab == 1 || $getTab == 2) {
+                $tab = $getTab;
+            } else {
+                $tab = 1;
+            }
+        } else {
+            $tab = 1;
+        }
+
+        $this->v_data['tab']     = $tab;
+        $this->v_data['active']  = '6.2';
+
+        return views('content/layanan/izin_pengabdian', 'Landing', $this->v_data);
+    }
+
+    public function saveRekomendasiPengabdian()
+    {
+        helper('upload');
+        $m_user = new UserPemohonModel();
+        $m_rpb = new RekomendasiPengabdianModel();
+        $post = $this->request->getPost();
+        $cek_token = $this->session->getTempdata('cektoken');
+        if ($cek_token) {
+            if ($post) {
+                $file = $this->request->getFile('file_lampiran');
+                $upload = upload_files($file, FCPATH . 'upload/permohonan/rpb');
+
+                if ($upload['respons']) {
+                    $data_user = array(
+                        'nama_pemohon'      => $post['nama_pemohon'],
+                        'pekerjaan_pemohon' => $post['pekerjaan_pemohon'],
+                        'alamat_pemohon'    => $post['alamat_pemohon'],
+                        'no_telp_pemohon'   => $post['no_telp_pemohon'],
+                        'email_pemohon'     => $post['email_pemohon'],
+                    );
+                    $save_user = $m_user->save($data_user);
+
+                    $id_user = $this->db->insertID();
+
+                    $no_surat = $this->noSurat('kesbangpol', 'pengabdian'); //ambil no surat jenis pengabdian kolom kesbangpol
+
+                    $data_rpb = array(
+                        'no_rpb'                => '432.4/' . $no_surat . '/47' . '/' . date('Y'),
+                        'id_user_pemohon'       => $id_user,
+                        'penanggung_jawab'      => $post['penanggung_jawab'],
+                        'lokasi'                => $post['lokasi'],
+                        'tujuan'                => $post['tujuan'],
+                        'file_lampiran'         => $upload['data'],
+                        'tgl_pelaksanaan_mulai' => date('Y-m-d', strtotime(str_replace('/', '-', $post['tgl_pelaksanaan_mulai']))),
+                        'tgl_pelaksanaan_akhir' => date('Y-m-d', strtotime(str_replace('/', '-', $post['tgl_pelaksanaan_akhir']))),
+                        'waktu_pengajuan'       => date('Y-m-d H:i:s'),
+                        // 'waktu_verifikasi'      => null,
+                        'status'                => 1,
+                    );
+                    $save_rpb = $m_rpb->save($data_rpb);
+
+                    if ($save_rpb) {
+                        $res = ['success' => true, 'url' => base_url('landing/izinpengabdian')];
+                    } else {
+                        $res = ['success' => false, 'alert' => 'Data gagal disimpan.', 'url' => base_url('landing/izinpengabdian')];
+                    }
+                } else {
+                    $res = ['success' => false, 'alert' => $upload['data'], 'url' => base_url('landing/izinpengabdian')];
+                }
+
+                echo json_encode($res);
+            } else {
+                return redirect()->to(base_url('landing/izinpengabdian'));
+            }
+        } else {
+            return redirect()->to(base_url('landing/izinpengabdian'));
+        }
+    }
+
+    public function saveIzinPengabdian()
+    {
+        helper('upload');
+        $m_ipb = new IzinPengabdianModel();
+        $m_rpb = new RekomendasiPengabdianModel();
+        $post = $this->request->getPost();
+        $cek_token = $this->session->getTempdata('cektoken');
+        if ($cek_token) {
+            if ($post) {
+                $where = array(
+                    'no_rpb'    => $post['no_rpb'],
+                    'status'    => 3,
+                );
+                $data_rpb = $m_rpb->where($where);
+                if ($data_rpb->countAllResults(false) > 0) { //cek apakah no surat terdaftar & sudah disetujui
+
+                    $no_surat = $this->noSurat('dpmptsp', 'pengabdian'); //ambil no surat jenis pengabdian kolom dpmptsp
+                    $id_rpb = $data_rpb->get()->getRow()->id_rpb;
+
+                    $ipb = $m_ipb->where('id_rpb', $id_rpb);
+                    if ($ipb->countAllResults(false) == 0) { //cek apakah sudah pernah upload
+                        $file = $this->request->getFile('file_lampiran');
+                        $upload = upload_files($file, FCPATH . 'upload/permohonan/ipb');
+                        if ($upload['respons']) {
+                            $data_ipb = array(
+                                'no_ipb'                => '432.4/' . $no_surat . '/16' . '/' . date('Y'),
+                                'id_rpb'                => $id_rpb,
+                                'file_lampiran'         => $upload['data'],
+                                'waktu_pengajuan'       => date('Y-m-d H:i:s'),
+                                // 'waktu_verifikasi'      => null,
+                                'status'                => 1,
+                            );
+
+                            $save_ipb = $m_ipb->save($data_ipb); //insert data baru
+
+                            if ($save_ipb) {
+                                $res = ['success' => true, 'url' => base_url('landing/izinpengabdian?tab=2')];
+                            } else {
+                                $res = ['success' => false, 'alert' => 'Data gagal disimpan.', 'url' => base_url('landing/izinpengabdian?tab=2')];
+                            }
+                        } else {
+                            $res = ['success' => false, 'alert' => $upload['data'], 'url' => base_url('landing/izinpengabdian?tab=2')];
+                        }
+                    } else {
+                        $row_ipb = $ipb->get()->getRow();
+
+                        if ($row_ipb->status == 1) { //cek apakah status masih 1 (belum diproses)
+                            $file = $this->request->getFile('file_lampiran');
+                            $upload = upload_files($file, FCPATH . 'upload/permohonan/ipb');
+                            if ($upload['respons']) {
+                                $file_location = 'upload/permohonan/ipb/' . $row_ipb->file_lampiran;
+                                if (file_exists(realpath($file_location))) {
+                                    unlink(FCPATH . $file_location); //hapus file yang akan diupdate
+                                }
+
+                                $data_ipb = array(
+                                    'id_ipb'                => $row_ipb->id_ipb,
+                                    'file_lampiran'         => $upload['data'],
+                                    'waktu_pengajuan'       => date('Y-m-d H:i:s'),
+                                );
+
+                                $save_ipb = $m_ipb->save($data_ipb); //update data
+
+                                if ($save_ipb) {
+                                    $res = ['success' => true, 'url' => base_url('landing/izinpengabdian?tab=2')];
+                                } else {
+                                    $res = ['success' => false, 'alert' => 'Data gagal disimpan.', 'url' => base_url('landing/izinpengabdian?tab=2')];
+                                }
+                            } else {
+                                $res = ['success' => false, 'alert' => $upload['data'], 'url' => base_url('landing/izinpengabdian?tab=2')];
+                            }
+                        } else {
+                            $res = ['success' => false, 'alert' => 'Pengajuan Anda sudah diproses.', 'url' => base_url('landing/izinpengabdian?tab=2')];
+                        }
+                    }
+                } else {
+                    $res = ['success' => false, 'alert' => 'Permohonan Anda belum disetujui.', 'url' => base_url('landing/izinpengabdian?tab=2')];
+                }
+
+                echo json_encode($res);
+            } else {
+                return redirect()->to(base_url('landing/izinpengabdian?tab=2'));
+            }
+        } else {
+            return redirect()->to(base_url('landing/izinpengabdian?tab=2'));
+        }
+    }
+
+    // END PENGABDIAN ======================================
+
+    // PENGABDIAN ==========================================
+    public function klinikPenelitian()
+    {
+
+        $this->v_data['active']  = '6.3';
+
+        return views('content/layanan/klinik_penelitian', 'Landing', $this->v_data);
+    }
+
+    public function saveKlinikPenelitian()
+    {
+        helper('upload');
+        $m_ipl = new IzinPenelitianModel();
+        $m_kpl = new KlinikPenelitianModel();
+        $post = $this->request->getPost();
+        $cek_token = $this->session->getTempdata('cektoken');
+        if ($cek_token) {
+            if ($post) {
+                $data_ipl = $m_ipl->select('id_ipl')->where(['no_ipl' => $post['no_ipl'], 'status' => 3]);
+
+                if ($data_ipl->countAllResults(false) > 0) {
+                    $id_ipl = $data_ipl->get()->getRow()->id_ipl;
+
+                    $dt_kpl = $m_kpl->where(['id_ipl' => $id_ipl]);
+
+                    $data_kpl = array(
+                        'id_ipl'                => $id_ipl,
+                        'jenis_permohonan'      => $post['jenis_permohonan'],
+                        'keterangan'            => $post['keterangan'],
+                        'waktu_pengajuan'       => date('Y-m-d H:i:s'),
+                        // 'waktu_verifikasi'      => null,
+                        'status'                => 1,
+                    );
+
+                    if ($dt_kpl->countAllResults(false) > 0) {
+                        $row_kpl = $dt_kpl->get()->getRow();
+                        if ($row_kpl->status == 1) {
+                            $data_kpl['id_kpl'] = $row_kpl->id_kpl;
+                        } else {
+                            $res = ['success' => false, 'alert' => 'Pengajuan sudah diproses.', 'url' => base_url('landing/klinik')];
+                            echo json_encode($res);
+                            exit();
+                        }
+                    }
+
+                    $save_kpl = $m_kpl->save($data_kpl);
+
+                    if ($save_kpl) {
+                        $res = ['success' => true, 'url' => base_url('landing/klinik')];
+                    } else {
+                        $res = ['success' => false, 'alert' => 'Data gagal disimpan.', 'url' => base_url('landing/klinik')];
+                    }
+                } else {
+                    $res = ['success' => false, 'alert' => 'Nomor Izin Perizinan tidak valid atau belum disetujui.', 'url' => base_url('landing/klinik')];
+                }
+
+                echo json_encode($res);
+            } else {
+                return redirect()->to(base_url('landing/klinik'));
+            }
+        } else {
+            return redirect()->to(base_url('landing/klinik'));
+        }
+    }
+
+    // =====================================================
+
+    public function noSurat($kolom = '', $jenis = 'penelitian')
+    {
+        $where = array(
+            'tahun' => date('Y'),
+            'jenis' => $jenis,
+        );
+        $no_surat = $this->db->table('tbl_no_surat')->where($where);
         if ($no_surat->countAllResults(false) == 0) {
             $no_last = '001';
             $data = array(
                 'kesbangpol'    => $no_last,
                 'bappeda'       => $no_last,
                 'dpmptsp'       => $no_last,
+                'jenis'         => $jenis,
                 'tahun'         => date('Y'),
             );
             $this->db->table('tbl_no_surat')->insert($data);
@@ -200,7 +448,7 @@ class Layanan extends BaseController
             $nos = (int) $no_last;
             $no_new = sprintf("%03s", $nos + 1);
 
-            $this->db->table('tbl_no_surat')->set($kolom, $no_new)->where("tahun", date('Y'))->update();
+            $this->db->table('tbl_no_surat')->set($kolom, $no_new)->where($where)->update();
         }
         return $no_last;
     }
@@ -208,13 +456,27 @@ class Layanan extends BaseController
     public function selectNoHp()
     {
         $jenis = $this->request->getVar('jenis');
-        if ($jenis == 'rpl') {
+        if ($jenis == 'rpl' || $jenis == 'rpb') {
             $no_hp = $this->request->getVar('nomor');
         } else {
             $m_user = new UserPemohonModel();
-            $data_user = $m_user->whereIn('id_user_pemohon', function (BaseBuilder $builder) {
-                $no_rpl = $this->request->getVar('nomor');
-                return $builder->select('id_user_pemohon')->from('tbl_rekomendasi_penelitian')->where('no_rpl', $no_rpl);
+            $nomor = $this->request->getVar('nomor');
+            $data_user = $m_user->whereIn('id_user_pemohon', function (BaseBuilder $builder) use ($jenis, $nomor) {
+                if ($jenis != 'kpl') {
+                    if ($jenis == 'ipl') {
+                        $tbl = 'tbl_rekomendasi_penelitian';
+                        $kolom = 'no_rpl';
+                    } else {
+                        $tbl = 'tbl_rekomendasi_pengabdian';
+                        $kolom = 'no_rpb';
+                    }
+
+                    return $builder->select('id_user_pemohon')->from($tbl)->where($kolom, $nomor);
+                } else {
+                    return $builder->select('id_user_pemohon')->from('tbl_rekomendasi_penelitian')->whereIn('id_rpl', function (BaseBuilder $builder) use ($nomor) {
+                        return $builder->select('id_rpl')->from('tbl_izin_penelitian')->where('no_ipl', $nomor);
+                    });
+                }
             });
             if ($data_user->countAllResults(false) > 0) {
                 $no_hp = $data_user->get()->getRow()->no_telp_pemohon;

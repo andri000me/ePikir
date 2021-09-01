@@ -107,6 +107,7 @@
     <script src="<?php echo e(assets_url . 'app-assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js'); ?>"></script>
     <script src="<?php echo e(assets_url . 'app-assets/vendors/dropify/dist/js/dropify.min.js'); ?>"></script>
     <script src="<?php echo e(assets_url . 'app-assets/vendors/js/extensions/sweetalert.min.js'); ?>"></script>
+    <script src="<?php echo e(base_url('assets/js/block.js')); ?>"></script>
 <?php $__env->stopPush(); ?>
 
 <?php $__env->startPush('js_script'); ?>
