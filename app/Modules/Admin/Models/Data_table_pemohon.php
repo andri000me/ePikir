@@ -1,7 +1,9 @@
 <?php
+
 namespace App\Modules\Admin\Models;
 
 use CodeIgniter\Model;
+
 class Data_table_pemohon extends Model
 {
     // protected $db = db_connect();
@@ -39,13 +41,14 @@ class Data_table_pemohon extends Model
         'ds.nama_desa',
     );
 
-    public function __construct() {
- 
+    public function __construct()
+    {
+
         parent::__construct();
         $this->table = $this->db->table('tbl_pemohon pm');
     }
 
-    function make_query($status = '', $id_surat='')
+    function make_query($status = '', $id_surat = '')
     {
         $this->table->select($this->select_column);
         $this->table->where('status_pemohon', $status);
@@ -92,7 +95,7 @@ class Data_table_pemohon extends Model
         }
     }
 
-    function make_datatables($status = '', $id_surat='')
+    function make_datatables($status = '', $id_surat = '')
     {
         $this->make_query($status, $id_surat);
         if ($_POST["length"] != -1) {
@@ -101,13 +104,13 @@ class Data_table_pemohon extends Model
         $query = $this->table->get();
         return $query->getResult();
     }
-    function get_filtered_data($status = '', $id_surat='')
+    function get_filtered_data($status = '', $id_surat = '')
     {
         $this->make_query($status, $id_surat);
         // $this->table->get();
         return $this->table->countAllResults();
     }
-    function get_all_data($status = '', $id_surat='')
+    function get_all_data($status = '', $id_surat = '')
     {
         $this->table->select("*");
         $this->table->where('status_pemohon', $status);

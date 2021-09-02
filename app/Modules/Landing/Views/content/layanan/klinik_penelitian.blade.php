@@ -225,7 +225,7 @@
     {{-- <script src="{{ assets_url . 'app-assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js' }}"></script> --}}
     {{-- <script src="{{ assets_url . 'app-assets/vendors/dropify/dist/js/dropify.min.js' }}"></script> --}}
     <script src="{{ assets_url . 'app-assets/vendors/js/extensions/sweetalert.min.js' }}"></script>
-    {{-- <script src="{{ base_url('assets/js/block.js') }}"></script> --}}
+    <script src="{{ base_url('assets/js/block.js') }}"></script>
 @endpush
 
 @push('js_script')

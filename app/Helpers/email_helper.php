@@ -55,7 +55,7 @@ if (!function_exists('send_email')) {
     function send_email($to = '', $subject = '', $message = '', $cc = null)
     {
         $email = \Config\Services::email();
-        $from = 'diskominfo@gmail.com';
+        $from = 'diskominfo.kabmgl@gmail.com';
         $config['protocol']     = 'smtp';
         $config['mailPath']     = '/usr/sbin/sendmail';
         $config['charset']      = 'UTF-8';
@@ -70,7 +70,7 @@ if (!function_exists('send_email')) {
 
         $email->initialize($config);
 
-        $email->setFrom($from, 'E-Pikir');
+        $email->setFrom($from, 'e-Pikir | BAPPEDA & LITBANGDA Kabupaten Magelang');
         $email->setTo($to);
         if ($cc != null) {
             $email->setCC($cc);

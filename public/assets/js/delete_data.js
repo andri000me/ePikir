@@ -1,7 +1,7 @@
 function hapusData(data) {
-	var id = $(data).data().id;
 	var link = $(data).data().link;
-	// console.log(id);
+	var table = $(data).data().table;
+	
 	swal({
 		title: "Hapus Data",
 		text: "Apakah data ingin dihapus?",
@@ -25,20 +25,30 @@ function hapusData(data) {
 		},
 	}).then((isConfirm) => {
 		if (isConfirm) {
-			$.post(
-				link,
-				{
-					id_pemohon: id,
-				},
-				function (data) {
-					if (data == "Success") {
-						location.reload();
+			$.get(link, function (dt) {
+					var data = JSON.parse(dt);
+					if (data.respons) {
+						// location.reload();
+						swal({
+                            title: "Sukses!",
+                            text: data.alert,
+                            icon: 'success',
+                            timer: 2000
+                        }).then(function() {
+                            $('#' + table).DataTable().ajax.reload(null, false); //posisi paginantion tetap sesuai yang dibuka
+                        });
 					} else {
-						location.reload();
+						swal({
+                            title: "Gagal!",
+                            text: data.alert,
+                            icon: "error",
+                            timer: 2000
+                        }).then(function() {
+                            $('#' + table).DataTable().ajax.reload(null, false); //posisi paginantion tetap sesuai yang dibuka
+                        });
 					}
 				}
 			);
-			// swal("Deleted!", id, "success");
 		}
 	});
 }

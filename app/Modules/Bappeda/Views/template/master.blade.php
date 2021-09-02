@@ -12,7 +12,7 @@
 
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ base_url('assets/img/logo/logo_kab_sm.png') }}">
-    <title>Assets Management System</title>
+    <title>e-Pikir &#8739; Admin {{ ucfirst(session('role')) }}</title>
 
     <link rel="apple-touch-icon" href="{{ base_url() }}assets/img/logo/logo_kab_sm.png">
     <link rel="shortcut icon" type="image/x-icon" href="{{ base_url('assets/img/logo/logo_kab_sm.png') }}">
@@ -21,15 +21,23 @@
         rel="stylesheet">
     <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css" rel="stylesheet">
 
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="{{ assets_front . 'css/font-awesome.min.css' }}">
+
     <link href="{{ assets_url . 'app-assets/css/vendors.css' }}" type="text/css" rel="stylesheet">
     <link href="{{ assets_url . 'app-assets/css/app.css' }}" type="text/css" rel="stylesheet">
     <link rel="stylesheet" type="text/css"
         href="{{ assets_url . 'app-assets/css/core/menu/menu-types/vertical-menu-modern.css' }}">
     <link href="{{ assets_url . 'app-assets/css/core/colors/palette-gradient.css' }}" type="text/css"
         rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ assets_url . 'app-assets/css/plugins/animate/animate.css' }}">
+
+    <!-- Loading Page -->
+    <link href="{{ base_url('assets/css/loading.css') }}" type="text/css" rel="stylesheet">
+
     {{-- <link href="{{ assets_url . 'app-assets/css/components.min.css' }}" type="text/css" rel="stylesheet"> --}}
     {{-- <link rel="stylesheet" type="text/css" href="{{ assets_url . 'app-assets/fonts/simple-line-icons/style.css' }}"> --}}
-    {{-- <link href="{{ base_url('assets/css/loading.css') }}" type="text/css" rel="stylesheet"> --}}
+
 
     <!-- Plugin CSS tambahan -->
     @stack('css_plugin')
@@ -81,6 +89,8 @@
 <body class="vertical-layout vertical-menu-modern 2-columns fixed-navbar" data-open="click"
     data-menu="vertical-menu-modern" data-col="2-columns">
 
+    <div class="loading-page" style="display: none;"></div>
+
     <!-- Header -->
     @include('template/header')
 
@@ -89,6 +99,9 @@
 
     <!-- Content -->
     @yield('content')
+
+    <!-- Modal -->
+    @stack('modal')
 
     <!-- Footer -->
     @include('template/footer')

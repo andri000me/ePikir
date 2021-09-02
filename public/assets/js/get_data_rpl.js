@@ -1,8 +1,5 @@
-var protocol = window.location.protocol;
-var host = window.location.hostname;
-
 function showDataTable(link) {
-    $("#datapemohon").DataTable({
+    $("#tbl_data_rpl").DataTable({
         "processing": true,
         "serverSide": true,
         "searching": true,
@@ -11,6 +8,12 @@ function showDataTable(link) {
         "ajax":{  
             "url": link,  
             "type": "POST",
+            "beforeSend": function () {
+                $(".loading-page").show();
+            },
+            "complete": function () {
+                $(".loading-page").hide();
+            },
             // "dataSrc": function ( data ) {
             //     console.log( JSON.stringify(data));
             //  }
@@ -28,30 +31,35 @@ function showDataTable(link) {
                 "class":"no-wrap" 
             }, 
             {  
-                "targets":2,  
+                "targets":2,
                 "class":"text-center" 
-            }, 
+            },  
             {  
                 "targets":3,  
                 "class":"text-center" 
+            }, 
+            {  
+                "targets":4,  
+                "class":"text-center",
+                "width": "50"
             },  
             {  
-                "width": "150",
-                "targets":5
-            },
-            {  
-                "width": "150",
-                "targets":6
-            },
+                "targets":5,  
+                "width": "100"
+            },  
+            // {  
+            //     "width": "150",
+            //     "targets":5
+            // },
             {  
                 "width": "150",
                 "targets":7
-            },  
+            },
             {  
                 "width": "150",
-                "class":"text-center",
                 "targets":8
             },
+            
         ],  
         "pageLength": 10
     });

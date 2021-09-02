@@ -139,8 +139,8 @@ if(!isset(\$routes))
 \$routes->group('$routeName', ['namespace' => 'App\Modules\\$this->module_name\\Controllers'], function(\$subroutes){
 
 	/*** Route for Dashboard ***/
-	\$subroutes->add('', '" . $this->module_name . "::index');
-	\$subroutes->add('dashboard', '" . $this->module_name . "::index');
+	\$subroutes->add('', 'Dashboard::index');
+	\$subroutes->add('dashboard', 'Dashboard::index');
 
 });";
 
@@ -238,7 +238,7 @@ class BaseController extends Controller
 
 use App\Modules\\$this->module_name\\Models\UserModel;
 
-class " . $this->module_name . " extends BaseController
+class Dashboard extends BaseController
 {
     private \$userModel;
 

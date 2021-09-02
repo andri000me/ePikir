@@ -20,10 +20,10 @@ class KlinikPenelitianModel extends Model
 
     public function getData($limit = 0)
     {
-        $this->join('tbl_izin_penelitian as ipl', 'kpl.id_ipl = ipl.id_ipl', 'LEFT');
+        $this->join('tbl_izin_penelitian as ipl', 'tbl_klinik_penelitian.id_ipl = ipl.id_ipl', 'LEFT');
         $this->join('tbl_rekomendasi_penelitian as rpl', 'ipl.id_rpl = rpl.id_rpl', 'LEFT');
-        $this->orderBy('kpl.waktu_pengajuan', 'DESC');
-        $this->orderBy('kpl.id_kpl', 'DESC');
+        $this->orderBy('tbl_klinik_penelitian.waktu_pengajuan', 'DESC');
+        $this->orderBy('tbl_klinik_penelitian.id_kpl', 'DESC');
         return $this->findAll($limit);
     }
 }
