@@ -23,7 +23,12 @@ class Publikasi extends BaseController
     {
         $m_profil = new ProfilModel();
 
-        $this->v_data['profil']     = $m_profil->getData()->sop_litbang;
+        $profil = '';
+        if ($m_profil->getData() != null) {
+            $profil = $m_profil->getData()->sop_litbang;
+        }
+
+        $this->v_data['profil']     = $profil;
         $this->v_data['active']     = '3.1';
 
         return views('content/publikasi/sop', 'Landing', $this->v_data);

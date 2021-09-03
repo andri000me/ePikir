@@ -18,7 +18,12 @@ class Profil extends BaseController
     {
         $m_profil = new ProfilModel();
 
-        $this->v_data['profil']     = $m_profil->getData()->isi_profil;
+        $profil = '';
+        if ($m_profil->getData() != null) {
+            $profil = $m_profil->getData()->isi_profil;
+        }
+
+        $this->v_data['profil']     = $profil;
         $this->v_data['active']     = '2.1';
 
         return views('content/profil/about', 'Landing', $this->v_data);
@@ -28,7 +33,12 @@ class Profil extends BaseController
     {
         $m_profil = new ProfilModel();
 
-        $this->v_data['profil']     = $m_profil->getData()->tugas_pokok;
+        $profil = '';
+        if ($m_profil->getData() != null) {
+            $profil = $m_profil->getData()->tugas_pokok;
+        }
+
+        $this->v_data['profil']     = $profil;
         $this->v_data['active']     = '2.2';
 
         return views('content/profil/tugas', 'Landing', $this->v_data);
@@ -38,7 +48,12 @@ class Profil extends BaseController
     {
         $m_profil = new ProfilModel();
 
-        $this->v_data['profil']     = $m_profil->getData()->struktur_organisasi;
+        $profil = '';
+        if ($m_profil->getData() != null) {
+            $profil = $m_profil->getData()->struktur_organisasi;
+        }
+
+        $this->v_data['profil']     = $profil;
         $this->v_data['active']     = '2.3';
 
         return views('content/profil/struktur', 'Landing', $this->v_data);

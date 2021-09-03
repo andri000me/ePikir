@@ -39,7 +39,7 @@ class BaseController extends Controller
 	 *
 	 * @var array
 	 */
-	protected $helpers = ['encrypt', 'alert', 'tanggal', 'view', 'ipadd', 'segment', 'form'];
+	protected $helpers = ['encrypt', 'alert', 'tanggal', 'view', 'ipadd', 'segment', 'form', 'text'];
 
 	protected $v_data = array();
 	protected $session;

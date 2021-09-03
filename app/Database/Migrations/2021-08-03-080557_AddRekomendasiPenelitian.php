@@ -24,15 +24,26 @@ class AddRekomendasiPenelitian extends Migration
 				'constraint'     => '11',
 				'unsigned'       => true,
 			],
-			'penanggung_jawab'   => [
-				'type'           => 'VARCHAR',
-				'constraint'     => '150'
-			],
 			'lokasi'       		 => [
 				'type'           => 'text',
 			],
 			'tujuan'       		 => [
 				'type'           => 'TEXT',
+			],
+			'penanggung_jawab'   => [
+				'type'           => 'VARCHAR',
+				'constraint'     => '150'
+			],
+			'nama_instansi'   => [
+				'type'           => 'VARCHAR',
+				'constraint'     => '200'
+			],
+			'no_surat_permohonan'   => [
+				'type'           => 'VARCHAR',
+				'constraint'     => '45'
+			],
+			'tgl_surat_permohonan'    => [
+				'type'           => 'DATE',
 			],
 			'file_lampiran'      => [
 				'type'           => 'TEXT',

@@ -19,8 +19,11 @@
                     <!-- About Content -->
                     <div class="about-content profil text-justify">
                         
-                        <iframe src="<?php echo e(base_url('upload/renja/' . $renja->file_rk)); ?>" style="width:100%; height:80vh;"
-                            frameborder="0"></iframe>
+                        <?php if($renja != null): ?>
+                            <iframe src="<?php echo e(base_url('upload/renja/' . $renja->file_rk)); ?>"
+                                style="width:100%; height:80vh;" frameborder="0"></iframe>
+                        <?php endif; ?>
+
                         
                     </div>
                     <!--/ End About Content -->

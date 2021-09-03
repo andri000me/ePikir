@@ -10,7 +10,7 @@
                     <div class="row breadcrumbs-top d-inline-block">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="<?= base_url('kesbangpol') ?>">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="{{ base_url('kesbangpol') }}">Dashboard</a></li>
                                 <li class="breadcrumb-item active">Permohonan Masuk</li>
                             </ol>
                         </div>
@@ -56,7 +56,7 @@
                                             <thead>
                                                 <tr style="text-align: center;">
                                                     <th>#</th>
-                                                    <th>Aksi</th>
+                                                    <th class="text-center">Aksi</th>
                                                     <th>Lampiran</th>
                                                     <th>Nomor</th>
                                                     <th>Tgl Pengajuan</th>
@@ -64,6 +64,7 @@
                                                     <th>Pekerjaan</th>
                                                     <th>Alamat</th>
                                                     <th>Lokasi</th>
+                                                    <th>Judul</th>
                                                 </tr>
                                             </thead>
                                         </table>
@@ -80,36 +81,6 @@
 @endsection
 
 @push('modal')
-    <div class="modal animated bounceInUp text-left" id="modal_detail" tabindex="-1" role="dialog"
-        aria-labelledby="myModalLabel10" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div id="modal_header" class="modal-header bg-primary">
-                    <h4 class="modal-title white" id="modal_title">Detail Permohonan Rekomendasi Penelitian</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <div class="modal-body">
-                    {{-- <span id="info_histori"></span> --}}
-                    {{-- <hr> --}}
-                    <table id="tbl_detail_rpl"
-                        class="table table-hover table-bordered table-striped table-responsive d-lg-table">
-                        <thead> </thead>
-                    </table>
-
-                    <div id="lampiran"> </div>
-                </div>
-
-                <div class="modal-footer">
-                    <!-- <button type="button" id="btn_reset" class="btn btn-success waves-effect" onclick="tableToExcel('tbl_rincian', 'RincianBarangPengadaan', 'RincianBarangPengadaan.xls')">EXPORT (.XLS)</button> -->
-                    <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">KELUAR</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="modal animated bounceIn text-left" id="modal_proses" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel10" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -171,57 +142,6 @@
     </script>
 
     <script>
-        function showDetailModal(data) {
-            var id = $(data).data().id;
-            var nama = $(data).data().nama;
-            var pekerjaan = $(data).data().pekerjaan;
-            var alamat = $(data).data().alamat;
-            var hp = $(data).data().hp;
-            var email = $(data).data().email;
-            var norpl = $(data).data().norpl;
-            var penanggung = $(data).data().penanggung;
-            var lokasi = $(data).data().lokasi;
-            var tujuan = $(data).data().tujuan;
-            var file = $(data).data().file;
-            var mulai = $(data).data().mulai;
-            var akhir = $(data).data().akhir;
-            var pengajuan = $(data).data().pengajuan;
-
-            var tglpelaksana = mulai + " - " + akhir;
-            if (mulai == akhir) {
-                var tglpelaksana = mulai;
-            }
-
-            var list = "<tr> <th> Nomor </th> <td>" + norpl + "</td> </tr>" +
-                "<tr> <th> Nama Lengkap </th> <td>" + nama + "</td> </tr>" +
-                "<tr> <th> Pekerjaan </th> <td>" + pekerjaan + "</td> </tr>" +
-                "<tr> <th> Alamat </th> <td>" + alamat + "</td> </tr>" +
-                "<tr> <th> Nomor HP </th> <td>" + hp + "</td> </tr>" +
-                "<tr> <th> Email </th> <td>" + email + "</td> </tr>" +
-                "<tr> <th> Penanggung Jawab </th> <td>" + penanggung + "</td> </tr>" +
-                "<tr> <th> Lokasi Penelitian</th> <td>" + lokasi + "</td> </tr>" +
-                "<tr> <th> Tujuan Penelitian </th> <td>" + tujuan + "</td> </tr>" +
-                "<tr> <th> Tanggal Pelaksanaan </th> <td>" + tglpelaksana + "</td> </tr>" +
-                "<tr> <th> Waktu Pengajuan </th> <td>" + pengajuan + "</td> </tr>";
-
-            // var lampiran = '<iframe src="{{ base_url('upload/permohonan/rpl') }}/' + file +
-            //     '" style = "width:100%; height:80vh;" frameborder = "0" > < /iframe>';
-
-            var embed =
-                '<iframe src="https://docs.google.com/gview?url={{ base_url('upload/permohonan/rpl') }}/' + file +
-                '&embedded=true" style = "width:100%; height:80vh;"></iframe>';
-
-            $('#modal_detail #tbl_detail_rpl thead').html(list);
-            $('#modal_detail #lampiran').html(embed);
-            $('#modal_detail').modal({
-                backdrop: 'static',
-                keyboard: false
-            });
-
-        }
-    </script>
-
-    <script>
         function showProsesModal(data) {
             var id = $(data).data().id;
             $('#modal_proses #id_usr').val(id);
@@ -263,3 +183,5 @@
         }
     </script>
 @endpush
+
+@include('content.penelitian.modal_detail')

@@ -46,11 +46,19 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-12 col-12">
+                                    <div class="col-lg-6 col-12">
                                         <div class="form-group">
-                                            <textarea class="form-control" name="lokasi" rows="2"
-                                                placeholder="Lokasi kegiatan pengabdian masyarakat" autocomplete="off"
-                                                style="height: unset !important;" required></textarea>
+                                            <input type="email" class="form-control" name="email_pemohon"
+                                                autocomplete="on" placeholder="Email pemohon" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-12">
+                                        <div class="form-group">
+                                            <input type="text" id="no_telp_pemohon" class="form-control"
+                                                name="no_telp_pemohon" placeholder="Nomor WhatsApp pemohon"
+                                                maxlength="14" autocomplete="on" onkeypress="return inputAngka(event);"
+                                                required>
                                         </div>
                                     </div>
 
@@ -58,6 +66,14 @@
                                         <div class="form-group">
                                             <textarea class="form-control" name="tujuan" rows="2"
                                                 placeholder="Tujuan kegiatan pengabdian masyarakat" autocomplete="off"
+                                                style="height: unset !important;" required></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 col-12">
+                                        <div class="form-group">
+                                            <textarea class="form-control" name="lokasi" rows="2"
+                                                placeholder="Lokasi kegiatan pengabdian masyarakat" autocomplete="off"
                                                 style="height: unset !important;" required></textarea>
                                         </div>
                                     </div>
@@ -84,26 +100,34 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6 col-12">
+                                    <div class="col-lg-12 col-12">
                                         <div class="form-group">
-                                            <input type="email" class="form-control" name="email_pemohon"
-                                                autocomplete="on" placeholder="Email pemohon" required>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 col-12">
-                                        <div class="form-group">
-                                            <input type="text" id="no_telp_pemohon" class="form-control"
-                                                name="no_telp_pemohon" placeholder="Nomor WhatsApp pemohon"
-                                                maxlength="14" autocomplete="on" onkeypress="return inputAngka(event);"
-                                                required>
+                                            <input type="text" class="form-control" name="penanggung_jawab"
+                                                autocomplete="off" placeholder="Penanggung jawab" required>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-12 col-12">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="penanggung_jawab"
-                                                autocomplete="off" placeholder="Penanggung jawab" required>
+                                            <input type="text" class="form-control" name="nama_instansi"
+                                                autocomplete="off" placeholder="Nama perguruan tinggi/instansi"
+                                                required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-8 col-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="no_surat_permohonan"
+                                                autocomplete="off"
+                                                placeholder="Nomor surat permohonan dari perguruan tinggi" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control datepicker"
+                                                name="tgl_surat_permohonan" placeholder="Tanggal surat"
+                                                autocomplete="off" style="border-radius: 0px" required />
                                         </div>
                                     </div>
 

@@ -19,8 +19,11 @@
                     <!-- About Content -->
                     <div class="about-content profil text-justify">
                         {{-- <embed src="{{base_url('upload/regulasi/'.$regulasi->file_regulasi)}}" type="application/pdf" width="100%" height="600px" /> --}}
-                        <iframe src="{{ base_url('upload/renja/' . $renja->file_rk) }}" style="width:100%; height:80vh;"
-                            frameborder="0"></iframe>
+                        @if ($renja != null)
+                            <iframe src="{{ base_url('upload/renja/' . $renja->file_rk) }}"
+                                style="width:100%; height:80vh;" frameborder="0"></iframe>
+                        @endif
+
                         {{-- <iframe src="https://docs.google.com/viewer?url={{base_url('upload/regulasi/'.$regulasi->file_regulasi)}}&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe> --}}
                     </div>
                     <!--/ End About Content -->

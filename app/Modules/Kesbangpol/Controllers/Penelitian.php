@@ -32,14 +32,24 @@ class Penelitian extends BaseController
     public function rplSelesai()
     {
         $get_status = $this->request->getGet('status');
+        $status = 3;
         if ($get_status != null) {
-            $status = $get_status;
-        } else {
-            $status = 5;
+            if ($get_status == 4 || $get_status == 5) {
+                $status = $get_status;
+            }
         }
 
-        $this->v_data['status']     = $status;
-        $this->v_data['active']     = '2.3';
+        $info_status = 'Disetujui';
+        if ($status == 4) {
+            $info_status = 'Ditolak';
+        }
+        if ($status == 5) {
+            $info_status = 'Semua';
+        }
+
+        $this->v_data['status']         = $status;
+        $this->v_data['info_status']    = $info_status;
+        $this->v_data['active']         = '2.3';
 
         return views('content/penelitian/rpl_selesai', 'Kesbangpol', $this->v_data);
     }
@@ -89,15 +99,16 @@ class Penelitian extends BaseController
 
                 $btn_detail = '<button type="button" onclick="showDetailModal(this)"
                 data-id="' . encode($row->id_user_pemohon) . '" 
-                data-nama="' . $row->nama_pemohon . '" 
-                data-pekerjaan="' . $row->pekerjaan_pemohon . '" 
+                data-nama="' . text_uc($row->nama_pemohon) . '" 
+                data-pekerjaan="' . text_uc($row->pekerjaan_pemohon) . '" 
                 data-alamat="' . $row->alamat_pemohon . '" 
                 data-hp="' . $row->no_telp_pemohon . '" 
                 data-email="' . $row->email_pemohon . '" 
                 data-norpl="' . $row->no_rpl . '" 
-                data-penanggung="' . $row->penanggung_jawab . '" 
+                data-penanggung="' . text_uc($row->penanggung_jawab) . '" 
+                data-instansi="' . text_uc($row->nama_instansi) . '" 
                 data-lokasi="' . $row->lokasi . '" 
-                data-tujuan="' . $row->tujuan . '" 
+                data-tujuan="' . text_uc($row->tujuan) . '" 
                 data-file="' . $row->file_lampiran . '" 
                 data-mulai="' . formatTanggalTtd($row->tgl_pelaksanaan_mulai) . '" 
                 data-akhir="' . formatTanggalTtd($row->tgl_pelaksanaan_akhir) . '" 
@@ -108,10 +119,14 @@ class Penelitian extends BaseController
 
                 $btn_proses_last = '<button type="button" data-id="' . encode($row->id_user_pemohon) . '" onclick="showConfirmModal(this)" class="btn btn-sm btn-info" title="Konfirmasi"><i class="la la-gear font-small-3"></i></button> ';
 
-                if ($row->status == 1) {
+                $btn_cetak = '<button type="button" data-id="' . encode($row->id_rpl) . '" onclick="cetakSuratRpl(this)" class="btn btn-sm btn-info" title="Cetak Surat"><i class="la la-print font-small-3"></i></button> ';
+
+                if ($row->status == 1) { // Saat status diajukan
                     $btn .= $btn_proses;
-                } else if ($row->status == 2) {
+                } else if ($row->status == 2) { // Saat status diproses
                     $btn .= $btn_proses_last;
+                } else if ($row->status == 3) {
+                    $btn .= $btn_cetak;
                 }
                 $btn .= $btn_detail;
                 $btn .= $btn_hapus;
@@ -123,13 +138,28 @@ class Penelitian extends BaseController
                     <i class="fa fa-file-pdf-o text-danger"></i></a>',
                     $row->no_rpl,
                     date('d-m-Y', strtotime($row->waktu_pengajuan)),
-                    $row->nama_pemohon,
-                    $row->pekerjaan_pemohon,
+                    text_uc($row->nama_pemohon),
+                    text_uc($row->pekerjaan_pemohon),
                     $row->alamat_pemohon,
                     $row->lokasi,
+                    text_uc($row->tujuan),
                 );
 
-                $data[] = $columns;
+                if ($status > 4) { //Jika status sudah selesai
+                    if ($row->status == 3) {
+                        $info_status = 'Disetujui';
+                        $info_color = 'success';
+                    }
+                    if ($row->status == 4) {
+                        $info_status = 'Ditolak';
+                        $info_color = 'danger';
+                    }
+                    $span_info = ['<span class="badge badge-' . $info_color . ' w-100">' . $info_status . '</span>'];
+
+                    $data[] = array_merge(array_slice($columns, 0, 4), $span_info, array_slice($columns, 4));
+                } else {
+                    $data[] = $columns;
+                }
             }
             $output = array(
                 "draw"               =>     $post["draw"],
@@ -199,6 +229,13 @@ class Penelitian extends BaseController
         if ($id != null) {
             $id_user_pemohon = decode($id);
             $m_user = new UserPemohonModel();
+
+            $data_rpl = $this->m_rpl->select('file_lampiran')->where('id_user_pemohon', $id_user_pemohon);
+            $file_location = 'upload/permohonan/rpl/' . $data_rpl->file_lampiran;
+            if (file_exists(realpath($file_location))) {
+                unlink(FCPATH . $file_location); //hapus file yang akan dihapus
+            }
+
             $delete_rpl = $m_user->delete(['id_user_pemohon' => $id_user_pemohon]);
 
             if ($delete_rpl) {

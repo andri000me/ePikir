@@ -119,6 +119,13 @@
             format: 'dd/mm/yyyy',
             toggleActive: true
         });
+
+        $('.datepicker').datepicker({
+            autoclose: true,
+            todayHighlight: true,
+            format: 'dd/mm/yyyy',
+            toggleActive: true
+        });
     </script>
 
     <!-- Dropify -->

@@ -46,44 +46,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-12 col-12">
-                                        <div class="form-group">
-                                            <textarea class="form-control" name="lokasi" rows="2"
-                                                placeholder="Lokasi kegiatan penelitian" autocomplete="off"
-                                                style="height: unset !important;" required></textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-12 col-12">
-                                        <div class="form-group">
-                                            <textarea class="form-control" name="tujuan" rows="2"
-                                                placeholder="Tujuan kegiatan penelitian" autocomplete="off"
-                                                style="height: unset !important;" required></textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-12">
-                                        <div class="input-daterange input-group date-range"
-                                            style="height: 50px; margin-bottom: 25px">
-                                            <div class="form-group w-100">
-                                                <input type="text" class="form-control" id="tgl_pelaksanaan_mulai"
-                                                    name="tgl_pelaksanaan_mulai" placeholder="Tgl Pelaksanaan Awal"
-                                                    autocomplete="off"  style="border-radius: 0px"
-                                                    required />
-                                            </div>
-                                            <div class="input-group-append" style="padding: 12px; background: #2e2751;">
-                                                <span class="input-group-text text-white"
-                                                    style="padding: 5px">SAMPAI</span>
-                                            </div>
-                                            <div class="form-group w-100">
-                                                <input type="text" class="form-control" id="tgl_pelaksanaan_akhir"
-                                                    name="tgl_pelaksanaan_akhir" placeholder="Tgl Pelaksanaan Akhir"
-                                                    autocomplete="off"  style="border-radius: 0px"
-                                                    required />
-                                            </div>
-                                        </div>
-                                    </div>
-
                                     <div class="col-lg-6 col-12">
                                         <div class="form-group">
                                             <input type="email" class="form-control" name="email_pemohon"
@@ -102,8 +64,70 @@
 
                                     <div class="col-lg-12 col-12">
                                         <div class="form-group">
+                                            <textarea class="form-control" name="tujuan" rows="2"
+                                                placeholder="Judul penelitian" autocomplete="off"
+                                                style="height: unset !important;" required></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 col-12">
+                                        <div class="form-group">
+                                            <textarea class="form-control" name="lokasi" rows="2"
+                                                placeholder="Lokasi kegiatan penelitian" autocomplete="off"
+                                                style="height: unset !important;" required></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <div class="input-daterange input-group date-range"
+                                            style="height: 50px; margin-bottom: 25px">
+                                            <div class="form-group w-100">
+                                                <input type="text" class="form-control" id="tgl_pelaksanaan_mulai"
+                                                    name="tgl_pelaksanaan_mulai" placeholder="Tgl Pelaksanaan Awal"
+                                                    autocomplete="off"  style="border-radius: 0px"
+                                                    required />
+                                            </div>
+                                            <div class="input-group-append" style="padding: 12px; background: #2e2751;">
+                                                <span class="input-group-text text-white"
+                                                    style="padding: 5px">s/d</span>
+                                            </div>
+                                            <div class="form-group w-100">
+                                                <input type="text" class="form-control" id="tgl_pelaksanaan_akhir"
+                                                    name="tgl_pelaksanaan_akhir" placeholder="Tgl Pelaksanaan Akhir"
+                                                    autocomplete="off"  style="border-radius: 0px"
+                                                    required />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 col-12">
+                                        <div class="form-group">
                                             <input type="text" class="form-control" name="penanggung_jawab"
                                                 autocomplete="off" placeholder="Penanggung jawab" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 col-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="nama_instansi"
+                                                autocomplete="off" placeholder="Nama perguruan tinggi/instansi"
+                                                required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-8 col-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="no_surat_permohonan"
+                                                autocomplete="off"
+                                                placeholder="Nomor surat permohonan dari perguruan tinggi" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control datepicker"
+                                                name="tgl_surat_permohonan" placeholder="Tanggal surat"
+                                                autocomplete="off" style="border-radius: 0px" required />
                                         </div>
                                     </div>
 
