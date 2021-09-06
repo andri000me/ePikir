@@ -27,21 +27,21 @@
                                     <div class="col-lg-6 col-12">
                                         <div class="form-group">
                                             <input type="text" class="form-control" name="nama_pemohon"
-                                                autocomplete="off" placeholder="Nama lengkap pemohon" required>
+                                                autocomplete="on" placeholder="Nama lengkap pemohon" required>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6 col-12">
                                         <div class="form-group">
                                             <input type="text" class="form-control" name="pekerjaan_pemohon"
-                                                autocomplete="off" placeholder="Pekerjaan pemohon" required>
+                                                autocomplete="on" placeholder="Pekerjaan pemohon" required>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-12 col-12">
                                         <div class="form-group">
                                             <textarea class="form-control" name="alamat_pemohon" rows="2"
-                                                placeholder="Alamat lengkap pemohon" autocomplete="off"
+                                                placeholder="Alamat lengkap pemohon" autocomplete="on"
                                                 style="height: unset !important;" required></textarea>
                                         </div>
                                     </div>
@@ -65,7 +65,7 @@
                                     <div class="col-lg-12 col-12">
                                         <div class="form-group">
                                             <textarea class="form-control" name="tujuan" rows="2"
-                                                placeholder="Judul penelitian" autocomplete="off"
+                                                placeholder="Judul penelitian" autocomplete="on"
                                                 style="height: unset !important;" required></textarea>
                                         </div>
                                     </div>
@@ -73,7 +73,7 @@
                                     <div class="col-lg-12 col-12">
                                         <div class="form-group">
                                             <textarea class="form-control" name="lokasi" rows="2"
-                                                placeholder="Lokasi kegiatan penelitian" autocomplete="off"
+                                                placeholder="Lokasi kegiatan penelitian" autocomplete="on"
                                                 style="height: unset !important;" required></textarea>
                                         </div>
                                     </div>
@@ -103,22 +103,21 @@
                                     <div class="col-lg-12 col-12">
                                         <div class="form-group">
                                             <input type="text" class="form-control" name="penanggung_jawab"
-                                                autocomplete="off" placeholder="Penanggung jawab" required>
+                                                autocomplete="on" placeholder="Penanggung jawab" required>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-12 col-12">
                                         <div class="form-group">
                                             <input type="text" class="form-control" name="nama_instansi"
-                                                autocomplete="off" placeholder="Nama perguruan tinggi/instansi"
-                                                required>
+                                                autocomplete="on" placeholder="Nama perguruan tinggi/instansi" required>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-8 col-12">
                                         <div class="form-group">
                                             <input type="text" class="form-control" name="no_surat_permohonan"
-                                                autocomplete="off"
+                                                autocomplete="on"
                                                 placeholder="Nomor surat permohonan dari perguruan tinggi" required>
                                         </div>
                                     </div>

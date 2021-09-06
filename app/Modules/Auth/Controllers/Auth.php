@@ -58,6 +58,7 @@ class Auth extends BaseController
 				$sess_data['id_user'] 	= $hasil->getRow()->id_user;
 				$sess_data['nama_user'] = $hasil->getRow()->nama_user;
 				$sess_data['username'] 	= $hasil->getRow()->username;
+				$sess_data['id_role']   = $id_role;
 				$sess_data['role'] 		= $role;
 				$sess_data['logs'] 		= 'SimEpikir' . ucfirst(strtolower($role));
 

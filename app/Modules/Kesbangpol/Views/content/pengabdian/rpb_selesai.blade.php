@@ -6,12 +6,12 @@
             <div class="content-header row">
 
                 <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
-                    <h3 class="content-header-title mb-0 d-inline-block">Permohonan Izin Penelitian</h3>
+                    <h3 class="content-header-title mb-0 d-inline-block">Permohonan Izin Pengabdian Masyarakat</h3>
                     <div class="row breadcrumbs-top d-inline-block">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ base_url('kesbangpol') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Permohonan Izin Penelitian</li>
+                                <li class="breadcrumb-item active">Permohonan Izin Pengabdian Masyarakat</li>
                             </ol>
                         </div>
                     </div>
@@ -25,11 +25,11 @@
                             aria-expanded="false">{{ $info_status }}</button>
                         <div class="dropdown-menu" aria-labelledby="dropdownBreadcrumbButton">
                             <a class="dropdown-item text-center"
-                                href="{{ base_url('kesbangpol/penelitian/selesai?status=3') }}">Disetujui</a>
+                                href="{{ base_url('kesbangpol/pengabdian/selesai?status=3') }}">Disetujui</a>
                             <a class="dropdown-item text-center"
-                                href="{{ base_url('kesbangpol/penelitian/selesai?status=4') }}">Ditolak</a>
+                                href="{{ base_url('kesbangpol/pengabdian/selesai?status=4') }}">Ditolak</a>
                             <a class="dropdown-item text-center"
-                                href="{{ base_url('kesbangpol/penelitian/selesai?status=5') }}">Semua</a>
+                                href="{{ base_url('kesbangpol/pengabdian/selesai?status=5') }}">Semua</a>
                         </div>
                     </div>
                 </div>
@@ -66,9 +66,9 @@
 
                                         {!! show_alert() !!}
 
-                                        @include('template.searchbar', ['table_name' => 'tbl_data_rpl'])
+                                        @include('template.searchbar', ['table_name' => 'tbl_data_rpb'])
 
-                                        <table id="tbl_data_rpl" class="table table-hover table-bordered table-striped"
+                                        <table id="tbl_data_rpb" class="table table-hover table-bordered table-striped"
                                             style="font-size: 8pt">
                                             <thead>
                                                 <tr style="text-align: center;">
@@ -105,7 +105,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-danger white">
-                    <h4 class="modal-title white" id="myModalLabel10">Cetak Surat Keterangan Penelitian</h4>
+                    <h4 class="modal-title white" id="myModalLabel10">Cetak Surat Keterangan Pengabdian Masyarakat</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -115,7 +115,7 @@
                         <h5>Pejabat yang menandatangani
                             <span class="required text-danger">*</span>
                         </h5>
-                        <input type="hidden" id="id_rpl" name="id_rpl">
+                        <input type="hidden" id="id_rpb" name="id_rpb">
                         <div class="controls">
                             <select id="id_petugas" name="id_petugas" class="form-control select2">
                                 @foreach ($petugas as $item)
@@ -139,7 +139,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-warning" data-dismiss="modal" title="Batal">Batal
                     </button>
-                    <button type="button" class="btn btn-info" onclick="cetakSuratRpl()" title="Kirim">Kirim</button>
+                    <button type="button" class="btn btn-info" onclick="cetakSurat()" title="Kirim">Kirim</button>
                 </div>
             </div>
         </div>
@@ -174,13 +174,13 @@
     </script>
     <script src="{{ assets_url . 'app-assets/vendors/js/forms/select/select2.full.min.js' }}"></script>
     <script src="{{ assets_url . 'app-assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js' }}"></script>
-    <script src="{{ base_url('assets/js/get_data_rpl.js') }}" type="text/javascript"></script>
+    <script src="{{ base_url('assets/js/get_data_rpb.js') }}" type="text/javascript"></script>
     <script src="{{ base_url('assets/js/delete_data.js') }}" type="text/javascript"></script>
 @endpush
 
 @push('js_script')
     <script>
-        showDataTable("{{ base_url('kesbangpol/penelitian/getdata/' . $status . '/tbl_data_rpl') }}",
+        showDataTable("{{ base_url('kesbangpol/pengabdian/getdata/' . $status . '/tbl_data_rpb') }}",
             "{{ $status }}");
     </script>
 
@@ -199,21 +199,21 @@
     <script>
         function showModalCetak(data) {
             var id = $(data).data().id;
-            $('#modal_cetak #id_rpl').val(id);
+            $('#modal_cetak #id_rpb').val(id);
             $('#modal_cetak').modal({
                 backdrop: 'static',
                 keyboard: false
             });
         }
 
-        function cetakSuratRpl() {
-            var id = $('#modal_cetak #id_rpl').val();
+        function cetakSurat() {
+            var id = $('#modal_cetak #id_rpb').val();
             var idp = $('#modal_cetak #id_petugas').val();
             var tgl = $('#modal_cetak #tgl_surat').val();
-            window.open("{{ base_url('kesbangpol/penelitian/cetak') }}?id=" + id + "&&idp=" + idp + "&&tgl=" + tgl);
+            window.open("{{ base_url('kesbangpol/pengabdian/cetak') }}?id=" + id + "&&idp=" + idp + "&&tgl=" + tgl);
             $('#modal_cetak').modal('hide');
         }
     </script>
 @endpush
 
-@include('content.penelitian.modal_detail')
+@include('content.pengabdian.modal_detail')

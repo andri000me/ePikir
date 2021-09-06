@@ -44,6 +44,8 @@ class Filters extends BaseConfig
 					'landing/checktoken',
 					'kesbangpol/penelitian/getdata/.*?/.*?',
 					'kesbangpol/penelitian/tolak/.*?',
+					'kesbangpol/pengabdian/getdata/.*?/.*?',
+					'kesbangpol/pengabdian/tolak/.*?',
 				]
 			],
 		],

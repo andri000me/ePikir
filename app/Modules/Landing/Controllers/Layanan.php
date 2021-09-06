@@ -153,7 +153,7 @@ class Layanan extends BaseController
                             $upload = upload_files($file, FCPATH . 'upload/permohonan/ipl');
                             if ($upload['respons']) {
                                 $file_location = 'upload/permohonan/ipl/' . $row_ipl->file_lampiran;
-                                if (file_exists(realpath($file_location))) {
+                                if (realpath($file_location)) {
                                     unlink(FCPATH . $file_location); //hapus file yang akan diupdate
                                 }
 
@@ -326,7 +326,7 @@ class Layanan extends BaseController
                             $upload = upload_files($file, FCPATH . 'upload/permohonan/ipb');
                             if ($upload['respons']) {
                                 $file_location = 'upload/permohonan/ipb/' . $row_ipb->file_lampiran;
-                                if (file_exists(realpath($file_location))) {
+                                if (realpath($file_location)) {
                                     unlink(FCPATH . $file_location); //hapus file yang akan diupdate
                                 }
 

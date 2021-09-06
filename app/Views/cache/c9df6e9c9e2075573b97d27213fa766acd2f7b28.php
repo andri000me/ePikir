@@ -6,12 +6,12 @@
             <div class="content-header row">
 
                 <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
-                    <h3 class="content-header-title mb-0 d-inline-block">Permohonan Izin Penelitian</h3>
+                    <h3 class="content-header-title mb-0 d-inline-block">Permohonan Izin Pengabdian Masyarakat</h3>
                     <div class="row breadcrumbs-top d-inline-block">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="<?php echo e(base_url('kesbangpol')); ?>">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Permohonan Izin Penelitian</li>
+                                <li class="breadcrumb-item active">Permohonan Izin Pengabdian Masyarakat</li>
                             </ol>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startPush('modal'); ?>
-    <div class="modal animated bounceIn text-left" id="modal_proses" tabindex="-1" role="dialog"
+    <div class="modal animated bounceIn text-left" id="modal_confirm" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel10" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -92,19 +92,52 @@
                 <div class="modal-body text-center">
                     <i class="la la-warning warning" style="font-size: 70pt;"></i>
                     <h2 style="font-weight: bold;">
-                        Proses Permohonan
+                        Konfirmasi permohonan
                     </h2>
                     <br>
                     <div class="font-medium-3">
-                        Status permohonan akan menjadi diproses.
+                        Apakah permohonan akan disetujui?
                         <input type="hidden" id="id_usr" name="id_usr">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-warning" data-dismiss="modal" title="Batal">Batal
                     </button>
-                    <button type="button" class="btn btn-info" title="Proses" onclick="prosesPermohonan()">Ya,
-                        Proses</button>
+                    <button type="button" class="btn btn-danger" onclick="showConfirmTolakModal()"
+                        title="Tolak">Tolak</button>
+                    <button type="button" class="btn btn-info" onclick="terimaPermohonan()" title="Disetujui">Ya,
+                        Disetujui</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade text-left" id="modal_tolak" tabindex="-1" role="dialog" aria-labelledby="myModalLabel10"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-danger white">
+                    <h4 class="modal-title white" id="myModalLabel10">Tolak Permohonan</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <h5>Kajian Penolakan
+                            <span class="required text-danger">*</span>
+                        </h5>
+                        <div class="controls">
+                            <textarea name="message" id="message" class="form-control" required=""
+                                placeholder="Isi kajian pernolakan permohonan" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <input type="hidden" id="id_usr" name="id_usr">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal" title="Batal">Batal
+                    </button>
+                    <button type="button" class="btn btn-info" onclick="tolakPermohonan()" title="Kirim">Kirim</button>
                 </div>
             </div>
         </div>
@@ -140,17 +173,62 @@
     </script>
 
     <script>
-        function showProsesModal(data) {
+        function showConfirmModal(data) {
             var id = $(data).data().id;
-            $('#modal_proses #id_usr').val(id);
-            $('#modal_proses').modal('show');
+            $('#modal_confirm #id_usr').val(id);
+            $('#modal_confirm').modal('show');
         }
 
-        function prosesPermohonan() {
-            var id = $('#modal_proses #id_usr').val();
+        function showConfirmTolakModal() {
+            $('#modal_confirm').modal('hide');
+            var id = $('#modal_confirm #id_usr').val();
+            $('#modal_tolak #message').val('');
+            $('#modal_tolak #id_usr').val(id);
+            $('#modal_tolak').modal('show');
+        }
+
+        function terimaPermohonan() {
+            var id = $('#modal_confirm #id_usr').val();
             $(".loading-page").show();
-            $('#modal_proses').modal('hide');
-            $.get("<?php echo e(base_url('kesbangpol/penelitian/proses')); ?>/" + id,
+            $('#modal_confirm').modal('hide');
+            $.get("<?php echo e(base_url('kesbangpol/penelitian/setuju')); ?>/" + id,
+                function(dt) {
+                    var data = JSON.parse(dt);
+                    $(".loading-page").hide();
+
+                    if (data.respons) {
+                        swal({
+                            title: "Sukses!",
+                            text: data.alert,
+                            icon: 'success',
+                            timer: 2000
+                        }).then(function() {
+                            $('#tbl_data_rpl').DataTable().ajax.reload(null,
+                                false); //posisi paginantion tetap sesuai yang dibuka
+                        });
+                    } else {
+                        swal({
+                            title: "Gagal!",
+                            text: data.alert,
+                            icon: "error",
+                            timer: 2000
+                        }).then(function() {
+                            $('#tbl_data_rpl').DataTable().ajax.reload(null,
+                                false); //posisi paginantion tetap sesuai yang dibuka
+                        });
+                    }
+                }
+            );
+        }
+
+        function tolakPermohonan() {
+            var id = $('#modal_tolak #id_usr').val();
+            var msg = $('#modal_tolak #message').val();
+            $(".loading-page").show();
+            $('#modal_tolak').modal('hide');
+            $.post("<?php echo e(base_url('kesbangpol/penelitian/tolak')); ?>/" + id, {
+                    message: msg
+                },
                 function(dt) {
                     var data = JSON.parse(dt);
                     $(".loading-page").hide();
@@ -180,8 +258,9 @@
             );
         }
     </script>
+
 <?php $__env->stopPush(); ?>
 
 <?php echo $__env->make('content.penelitian.modal_detail', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-<?php echo $__env->make('template/master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\PROJECT\xampp\htdocs\epikir_new\app\Modules\Kesbangpol\Views/content/penelitian/rpl_masuk.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('template/master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\PROJECT\xampp\htdocs\epikir_new\app\Modules\Kesbangpol\Views/content/pengabdian/rpb_proses.blade.php ENDPATH**/ ?>

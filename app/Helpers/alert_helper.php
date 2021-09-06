@@ -42,4 +42,3 @@
 			return $sess->getFlashdata('alert');
 		}
 	}
-?>

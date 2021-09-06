@@ -1,24 +1,27 @@
+@extends('template/master')
 
-
-<?php $__env->startSection('content'); ?>
+@section('content')
     <div class="app-content content">
         <div class="content-wrapper">
             <div class="content-header row">
 
                 <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
-                    <h3 class="content-header-title mb-0 d-inline-block">Permohonan Izin Penelitian</h3>
+                    <h3 class="content-header-title mb-0 d-inline-block">Permohonan Izin Pengabdian Masyarakat</h3>
                     <div class="row breadcrumbs-top d-inline-block">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="<?php echo e(base_url('kesbangpol')); ?>">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Permohonan Izin Penelitian</li>
+                                <li class="breadcrumb-item"><a href="{{ base_url('kesbangpol') }}">Dashboard</a></li>
+                                <li class="breadcrumb-item active">Permohonan Izin Pengabdian Masyarakat</li>
                             </ol>
                         </div>
                     </div>
                 </div>
 
                 <div class="content-header-right col-md-2 col-12 mb-2">
-                    
+                    {{-- <button id="btn_eksekusi" class="btn btn-info btn-block round px-2" type="submit" disabled>
+                        <i class="la la-check font-small-3"></i> Eksekusi Aset
+                        <span class="badge badge-pill badge-glow badge-danger" style="float: right">0</span>
+                    </button> --}}
                 </div>
 
             </div>
@@ -44,12 +47,11 @@
 
                                     <div class="card-body">
 
-                                        <?php echo show_alert(); ?>
+                                        {!! show_alert() !!}
 
+                                        @include('template.searchbar', ['table_name' => 'tbl_data_rpb'])
 
-                                        <?php echo $__env->make('template.searchbar', ['table_name' => 'tbl_data_rpl'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
-                                        <table id="tbl_data_rpl" class="table table-hover table-bordered table-striped"
+                                        <table id="tbl_data_rpb" class="table table-hover table-bordered table-striped"
                                             style="font-size: 8pt">
                                             <thead>
                                                 <tr style="text-align: center;">
@@ -76,9 +78,9 @@
             </div>
         </div>
     </div>
-<?php $__env->stopSection(); ?>
+@endsection
 
-<?php $__env->startPush('modal'); ?>
+@push('modal')
     <div class="modal animated bounceIn text-left" id="modal_proses" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel10" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -109,34 +111,34 @@
             </div>
         </div>
     </div>
-<?php $__env->stopPush(); ?>
+@endpush
 
-<?php $__env->startPush('css_plugin'); ?>
+@push('css_plugin')
     <link rel="stylesheet" type="text/css"
-        href="<?php echo e(assets_url . 'app-assets/vendors/css/tables/datatable/datatables.min.css'); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo e(assets_url . 'app-assets/vendors/js/extensions/sweetalert.min.js'); ?>">
-<?php $__env->stopPush(); ?>
+        href="{{ assets_url . 'app-assets/vendors/css/tables/datatable/datatables.min.css' }}">
+    <link rel="stylesheet" type="text/css" href="{{ assets_url . 'app-assets/vendors/js/extensions/sweetalert.min.js' }}">
+@endpush
 
-<?php $__env->startPush('css_style'); ?>
+@push('css_style')
     <style>
         .no-wrap {
             white-space: nowrap;
         }
 
     </style>
-<?php $__env->stopPush(); ?>
+@endpush
 
-<?php $__env->startPush('js_plugin'); ?>
-    <script src="<?php echo e(assets_url . 'app-assets/vendors/js/tables/datatable/datatables.min.js'); ?>" type="text/javascript">
+@push('js_plugin')
+    <script src="{{ assets_url . 'app-assets/vendors/js/tables/datatable/datatables.min.js' }}" type="text/javascript">
     </script>
-    <script src="<?php echo e(assets_url . 'app-assets/vendors/js/extensions/sweetalert.min.js'); ?>" type="text/javascript"></script>
-    <script src="<?php echo e(base_url('assets/js/get_data_rpl.js')); ?>" type="text/javascript"></script>
-    <script src="<?php echo e(base_url('assets/js/delete_data.js')); ?>" type="text/javascript"></script>
-<?php $__env->stopPush(); ?>
+    <script src="{{ assets_url . 'app-assets/vendors/js/extensions/sweetalert.min.js' }}" type="text/javascript"></script>
+    <script src="{{ base_url('assets/js/get_data_rpb.js') }}" type="text/javascript"></script>
+    <script src="{{ base_url('assets/js/delete_data.js') }}" type="text/javascript"></script>
+@endpush
 
-<?php $__env->startPush('js_script'); ?>
+@push('js_script')
     <script>
-        showDataTable("<?php echo e(base_url('kesbangpol/penelitian/getdata/' . $status . '/tbl_data_rpl')); ?>");
+        showDataTable("{{ base_url('kesbangpol/pengabdian/getdata/' . $status . '/tbl_data_rpb') }}");
     </script>
 
     <script>
@@ -150,7 +152,7 @@
             var id = $('#modal_proses #id_usr').val();
             $(".loading-page").show();
             $('#modal_proses').modal('hide');
-            $.get("<?php echo e(base_url('kesbangpol/penelitian/proses')); ?>/" + id,
+            $.get("{{ base_url('kesbangpol/pengabdian/proses') }}/" + id,
                 function(dt) {
                     var data = JSON.parse(dt);
                     $(".loading-page").hide();
@@ -162,7 +164,7 @@
                             icon: 'success',
                             timer: 2000
                         }).then(function() {
-                            $('#tbl_data_rpl').DataTable().ajax.reload(null,
+                            $('#tbl_data_rpb').DataTable().ajax.reload(null,
                                 false); //posisi paginantion tetap sesuai yang dibuka
                         });
                     } else {
@@ -172,7 +174,7 @@
                             icon: "error",
                             timer: 2000
                         }).then(function() {
-                            $('#tbl_data_rpl').DataTable().ajax.reload(null,
+                            $('#tbl_data_rpb').DataTable().ajax.reload(null,
                                 false); //posisi paginantion tetap sesuai yang dibuka
                         });
                     }
@@ -180,8 +182,6 @@
             );
         }
     </script>
-<?php $__env->stopPush(); ?>
+@endpush
 
-<?php echo $__env->make('content.penelitian.modal_detail', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
-<?php echo $__env->make('template/master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\PROJECT\xampp\htdocs\epikir_new\app\Modules\Kesbangpol\Views/content/penelitian/rpl_masuk.blade.php ENDPATH**/ ?>
+@include('content.pengabdian.modal_detail')

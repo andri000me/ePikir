@@ -82,7 +82,15 @@ class MenuModel
                 ),
             ),
             array(
-                "header"    => 'Halaman Utama',
+                "header"    => 'Master Data',
+            ),
+            array(
+                "header"    => null,
+                "title"     => "Daftar Pejabat",
+                "url"       => base_url('kesbangpol/pejabat'),
+                "index"     => 4,
+                "icon"      => 'la la-users',
+                "child"     => null,
             ),
         ];
 

@@ -38,19 +38,36 @@ function formatTanggal($date = null, $show = null)
 	return $formatTanggal;
 }
 
-function formatTanggalTtd($date = '')
+function formatTanggalTtd($date = '', $showThn = true)
 {
 	if ($date == '') {
 		$formatTanggal = '';
 	} else {
 		$date = strtotime($date);
-		$hari = arrayHari(date('N', $date));
 		$tgl = date('d', $date);
 		$bln = arrayBulan(date('n', $date));
 		$thn = date('Y', $date);
 
-		// $formatTanggal = $hari . ", " . $tgl ." ". $bln ." ". $thn;
-		$formatTanggal = $tgl . " " . $bln . " " . $thn;
+		if ($showThn) {
+			$formatTanggal = $tgl . " " . $bln . " " . $thn;
+		} else {
+			$formatTanggal = $tgl . " " . $bln;
+		}
+	}
+
+	return $formatTanggal;
+}
+
+function formatRangeTgl($date1 = null, $date2 = null)
+{
+	if ($date1 == null || $date2 == null) {
+		$formatTanggal = '';
+	} else {
+		if (date('Y', strtotime($date1)) == date('Y', strtotime($date2))) {
+			$formatTanggal = formatTanggalTtd($date1, false) . ' s/d ' . formatTanggalTtd($date2);
+		} else {
+			$formatTanggal = formatTanggalTtd($date1) . ' s/d ' . formatTanggalTtd($date2);
+		}
 	}
 
 	return $formatTanggal;

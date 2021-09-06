@@ -1,6 +1,8 @@
-function hapusData(data) {
+function hapusData(data, reload = false) {
 	var link = $(data).data().link;
-	var table = $(data).data().table;
+	if (!reload) {
+		var table = $(data).data().table;
+	}
 	
 	swal({
 		title: "Hapus Data",
@@ -28,14 +30,17 @@ function hapusData(data) {
 			$.get(link, function (dt) {
 					var data = JSON.parse(dt);
 					if (data.respons) {
-						// location.reload();
 						swal({
                             title: "Sukses!",
                             text: data.alert,
                             icon: 'success',
                             timer: 2000
                         }).then(function() {
-                            $('#' + table).DataTable().ajax.reload(null, false); //posisi paginantion tetap sesuai yang dibuka
+							if (reload) {
+								location.reload();
+							} else {
+								$('#' + table).DataTable().ajax.reload(null, false); //posisi paginantion tetap sesuai yang dibuka
+							}
                         });
 					} else {
 						swal({
@@ -44,7 +49,11 @@ function hapusData(data) {
                             icon: "error",
                             timer: 2000
                         }).then(function() {
-                            $('#' + table).DataTable().ajax.reload(null, false); //posisi paginantion tetap sesuai yang dibuka
+                            if (reload) {
+								location.reload();
+							} else {
+								$('#' + table).DataTable().ajax.reload(null, false); //posisi paginantion tetap sesuai yang dibuka
+							}
                         });
 					}
 				}
