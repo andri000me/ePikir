@@ -25,7 +25,8 @@
                                 <div class="cbp-item">
                                     <div class="portfolio-single">
                                         <div class="portfolio-head">
-                                            <img src="{{ $item->file_foto != null ? (!file_exists(realpath('upload/galeri/' . $item->file_foto)) ? base_url('assets/img/noimage/no_img3.jpg') : base_url('upload/galeri/' . $item->file_foto)) : ($item->link_video != null ? 'https://i.ytimg.com/vi_webp/' . get_segment($item->link_video) . '/sddefault.webp' : base_url('assets/img/noimage/no_img3.jpg')) }}"
+                                            <img style="height: 250px;"
+                                                src="{{ $item->file_foto != null ? (!file_exists(realpath('upload/galeri/' . $item->file_foto)) ? base_url('assets/img/noimage/no_img3.jpg') : base_url('upload/galeri/' . $item->file_foto)) : ($item->link_video != null ? 'https://i.ytimg.com/vi_webp/' . get_segment($item->link_video) . '/sddefault.webp' : base_url('assets/img/noimage/no_img3.jpg')) }}"
                                                 alt="#" />
                                         </div>
                                         <div class="portfolio-hover" style="padding: 15px">
@@ -47,8 +48,9 @@
                                                         href="{{ base_url('upload/galeri/' . $item->file_foto) }}"><i
                                                             class="fa fa-search"></i></a>
                                                 @else
-                                                    <a href="{{ $item->link_video }}" class="primary cbp-lightbox"><i
-                                                            class="fa fa-play"></i></a>
+                                                    <a href="{{ 'https://www.youtube.com/embed/' . get_segment($item->link_video) }}"
+                                                        class="primary" data-fancybox="videos1">
+                                                        <i class="fa fa-play"></i></a>
                                                 @endif
 
                                                 {{-- <a href="portfolio-single.html"><i class="fa fa-link"></i></a> --}}

@@ -233,7 +233,7 @@ class BaseController extends Controller
 
         // mkdir($controllerPath);
 
-        if (!file_exists($controllerPath . '/' . $this->module_name . '.php')) {
+        if (!file_exists($controllerPath . '/Dashboard.php')) {
             $template = "<?php namespace App\Modules\\$this->module_name\\Controllers;
 
 use App\Modules\\$this->module_name\\Models\UserModel;

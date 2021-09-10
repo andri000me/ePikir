@@ -47,7 +47,7 @@
                                         </ul> --}}
                                     </div>
                                     <h2>{{ $berita->judul_berita }}</h2>
-                                    <p>{{ $berita->isi_berita }}</p>
+                                    <p>{!! $berita->isi_berita !!}</p>
                                     <div class="bottom-area btn-page-arrow row">
                                         <!-- Next Prev -->
                                         <ul class="arrow col-md-8 offset-md-2 col-12 d-flex flex-wrap">

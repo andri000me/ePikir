@@ -27,7 +27,8 @@
                                     <div class="col-lg-6 col-12">
                                         <div class="form-group">
                                             <input type="text" class="form-control" name="nama_pemohon"
-                                                autocomplete="on" placeholder="Nama lengkap pemohon" required>
+                                                autocomplete="on" placeholder="Nama lengkap pemohon/ketua regu"
+                                                required>
                                         </div>
                                     </div>
 

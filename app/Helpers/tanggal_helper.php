@@ -15,24 +15,29 @@ function arrayBulan($bln)
 	return $array_bulan[$bln];
 }
 
-function formatTanggal($date = null, $show = null)
+function formatTanggal($date = null, $day = false, $time = false)
 {
 	if ($date == null) {
 		$formatTanggal = '';
 	} else {
 		$date = strtotime($date);
 		$hari = arrayHari(date('N', $date));
-		$tanggal = date('j', $date);
+		// $tanggal = date('j', $date);
+		$tanggal = date('d', $date);
 		$bulan = arrayBulan(date('n', $date));
 		$tahun = date('Y', $date);
-		$opt = '';
-		if ($show <> null) {
-			$jam = date('H:i:s', $date);
+		$tm = '';
+		$dy = '';
+		if ($time) {
+			$jam = date('H:i', $date);
 			//$jam = $date('H:i:s');
-			$opt = ' - <span class="muted">' . $jam . '</span>';
+			$tm = ' (' . $jam . ')';
+		}
+		if ($day) {
+			$dy = $hari . ", ";
 		}
 
-		$formatTanggal = $hari . ", " . $tanggal . " " . $bulan . " " . $tahun . $opt;
+		$formatTanggal = $dy . $tanggal . " " . $bulan . " " . $tahun . $tm;
 	}
 
 	return $formatTanggal;

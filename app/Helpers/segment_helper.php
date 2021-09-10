@@ -7,3 +7,12 @@ if (!function_exists('get_segment')) {
         return $uri->getSegment($segment);
     }
 }
+
+if (!function_exists('get_host')) {
+    function get_host($url)
+    {
+        $uri = new \CodeIgniter\HTTP\URI($url);
+
+        return $uri->getScheme() . '://' . $uri->getHost() . '/';
+    }
+}

@@ -37,7 +37,7 @@
                                                 <h4><a
                                                         href="{{ base_url('landing/berita/detail/' . encode($item->id_berita)) }}">{{ character_limiter($item->judul_berita, 50, '...') }}</a>
                                                 </h4>
-                                                <p>{{ character_limiter($item->isi_berita, 120, '...') }}</p>
+                                                <p>{!! character_limiter($item->isi_berita, 120, '...') !!}</p>
                                                 <div class="meta">
                                                     <span><i class="fa fa-bullhorn"></i><a
                                                             href="{{ base_url('landing/berita?kategori=' . encode($item->id_kb)) }}">{{ $item->nama_kategori }}</a></span>

@@ -37,7 +37,7 @@
                                                 <h4><a
                                                         href="<?php echo e(base_url('landing/berita/detail/' . encode($item->id_berita))); ?>"><?php echo e(character_limiter($item->judul_berita, 50, '...')); ?></a>
                                                 </h4>
-                                                <p><?php echo e(character_limiter($item->isi_berita, 120, '...')); ?></p>
+                                                <p><?php echo character_limiter($item->isi_berita, 120, '...'); ?></p>
                                                 <div class="meta">
                                                     <span><i class="fa fa-bullhorn"></i><a
                                                             href="<?php echo e(base_url('landing/berita?kategori=' . encode($item->id_kb))); ?>"><?php echo e($item->nama_kategori); ?></a></span>

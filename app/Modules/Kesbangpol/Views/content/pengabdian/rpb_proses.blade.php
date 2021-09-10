@@ -64,7 +64,7 @@
                                                     <th>Pekerjaan</th>
                                                     <th>Alamat</th>
                                                     <th>Lokasi</th>
-                                                    <th>Judul</th>
+                                                    <th>Tujuan</th>
                                                 </tr>
                                             </thead>
                                         </table>

@@ -47,9 +47,9 @@
                                         <?php echo show_alert(); ?>
 
 
-                                        <?php echo $__env->make('template.searchbar', ['table_name' => 'tbl_data_rpl'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                                        <?php echo $__env->make('template.searchbar', ['table_name' => 'tbl_data_rpb'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-                                        <table id="tbl_data_rpl" class="table table-hover table-bordered table-striped"
+                                        <table id="tbl_data_rpb" class="table table-hover table-bordered table-striped"
                                             style="font-size: 8pt">
                                             <thead>
                                                 <tr style="text-align: center;">
@@ -62,7 +62,7 @@
                                                     <th>Pekerjaan</th>
                                                     <th>Alamat</th>
                                                     <th>Lokasi</th>
-                                                    <th>Judul</th>
+                                                    <th>Tujuan</th>
                                                 </tr>
                                             </thead>
                                         </table>
@@ -163,13 +163,13 @@
     <script src="<?php echo e(assets_url . 'app-assets/vendors/js/tables/datatable/datatables.min.js'); ?>" type="text/javascript">
     </script>
     <script src="<?php echo e(assets_url . 'app-assets/vendors/js/extensions/sweetalert.min.js'); ?>" type="text/javascript"></script>
-    <script src="<?php echo e(base_url('assets/js/get_data_rpl.js')); ?>" type="text/javascript"></script>
+    <script src="<?php echo e(base_url('assets/js/get_data_rpb.js')); ?>" type="text/javascript"></script>
     <script src="<?php echo e(base_url('assets/js/delete_data.js')); ?>" type="text/javascript"></script>
 <?php $__env->stopPush(); ?>
 
 <?php $__env->startPush('js_script'); ?>
     <script>
-        showDataTable("<?php echo e(base_url('kesbangpol/penelitian/getdata/' . $status . '/tbl_data_rpl')); ?>");
+        showDataTable("<?php echo e(base_url('kesbangpol/pengabdian/getdata/' . $status . '/tbl_data_rpb')); ?>");
     </script>
 
     <script>
@@ -191,7 +191,7 @@
             var id = $('#modal_confirm #id_usr').val();
             $(".loading-page").show();
             $('#modal_confirm').modal('hide');
-            $.get("<?php echo e(base_url('kesbangpol/penelitian/setuju')); ?>/" + id,
+            $.get("<?php echo e(base_url('kesbangpol/pengabdian/setuju')); ?>/" + id,
                 function(dt) {
                     var data = JSON.parse(dt);
                     $(".loading-page").hide();
@@ -203,7 +203,7 @@
                             icon: 'success',
                             timer: 2000
                         }).then(function() {
-                            $('#tbl_data_rpl').DataTable().ajax.reload(null,
+                            $('#tbl_data_rpb').DataTable().ajax.reload(null,
                                 false); //posisi paginantion tetap sesuai yang dibuka
                         });
                     } else {
@@ -213,7 +213,7 @@
                             icon: "error",
                             timer: 2000
                         }).then(function() {
-                            $('#tbl_data_rpl').DataTable().ajax.reload(null,
+                            $('#tbl_data_rpb').DataTable().ajax.reload(null,
                                 false); //posisi paginantion tetap sesuai yang dibuka
                         });
                     }
@@ -226,7 +226,7 @@
             var msg = $('#modal_tolak #message').val();
             $(".loading-page").show();
             $('#modal_tolak').modal('hide');
-            $.post("<?php echo e(base_url('kesbangpol/penelitian/tolak')); ?>/" + id, {
+            $.post("<?php echo e(base_url('kesbangpol/pengabdian/tolak')); ?>/" + id, {
                     message: msg
                 },
                 function(dt) {
@@ -240,7 +240,7 @@
                             icon: 'success',
                             timer: 2000
                         }).then(function() {
-                            $('#tbl_data_rpl').DataTable().ajax.reload(null,
+                            $('#tbl_data_rpb').DataTable().ajax.reload(null,
                                 false); //posisi paginantion tetap sesuai yang dibuka
                         });
                     } else {
@@ -250,7 +250,7 @@
                             icon: "error",
                             timer: 2000
                         }).then(function() {
-                            $('#tbl_data_rpl').DataTable().ajax.reload(null,
+                            $('#tbl_data_rpb').DataTable().ajax.reload(null,
                                 false); //posisi paginantion tetap sesuai yang dibuka
                         });
                     }
@@ -261,6 +261,6 @@
 
 <?php $__env->stopPush(); ?>
 
-<?php echo $__env->make('content.penelitian.modal_detail', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php echo $__env->make('content.pengabdian.modal_detail', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 <?php echo $__env->make('template/master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\PROJECT\xampp\htdocs\epikir_new\app\Modules\Kesbangpol\Views/content/pengabdian/rpb_proses.blade.php ENDPATH**/ ?>

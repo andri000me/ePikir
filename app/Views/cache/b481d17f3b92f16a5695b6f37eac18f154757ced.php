@@ -112,7 +112,8 @@
 
                     <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
                         <i class="fa fa-eye-slash show-pass" id="cek_pass"></i>
-                        <input class="input100" type="password" id="password" name="password" placeholder="Password">
+                        <input class="input100" type="password" id="password" name="password"
+                            placeholder="Password">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-lock"></i>
@@ -144,7 +145,6 @@
     <!-- BEGIN MODERN JS-->
     <script src="<?php echo e(assets_url . 'app-assets/js/core/app-menu.js'); ?>" type="text/javascript"></script>
     <script src="<?php echo e(assets_url . 'app-assets/js/core/app.js'); ?>" type="text/javascript"></script>
-    
     <!-- END MODERN JS-->
     <!--===============================================================================================-->
     <script src="<?php echo e(base_url('theme/login/external/jquery/jquery-3.2.1.min.js')); ?>"></script>

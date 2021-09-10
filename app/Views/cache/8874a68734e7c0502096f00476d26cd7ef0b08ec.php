@@ -1,13 +1,10 @@
-
-
 <nav
     class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-dark navbar-shadow">
     <div class="navbar-wrapper">
         <div class="navbar-header bg-default">
             <ul class="nav navbar-nav flex-row">
-                <li class="nav-item mobile-menu d-md-none mr-auto"><a
-                        class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i
-                            class="ft-menu font-large-1"></i></a></li>
+                <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs"
+                        href="#"><i class="ft-menu font-large-1"></i></a></li>
                 <li class="nav-item mr-auto">
                     <a class="navbar-brand" href="javascript:void(0)">
                         <img class="brand-logo" alt="Logo Kabupaten Magelang"
@@ -42,7 +39,8 @@
                                     class="ft-user"></i> Ubah Profil</a>
                             <a class="dropdown-item" href="#"><i class="ft-lock"></i> Akun Login</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="<?php echo e(base_url('auth/logout')); ?>"><i class="ft-power"></i>
+                            <a class="dropdown-item" href="<?php echo e(base_url('auth/logout')); ?>"><i
+                                    class="ft-power"></i>
                                 Logout</a>
                         </div>
                     </li>

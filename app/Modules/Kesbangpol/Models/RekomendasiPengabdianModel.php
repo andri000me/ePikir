@@ -117,7 +117,11 @@ class RekomendasiPengabdianModel extends Model
     function getAllData($status = '')
     {
         $this->select("*");
-        $this->where('status', $status);
+        if ($status == 5) {
+            $this->where('status >', 2);
+        } else {
+            $this->where('status', $status);
+        }
         return $this->countAllResults();
     }
 }

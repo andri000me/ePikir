@@ -62,7 +62,7 @@
                                                     <th>Pekerjaan</th>
                                                     <th>Alamat</th>
                                                     <th>Lokasi</th>
-                                                    <th>Judul</th>
+                                                    <th>Tujuan</th>
                                                 </tr>
                                             </thead>
                                         </table>
@@ -182,6 +182,6 @@
     </script>
 <?php $__env->stopPush(); ?>
 
-<?php echo $__env->make('content.penelitian.modal_detail', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php echo $__env->make('content.pengabdian.modal_detail', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 <?php echo $__env->make('template/master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\PROJECT\xampp\htdocs\epikir_new\app\Modules\Kesbangpol\Views/content/pengabdian/rpb_masuk.blade.php ENDPATH**/ ?>

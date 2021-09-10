@@ -139,7 +139,8 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-warning" data-dismiss="modal" title="Batal">Batal
                     </button>
-                    <button type="button" class="btn btn-info" onclick="cetakSuratRpl()" title="Kirim">Kirim</button>
+                    <button type="button" class="btn btn-info" onclick="cetakSuratRpl()" title="Export">Export to
+                        Word</button>
                 </div>
             </div>
         </div>

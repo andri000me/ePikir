@@ -30,9 +30,14 @@
         href="<?php echo e(assets_url . 'app-assets/css/core/menu/menu-types/vertical-menu-modern.css'); ?>">
     <link href="<?php echo e(assets_url . 'app-assets/css/core/colors/palette-gradient.css'); ?>" type="text/css"
         rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(assets_url . 'app-assets/css/plugins/animate/animate.css'); ?>">
+
+    <!-- Loading Page -->
+    <link href="<?php echo e(base_url('assets/css/loading.css')); ?>" type="text/css" rel="stylesheet">
+
     
     
-    
+
 
     <!-- Plugin CSS tambahan -->
     <?php echo $__env->yieldPushContent('css_plugin'); ?>
@@ -84,6 +89,8 @@
 <body class="vertical-layout vertical-menu-modern 2-columns fixed-navbar" data-open="click"
     data-menu="vertical-menu-modern" data-col="2-columns">
 
+    <div class="loading-page" style="display: none;"></div>
+
     <!-- Header -->
     <?php echo $__env->make('template/header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
@@ -92,6 +99,9 @@
 
     <!-- Content -->
     <?php echo $__env->yieldContent('content'); ?>
+
+    <!-- Modal -->
+    <?php echo $__env->yieldPushContent('modal'); ?>
 
     <!-- Footer -->
     <?php echo $__env->make('template/footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

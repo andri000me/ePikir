@@ -255,11 +255,12 @@ class Penelitian extends BaseController
 
     public function cetakSuratRpl($id = '', $idp = '')
     {
+        helper('printword');
         $id = $this->request->getGet('id');
         $idp = $this->request->getGet('idp');
         $tgl = $this->request->getGet('tgl');
         if ($id == null && $idp == null) {
-            return redirect()->to(base_url('admin'));
+            return redirect()->to(base_url('kesbangpol'));
             exit();
         }
         $id_rpl = decode($id);
@@ -276,31 +277,26 @@ class Penelitian extends BaseController
             $waktu_penelitian = formatRangeTgl($rpl->tgl_pelaksanaan_mulai, $rpl->tgl_pelaksanaan_akhir);
         }
 
-        $document = file_get_contents(FCPATH . "surat/rpl/SKP.rtf");
+        $data_print = array(
+            "TGL_SURAT" => formatTanggalTtd($tgl),
+            "NO_SURAT" => $rpl->no_rpl,
+            "INSTANSI" => $rpl->nama_instansi,
+            "NO_SURAT_INSTANSI" => $rpl->no_surat_permohonan,
+            "TGL_SURAT_INSTANSI" => formatTanggalTtd($rpl->tgl_surat_permohonan),
+            "NAMA_PEMOHON" => strtoupper($rpl->nama_pemohon),
+            "PEKERJAAN_PEMOHON" => $rpl->pekerjaan_pemohon,
+            "ALAMAT_PEMOHON" => $rpl->alamat_pemohon,
+            "PENANGGUNG_JAWAB" => $rpl->penanggung_jawab,
+            "LOKASI_PENELITIAN" => $rpl->lokasi,
+            "WAKTU_PENELITIAN" => $waktu_penelitian,
+            "JUDUL_PENELITIAN" => strtoupper($rpl->tujuan),
 
-        $document = str_replace("[TGL_SURAT]", formatTanggalTtd($tgl), $document);
-        $document = str_replace("[NO_SURAT]", $rpl->no_rpl, $document);
-        $document = str_replace("[INSTANSI]", $rpl->nama_instansi, $document);
-        $document = str_replace("[NO_SURAT_INSTANSI]", $rpl->no_surat_permohonan, $document);
-        $document = str_replace("[TGL_SURAT_INSTANSI]", formatTanggalTtd($rpl->tgl_surat_permohonan), $document);
-        $document = str_replace("[NAMA_PEMOHON]", strtoupper($rpl->nama_pemohon), $document);
-        $document = str_replace("[PEKERJAAN_PEMOHON]", $rpl->pekerjaan_pemohon, $document);
-        $document = str_replace("[ALAMAT_PEMOHON]", $rpl->alamat_pemohon, $document);
-        $document = str_replace("[PENANGGUNG_JAWAB]", $rpl->penanggung_jawab, $document);
-        $document = str_replace("[LOKASI_PENELITIAN]", $rpl->lokasi, $document);
-        $document = str_replace("[WAKTU_PENELITIAN]", $waktu_penelitian, $document);
-        $document = str_replace("[JUDUL_PENELITIAN]", strtoupper($rpl->tujuan), $document);
+            "JABATAN_PETUGAS" => $pejabat->jabatan_petugas,
+            "NAMA_PETUGAS" => strtoupper($pejabat->nama_petugas),
+            "PANGKAT_PETUGAS" => $pejabat->pangkat_petugas,
+            "NIP_PETUGAS" => $pejabat->nip_petugas,
+        );
 
-        $document = str_replace("[JABATAN_PETUGAS]", $pejabat->jabatan_petugas, $document);
-        $document = str_replace("[NAMA_PETUGAS]", strtoupper($pejabat->nama_petugas), $document);
-        $document = str_replace("[PANGKAT_PETUGAS]", $pejabat->pangkat_petugas, $document);
-        $document = str_replace("[NIP_PETUGAS]", $pejabat->nip_petugas, $document);
-
-        $response = service('response');
-        $response->setHeader("Content-type", "application/msword");
-        $response->setHeader("Content-disposition", "attachment; filename=SKP_" . $rpl->no_rpl . ".doc");
-        // $response->setHeader("Content-length", strlen($document));
-
-        echo $document;
+        echo printWord("surat/rpl/SKP.rtf", "SKP_" . $rpl->no_rpl, $data_print);
     }
 }

@@ -84,7 +84,7 @@
                                                     <th>Pekerjaan</th>
                                                     <th>Alamat</th>
                                                     <th>Lokasi</th>
-                                                    <th>Judul</th>
+                                                    <th>Tujuan</th>
                                                 </tr>
                                             </thead>
                                         </table>
@@ -139,7 +139,8 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-warning" data-dismiss="modal" title="Batal">Batal
                     </button>
-                    <button type="button" class="btn btn-info" onclick="cetakSurat()" title="Kirim">Kirim</button>
+                    <button type="button" class="btn btn-info" onclick="cetakSurat()" title="Export">Export to
+                        Word</button>
                 </div>
             </div>
         </div>

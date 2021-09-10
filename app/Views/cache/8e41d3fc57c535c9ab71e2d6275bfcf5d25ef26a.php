@@ -16,14 +16,38 @@
                         <?php if($nav['child'] != null): ?>
                             <ul class="menu-content">
                                 <?php $__currentLoopData = $nav['child']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subnav): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <li class="<?php echo e($subnav['index'] == $active ? 'active' : ''); ?>"><a class="menu-item"
-                                            href="<?php echo e($subnav['url']); ?>"><?php echo e($subnav['title']); ?></a>
+                                    <li class="<?php echo e($subnav['index'] == $active ? 'active' : ''); ?>">
+                                        <a class="menu-item" href="<?php echo e($subnav['url']); ?>"><?php echo e($subnav['title']); ?>
+
+                                            <?php if(isset($subnav['bubble'])): ?>
+                                                <?php if($subnav['bubble'] != null): ?>
+                                                    <?php if(isset($bubble[$subnav['bubble']])): ?>
+                                                        <?php if($bubble[$subnav['bubble']]['count'] != null): ?>
+                                                            <span
+                                                                class="badge badge badge-<?php echo e($bubble[$subnav['bubble']]['color']); ?> badge-pill float-right"><?php echo e($bubble[$subnav['bubble']]['count']); ?></span>
+                                                        <?php endif; ?>
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                        </a>
                                         <?php if($subnav['child'] != null): ?>
                                             <ul class="menu-content">
                                                 <?php $__currentLoopData = $subnav['child']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <li class="<?php echo e($item['index'] == $active ? 'active' : ''); ?>"><a
-                                                            class="menu-item"
-                                                            href="<?php echo e($item['url']); ?>"><?php echo e($item['title']); ?></a>
+                                                    <li class="<?php echo e($item['index'] == $active ? 'active' : ''); ?>">
+                                                        <a class="menu-item"
+                                                            href="<?php echo e($item['url']); ?>"><?php echo e($item['title']); ?>
+
+                                                            <?php if(isset($item['bubble']) && $item['bubble'] != null): ?>
+                                                                <?php if($item['bubble'] != null): ?>
+                                                                    <?php if(isset($bubble[$item['bubble']])): ?>
+                                                                        <?php if($bubble[$item['bubble']]['count'] != null): ?>
+                                                                            <span
+                                                                                class="badge badge badge-<?php echo e($bubble[$item['bubble']]['color']); ?> badge-pill float-right"><?php echo e($bubble[$item['bubble']]['count']); ?></span>
+                                                                        <?php endif; ?>
+                                                                    <?php endif; ?>
+                                                                <?php endif; ?>
+                                                            <?php endif; ?>
+                                                        </a>
                                                     </li>
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </ul>

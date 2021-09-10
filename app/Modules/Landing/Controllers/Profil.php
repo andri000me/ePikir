@@ -63,7 +63,7 @@ class Profil extends BaseController
     {
         $m_regulasi = new RegulasiModel();
 
-        $this->v_data['regulasi']     = $m_regulasi->getData();
+        $this->v_data['regulasi']     = $m_regulasi->orderBy('id_regulasi', 'DESC')->getData();
         $this->v_data['active']     = '2.4';
 
         return views('content/profil/regulasi', 'Landing', $this->v_data);

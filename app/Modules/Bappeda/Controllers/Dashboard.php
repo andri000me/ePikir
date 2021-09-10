@@ -2,7 +2,7 @@
 
 namespace App\Modules\Bappeda\Controllers;
 
-class Bappeda extends BaseController
+class Dashboard extends BaseController
 {
     /**
      * Constructor.

@@ -42,10 +42,27 @@ class Filters extends BaseConfig
 					'landing/selectnohp',
 					// 'landing/gettoken',
 					'landing/checktoken',
+
 					'kesbangpol/penelitian/getdata/.*?/.*?',
 					'kesbangpol/penelitian/tolak/.*?',
 					'kesbangpol/pengabdian/getdata/.*?/.*?',
 					'kesbangpol/pengabdian/tolak/.*?',
+
+					'dpmptsp/penelitian/getdata/.*?/.*?',
+					'dpmptsp/penelitian/tolak/.*?',
+					'dpmptsp/pengabdian/getdata/.*?/.*?',
+					'dpmptsp/pengabdian/tolak/.*?',
+
+					'bappeda/penelitian/kesbangpol/getdata/.*?/.*?',
+					'bappeda/penelitian/kesbangpol/tolak/.*?',
+					'bappeda/pengabdian/kesbangpol/getdata/.*?/.*?',
+					'bappeda/pengabdian/kesbangpol/tolak/.*?',
+
+					'bappeda/penelitian/dpmptsp/getdata/.*?/.*?',
+					'bappeda/penelitian/dpmptsp/tolak/.*?',
+					'bappeda/pengabdian/dpmptsp/getdata/.*?/.*?',
+					'bappeda/pengabdian/dpmptsp/tolak/.*?',
+
 				]
 			],
 		],
