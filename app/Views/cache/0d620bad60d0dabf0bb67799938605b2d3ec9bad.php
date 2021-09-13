@@ -1,17 +1,17 @@
-@extends('template/master')
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
     <div class="app-content content">
         <div class="content-wrapper">
             <div class="content-header row">
 
                 <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
-                    <h3 class="content-header-title mb-0 d-inline-block">Permohonan Izin Penelitian</h3>
+                    <h3 class="content-header-title mb-0 d-inline-block">Permohonan Izin Pengabdian Masyarakat</h3>
                     <div class="row breadcrumbs-top d-inline-block">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ base_url('kesbangpol') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Permohonan Izin Penelitian</li>
+                                <li class="breadcrumb-item"><a href="<?php echo e(base_url('dpmptsp')); ?>">Dashboard</a></li>
+                                <li class="breadcrumb-item active">Permohonan Izin Pengabdian Masyarakat</li>
                             </ol>
                         </div>
                     </div>
@@ -20,26 +20,21 @@
                 <div class="content-header-right col-md-4 col-12">
                     <div class="dropdown float-md-right">
                         <button
-                            class="btn btn-{{ $status == 3 ? 'success' : ($status == 4 ? 'danger' : 'primary') }} btn-block dropdown-toggle round px-2"
+                            class="btn btn-<?php echo e($status == 3 ? 'success' : ($status == 4 ? 'danger' : 'primary')); ?> btn-block dropdown-toggle round px-2"
                             id="dropdownBreadcrumbButton" type="button" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">{{ $info_status }}</button>
+                            aria-expanded="false"><?php echo e($info_status); ?></button>
                         <div class="dropdown-menu" aria-labelledby="dropdownBreadcrumbButton">
                             <a class="dropdown-item text-center"
-                                href="{{ base_url('kesbangpol/penelitian/selesai?status=3') }}">Disetujui</a>
+                                href="<?php echo e(base_url('dpmptsp/pengabdian/selesai?status=3')); ?>">Disetujui</a>
                             <a class="dropdown-item text-center"
-                                href="{{ base_url('kesbangpol/penelitian/selesai?status=4') }}">Ditolak</a>
+                                href="<?php echo e(base_url('dpmptsp/pengabdian/selesai?status=4')); ?>">Ditolak</a>
                             <a class="dropdown-item text-center"
-                                href="{{ base_url('kesbangpol/penelitian/selesai?status=5') }}">Semua</a>
+                                href="<?php echo e(base_url('dpmptsp/pengabdian/selesai?status=5')); ?>">Semua</a>
                         </div>
                     </div>
                 </div>
 
-                {{-- <div class="content-header-right col-md-2 col-12 mb-2">
-                    <button id="btn_eksekusi" class="btn btn-info btn-block round px-2" type="submit" disabled>
-                        <i class="la la-check font-small-3"></i> Eksekusi Aset
-                        <span class="badge badge-pill badge-glow badge-danger" style="float: right">0</span>
-                    </button>
-                </div> --}}
+                
 
             </div>
             <div class="content-body">
@@ -64,11 +59,12 @@
 
                                     <div class="card-body">
 
-                                        {!! show_alert() !!}
+                                        <?php echo show_alert(); ?>
 
-                                        @include('template.searchbar', ['table_name' => 'tbl_data_rpl'])
 
-                                        <table id="tbl_data_rpl" class="table table-hover table-bordered table-striped"
+                                        <?php echo $__env->make('template.searchbar', ['table_name' => 'tbl_data_rpb'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+                                        <table id="tbl_data_rpb" class="table table-hover table-bordered table-striped"
                                             style="font-size: 8pt">
                                             <thead>
                                                 <tr style="text-align: center;">
@@ -76,15 +72,15 @@
                                                     <th class="text-center">Aksi</th>
                                                     <th>Lampiran</th>
                                                     <th>Nomor</th>
-                                                    @if ($status == 5)
+                                                    <?php if($status == 5): ?>
                                                         <th>Status</th>
-                                                    @endif
+                                                    <?php endif; ?>
                                                     <th>Tgl Pengajuan</th>
                                                     <th>Nama</th>
                                                     <th>Pekerjaan</th>
                                                     <th>Alamat</th>
                                                     <th>Lokasi</th>
-                                                    <th>Judul</th>
+                                                    <th>Tujuan</th>
                                                 </tr>
                                             </thead>
                                         </table>
@@ -98,14 +94,14 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('modal')
+<?php $__env->startPush('modal'); ?>
     <div class="modal fade text-left" id="modal_cetak" role="dialog" aria-labelledby="myModalLabel10" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-danger white">
-                    <h4 class="modal-title white" id="myModalLabel10">Cetak Surat Keterangan Penelitian</h4>
+                    <h4 class="modal-title white" id="myModalLabel10">Cetak Surat Keterangan Pengabdian Masyarakat</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -115,15 +111,15 @@
                         <h5>Pejabat yang menandatangani
                             <span class="required text-danger">*</span>
                         </h5>
-                        <input type="hidden" id="id_rpl" name="id_rpl">
+                        <input type="hidden" id="id_ipb" name="id_ipb">
                         <div class="controls">
-                            <select id="id_petugas" name="id_petugas" class="form-control select2" required>
+                            <select id="id_petugas" name="id_petugas" class="form-control select2">
                                 <option value="" disabled selected>Pilih pejabat</option>
-                                @foreach ($petugas as $item)
-                                    <option value="{{ encode($item->id_petugas) }}" id="pt_{{ $item->id_petugas }}">
-                                        {{ $item->nama_petugas }} -
-                                        {{ $item->jabatan_petugas }}</option>
-                                @endforeach
+                                <?php $__currentLoopData = $petugas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e(encode($item->id_petugas)); ?>" id="pt_<?php echo e($item->id_petugas); ?>">
+                                        <?php echo e($item->nama_petugas); ?> -
+                                        <?php echo e($item->jabatan_petugas); ?></option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                         </div>
                     </div>
@@ -133,7 +129,7 @@
                         </h5>
                         <div class="controls">
                             <input type="text" id="tgl_surat" name="tgl_surat" class="form-control date-picker"
-                                autocomplete="off" placeholder="DD-MM-YYYY" value="{{ date('d-m-Y') }}" required>
+                                autocomplete="off" required placeholder="DD-MM-YYYY" value="<?php echo e(date('d-m-Y')); ?>">
                         </div>
                     </div>
                     <input type="hidden" id="id_usr" name="id_usr">
@@ -141,50 +137,50 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-warning" data-dismiss="modal" title="Batal">Batal
                     </button>
-                    <button type="button" class="btn btn-info" onclick="cetakSuratRpl()" title="Export">Export to
+                    <button type="button" class="btn btn-info" onclick="cetakSurat()" title="Export">Export to
                         Word</button>
                 </div>
             </div>
         </div>
     </div>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@push('css_plugin')
+<?php $__env->startPush('css_plugin'); ?>
     <link rel="stylesheet" type="text/css"
-        href="{{ assets_url . 'app-assets/vendors/css/tables/datatable/datatables.min.css' }}">
+        href="<?php echo e(assets_url . 'app-assets/vendors/css/tables/datatable/datatables.min.css'); ?>">
     <link rel="stylesheet" type="text/css"
-        href="{{ assets_url . 'app-assets/vendors/js/extensions/sweetalert.min.js' }}">
+        href="<?php echo e(assets_url . 'app-assets/vendors/js/extensions/sweetalert.min.js'); ?>">
 
-    <link rel="stylesheet" href="{{ assets_url . 'app-assets/vendors/css/forms/selects/select2.min.css' }}">
+    <link rel="stylesheet" href="<?php echo e(assets_url . 'app-assets/vendors/css/forms/selects/select2.min.css'); ?>">
     <link rel="stylesheet"
-        href="{{ assets_url . 'app-assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css' }}">
-    <link rel="stylesheet" href="{{ assets_url . 'app-assets/vendors/bootstrap-datepicker/style-datepicker.css' }}">
-@endpush
+        href="<?php echo e(assets_url . 'app-assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo e(assets_url . 'app-assets/vendors/bootstrap-datepicker/style-datepicker.css'); ?>">
+<?php $__env->stopPush(); ?>
 
-@push('css_style')
+<?php $__env->startPush('css_style'); ?>
     <style>
         .no-wrap {
             white-space: nowrap;
         }
 
     </style>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@push('js_plugin')
-    <script src="{{ assets_url . 'app-assets/vendors/js/tables/datatable/datatables.min.js' }}" type="text/javascript">
+<?php $__env->startPush('js_plugin'); ?>
+    <script src="<?php echo e(assets_url . 'app-assets/vendors/js/tables/datatable/datatables.min.js'); ?>" type="text/javascript">
     </script>
-    <script src="{{ assets_url . 'app-assets/vendors/js/extensions/sweetalert.min.js' }}" type="text/javascript">
+    <script src="<?php echo e(assets_url . 'app-assets/vendors/js/extensions/sweetalert.min.js'); ?>" type="text/javascript">
     </script>
-    <script src="{{ assets_url . 'app-assets/vendors/js/forms/select/select2.full.min.js' }}"></script>
-    <script src="{{ assets_url . 'app-assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js' }}"></script>
-    <script src="{{ base_url('assets/js/get_data_rpl.js') }}" type="text/javascript"></script>
-    <script src="{{ base_url('assets/js/delete_data.js') }}" type="text/javascript"></script>
-@endpush
+    <script src="<?php echo e(assets_url . 'app-assets/vendors/js/forms/select/select2.full.min.js'); ?>"></script>
+    <script src="<?php echo e(assets_url . 'app-assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js'); ?>"></script>
+    <script src="<?php echo e(base_url('assets/js/get_data_rpb.js')); ?>" type="text/javascript"></script>
+    <script src="<?php echo e(base_url('assets/js/delete_data.js')); ?>" type="text/javascript"></script>
+<?php $__env->stopPush(); ?>
 
-@push('js_script')
+<?php $__env->startPush('js_script'); ?>
     <script>
-        showDataTable("{{ base_url('kesbangpol/penelitian/getdata/' . $status . '/tbl_data_rpl') }}",
-            "{{ $status }}");
+        showDataTable("<?php echo e(base_url('dpmptsp/pengabdian/getdata/' . $status . '/tbl_data_rpb')); ?>",
+            "<?php echo e($status); ?>");
     </script>
 
     <script>
@@ -205,7 +201,7 @@
             var idp = $(data).data().idp;
             var tgl = $(data).data().tgl;
             var id_p = $('#modal_cetak #id_petugas #pt_' + idp).val();
-            $('#modal_cetak #id_rpl').val(id);
+            $('#modal_cetak #id_ipb').val(id);
             $('#modal_cetak #id_petugas').val(id_p).change();
             $('.date-picker').datepicker('setDate', tgl);
             $('#modal_cetak').modal({
@@ -214,18 +210,20 @@
             });
         }
 
-        function cetakSuratRpl() {
-            var id = $('#modal_cetak #id_rpl').val();
+        function cetakSurat() {
+            var id = $('#modal_cetak #id_ipb').val();
             var idp = $('#modal_cetak #id_petugas').val();
             var tgl = $('#modal_cetak #tgl_surat').val();
             if (idp != null && tgl != '') {
-                window.open("{{ base_url('kesbangpol/penelitian/cetak') }}?id=" + id + "&&idp=" + idp + "&&tgl=" + tgl);
+                window.open("<?php echo e(base_url('dpmptsp/pengabdian/cetak')); ?>?id=" + id + "&&idp=" + idp + "&&tgl=" + tgl);
                 $('#modal_cetak').modal('hide');
             } else {
                 alert('Isi semua form!');
             }
         }
     </script>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@include('content.penelitian.modal_detail')
+<?php echo $__env->make('content.pengabdian.modal_detail', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+<?php echo $__env->make('template/master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\PROJECT\xampp\htdocs\epikir_new\app\Modules\Dpmptsp\Views/content/pengabdian/ipb_selesai.blade.php ENDPATH**/ ?>

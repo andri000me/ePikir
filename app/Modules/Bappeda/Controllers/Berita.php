@@ -5,6 +5,7 @@ namespace App\Modules\Bappeda\Controllers;
 use App\Models\MasterData;
 use App\Modules\Bappeda\Models\BeritaModel;
 use App\Modules\Bappeda\Models\KategoriBModel;
+use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Berita extends BaseController
 {
@@ -127,8 +128,9 @@ class Berita extends BaseController
 
       return redirect()->to(base_url('bappeda/publikasi/berita'));
     } else {
-      alert_failed('Gagal simpan data');
-      return redirect()->to(base_url('bappeda/publikasi/berita'));
+      // alert_failed('Gagal simpan data');
+      // return redirect()->to(base_url('bappeda/publikasi/berita'));
+      throw PageNotFoundException::forPageNotFound();
     }
   }
 

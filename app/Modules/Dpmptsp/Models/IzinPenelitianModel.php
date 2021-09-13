@@ -73,7 +73,6 @@ class IzinPenelitianModel extends Model
 
     function makeQuery($status = '')
     {
-        $this->select($this->select_column);
         if ($status == 5) {
             $this->where('ipl.status >', 2);
         } else {
@@ -82,6 +81,14 @@ class IzinPenelitianModel extends Model
         $this->where('rpl.status = 3');
         $this->join('tbl_rekomendasi_penelitian rpl', 'ipl.id_rpl = rpl.id_rpl', 'LEFT');
         $this->join('tbl_user_pemohon usr', 'rpl.id_user_pemohon = usr.id_user_pemohon', 'LEFT');
+
+        if ($status >= 3) {
+            $this->select_column[] = 'cs.id_petugas';
+            $this->select_column[] = 'cs.tgl_cetak';
+            $this->join('tbl_cetak_surat cs', "ipl.id_ipl = cs.id_permohonan AND cs.jenis_permohonan = 'ipl'", 'LEFT');
+        }
+
+        $this->select($this->select_column);
 
         $i = 0;
         foreach ($this->select_column_search as $item) {

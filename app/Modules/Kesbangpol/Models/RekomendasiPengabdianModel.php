@@ -64,13 +64,20 @@ class RekomendasiPengabdianModel extends Model
 
     function makeQuery($status = '')
     {
-        $this->select($this->select_column);
         if ($status == 5) {
             $this->where('status >', 2);
         } else {
             $this->where('status', $status);
         }
+
+        if ($status >= 3) {
+            $this->select_column[] = 'cs.id_petugas';
+            $this->select_column[] = 'cs.tgl_cetak';
+            $this->join('tbl_cetak_surat cs', "rpb.id_rpb = cs.id_permohonan AND cs.jenis_permohonan = 'rpb'", 'LEFT');
+        }
         $this->join('tbl_user_pemohon usr', 'rpb.id_user_pemohon = usr.id_user_pemohon', 'LEFT');
+
+        $this->select($this->select_column);
 
         $i = 0;
         foreach ($this->select_column_search as $item) {

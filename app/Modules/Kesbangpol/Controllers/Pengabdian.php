@@ -2,6 +2,7 @@
 
 namespace App\Modules\Kesbangpol\Controllers;
 
+use App\Modules\Kesbangpol\Models\CetakSuratModel;
 use App\Modules\Kesbangpol\Models\PetugasModel;
 use App\Modules\Kesbangpol\Models\UserPemohonModel;
 
@@ -122,13 +123,14 @@ class Pengabdian extends BaseController
 
                 $btn_proses_last = '<button type="button" data-id="' . encode($row->id_user_pemohon) . '" onclick="showConfirmModal(this)" class="btn btn-sm btn-info" title="Konfirmasi"><i class="la la-gear font-small-3"></i></button> ';
 
-                $btn_cetak = '<button type="button" data-id="' . encode($row->id_rpb) . '" onclick="showModalCetak(this)" class="btn btn-sm btn-info" title="Cetak Surat"><i class="la la-print font-small-3"></i></button> ';
 
                 if ($row->status == 1) { // Saat status diajukan
                     $btn .= $btn_proses;
                 } else if ($row->status == 2) { // Saat status diproses
                     $btn .= $btn_proses_last;
                 } else if ($row->status == 3) {
+                    $btn_cetak = '<button type="button" data-id="' . encode($row->id_rpb) . '" data-idp="' . ($row->id_petugas != null ? $row->id_petugas : '') . '" data-tgl="' . ($row->tgl_cetak != null ? date('d-m-Y', strtotime($row->tgl_cetak)) : date('d-m-Y')) . '" onclick="showModalCetak(this)" class="btn btn-sm btn-info" title="Cetak Surat"><i class="la la-print font-small-3"></i></button> ';
+
                     $btn .= $btn_cetak;
                 }
                 $btn .= $btn_detail;
@@ -259,44 +261,63 @@ class Pengabdian extends BaseController
         $id = $this->request->getGet('id');
         $idp = $this->request->getGet('idp');
         $tgl = $this->request->getGet('tgl');
-        if ($id == null && $idp == null) {
+        if ($id == 'null' || $idp == 'null' || $idp == '') {
             return redirect()->to(base_url('kesbangpol'));
             exit();
         }
         $id_rpb = decode($id);
         $id_petugas = decode($idp);
 
-        $m_petugas = new PetugasModel();
-
-        $rpb = $this->m_rpb->join('tbl_user_pemohon usr', 'rpb.id_user_pemohon = usr.id_user_pemohon', 'LEFT')->getWhere(['id_rpb' => $id_rpb])->getRow();
-        $pejabat = $m_petugas->getData($id_petugas)->getRow();
-
-        if ($rpb->tgl_pelaksanaan_mulai == $rpb->tgl_pelaksanaan_akhir) {
-            $waktu_kegiatan = formatTanggalTtd($rpb->tgl_pelaksanaan_mulai);
-        } else {
-            $waktu_kegiatan = formatRangeTgl($rpb->tgl_pelaksanaan_mulai, $rpb->tgl_pelaksanaan_akhir);
-        }
-
-        $data_print = array(
-            "TGL_SURAT" => formatTanggalTtd($tgl),
-            "NO_SURAT" => $rpb->no_rpb,
-            "INSTANSI" => $rpb->nama_instansi,
-            "NO_SURAT_INSTANSI" => $rpb->no_surat_permohonan,
-            "TGL_SURAT_INSTANSI" => formatTanggalTtd($rpb->tgl_surat_permohonan),
-            "NAMA_PEMOHON" => strtoupper($rpb->nama_pemohon),
-            "PEKERJAAN_PEMOHON" => $rpb->pekerjaan_pemohon,
-            "ALAMAT_PEMOHON" => $rpb->alamat_pemohon,
-            "PENANGGUNG_JAWAB" => $rpb->penanggung_jawab,
-            "LOKASI_KEGIATAN" => $rpb->lokasi,
-            "WAKTU_KEGIATAN" => $waktu_kegiatan,
-            "TUJUAN" => text_uc($rpb->tujuan),
-
-            "JABATAN_PETUGAS" => $pejabat->jabatan_petugas,
-            "NAMA_PETUGAS" => strtoupper($pejabat->nama_petugas),
-            "PANGKAT_PETUGAS" => $pejabat->pangkat_petugas,
-            "NIP_PETUGAS" => $pejabat->nip_petugas,
+        // Simpan data cetak ====================
+        $m_cetak = new CetakSuratModel();
+        $data_cetak = array(
+            'id_permohonan'     => $id_rpb,
+            'jenis_permohonan'  => 'rpb',
+            'id_petugas'        => $id_petugas,
+            'tgl_cetak'         => date('Y-m-d', strtotime($tgl)),
         );
+        $cek_cetak = $m_cetak->where(['id_permohonan' => $id_rpb, 'jenis_permohonan' => 'rpb']);
+        if ($cek_cetak->countAllResults(false) > 0) {
+            $data_cetak['id_cetak'] = $cek_cetak->get()->getRow()->id_cetak;
+        }
+        $save_cetak = $m_cetak->save($data_cetak);
+        // =======================================
 
-        echo printWord("surat/rpb/SKPM.rtf", "SKPM_" . $rpb->no_rpb, $data_print);
+        if ($save_cetak) {
+            $m_petugas = new PetugasModel();
+
+            $rpb = $this->m_rpb->join('tbl_user_pemohon usr', 'rpb.id_user_pemohon = usr.id_user_pemohon', 'LEFT')->getWhere(['id_rpb' => $id_rpb])->getRow();
+            $pejabat = $m_petugas->getData($id_petugas)->getRow();
+
+            if ($rpb->tgl_pelaksanaan_mulai == $rpb->tgl_pelaksanaan_akhir) {
+                $waktu_kegiatan = formatTanggalTtd($rpb->tgl_pelaksanaan_mulai);
+            } else {
+                $waktu_kegiatan = formatRangeTgl($rpb->tgl_pelaksanaan_mulai, $rpb->tgl_pelaksanaan_akhir);
+            }
+
+            $data_print = array(
+                "TGL_SURAT" => formatTanggalTtd($tgl),
+                "NO_SURAT" => $rpb->no_rpb,
+                "INSTANSI" => $rpb->nama_instansi,
+                "NO_SURAT_INSTANSI" => $rpb->no_surat_permohonan,
+                "TGL_SURAT_INSTANSI" => formatTanggalTtd($rpb->tgl_surat_permohonan),
+                "NAMA_PEMOHON" => strtoupper($rpb->nama_pemohon),
+                "PEKERJAAN_PEMOHON" => $rpb->pekerjaan_pemohon,
+                "ALAMAT_PEMOHON" => $rpb->alamat_pemohon,
+                "PENANGGUNG_JAWAB" => $rpb->penanggung_jawab,
+                "LOKASI_KEGIATAN" => $rpb->lokasi,
+                "WAKTU_KEGIATAN" => $waktu_kegiatan,
+                "TUJUAN" => text_uc($rpb->tujuan),
+
+                "JABATAN_PETUGAS" => $pejabat->jabatan_petugas,
+                "NAMA_PETUGAS" => strtoupper($pejabat->nama_petugas),
+                "PANGKAT_PETUGAS" => $pejabat->pangkat_petugas,
+                "NIP_PETUGAS" => $pejabat->nip_petugas,
+            );
+
+            echo printWord("surat/rpb/SKPM.rtf", "SKPM_" . $rpb->no_rpb, $data_print);
+        } else {
+            return redirect()->to(base_url('kesbangpol'));
+        }
     }
 }

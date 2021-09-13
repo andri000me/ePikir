@@ -4,6 +4,7 @@ namespace App\Modules\Bappeda\Controllers;
 
 use App\Modules\Bappeda\Models\GaleriModel;
 use App\Modules\Bappeda\Models\KategoriGModel;
+use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Galeri extends BaseController
 {
@@ -118,8 +119,9 @@ class Galeri extends BaseController
 
       return redirect()->to(base_url('bappeda/publikasi/galeri'));
     } else {
-      alert_failed('Gagal simpan data');
-      return redirect()->to(base_url('bappeda/publikasi/galeri'));
+      // alert_failed('Gagal simpan data');
+      // return redirect()->to(base_url('bappeda/publikasi/galeri'));
+      throw PageNotFoundException::forPageNotFound();
     }
   }
 

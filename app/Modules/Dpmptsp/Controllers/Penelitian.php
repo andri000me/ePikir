@@ -2,6 +2,7 @@
 
 namespace App\Modules\Dpmptsp\Controllers;
 
+use App\Modules\Dpmptsp\Models\CetakSuratModel;
 use App\Modules\Dpmptsp\Models\PetugasModel;
 use App\Modules\Dpmptsp\Models\UserPemohonModel;
 use CodeIgniter\Database\BaseBuilder;
@@ -123,13 +124,14 @@ class Penelitian extends BaseController
 
                 $btn_proses_last = '<button type="button" data-id="' . encode($row->id_user_pemohon) . '" onclick="showConfirmModal(this)" class="btn btn-sm btn-info" title="Konfirmasi"><i class="la la-gear font-small-3"></i></button> ';
 
-                $btn_cetak = '<button type="button" data-id="' . encode($row->id_ipl) . '" onclick="showModalCetak(this)" class="btn btn-sm btn-info" title="Cetak Surat"><i class="la la-print font-small-3"></i></button> ';
 
                 if ($row->status == 1) { // Saat status diajukan
                     $btn .= $btn_proses;
                 } else if ($row->status == 2) { // Saat status diproses
                     $btn .= $btn_proses_last;
                 } else if ($row->status == 3) {
+                    $btn_cetak = '<button type="button" data-id="' . encode($row->id_ipl) . '" data-idp="' . ($row->id_petugas != null ? $row->id_petugas : '') . '" data-tgl="' . ($row->tgl_cetak != null ? date('d-m-Y', strtotime($row->tgl_cetak)) : date('d-m-Y')) . '" onclick="showModalCetak(this)" class="btn btn-sm btn-info" title="Cetak Surat"><i class="la la-print font-small-3"></i></button> ';
+
                     $btn .= $btn_cetak;
                 }
                 $btn .= $btn_detail;
@@ -262,44 +264,66 @@ class Penelitian extends BaseController
         $id = $this->request->getGet('id');
         $idp = $this->request->getGet('idp');
         $tgl = $this->request->getGet('tgl');
-        if ($id == null && $idp == null) {
+        if ($id == 'null' || $idp == 'null' || $idp == '') {
             return redirect()->to(base_url('dpmptsp'));
             exit();
         }
         $id_ipl = decode($id);
         $id_petugas = decode($idp);
 
-        $m_petugas = new PetugasModel();
-
-        $ipl = $this->m_ipl->join('tbl_rekomendasi_penelitian rpl', 'ipl.id_rpl = rpl.id_rpl', 'LEFT')->join('tbl_user_pemohon usr', 'rpl.id_user_pemohon = usr.id_user_pemohon', 'LEFT')->getWhere(['id_ipl' => $id_ipl])->getRow();
-        $pejabat = $m_petugas->getData($id_petugas)->getRow();
-
-        if ($ipl->tgl_pelaksanaan_mulai == $ipl->tgl_pelaksanaan_akhir) {
-            $waktu_penelitian = formatTanggalTtd($ipl->tgl_pelaksanaan_mulai);
-        } else {
-            $waktu_penelitian = formatRangeTgl($ipl->tgl_pelaksanaan_mulai, $ipl->tgl_pelaksanaan_akhir);
-        }
-
-        $data_print = array(
-            "TGL_SURAT" => formatTanggalTtd($tgl),
-            "NO_SURAT" => $ipl->no_ipl,
-            "INSTANSI" => $ipl->nama_instansi,
-            "NO_SURAT_INSTANSI" => $ipl->no_surat_permohonan,
-            "TGL_SURAT_INSTANSI" => formatTanggalTtd($ipl->tgl_surat_permohonan),
-            "NAMA_PEMOHON" => strtoupper($ipl->nama_pemohon),
-            "PEKERJAAN_PEMOHON" => $ipl->pekerjaan_pemohon,
-            "ALAMAT_PEMOHON" => $ipl->alamat_pemohon,
-            "PENANGGUNG_JAWAB" => $ipl->penanggung_jawab,
-            "LOKASI_PENELITIAN" => $ipl->lokasi,
-            "WAKTU_PENELITIAN" => $waktu_penelitian,
-            "JUDUL_PENELITIAN" => strtoupper($ipl->tujuan),
-
-            "JABATAN_PETUGAS" => $pejabat->jabatan_petugas,
-            "NAMA_PETUGAS" => strtoupper($pejabat->nama_petugas),
-            "PANGKAT_PETUGAS" => $pejabat->pangkat_petugas,
-            "NIP_PETUGAS" => $pejabat->nip_petugas,
+        // Simpan data cetak ====================
+        $m_cetak = new CetakSuratModel();
+        $data_cetak = array(
+            'id_permohonan'     => $id_ipl,
+            'jenis_permohonan'  => 'ipl',
+            'id_petugas'        => $id_petugas,
+            'tgl_cetak'         => date('Y-m-d', strtotime($tgl)),
         );
+        $cek_cetak = $m_cetak->where(['id_permohonan' => $id_ipl, 'jenis_permohonan' => 'ipl']);
+        if ($cek_cetak->countAllResults(false) > 0) {
+            $data_cetak['id_cetak'] = $cek_cetak->get()->getRow()->id_cetak;
+        }
+        $save_cetak = $m_cetak->save($data_cetak);
+        // =======================================
 
-        echo printWord("surat/ipl/SKP.rtf", "SKP_" . $ipl->no_ipl, $data_print);
+        if ($save_cetak) {
+            $m_petugas = new PetugasModel();
+
+            $ipl = $this->m_ipl->join('tbl_rekomendasi_penelitian rpl', 'ipl.id_rpl = rpl.id_rpl', 'LEFT')->join('tbl_user_pemohon usr', 'rpl.id_user_pemohon = usr.id_user_pemohon', 'LEFT')->getWhere(['id_ipl' => $id_ipl])->getRow();
+            $pejabat = $m_petugas->getData($id_petugas)->getRow();
+
+            $tgl_surat_rek = $m_cetak->where(['id_permohonan' => $ipl->id_rpl, 'jenis_permohonan' => 'rpl'])->get()->getRow()->tgl_cetak;
+
+            if ($ipl->tgl_pelaksanaan_mulai == $ipl->tgl_pelaksanaan_akhir) {
+                $waktu_penelitian = formatTanggalTtd($ipl->tgl_pelaksanaan_mulai);
+            } else {
+                $waktu_penelitian = formatRangeTgl($ipl->tgl_pelaksanaan_mulai, $ipl->tgl_pelaksanaan_akhir);
+            }
+
+            $data_print = array(
+                "TGL_SURAT" => formatTanggalTtd($tgl),
+                "NO_SURAT" => $ipl->no_ipl,
+                // "INSTANSI" => $ipl->nama_instansi,
+                "NO_SURAT_REK" => $ipl->no_rpl,
+                "TGL_SURAT_REK" => formatTanggalTtd($tgl_surat_rek),
+                "NAMA_PEMOHON" => strtoupper($ipl->nama_pemohon),
+                "PEKERJAAN_PEMOHON" => $ipl->pekerjaan_pemohon . ', ' . $ipl->nama_instansi,
+                "ALAMAT_PEMOHON" => $ipl->alamat_pemohon,
+                "NO_HP_PEMOHON" => $ipl->no_telp_pemohon,
+                "PENANGGUNG_JAWAB" => $ipl->penanggung_jawab,
+                "LOKASI_PENELITIAN" => $ipl->lokasi,
+                "WAKTU_PENELITIAN" => $waktu_penelitian,
+                "JUDUL_PENELITIAN" => strtoupper($ipl->tujuan),
+
+                "JABATAN_PETUGAS" => $pejabat->jabatan_petugas,
+                "NAMA_PETUGAS" => strtoupper($pejabat->nama_petugas),
+                "PANGKAT_PETUGAS" => $pejabat->pangkat_petugas,
+                "NIP_PETUGAS" => $pejabat->nip_petugas,
+            );
+
+            echo printWord("surat/ipl/SIP.rtf", "SIP_" . $ipl->no_ipl, $data_print);
+        } else {
+            return redirect()->to(base_url('dpmptsp'));
+        }
     }
 }

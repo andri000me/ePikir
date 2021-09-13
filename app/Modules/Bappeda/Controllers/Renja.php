@@ -3,6 +3,7 @@
 namespace App\Modules\Bappeda\Controllers;
 
 use App\Modules\Bappeda\Models\RenjaModel;
+use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Renja extends BaseController
 {
@@ -93,8 +94,9 @@ class Renja extends BaseController
 
       return redirect()->to(base_url('bappeda/publikasi/renja'));
     } else {
-      alert_failed('Gagal Menambah renja');
-      return redirect()->to(base_url('bappeda/publikasi/renja'));
+      // alert_failed('Gagal Menambah renja');
+      // return redirect()->to(base_url('bappeda/publikasi/renja'));
+      throw PageNotFoundException::forPageNotFound();
     }
   }
 

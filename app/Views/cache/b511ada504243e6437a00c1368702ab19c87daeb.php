@@ -113,9 +113,11 @@
                         </h5>
                         <input type="hidden" id="id_rpl" name="id_rpl">
                         <div class="controls">
-                            <select id="id_petugas" name="id_petugas" class="form-control select2">
+                            <select id="id_petugas" name="id_petugas" class="form-control select2" required>
+                                <option value="" disabled selected>Pilih pejabat</option>
                                 <?php $__currentLoopData = $petugas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e(encode($item->id_petugas)); ?>"><?php echo e($item->nama_petugas); ?> -
+                                    <option value="<?php echo e(encode($item->id_petugas)); ?>" id="pt_<?php echo e($item->id_petugas); ?>">
+                                        <?php echo e($item->nama_petugas); ?> -
                                         <?php echo e($item->jabatan_petugas); ?></option>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
@@ -127,7 +129,7 @@
                         </h5>
                         <div class="controls">
                             <input type="text" id="tgl_surat" name="tgl_surat" class="form-control date-picker"
-                                autocomplete="off" required placeholder="DD-MM-YYYY" value="<?php echo e(date('d-m-Y')); ?>">
+                                autocomplete="off" placeholder="DD-MM-YYYY" value="<?php echo e(date('d-m-Y')); ?>" required>
                         </div>
                     </div>
                     <input type="hidden" id="id_usr" name="id_usr">
@@ -196,7 +198,12 @@
     <script>
         function showModalCetak(data) {
             var id = $(data).data().id;
+            var idp = $(data).data().idp;
+            var tgl = $(data).data().tgl;
+            var id_p = $('#modal_cetak #id_petugas #pt_' + idp).val();
             $('#modal_cetak #id_rpl').val(id);
+            $('#modal_cetak #id_petugas').val(id_p).change();
+            $('.date-picker').datepicker('setDate', tgl);
             $('#modal_cetak').modal({
                 backdrop: 'static',
                 keyboard: false
@@ -207,8 +214,12 @@
             var id = $('#modal_cetak #id_rpl').val();
             var idp = $('#modal_cetak #id_petugas').val();
             var tgl = $('#modal_cetak #tgl_surat').val();
-            window.open("<?php echo e(base_url('kesbangpol/penelitian/cetak')); ?>?id=" + id + "&&idp=" + idp + "&&tgl=" + tgl);
-            $('#modal_cetak').modal('hide');
+            if (idp != null && tgl != '') {
+                window.open("<?php echo e(base_url('kesbangpol/penelitian/cetak')); ?>?id=" + id + "&&idp=" + idp + "&&tgl=" + tgl);
+                $('#modal_cetak').modal('hide');
+            } else {
+                alert('Isi semua form!');
+            }
         }
     </script>
 <?php $__env->stopPush(); ?>

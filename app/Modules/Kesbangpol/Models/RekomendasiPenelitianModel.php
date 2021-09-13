@@ -64,13 +64,20 @@ class RekomendasiPenelitianModel extends Model
 
     function makeQuery($status = '')
     {
-        $this->select($this->select_column);
         if ($status == 5) {
             $this->where('status >', 2);
         } else {
             $this->where('status', $status);
         }
+
+        if ($status >= 3) {
+            $this->select_column[] = 'cs.id_petugas';
+            $this->select_column[] = 'cs.tgl_cetak';
+            $this->join('tbl_cetak_surat cs', "rpl.id_rpl = cs.id_permohonan AND cs.jenis_permohonan = 'rpl'", 'LEFT');
+        }
         $this->join('tbl_user_pemohon usr', 'rpl.id_user_pemohon = usr.id_user_pemohon', 'LEFT');
+
+        $this->select($this->select_column);
 
         $i = 0;
         foreach ($this->select_column_search as $item) {

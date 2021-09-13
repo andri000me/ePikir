@@ -73,7 +73,6 @@ class IzinPengabdianModel extends Model
 
     function makeQuery($status = '')
     {
-        $this->select($this->select_column);
         if ($status == 5) {
             $this->where('ipb.status >', 2);
         } else {
@@ -82,6 +81,14 @@ class IzinPengabdianModel extends Model
         $this->where('rpb.status = 3');
         $this->join('tbl_rekomendasi_pengabdian rpb', 'ipb.id_rpb = rpb.id_rpb', 'LEFT');
         $this->join('tbl_user_pemohon usr', 'rpb.id_user_pemohon = usr.id_user_pemohon', 'LEFT');
+
+        if ($status >= 3) {
+            $this->select_column[] = 'cs.id_petugas';
+            $this->select_column[] = 'cs.tgl_cetak';
+            $this->join('tbl_cetak_surat cs', "ipb.id_ipb = cs.id_permohonan AND cs.jenis_permohonan = 'ipb'", 'LEFT');
+        }
+
+        $this->select($this->select_column);
 
         $i = 0;
         foreach ($this->select_column_search as $item) {

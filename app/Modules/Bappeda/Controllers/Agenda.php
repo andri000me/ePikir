@@ -3,6 +3,7 @@
 namespace App\Modules\Bappeda\Controllers;
 
 use App\Modules\Bappeda\Models\AgendaModel;
+use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Agenda extends BaseController
 {
@@ -70,7 +71,8 @@ class Agenda extends BaseController
       }
       return redirect()->to(base_url('bappeda/publikasi/agenda'));
     } else {
-      return redirect()->to(base_url('bappeda/publikasi/agenda'));
+      // return redirect()->to(base_url('bappeda/publikasi/agenda'));
+      throw PageNotFoundException::forPageNotFound();
     }
   }
 

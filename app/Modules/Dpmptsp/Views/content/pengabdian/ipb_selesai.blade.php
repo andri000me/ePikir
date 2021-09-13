@@ -115,11 +115,13 @@
                         <h5>Pejabat yang menandatangani
                             <span class="required text-danger">*</span>
                         </h5>
-                        <input type="hidden" id="id_rpb" name="id_rpb">
+                        <input type="hidden" id="id_ipb" name="id_ipb">
                         <div class="controls">
                             <select id="id_petugas" name="id_petugas" class="form-control select2">
+                                <option value="" disabled selected>Pilih pejabat</option>
                                 @foreach ($petugas as $item)
-                                    <option value="{{ encode($item->id_petugas) }}">{{ $item->nama_petugas }} -
+                                    <option value="{{ encode($item->id_petugas) }}" id="pt_{{ $item->id_petugas }}">
+                                        {{ $item->nama_petugas }} -
                                         {{ $item->jabatan_petugas }}</option>
                                 @endforeach
                             </select>
@@ -200,7 +202,12 @@
     <script>
         function showModalCetak(data) {
             var id = $(data).data().id;
-            $('#modal_cetak #id_rpb').val(id);
+            var idp = $(data).data().idp;
+            var tgl = $(data).data().tgl;
+            var id_p = $('#modal_cetak #id_petugas #pt_' + idp).val();
+            $('#modal_cetak #id_ipb').val(id);
+            $('#modal_cetak #id_petugas').val(id_p).change();
+            $('.date-picker').datepicker('setDate', tgl);
             $('#modal_cetak').modal({
                 backdrop: 'static',
                 keyboard: false
@@ -208,11 +215,15 @@
         }
 
         function cetakSurat() {
-            var id = $('#modal_cetak #id_rpb').val();
+            var id = $('#modal_cetak #id_ipb').val();
             var idp = $('#modal_cetak #id_petugas').val();
             var tgl = $('#modal_cetak #tgl_surat').val();
-            window.open("{{ base_url('dpmptsp/pengabdian/cetak') }}?id=" + id + "&&idp=" + idp + "&&tgl=" + tgl);
-            $('#modal_cetak').modal('hide');
+            if (idp != null && tgl != '') {
+                window.open("{{ base_url('dpmptsp/pengabdian/cetak') }}?id=" + id + "&&idp=" + idp + "&&tgl=" + tgl);
+                $('#modal_cetak').modal('hide');
+            } else {
+                alert('Isi semua form!');
+            }
         }
     </script>
 @endpush

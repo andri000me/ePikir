@@ -3,6 +3,7 @@
 namespace App\Modules\Bappeda\Controllers;
 
 use App\Modules\Bappeda\Models\RegulasiModel;
+use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Regulasi extends BaseController
 {
@@ -93,8 +94,9 @@ class Regulasi extends BaseController
 
       return redirect()->to(base_url('bappeda/profil/regulasi'));
     } else {
-      alert_failed('Gagal Menambah Regulasi');
-      return redirect()->to(base_url('bappeda/profil/regulasi'));
+      // alert_failed('Gagal Menambah Regulasi');
+      // return redirect()->to(base_url('bappeda/profil/regulasi'));
+      throw PageNotFoundException::forPageNotFound();
     }
   }
 
