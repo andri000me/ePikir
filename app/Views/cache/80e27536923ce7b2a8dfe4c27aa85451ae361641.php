@@ -162,16 +162,16 @@
                                         <div id="show_info" class="alert alert-success alert-dismissible"
                                             style="width: 100%; text-align: center;">
                                             <h4><i class="icon fa fa-clock-o"></i> <span id="timertoken">90</span></h4>
-                                            <span id="txt_alert">Token expired 90
-                                                detik</span><br>
+                                            <span id="txt_alert">Token expired 90 detik</span><br>
                                             <span>Token dikirim ke WhatsApp Anda.</span>
                                         </div>
                                     </div>
 
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <input type="text" id="inputToken" class="form-control text-center"
-                                                name="token" autocomplete="off" placeholder="TOKEN" maxlength="6"
+                                            <input type="text" id="inputToken"
+                                                class="form-control text-center inputToken" name="token"
+                                                autocomplete="off" placeholder="TOKEN" maxlength="6"
                                                 onkeypress="return inputAngka(event);"
                                                 style="font-size: 23pt; letter-spacing: 15px; font-weight: bold;">
                                         </div>
@@ -179,8 +179,8 @@
 
                                     <div class="col-lg-12 col-12">
                                         <div class="form-group button">
-                                            <button type="button" onclick="checkToken(this)"
-                                                class="btn primary">Simpan</button>
+                                            <button type="button" id="btnsubmit" disabled onclick="checkToken(this)"
+                                                class="btn secondary">Simpan</button>
                                         </div>
                                     </div>
                                 </div>

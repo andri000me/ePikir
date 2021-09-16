@@ -63,6 +63,7 @@ class Filters extends BaseConfig
 					'bappeda/pengabdian/dpmptsp/getdata/.*?/.*?',
 					'bappeda/pengabdian/dpmptsp/tolak/.*?',
 
+					'bappeda/klinik/getdata/.*?/.*?',
 				]
 			],
 		],

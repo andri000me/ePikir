@@ -7,6 +7,7 @@ class MenuModel
     public function getMenu()
     {
         $data = [
+            // Dashboar
             array(
                 "header"    => null,
                 "title"     => "Dashboard",
@@ -15,6 +16,7 @@ class MenuModel
                 "icon"      => 'la la-home',
                 "child"     => null,
             ),
+            // Penelitian
             array(
                 "header"    => null,
                 "title"     => "Penelitian",
@@ -89,6 +91,7 @@ class MenuModel
                     ),
                 ),
             ),
+            // Pengabdian 
             array(
                 "header"    => null,
                 "title"     => "Pengabdian",
@@ -163,9 +166,53 @@ class MenuModel
                     ),
                 ),
             ),
+            // Klinik Penelitian
+            array(
+                "header"    => null,
+                "title"     => "Klinik Penelitian",
+                "url"       => '#',
+                "index"     => 9,
+                "icon"      => 'la la-stethoscope',
+                "child"     => array(
+                    array(
+                        "title"    => "Masuk",
+                        "url"       => base_url('bappeda/klinik/diajukan'),
+                        "index"     => '9.1',
+                        "icon"      => null,
+                        "child"     => null,
+                        "bubble"    => 'kpl_masuk'
+                    ),
+                    array(
+                        "title"    => "Proses",
+                        "url"       => base_url('bappeda/klinik/diproses'),
+                        "index"     => '9.2',
+                        "icon"      => null,
+                        "child"     => null,
+                        "bubble"    => 'kpl_proses'
+                    ),
+                    array(
+                        "title"    => "Selesai",
+                        "url"       => base_url('bappeda/klinik/selesai'),
+                        "index"     => '9.3',
+                        "icon"      => null,
+                        "child"     => null,
+                        "bubble"    => null
+                    ),
+                ),
+            ),
             array(
                 "header"    => 'Halaman Utama',
             ),
+            // Carousel
+            array(
+                "header"    => null,
+                "title"     => "Carousel",
+                "url"       => base_url('bappeda/carousel'),
+                "index"     => 10,
+                "icon"      => 'la la-desktop',
+                "child"     => null,
+            ),
+            // Profil
             array(
                 "header"    => null,
                 "title"     => "Profil",
@@ -203,6 +250,7 @@ class MenuModel
                     ),
                 ),
             ),
+            // Publikasi
             array(
                 "header"    => null,
                 "title"    => "Publikasi",
@@ -250,14 +298,16 @@ class MenuModel
             array(
                 "header"    => 'Master Data',
             ),
+            // User Admin
             array(
                 "header"    => null,
-                "title"     => "User",
+                "title"     => "User Admin",
                 "url"       => base_url('bappeda/user'),
                 "index"     => 6,
                 "icon"      => 'la la-users',
                 "child"     => null,
             ),
+            // Kategori Berita
             array(
                 "header"    => null,
                 "title"     => "Kategori Berita",
@@ -266,6 +316,7 @@ class MenuModel
                 "icon"      => 'la la-newspaper-o',
                 "child"     => null,
             ),
+            // Kategori Galeri
             array(
                 "header"    => null,
                 "title"     => "Kategori Galeri",

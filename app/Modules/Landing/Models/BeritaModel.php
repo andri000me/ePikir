@@ -22,6 +22,7 @@ class BeritaModel extends Model
     {
         if ($id === null) {
             $this->join('tbl_kategori_berita as tkb', 'tb.id_kb = tkb.id_kb', 'LEFT');
+            $this->where('tkb.active', 1);
             $this->where('tb.active', 1);
             if ($where != null) {
                 $this->where($where);

@@ -64,7 +64,7 @@
 
                                             <div class="form-group">
                                                 <label>Kategori Berita</label>
-                                                <select name="id_kb" class="form-control select2" required>
+                                                <select name="kb" class="form-control select2" required>
                                                     <option value="" selected disabled="disabled">Pilih Kategori
                                                     </option>
                                                     <?php $__currentLoopData = $kategori; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

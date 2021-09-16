@@ -12,6 +12,17 @@ $routes->group('bappeda', ['namespace' => 'App\Modules\Bappeda\Controllers', 'fi
 	$subroutes->add('', 'Dashboard::index');
 	$subroutes->add('dashboard', 'Dashboard::index');
 
+	// Carousel
+	$subroutes->group('carousel', function ($routes) {
+		$routes->add('', 'Carousel::index');
+		$routes->add('list', 'Carousel::index');
+		$routes->get('active/(:any)/(:any)', 'Carousel::changeActive/$1/$2');
+		$routes->get('add', 'Carousel::addCarousel');
+		$routes->add('save', 'Carousel::saveCarousel');
+		$routes->get('edit/(:any)', 'Carousel::editCarousel/$1');
+		$routes->get('delete/(:any)', 'Carousel::deleteCarousel/$1');
+	});
+
 	// Profil
 	$subroutes->group('profil', function ($routes) {
 		// Tentang Kami
@@ -148,5 +159,50 @@ $routes->group('bappeda', ['namespace' => 'App\Modules\Bappeda\Controllers', 'fi
 			$subroutes->add('tolak/(:any)', 'Dpmptsp::tolakIpb/$1');
 			$subroutes->add('cetak', 'Dpmptsp::cetakSuratIpb');
 		});
+	});
+
+	$subroutes->group('klinik', function ($routes) {
+		$routes->get('diajukan', 'Klinik::kplMasuk');
+		$routes->get('diproses', 'Klinik::kplProses');
+		$routes->add('selesai', 'Klinik::kplSelesai');
+		$routes->add('getdata/(:any)/(:any)', 'Klinik::getDataKpl/$1/$2');
+		$routes->get('hapusdata/(:any)', 'Klinik::deleteDataKpl/$1');
+		$routes->get('proses/(:any)', 'Klinik::prosesKpl/$1');
+		$routes->get('setuju/(:any)', 'Klinik::setujuKpl/$1');
+		$routes->add('tolak/(:any)', 'Klinik::tolakKpl/$1');
+		$routes->add('cetak', 'Klinik::cetakSuratKpl');
+	});
+
+	// User
+	$subroutes->group('user', function ($routes) {
+		$routes->add('', 'User::index');
+		$routes->add('list', 'User::index');
+		$routes->get('active/(:any)/(:any)', 'User::changeActive/$1/$2');
+		$routes->get('add', 'User::addUser');
+		$routes->add('save', 'User::saveUser');
+		$routes->get('edit/(:any)', 'User::editUser/$1');
+		$routes->get('delete/(:any)', 'User::deleteUser/$1');
+	});
+
+	// Kategori Berita
+	$subroutes->group('kategoriberita', function ($routes) {
+		$routes->add('', 'KategoriBerita::index');
+		$routes->add('list', 'KategoriBerita::index');
+		$routes->get('active/(:any)/(:any)', 'KategoriBerita::changeActive/$1/$2');
+		$routes->get('add', 'KategoriBerita::addKb');
+		$routes->add('save', 'KategoriBerita::saveKb');
+		$routes->get('edit/(:any)', 'KategoriBerita::editKb/$1');
+		$routes->get('delete/(:any)', 'KategoriBerita::deleteKb/$1');
+	});
+
+	// Kategori Galeri
+	$subroutes->group('kategorigaleri', function ($routes) {
+		$routes->add('', 'KategoriGaleri::index');
+		$routes->add('list', 'KategoriGaleri::index');
+		$routes->get('active/(:any)/(:any)', 'KategoriGaleri::changeActive/$1/$2');
+		$routes->get('add', 'KategoriGaleri::addKg');
+		$routes->add('save', 'KategoriGaleri::saveKg');
+		$routes->get('edit/(:any)', 'KategoriGaleri::editKg/$1');
+		$routes->get('delete/(:any)', 'KategoriGaleri::deleteKg/$1');
 	});
 });

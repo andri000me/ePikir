@@ -42,7 +42,7 @@ class AddKlinikPenelitian extends Migration
 			'status'   => [
 				'type'           => 'tinyint',
 				'constraint'     => 1,
-				'comment'		 => '1=>Masuk; 2=>Diproses',
+				'comment'		 => '1=>Masuk; 2=>Diproses; 3=>Selesai',
 				'default'        => '1',
 			],
 		]);

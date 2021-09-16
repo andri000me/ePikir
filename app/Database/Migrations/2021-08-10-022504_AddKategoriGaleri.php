@@ -25,6 +25,10 @@ class AddKategoriGaleri extends Migration
 				'comment'		 => '1=>active; 0=>not active',
 				'default'        => '1',
 			],
+			'deleted_at'   => [
+				'type'           => 'datetime',
+				'null'			 => TRUE,
+			],
 		]);
 
 		$this->forge->addKey('id_kg', TRUE);

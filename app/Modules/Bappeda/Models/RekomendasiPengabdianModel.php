@@ -34,7 +34,7 @@ class RekomendasiPengabdianModel extends Model
         'usr.*',
     );
     var $select_column_search = array(
-        'id_rpb',
+        // 'id_rpb',
         'no_rpb',
         'usr.nama_pemohon',
         'usr.pekerjaan_pemohon',

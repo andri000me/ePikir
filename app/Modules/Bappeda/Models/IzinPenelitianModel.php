@@ -43,7 +43,7 @@ class IzinPenelitianModel extends Model
         'usr.*',
     );
     var $select_column_search = array(
-        'id_ipl',
+        // 'id_ipl',
         'no_ipl',
         'usr.nama_pemohon',
         'usr.pekerjaan_pemohon',

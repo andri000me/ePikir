@@ -85,7 +85,7 @@
                                                                     class="la la-trash-o font-small-3"></i></button>
 
                                                         </td>
-                                                        <td>
+                                                        <td align="center">
                                                             <input type="checkbox" class="switch" id="check_active"
                                                                 data-group-cls="btn-group-sm"
                                                                 data-id="{{ encode($val->id_galeri) }}"

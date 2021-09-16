@@ -70,8 +70,9 @@
 
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <input type="text" id="inputToken" class="form-control text-center"
-                                                name="token" autocomplete="off" placeholder="TOKEN" maxlength="6"
+                                            <input type="text" id="inputToken"
+                                                class="form-control text-center inputToken" name="token"
+                                                autocomplete="off" placeholder="TOKEN" maxlength="6"
                                                 onkeypress="return inputAngka(event);"
                                                 style="font-size: 23pt; letter-spacing: 15px; font-weight: bold;">
                                         </div>
@@ -79,8 +80,8 @@
 
                                     <div class="col-lg-12 col-12">
                                         <div class="form-group button">
-                                            <button type="button" onclick="checkToken(this)"
-                                                class="btn primary">Simpan</button>
+                                            <button type="button" id="btnsubmit" disabled onclick="checkToken(this)"
+                                                class="btn secondary">Simpan</button>
                                         </div>
                                     </div>
                                 </div>

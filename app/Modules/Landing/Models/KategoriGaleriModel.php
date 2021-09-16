@@ -19,8 +19,11 @@ class KategoriGaleriModel extends Model
     protected $allowedFields = ['nama_kategori', 'active'];
 
 
-    public function getData()
+    public function getData($active = 1)
     {
+        if ($active != null) {
+            $this->where("kg.active = $active");
+        }
         $this->select('kg.*');
         $this->select("(SELECT COUNT(tg.id_galeri) FROM tbl_galeri tg WHERE tg.id_kg = kg.id_kg) as jml_galeri");
         $this->whereIn('id_kg', function (BaseBuilder $builder) {

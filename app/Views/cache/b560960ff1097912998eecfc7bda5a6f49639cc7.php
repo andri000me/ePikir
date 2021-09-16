@@ -92,8 +92,9 @@
 
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <input type="text" id="inputToken" class="form-control text-center"
-                                                    name="token" autocomplete="off" placeholder="TOKEN" maxlength="6"
+                                                <input type="text" id="inputToken"
+                                                    class="form-control text-center inputToken" name="token"
+                                                    autocomplete="off" placeholder="TOKEN" maxlength="6"
                                                     onkeypress="return inputAngka(event);"
                                                     style="font-size: 23pt; letter-spacing: 15px; font-weight: bold;">
                                             </div>
@@ -101,8 +102,8 @@
 
                                         <div class="col-lg-12 col-12">
                                             <div class="form-group button">
-                                                <button type="button" onclick="checkToken(this)"
-                                                    class="btn primary">Simpan</button>
+                                                <button type="button" id="btnsubmit" disabled onclick="checkToken(this)"
+                                                    class="btn secondary">Simpan</button>
                                             </div>
                                         </div>
                                     </div>
@@ -170,6 +171,7 @@
     
     
     <link rel="stylesheet" href="<?php echo e(assets_url . 'app-assets/vendors/css/extensions/sweetalert.css'); ?>">
+    <link rel="stylesheet" href="<?php echo e(base_url('assets/external/PinCode/css/bootstrap-pincode-input.css')); ?>">
 <?php $__env->stopPush(); ?>
 
 <?php $__env->startPush('css_style'); ?>
@@ -215,6 +217,8 @@
     
     
     <script src="<?php echo e(assets_url . 'app-assets/vendors/js/extensions/sweetalert.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(base_url('assets/external/PinCode/js/bootstrap-pincode-input.js')); ?>">
+    </script>
     <script src="<?php echo e(base_url('assets/js/block.js')); ?>"></script>
 <?php $__env->stopPush(); ?>
 
@@ -224,6 +228,32 @@
 
     <!-- Dropify -->
     
+
+    <script>
+        var counttoken = new Object();
+        $('.inputToken').pincodeInput({
+            inputs: 6,
+            hidedigits: false,
+            complete: function(value, e, errorElement) {
+                $('#checktoken #btnsubmit').attr('disabled', false);
+                $('#checktoken #btnsubmit').addClass('primary').removeClass('secondary');
+            },
+            change: function(input, value, inputnumber) {
+                $('#checktoken #btnsubmit').attr('disabled', true);
+                $('#checktoken #btnsubmit').addClass('secondary').removeClass('primary');
+                if (value != '') {
+                    counttoken[inputnumber] = true;
+                } else {
+                    delete counttoken[inputnumber];
+                }
+                if (Object.keys(counttoken).length == 6) {
+                    $('#checktoken #btnsubmit').attr('disabled', false);
+                    $('#checktoken #btnsubmit').addClass('primary').removeClass('secondary');
+                }
+            },
+            // placeholders: "0 0 0 0 0 0"
+        });
+    </script>
 
     <!-- Input Number Only-->
     <script type="text/javascript">
@@ -257,6 +287,11 @@
                         if (data.success) {
                             $('#' + form.id + ' #inputform').slideUp();
                             $('#' + form.id + ' #checktoken').delay(500).slideDown();
+                            $('.inputToken').pincodeInput().data('plugin_pincodeInput').clear();
+                            $('.inputToken').pincodeInput().data('plugin_pincodeInput').focus();
+                            $('html, body').animate({
+                                scrollTop: '400px'
+                            });
                             timerToken(90, form.id);
                         } else {
                             $('#' + form.id + ' #inputform #alert_info #txt_alert').html(data.alert);
@@ -266,7 +301,7 @@
                     }
                 });
             } else {
-                if (form.id == 'formInputRpb') {
+                if (form.id == 'formInputKpl') {
                     alert('Isi semua data pada form yang tersedia! Pastikan email & nomor WhatsApp valid.')
                 } else {
                     alert('Isi semua data pada form yang tersedia!')
@@ -298,6 +333,8 @@
                         if (data.success) {
                             saveData(form);
                         } else {
+                            $('.inputToken').pincodeInput().data('plugin_pincodeInput').clear();
+                            $('.inputToken').pincodeInput().data('plugin_pincodeInput').focus();
                             $('#' + form.id + ' #checktoken #alert_info #txt_alert').html(data.alert);
                             $('#' + form.id + ' #checktoken #alert_info').fadeIn("slow").delay(1000).slideUp(
                                 'slow');

@@ -34,7 +34,7 @@ class RekomendasiPenelitianModel extends Model
         'usr.*',
     );
     var $select_column_search = array(
-        'id_rpl',
+        // 'id_rpl',
         'no_rpl',
         'usr.nama_pemohon',
         'usr.pekerjaan_pemohon',

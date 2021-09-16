@@ -18,8 +18,12 @@ class KategoriBeritaModel extends Model
     protected $allowedFields = ['nama_kategori', 'active'];
 
 
-    public function getData()
+    public function getData($active = 1)
     {
+        if ($active != null) {
+            $this->where("kb.active = $active");
+        }
+
         $this->select('kb.*');
         $this->select("(SELECT COUNT(tb.id_berita) FROM tbl_berita tb WHERE tb.id_kb = kb.id_kb) as jml_berita");
         return $this->get()->getResult();

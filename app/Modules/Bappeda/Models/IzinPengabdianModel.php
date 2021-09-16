@@ -43,7 +43,7 @@ class IzinPengabdianModel extends Model
         'usr.*',
     );
     var $select_column_search = array(
-        'id_ipb',
+        // 'id_ipb',
         'no_ipb',
         'usr.nama_pemohon',
         'usr.pekerjaan_pemohon',

@@ -18,7 +18,7 @@ class UserPemohonModel extends Model
     protected $allowedFields = ['nama_pemohon', 'pekerjaan_pemohon', 'alamat_pemohon', 'no_telp_pemohon', 'email_pemohon'];
 
 
-    public function getData($id = null, $limit = 5)
+    public function getData($id = null, $limit = 0)
     {
         if ($id === null) {
             return $this->findAll($limit);
