@@ -102,6 +102,19 @@
         }
 
     </style>
+
+    <style>
+        .pincode-input-container input {
+            border: none !important;
+            border-bottom: 2px solid grey !important;
+            margin-inline: 10px !important;
+        }
+
+        .pincode-input-container input:hover {
+            border-bottom: 2px solid #FF9800 !important;
+        }
+
+    </style>
 <?php $__env->stopPush(); ?>
 
 <?php $__env->startPush('js_plugin'); ?>
@@ -132,6 +145,7 @@
     </script>
 
     <script>
+        var counttoken = new Object();
         $('.inputToken').pincodeInput({
             inputs: 6,
             hidedigits: false,
@@ -142,11 +156,14 @@
             change: function(input, value, inputnumber) {
                 $('#checktoken #btnsubmit').attr('disabled', true);
                 $('#checktoken #btnsubmit').addClass('secondary').removeClass('primary');
-                if (inputnumber == 6) {
-                    if (value != '') {
-                        $('#checktoken #btnsubmit').attr('disabled', false);
-                        $('#checktoken #btnsubmit').addClass('primary').removeClass('secondary');
-                    }
+                if (value != '') {
+                    counttoken[inputnumber] = true;
+                } else {
+                    delete counttoken[inputnumber];
+                }
+                if (Object.keys(counttoken).length == 6) {
+                    $('#checktoken #btnsubmit').attr('disabled', false);
+                    $('#checktoken #btnsubmit').addClass('primary').removeClass('secondary');
                 }
             },
             // placeholders: "0 0 0 0 0 0"
@@ -211,7 +228,7 @@
                             $('html, body').animate({
                                 scrollTop: '400px'
                             });
-                            timerToken(90, form.id);
+                            timerToken(120, form.id);
                         } else {
                             $('#' + form.id + ' #inputform #alert_info #txt_alert').html(data.alert);
                             $('#' + form.id + ' #inputform #alert_info').fadeIn("slow").delay(1000).slideUp(

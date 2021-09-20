@@ -221,6 +221,19 @@
         }
 
     </style>
+
+    <style>
+        .pincode-input-container input {
+            border: none !important;
+            border-bottom: 2px solid grey !important;
+            margin-inline: 10px !important;
+        }
+
+        .pincode-input-container input:hover {
+            border-bottom: 2px solid #FF9800 !important;
+        }
+
+    </style>
 @endpush
 
 @push('js_plugin')

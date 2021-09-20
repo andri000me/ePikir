@@ -91,7 +91,7 @@
                                             </div>
                                             <div class="input-group-append" style="padding: 12px; background: #2e2751;">
                                                 <span class="input-group-text text-white"
-                                                    style="padding: 5px">SAMPAI</span>
+                                                    style="padding: 5px">s/d</span>
                                             </div>
                                             <div class="form-group w-100">
                                                 <input type="text" class="form-control" id="tgl_pelaksanaan_akhir"
