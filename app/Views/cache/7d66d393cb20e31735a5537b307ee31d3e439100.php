@@ -1,7 +1,7 @@
 <nav
-    class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-dark navbar-shadow bg-primary">
+    class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-dark navbar-shadow bg-pink">
     <div class="navbar-wrapper">
-        <div class="navbar-header bg-purple">
+        <div class="navbar-header bg-secondary">
             <ul class="nav navbar-nav flex-row">
                 <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs"
                         href="#"><i class="ft-menu font-large-1"></i></a></li>
@@ -35,9 +35,10 @@
                                 <img src="https://ui-avatars.com/api/?name=<?php echo e(session('nama_user')); ?>&background=random&color=fff&size=100&rounded=true&bold=true&format=svg&font-size=0.45"
                                     alt="avatar"><i></i></span>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#"><i
-                                    class="ft-user"></i> Ubah Profil</a>
-                            <a class="dropdown-item" href="#"><i class="ft-lock"></i> Akun Login</a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            
+                            <a class="dropdown-item" href="<?php echo e(base_url('dpmptsp/akun')); ?>"><i
+                                    class="ft-lock"></i> Akun Login</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="<?php echo e(base_url('auth/logout')); ?>"><i
                                     class="ft-power"></i>

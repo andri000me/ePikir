@@ -78,7 +78,7 @@ class Auth extends BaseController
 				$datas = ['success' => false, 'alert' => 'Username atau password salah.'];
 			}
 		} else {
-			$datas = ['success' => false, 'alert' => 'reCaptcha belum diverifikasi'];
+			$datas = ['success' => false, 'alert' => 'reCaptcha belum terverifikasi'];
 		}
 
 		echo json_encode($datas);

@@ -47,9 +47,11 @@
     <link rel="stylesheet" type="text/css" href="<?php echo e(base_url('theme/login/css/util.css')); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo e(base_url('theme/login/css/main.css')); ?>">
     <!--===============================================================================================-->
+    <link href="<?php echo e(base_url('assets/css/loading.css')); ?>" type="text/css" rel="stylesheet">
 </head>
 
 <body>
+    <div class="loading-page" style="display: none;"></div>
     <style>
         .triangle-up {
             width: 0;
@@ -157,6 +159,7 @@
     <script src="<?php echo e(base_url('theme/login/js/main.js')); ?>"></script>
 
     <script src="<?php echo e(base_url('assets/js/auth_log.js')); ?>"></script>
+    <script src="<?php echo e(base_url('assets/js/block.js')); ?>"></script>
 
     <!-- Google Captcha -->
     <script src='https://www.google.com/recaptcha/api.js'></script>

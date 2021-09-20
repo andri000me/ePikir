@@ -12,6 +12,12 @@ $routes->group('kesbangpol', ['namespace' => 'App\Modules\Kesbangpol\Controllers
 	$subroutes->add('', 'Dashboard::index');
 	$subroutes->add('dashboard', 'Dashboard::index');
 
+	// Akun Login
+	$subroutes->group('akun', function ($routes) {
+		$routes->add('', 'Akun::index');
+		$routes->add('save', 'Akun::saveAkun');
+	});
+
 	// Penelitian
 	$subroutes->group('penelitian', function ($routes) {
 		$routes->get('diajukan', 'Penelitian::rplMasuk');

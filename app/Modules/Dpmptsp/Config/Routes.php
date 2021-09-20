@@ -12,6 +12,12 @@ $routes->group('dpmptsp', ['namespace' => 'App\Modules\Dpmptsp\Controllers', 'fi
 	$subroutes->add('', 'Dashboard::index');
 	$subroutes->add('dashboard', 'Dashboard::index');
 
+	// Akun Login
+	$subroutes->group('akun', function ($routes) {
+		$routes->add('', 'Akun::index');
+		$routes->add('save', 'Akun::saveAkun');
+	});
+
 	// Penelitian
 	$subroutes->group('penelitian', function ($routes) {
 		$routes->get('diajukan', 'Penelitian::iplMasuk');

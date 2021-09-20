@@ -6,12 +6,14 @@ $('#loginform').submit(function(e){
     var username = $('#username').val();
     var password = $('#password').val();
     if (username != '' && password != '') {
+        $(".loading-page").show();
         $.ajax({
             type : "POST",
             url  : protocol+"//"+host+"/epikir_new/auth/cekLogin",
             dataType : "json",
             data : $(this).serialize(),
             success: function(data){
+                $(".loading-page").hide();
                 // console.log(data);
 
                 if(data.success){

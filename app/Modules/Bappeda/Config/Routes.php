@@ -8,9 +8,15 @@ if (!isset($routes)) {
 
 $routes->group('bappeda', ['namespace' => 'App\Modules\Bappeda\Controllers', 'filter' => 'authbappeda'], function ($subroutes) {
 
-	/*** Route for Dashboard ***/
+	// Dashboard
 	$subroutes->add('', 'Dashboard::index');
 	$subroutes->add('dashboard', 'Dashboard::index');
+
+	// Akun Login
+	$subroutes->group('akun', function ($routes) {
+		$routes->add('', 'Akun::index');
+		$routes->add('save', 'Akun::saveAkun');
+	});
 
 	// Carousel
 	$subroutes->group('carousel', function ($routes) {

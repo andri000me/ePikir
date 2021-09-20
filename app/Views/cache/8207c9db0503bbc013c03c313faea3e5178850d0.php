@@ -35,9 +35,10 @@
                                 <img src="https://ui-avatars.com/api/?name=<?php echo e(session('nama_user')); ?>&background=random&color=fff&size=100&rounded=true&bold=true&format=svg&font-size=0.45"
                                     alt="avatar"><i></i></span>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#"><i
-                                    class="ft-user"></i> Ubah Profil</a>
-                            <a class="dropdown-item" href="#"><i class="ft-lock"></i> Akun Login</a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            
+                            <a class="dropdown-item" href="<?php echo e(base_url('kesbangpol/akun')); ?>"><i
+                                    class="ft-lock"></i> Akun Login</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="<?php echo e(base_url('auth/logout')); ?>"><i
                                     class="ft-power"></i>
