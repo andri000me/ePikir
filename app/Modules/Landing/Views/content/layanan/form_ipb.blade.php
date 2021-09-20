@@ -65,8 +65,8 @@
                                     <div class="col-12">
                                         <div id="show_info" class="alert alert-success alert-dismissible"
                                             style="width: 100%; text-align: center;">
-                                            <h4><i class="icon fa fa-clock-o"></i> <span id="timertoken">90</span></h4>
-                                            <span id="txt_alert">Token expired 90 detik</span><br>
+                                            <h4><i class="icon fa fa-clock-o"></i> <span id="timertoken">120</span></h4>
+                                            <span id="txt_alert">Token expired 120 detik</span><br>
                                             <span>Token dikirim ke WhatsApp Anda.</span>
                                         </div>
                                     </div>

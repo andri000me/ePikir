@@ -215,7 +215,7 @@
                             $('html, body').animate({
                                 scrollTop: '400px'
                             });
-                            timerToken(90, form.id);
+                            timerToken(120, form.id);
                         } else {
                             $('#' + form.id + ' #inputform #alert_info #txt_alert').html(data.alert);
                             $('#' + form.id + ' #inputform #alert_info').fadeIn("slow").delay(1000).slideUp(

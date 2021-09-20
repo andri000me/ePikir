@@ -509,7 +509,7 @@ class Layanan extends BaseController
         $cek_no_hp = check_wa($no_hp);
 
         if ($cek_no_hp) {
-            $token = $this->generateRandomString();
+            $token = $this->generateRandomString(6, 120);
 
             $pesan = "Kode token anda adalah : *" . $token . "*\nKode ini bersifat rahasia. Jangan berikan kode token kepada siapapun.\n\nDikirim dari *epikir.magelangkab.go.id*";
 
