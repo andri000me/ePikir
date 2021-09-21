@@ -30,6 +30,11 @@ define("assets_front", str_replace('\/', '/', BASE . "/theme/front/"));
 
 define("views", "\App\Modules\/");
 
+// -------------------------------------------------------------
+// Google reCaptcha
+// -------------------------------------------------------------
+define('g_site_key', '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI');
+define('g_secret_key', '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe');
 
 /*
  | --------------------------------------------------------------------------

@@ -15,24 +15,9 @@ class Auth extends BaseController
 
 	public function cek_login()
 	{
-		$secret = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe';
+		helper('recaptcha');
 
-		$credential = array(
-			'secret' => $secret,
-			'response' => $this->request->getVar('g-recaptcha-response'),
-			'remoteip' => $_SERVER['REMOTE_ADDR']
-		);
-
-		$verify = curl_init();
-		curl_setopt($verify, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
-		curl_setopt($verify, CURLOPT_POST, true);
-		curl_setopt($verify, CURLOPT_POSTFIELDS, http_build_query($credential));
-		curl_setopt($verify, CURLOPT_SSL_VERIFYPEER, false);
-		curl_setopt($verify, CURLOPT_RETURNTRANSFER, true);
-		$response = curl_exec($verify);
-
-		$res = json_decode($response, true);
-
+		$res = recaptcha();
 		// if ($res['success'] == 1 && $res['score'] >= 0.5) {
 		if ($res['success']) {
 
