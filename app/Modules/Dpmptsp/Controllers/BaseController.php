@@ -76,10 +76,10 @@ class BaseController extends Controller
 				'color'		=> 'danger',
 				'count'		=> $this->m_ipl->where('status', 2)->countAllResults(),
 			),
-			'ipl_selesai' 	=> array(
-				'color'		=> 'success',
-				'count'		=> $this->m_ipl->where('status >', 2)->countAllResults(),
-			),
+			// 'ipl_selesai' 	=> array(
+			// 	'color'		=> 'success',
+			// 	'count'		=> $this->m_ipl->where('status >', 2)->countAllResults(),
+			// ),
 			// ------------------------------------------------------------------------
 			'ipb_masuk' 	=> array(
 				'color'		=> 'primary',
@@ -89,10 +89,10 @@ class BaseController extends Controller
 				'color'		=> 'danger',
 				'count'		=> $this->m_ipb->where('status', 2)->countAllResults(),
 			),
-			'ipb_selesai' 	=> array(
-				'color'		=> 'success',
-				'count'		=> $this->m_ipb->where('status >', 2)->countAllResults(),
-			),
+			// 'ipb_selesai' 	=> array(
+			// 	'color'		=> 'success',
+			// 	'count'		=> $this->m_ipb->where('status >', 2)->countAllResults(),
+			// ),
 		);
 	}
 }

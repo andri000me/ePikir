@@ -97,8 +97,7 @@
 
 <?php $__env->startPush('css_plugin'); ?>
     <link rel="stylesheet" type="text/css" href="<?php echo e(base_url('assets/external/DataTables/datatables.min.css')); ?>" />
-    <link rel="stylesheet" type="text/css"
-        href="<?php echo e(assets_url . 'app-assets/vendors/js/extensions/sweetalert.min.js'); ?>">
+    <link rel="stylesheet" href="<?php echo e(assets_url . 'app-assets/vendors/css/extensions/sweetalert.css'); ?>">
 <?php $__env->stopPush(); ?>
 
 <?php $__env->startPush('js_plugin'); ?>

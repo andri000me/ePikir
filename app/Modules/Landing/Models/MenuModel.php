@@ -98,7 +98,7 @@ class MenuModel
             ),
             array(
                 "section"   => null,
-                "title"    => "Kelitbangan",
+                "title"    => "Litbang",
                 "url"       => 'javascript:void(0)',
                 "index"     => 4,
                 "icon"      => null,

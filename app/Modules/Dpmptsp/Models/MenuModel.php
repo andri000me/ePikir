@@ -21,6 +21,7 @@ class MenuModel
                 "url"       => '#',
                 "index"     => 2,
                 "icon"      => 'la la-search',
+                "bubble"    => 'ipl',
                 "child"     => array(
                     array(
                         "title"    => "Diajukan",
@@ -54,6 +55,7 @@ class MenuModel
                 "url"       => base_url('dpmptsp/pengabdian'),
                 "index"     => 3,
                 "icon"      => 'la la-hand-paper-o',
+                "bubble"    => 'ipb',
                 "child"     => array(
                     array(
                         "title"    => "Diajukan",

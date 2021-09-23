@@ -22,7 +22,7 @@ $routes->group('landing', ['namespace' => 'App\Modules\Landing\Controllers'], fu
 		$routes->get('detail/(:any)', 'Profil::regulasiDetail/$1');
 	});
 
-	//Publikasi
+	// Publikasi
 	$subroutes->get('sop', 'Publikasi::sopLitbang');
 	$subroutes->get('agenda', 'Publikasi::agenda');
 	$subroutes->get('calendar', 'Publikasi::agendaCalendar');
@@ -33,7 +33,7 @@ $routes->group('landing', ['namespace' => 'App\Modules\Landing\Controllers'], fu
 	});
 	$subroutes->get('galeri', 'Publikasi::galeri');
 
-	//Layanan
+	// Layanan
 	$subroutes->group('izinpenelitian', function ($routes) {
 		$routes->get('', 'Layanan::izinPenelitian');
 		$routes->add('saverpl', 'Layanan::saveRekomendasiPenelitian');
@@ -51,4 +51,14 @@ $routes->group('landing', ['namespace' => 'App\Modules\Landing\Controllers'], fu
 	$subroutes->add('selectnohp', 'Layanan::selectNoHp');
 	// $subroutes->add('gettoken', 'Layanan::getToken');
 	$subroutes->add('checktoken', 'Layanan::checkToken');
+
+	// Kelitbangan
+	$subroutes->group('hasilpenelitian', function ($routes) {
+		$routes->get('', 'Litbang::penelitian');
+		$routes->get('detail/(:any)', 'Litbang::penelitianDetail/$1');
+	});
+	$subroutes->group('hasilinovasi', function ($routes) {
+		$routes->get('', 'Litbang::inovasi');
+		$routes->get('detail/(:any)', 'Litbang::inovasiDetail/$1');
+	});
 });

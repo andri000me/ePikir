@@ -11,15 +11,14 @@
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ base_url('bappeda') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="#">Penelitian</a></li>
-                                <li class="breadcrumb-item"><a href="#">Dpmptsp</a></li>
+                                <li class="breadcrumb-item"><a href="#">Klinik Penelitian</a></li>
                                 <li class="breadcrumb-item active">Permohonan Selesai</li>
                             </ol>
                         </div>
                     </div>
                 </div>
 
-                <div class="content-header-right col-md-4 col-12">
+                {{-- <div class="content-header-right col-md-4 col-12">
                     <div class="dropdown float-md-right">
                         <button
                             class="btn btn-{{ $status == 3 ? 'success' : ($status == 4 ? 'danger' : 'primary') }} btn-block dropdown-toggle round px-2"
@@ -27,14 +26,14 @@
                             aria-expanded="false">{{ $info_status }}</button>
                         <div class="dropdown-menu" aria-labelledby="dropdownBreadcrumbButton">
                             <a class="dropdown-item text-center"
-                                href="{{ base_url('bappeda/penelitian/dpmptsp/selesai?status=3') }}">Disetujui</a>
+                                href="{{ base_url('bappeda/klinik/selesai?status=3') }}">Disetujui</a>
                             <a class="dropdown-item text-center"
-                                href="{{ base_url('bappeda/penelitian/dpmptsp/selesai?status=4') }}">Ditolak</a>
+                                href="{{ base_url('bappeda/klinik/selesai?status=4') }}">Ditolak</a>
                             <a class="dropdown-item text-center"
-                                href="{{ base_url('bappeda/penelitian/dpmptsp/selesai?status=5') }}">Semua</a>
+                                href="{{ base_url('bappeda/klinik/selesai?status=5') }}">Semua</a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 {{-- <div class="content-header-right col-md-2 col-12 mb-2">
                     <button id="btn_eksekusi" class="btn btn-info btn-block round px-2" type="submit" disabled>
@@ -68,25 +67,19 @@
 
                                         {!! show_alert() !!}
 
-                                        @include('template.searchbar', ['table_name' => 'tbl_data_rpl'])
+                                        @include('template.searchbar', ['table_name' => 'tbl_data_kpl'])
 
-                                        <table id="tbl_data_rpl" class="table table-hover table-bordered table-striped"
+                                        <table id="tbl_data_kpl" class="table table-hover table-bordered table-striped"
                                             style="font-size: 8pt">
                                             <thead>
                                                 <tr style="text-align: center;">
                                                     <th>#</th>
                                                     <th class="text-center">Aksi</th>
-                                                    <th>Lampiran</th>
-                                                    <th>Nomor</th>
-                                                    @if ($status == 5)
-                                                        <th>Status</th>
-                                                    @endif
                                                     <th>Tgl Pengajuan</th>
-                                                    <th>Nama</th>
-                                                    <th>Pekerjaan</th>
-                                                    <th>Alamat</th>
-                                                    <th>Lokasi</th>
-                                                    <th>Judul</th>
+                                                    <th>Nama Pemohon</th>
+                                                    <th>Judul Penelitian</th>
+                                                    <th>Jenis Permohonan</th>
+                                                    <th>Keterangan</th>
                                                 </tr>
                                             </thead>
                                         </table>
@@ -152,8 +145,7 @@
 @push('css_plugin')
     <link rel="stylesheet" type="text/css"
         href="{{ assets_url . 'app-assets/vendors/css/tables/datatable/datatables.min.css' }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ assets_url . 'app-assets/vendors/js/extensions/sweetalert.min.js' }}">
+    <link rel="stylesheet" href="{{ assets_url . 'app-assets/vendors/css/extensions/sweetalert.css' }}">
 
     <link rel="stylesheet" href="{{ assets_url . 'app-assets/vendors/css/forms/selects/select2.min.css' }}">
     <link rel="stylesheet"
@@ -177,13 +169,13 @@
     </script>
     <script src="{{ assets_url . 'app-assets/vendors/js/forms/select/select2.full.min.js' }}"></script>
     <script src="{{ assets_url . 'app-assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js' }}"></script>
-    <script src="{{ base_url('assets/js/get_data_rpl.js') }}" type="text/javascript"></script>
+    <script src="{{ base_url('assets/js/get_data_kpl.js') }}" type="text/javascript"></script>
     <script src="{{ base_url('assets/js/delete_data.js') }}" type="text/javascript"></script>
 @endpush
 
 @push('js_script')
     <script>
-        showDataTable("{{ base_url('bappeda/penelitian/dpmptsp/getdata/' . $status . '/tbl_data_rpl') }}",
+        showDataTable("{{ base_url('bappeda/klinik/getdata/' . $status . '/tbl_data_kpl') }}",
             "{{ $status }}");
     </script>
 
@@ -213,7 +205,7 @@
             var id = $('#modal_cetak #id_rpl').val();
             var idp = $('#modal_cetak #id_petugas').val();
             var tgl = $('#modal_cetak #tgl_surat').val();
-            window.open("{{ base_url('bappeda/penelitian/dpmptsp/cetak') }}?id=" + id + "&&idp=" + idp + "&&tgl=" + tgl);
+            window.open("{{ base_url('bappeda/klinik/cetak') }}?id=" + id + "&&idp=" + idp + "&&tgl=" + tgl);
             $('#modal_cetak').modal('hide');
         }
     </script>

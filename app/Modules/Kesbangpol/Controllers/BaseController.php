@@ -78,10 +78,10 @@ class BaseController extends Controller
 				'color'		=> 'danger',
 				'count'		=> $this->m_rpl->where('status', 2)->countAllResults(),
 			),
-			'rpl_selesai' 	=> array(
-				'color'		=> 'success',
-				'count'		=> $this->m_rpl->where('status >', 2)->countAllResults(),
-			),
+			// 'rpl_selesai' 	=> array(
+			// 	'color'		=> 'success',
+			// 	'count'		=> $this->m_rpl->where('status >', 2)->countAllResults(),
+			// ),
 			// ------------------------------------------------------------------------
 			'rpb_masuk' 	=> array(
 				'color'		=> 'primary',
@@ -91,10 +91,10 @@ class BaseController extends Controller
 				'color'		=> 'danger',
 				'count'		=> $this->m_rpb->where('status', 2)->countAllResults(),
 			),
-			'rpb_selesai' 	=> array(
-				'color'		=> 'success',
-				'count'		=> $this->m_rpb->where('status >', 2)->countAllResults(),
-			),
+			// 'rpb_selesai' 	=> array(
+			// 	'color'		=> 'success',
+			// 	'count'		=> $this->m_rpb->where('status >', 2)->countAllResults(),
+			// ),
 		);
 	}
 }

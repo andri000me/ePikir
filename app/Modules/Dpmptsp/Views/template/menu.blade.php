@@ -12,13 +12,24 @@
                         <a href="{{ $nav['url'] }}">
                             <i class="{{ $nav['icon'] }}"></i>
                             <span class="menu-title">{{ $nav['title'] }}</span>
+                            @if (isset($nav['bubble']) && $nav['bubble'] != null)
+                                @foreach ($bubble as $idx => $bub)
+                                    @if (strpos($idx, $nav['bubble']) !== false)
+                                        @if ($bub['count'] != null)
+                                            <span class="badge badge badge-{{ $bub['color'] }} badge-pill float-right"
+                                                style="position: relative;">{{ $bub['count'] }}</span>
+                                        @endif
+                                    @endif
+                                @endforeach
+                            @endif
                         </a>
                         @if ($nav['child'] != null)
                             <ul class="menu-content">
                                 @foreach ($nav['child'] as $subnav)
                                     <li class="{{ $subnav['index'] == $active ? 'active' : '' }}">
-                                        <a class="menu-item" href="{{ $subnav['url'] }}">{{ $subnav['title'] }}
-                                            @if ($subnav['bubble'] != null)
+                                        <a class="menu-item" href="{{ $subnav['url'] }}">
+                                            {{ $subnav['title'] }}
+                                            @if (isset($subnav['bubble']) && $subnav['bubble'] != null)
                                                 @if ($bubble[$subnav['bubble']]['count'] != null)
                                                     <span
                                                         class="badge badge badge-{{ $bubble[$subnav['bubble']]['color'] }} badge-pill float-right">{{ $bubble[$subnav['bubble']]['count'] }}</span>
@@ -28,9 +39,10 @@
                                         @if ($subnav['child'] != null)
                                             <ul class="menu-content">
                                                 @foreach ($subnav['child'] as $item)
-                                                    <li class="{{ $item['index'] == $active ? 'active' : '' }}"><a
-                                                            class="menu-item"
-                                                            href="{{ $item['url'] }}">{{ $item['title'] }}</a>
+                                                    <li class="{{ $item['index'] == $active ? 'active' : '' }}">
+                                                        <a class="menu-item" href="{{ $item['url'] }}">
+                                                            {{ $item['title'] }}
+                                                        </a>
                                                     </li>
                                                 @endforeach
                                             </ul>

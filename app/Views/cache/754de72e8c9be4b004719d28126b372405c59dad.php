@@ -11,8 +11,7 @@
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="<?php echo e(base_url('bappeda')); ?>">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="#">Penelitian</a></li>
-                                <li class="breadcrumb-item"><a href="#">Dpmptsp</a></li>
+                                <li class="breadcrumb-item"><a href="#">Klinik Penelitian</a></li>
                                 <li class="breadcrumb-item active">Permohonan Diproses</li>
                             </ol>
                         </div>
@@ -49,22 +48,19 @@
                                         <?php echo show_alert(); ?>
 
 
-                                        <?php echo $__env->make('template.searchbar', ['table_name' => 'tbl_data_rpl'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                                        <?php echo $__env->make('template.searchbar', ['table_name' => 'tbl_data_kpl'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-                                        <table id="tbl_data_rpl" class="table table-hover table-bordered table-striped"
+                                        <table id="tbl_data_kpl" class="table table-hover table-bordered table-striped"
                                             style="font-size: 8pt">
                                             <thead>
                                                 <tr style="text-align: center;">
                                                     <th>#</th>
                                                     <th class="text-center">Aksi</th>
-                                                    <th>Lampiran</th>
-                                                    <th>Nomor</th>
                                                     <th>Tgl Pengajuan</th>
-                                                    <th>Nama</th>
-                                                    <th>Pekerjaan</th>
-                                                    <th>Alamat</th>
-                                                    <th>Lokasi</th>
-                                                    <th>Judul</th>
+                                                    <th>Nama Pemohon</th>
+                                                    <th>Judul Penelitian</th>
+                                                    <th>Jenis Permohonan</th>
+                                                    <th>Keterangan</th>
                                                 </tr>
                                             </thead>
                                         </table>
@@ -165,13 +161,13 @@
     <script src="<?php echo e(assets_url . 'app-assets/vendors/js/tables/datatable/datatables.min.js'); ?>" type="text/javascript">
     </script>
     <script src="<?php echo e(assets_url . 'app-assets/vendors/js/extensions/sweetalert.min.js'); ?>" type="text/javascript"></script>
-    <script src="<?php echo e(base_url('assets/js/get_data_rpl.js')); ?>" type="text/javascript"></script>
+    <script src="<?php echo e(base_url('assets/js/get_data_kpl.js')); ?>" type="text/javascript"></script>
     <script src="<?php echo e(base_url('assets/js/delete_data.js')); ?>" type="text/javascript"></script>
 <?php $__env->stopPush(); ?>
 
 <?php $__env->startPush('js_script'); ?>
     <script>
-        showDataTable("<?php echo e(base_url('bappeda/penelitian/dpmptsp/getdata/' . $status . '/tbl_data_rpl')); ?>");
+        showDataTable("<?php echo e(base_url('bappeda/klinik/getdata/' . $status . '/tbl_data_kpl')); ?>");
     </script>
 
     <script>
@@ -193,7 +189,7 @@
             var id = $('#modal_confirm #id_usr').val();
             $(".loading-page").show();
             $('#modal_confirm').modal('hide');
-            $.get("<?php echo e(base_url('bappeda/penelitian/dpmptsp/setuju')); ?>/" + id,
+            $.get("<?php echo e(base_url('bappeda/klinik/setuju')); ?>/" + id,
                 function(dt) {
                     var data = JSON.parse(dt);
                     $(".loading-page").hide();
@@ -205,7 +201,7 @@
                             icon: 'success',
                             timer: 2000
                         }).then(function() {
-                            $('#tbl_data_rpl').DataTable().ajax.reload(null,
+                            $('#tbl_data_kpl').DataTable().ajax.reload(null,
                                 false); //posisi paginantion tetap sesuai yang dibuka
                         });
                     } else {
@@ -215,7 +211,7 @@
                             icon: "error",
                             timer: 2000
                         }).then(function() {
-                            $('#tbl_data_rpl').DataTable().ajax.reload(null,
+                            $('#tbl_data_kpl').DataTable().ajax.reload(null,
                                 false); //posisi paginantion tetap sesuai yang dibuka
                         });
                     }
@@ -228,7 +224,7 @@
             var msg = $('#modal_tolak #message').val();
             $(".loading-page").show();
             $('#modal_tolak').modal('hide');
-            $.post("<?php echo e(base_url('bappeda/penelitian/dpmptsp/tolak')); ?>/" + id, {
+            $.post("<?php echo e(base_url('bappeda/klinik/tolak')); ?>/" + id, {
                     message: msg
                 },
                 function(dt) {
@@ -242,7 +238,7 @@
                             icon: 'success',
                             timer: 2000
                         }).then(function() {
-                            $('#tbl_data_rpl').DataTable().ajax.reload(null,
+                            $('#tbl_data_kpl').DataTable().ajax.reload(null,
                                 false); //posisi paginantion tetap sesuai yang dibuka
                         });
                     } else {
@@ -252,7 +248,7 @@
                             icon: "error",
                             timer: 2000
                         }).then(function() {
-                            $('#tbl_data_rpl').DataTable().ajax.reload(null,
+                            $('#tbl_data_kpl').DataTable().ajax.reload(null,
                                 false); //posisi paginantion tetap sesuai yang dibuka
                         });
                     }

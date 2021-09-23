@@ -5,6 +5,7 @@ $('#loginform').submit(function(e){
     // e.preventDefault();
     var username = $('#username').val();
     var password = $('#password').val();
+    
     if (username != '' && password != '') {
         $(".loading-page").show();
         $.ajax({
@@ -21,6 +22,7 @@ $('#loginform').submit(function(e){
                 } else {
                     // $("#alert_login").fadeIn("slow").delay(1000).slideUp('slow');
                     toastr.error(data.alert, 'Login Gagal!', {positionClass: 'toast-top-right', containerId: 'toast-top-right'});
+                    grecaptcha.reset();
                 }
             }
         });

@@ -122,7 +122,7 @@
                         </span>
                     </div>
                     <div class="form-group" style="margin-left: 8px; margin-block: 5px;">
-                        <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+                        <div class="g-recaptcha" data-sitekey="<?php echo e(g_site_key); ?>"></div>
                     </div>
 
                     <div class="container-login100-form-btn p-t-10">

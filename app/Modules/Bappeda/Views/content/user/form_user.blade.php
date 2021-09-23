@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        {!! form_open_multipart(base_url('bappeda/user/save'), 'class="form" id="formInputUser"') !!}
+                                        {!! form_open(base_url('bappeda/user/save'), 'class="form" id="formInputUser"') !!}
 
                                         <div class="col-md-12">
                                             <input type="hidden" name="id_user"

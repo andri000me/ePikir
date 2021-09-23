@@ -211,6 +211,7 @@
         }
 
     </style>
+
 <?php $__env->stopPush(); ?>
 
 <?php $__env->startPush('js_plugin'); ?>
@@ -219,7 +220,6 @@
     <script src="<?php echo e(assets_url . 'app-assets/vendors/js/extensions/sweetalert.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo e(base_url('assets/external/PinCode/js/bootstrap-pincode-input.js')); ?>">
     </script>
-    <script src="<?php echo e(base_url('assets/js/block.js')); ?>"></script>
 <?php $__env->stopPush(); ?>
 
 <?php $__env->startPush('js_script'); ?>

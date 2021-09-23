@@ -29,7 +29,7 @@ class MenuModel
                         "url"       => '#',
                         "index"     => '2.1',
                         "icon"      => null,
-                        "bubble"    => null,
+                        "bubble"    => 'rpl',
                         "child"     => array(
                             array(
                                 "title"    => "Masuk",
@@ -62,7 +62,7 @@ class MenuModel
                         "url"       => '#',
                         "index"     => '2.2',
                         "icon"      => null,
-                        "bubble"    => null,
+                        "bubble"    => 'ipl',
                         "child"     => array(
                             array(
                                 "title"    => "Masuk",
@@ -104,7 +104,7 @@ class MenuModel
                         "url"       => '#',
                         "index"     => '3.1',
                         "icon"      => null,
-                        "bubble"    => null,
+                        "bubble"    => 'rpb',
                         "child"     => array(
                             array(
                                 "title"    => "Masuk",
@@ -137,7 +137,7 @@ class MenuModel
                         "url"       => '#',
                         "index"     => '3.2',
                         "icon"      => null,
-                        "bubble"    => null,
+                        "bubble"    => 'ipb',
                         "child"     => array(
                             array(
                                 "title"    => "Masuk",
@@ -173,6 +173,7 @@ class MenuModel
                 "url"       => '#',
                 "index"     => 9,
                 "icon"      => 'la la-stethoscope',
+                "bubble"    => 'kpl',
                 "child"     => array(
                     array(
                         "title"    => "Masuk",

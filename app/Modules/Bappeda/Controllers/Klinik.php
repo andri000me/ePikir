@@ -37,23 +37,23 @@ class Klinik extends BaseController
     {
         $get_status = $this->request->getGet('status');
         $status = 3;
-        if ($get_status != null) {
-            if ($get_status == 4 || $get_status == 5) {
-                $status = $get_status;
-            }
-        }
+        // if ($get_status != null) {
+        //     if ($get_status == 4 || $get_status == 5) {
+        //         $status = $get_status;
+        //     }
+        // }
 
-        $info_status = 'Disetujui';
-        if ($status == 4) {
-            $info_status = 'Ditolak';
-        }
-        if ($status == 5) {
-            $info_status = 'Semua';
-        }
+        // $info_status = 'Disetujui';
+        // if ($status == 4) {
+        //     $info_status = 'Ditolak';
+        // }
+        // if ($status == 5) {
+        //     $info_status = 'Semua';
+        // }
         $m_petugas = new PetugasModel();
 
         $this->v_data['status']         = $status;
-        $this->v_data['info_status']    = $info_status;
+        // $this->v_data['info_status']    = $info_status;
         $this->v_data['petugas']        = $m_petugas->getData();
         $this->v_data['active']         = '9.3';
 
@@ -182,9 +182,9 @@ class Klinik extends BaseController
                 $users = $m_user->getWhere(['id_user_pemohon' => $id_user_pemohon])->getRow();
 
                 if ($status == 2) {
-                    $msg_add = "permohonan surat izin penelitian Anda sudah *diproses*/ dan sedang ditindak lanjut oleh Admin Dpmptsp Kabupaten Magelang mulai tanggal " . formatTanggalTtd(date('Y-m-d')) . ".";
+                    $msg_add = "Permohonan klinik penelitian Anda sudah *diproses*/ dan sedang ditindak lanjut oleh Admin Bappeda Litbangda Kabupaten Magelang mulai tanggal " . formatTanggalTtd(date('Y-m-d')) . ". Selanjutnya jika disetujui Admin akan menghubungi langsung melalui WhatsApp Anda.";
 
-                    $pesan = "*" . $users->nama_pemohon . "*/, " . $msg_add . "\n\nSetiap notifikasi akan dikirim melalui WhatsApp & Email Anda.\n\nDikirim dari *epikir.magelangkab.go.id*/";
+                    $pesan = "*" . $users->nama_pemohon . "*/, " . $msg_add . "\n\nDikirim dari *epikir.magelangkab.go.id*/";
 
                     $msg = str_replace('*/', '*', $pesan);
                     $send_wa = send_wa($users->no_telp_pemohon, $msg);

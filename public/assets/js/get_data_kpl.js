@@ -19,12 +19,12 @@ function showDataTable(link, status) {
         }, 
         {  
             "targets":3,
-            "width": "100"
+            "width": "125"
 
         }, 
         {  
             "targets":4,
-            "width": "200"
+            "width": "250"
 
         }, 
         {  

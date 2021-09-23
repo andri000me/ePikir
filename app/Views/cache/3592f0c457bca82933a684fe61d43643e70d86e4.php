@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <?php echo form_open_multipart(base_url('bappeda/user/save'), 'class="form" id="formInputUser"'); ?>
+                                        <?php echo form_open(base_url('bappeda/user/save'), 'class="form" id="formInputUser"'); ?>
 
 
                                         <div class="col-md-12">

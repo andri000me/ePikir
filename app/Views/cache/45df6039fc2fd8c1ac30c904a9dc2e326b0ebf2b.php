@@ -134,8 +134,7 @@
 <?php $__env->stopPush(); ?>
 
 <?php $__env->startPush('css_plugin'); ?>
-    <link rel="stylesheet" type="text/css"
-        href="<?php echo e(assets_url . 'app-assets/vendors/js/extensions/sweetalert.min.js'); ?>">
+    <link rel="stylesheet" href="<?php echo e(assets_url . 'app-assets/vendors/css/extensions/sweetalert.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo e(base_url('assets/external/DataTables/datatables.min.css')); ?>" />
     <!-- Fancybox -->
     <link rel="stylesheet" href="<?php echo e(base_url('assets/external/Fancybox/jquery.fancybox.css')); ?>">

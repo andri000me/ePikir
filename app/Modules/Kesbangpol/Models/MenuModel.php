@@ -21,6 +21,7 @@ class MenuModel
                 "url"       => '#',
                 "index"     => 2,
                 "icon"      => 'la la-search',
+                "bubble"    => 'rpl',
                 "child"     => array(
                     array(
                         "title"    => "Diajukan",
@@ -54,6 +55,7 @@ class MenuModel
                 "url"       => base_url('kesbangpol/pengabdian'),
                 "index"     => 3,
                 "icon"      => 'la la-hand-paper-o',
+                "bubble"    => 'rpb',
                 "child"     => array(
                     array(
                         "title"    => "Diajukan",

@@ -152,8 +152,7 @@
 @push('css_plugin')
     <link rel="stylesheet" type="text/css"
         href="{{ assets_url . 'app-assets/vendors/css/tables/datatable/datatables.min.css' }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ assets_url . 'app-assets/vendors/js/extensions/sweetalert.min.js' }}">
+    <link rel="stylesheet" href="{{ assets_url . 'app-assets/vendors/css/extensions/sweetalert.css' }}">
 
     <link rel="stylesheet" href="{{ assets_url . 'app-assets/vendors/css/forms/selects/select2.min.css' }}">
     <link rel="stylesheet"

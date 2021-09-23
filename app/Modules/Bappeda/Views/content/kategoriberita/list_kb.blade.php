@@ -94,7 +94,7 @@
 @endsection
 
 @push('css_plugin')
-    <link rel="stylesheet" type="text/css" href="{{ assets_url . 'app-assets/vendors/js/extensions/sweetalert.min.js' }}">
+    <link rel="stylesheet" href="{{ assets_url . 'app-assets/vendors/css/extensions/sweetalert.css' }}">
     <link rel="stylesheet" type="text/css" href="{{ base_url('assets/external/DataTables/datatables.min.css') }}" />
     <!-- Switch -->
     <link rel="stylesheet" type="text/css" href="{{ assets_url . 'app-assets/css/plugins/forms/switch.css' }}">
