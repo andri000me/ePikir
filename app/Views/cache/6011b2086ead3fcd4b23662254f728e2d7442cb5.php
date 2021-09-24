@@ -69,7 +69,10 @@
 
                                 <li class="d-block d-md-none">
                                     <a href="<?php echo e(base_url('auth')); ?>" class="btn"
-                                        style="background: #2e2751">Login</a>
+                                        style="background: #2e2751">
+                                        <i class="fa fa-user"></i>
+                                        Login
+                                    </a>
                                 </li>
                                 <li class="d-block d-md-none">
                                     <a href="https://bappeda.magelangkab.go.id/" target="_blank"

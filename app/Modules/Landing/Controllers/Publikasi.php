@@ -5,10 +5,11 @@ namespace App\Modules\Landing\Controllers;
 use App\Modules\Landing\Models\AgendaModel;
 use App\Modules\Landing\Models\BeritaModel;
 use App\Modules\Landing\Models\GaleriModel;
+use App\Modules\Landing\Models\InfoPublikModel;
 use App\Modules\Landing\Models\KategoriBeritaModel;
 use App\Modules\Landing\Models\KategoriGaleriModel;
 use App\Modules\Landing\Models\ProfilModel;
-use App\Modules\Landing\Models\RenjaModel;
+// use App\Modules\Landing\Models\RenjaModel;
 
 class Publikasi extends BaseController
 {
@@ -65,13 +66,32 @@ class Publikasi extends BaseController
         return views('content/publikasi/calendar', 'Landing', $this->v_data);
     }
 
-    public function rencanaKerja()
-    {
-        $m_renja = new RenjaModel();
-        $this->v_data['renja']     = $m_renja->getData();
-        $this->v_data['active']    = '3.3';
+    // public function rencanaKerja()
+    // {
+    //     $m_renja = new RenjaModel();
+    //     $this->v_data['renja']     = $m_renja->getData();
+    //     $this->v_data['active']    = '3.3';
 
-        return views('content/publikasi/renja', 'Landing', $this->v_data);
+    //     return views('content/publikasi/renja', 'Landing', $this->v_data);
+    // }
+
+    public function infoPublik()
+    {
+        $m_info = new InfoPublikModel();
+
+        $this->v_data['info']   = $m_info->orderBy('id_info', 'DESC')->getData();
+        $this->v_data['active']     = '3.3';
+
+        return views('content/publikasi/info', 'Landing', $this->v_data);
+    }
+
+    public function infoPublikDetail($id)
+    {
+        $m_info = new InfoPublikModel();
+        $this->v_data['info']   = $m_info->getData(decode($id));
+        $this->v_data['active']     = '3.3';
+
+        return views('content/publikasi/info_detail', 'Landing', $this->v_data);
     }
 
     public function berita()

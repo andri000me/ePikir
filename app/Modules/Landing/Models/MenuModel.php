@@ -74,12 +74,19 @@ class MenuModel
                         "child"     => null,
                     ),
                     array(
-                        "title"    => "Rencana Kerja",
-                        "url"       => base_url('landing/rencanakerja'),
+                        "title"    => "Informasi Publik",
+                        "url"       => base_url('landing/info'),
                         "index"     => 3.3,
                         "icon"      => null,
                         "child"     => null,
                     ),
+                    // array(
+                    //     "title"    => "Rencana Kerja",
+                    //     "url"       => base_url('landing/rencanakerja'),
+                    //     "index"     => 3.3,
+                    //     "icon"      => null,
+                    //     "child"     => null,
+                    // ),
                     array(
                         "title"    => "Berita/Artikel",
                         "url"       => base_url('landing/berita'),
@@ -121,7 +128,7 @@ class MenuModel
             ),
             array(
                 "section"   => null,
-                "title"    => "Forum Komunikasi",
+                "title"    => "Forum Kelitbangan",
                 "url"       => 'javascript:void(0)',
                 "index"     => 5,
                 "icon"      => null,

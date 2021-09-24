@@ -26,7 +26,11 @@ $routes->group('landing', ['namespace' => 'App\Modules\Landing\Controllers'], fu
 	$subroutes->get('sop', 'Publikasi::sopLitbang');
 	$subroutes->get('agenda', 'Publikasi::agenda');
 	$subroutes->get('calendar', 'Publikasi::agendaCalendar');
-	$subroutes->get('rencanakerja', 'Publikasi::rencanaKerja');
+	// $subroutes->get('rencanakerja', 'Publikasi::rencanaKerja');
+	$subroutes->group('info', function ($routes) {
+		$routes->get('', 'Publikasi::infoPublik');
+		$routes->get('detail/(:any)', 'Publikasi::infoPublikDetail/$1');
+	});
 	$subroutes->group('berita', function ($routes) {
 		$routes->add('', 'Publikasi::berita');
 		$routes->get('detail/(:any)', 'Publikasi::beritaDetail/$1');
