@@ -28,9 +28,11 @@
                             <!--/ End Search Form --> --}}
                         <!-- Social -->
                         <ul class="social" style="margin-top: 0px !important; padding-block: 4px;">
-                            <li style="border-right: 1px solid #cccccc; border-left: 1px solid #cccccc;"><a
-                                    href="{{ base_url('auth') }}" style="padding-inline: 10px"><i
-                                        class="fa fa-user"></i> Login</a></li>
+                            <li style="border-right: 1px solid #cccccc; border-left: 1px solid #cccccc;">
+                                <a href="{{ base_url('auth') }}" style="padding-inline: 10px">
+                                    <i class="fa fa-user"></i> Login
+                                </a>
+                            </li>
                             {{-- <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
@@ -78,23 +80,38 @@
                                     }
                                 @endphp
 
+                                <li class="d-block d-md-none">
+                                    <a href="{{ base_url('auth') }}" class="btn"
+                                        style="background: #2e2751">Login</a>
+                                </li>
+                                <li class="d-block d-md-none">
+                                    <a href="https://bappeda.magelangkab.go.id/" target="_blank"
+                                        class="btn bg-info">BAPPEDA</a>
+                                </li>
+
                                 @foreach ($menu as $nav)
                                     <li class="{{ $nav['index'] == $active1 ? 'active' : '' }}">
-                                        <a href="{{ $nav['url'] }}">{{ $nav['title'] }}<i
-                                                class="{{ $nav['child'] != null ? 'fa fa-caret-down' : '' }}"></i></a>
+                                        <a href="{{ $nav['url'] }}">
+                                            {{ $nav['title'] }}
+                                            <i class="{{ $nav['child'] != null ? 'fa fa-caret-down' : '' }}"></i>
+                                        </a>
                                         @if ($nav['child'] != null)
                                             <ul class="dropdown">
                                                 @foreach ($nav['child'] as $sub)
                                                     <li class="{{ $sub['index'] == $active2 ? 'active' : '' }}">
-                                                        <a href="{{ $sub['url'] }}">{{ $sub['title'] }}<i
-                                                                class="{{ $sub['child'] != null ? 'fa fa-caret-right' : '' }}"></i></a>
+                                                        <a href="{{ $sub['url'] }}">
+                                                            {{ $sub['title'] }}
+                                                            <i
+                                                                class="{{ $sub['child'] != null ? 'fa fa-caret-right' : '' }}"></i>
+                                                        </a>
                                                         @if ($sub['child'] != null)
                                                             <ul class="dropdown submenu">
                                                                 @foreach ($sub['child'] as $sub2)
                                                                     <li
                                                                         class="{{ $sub2['index'] == $active ? 'active' : '' }}">
-                                                                        <a
-                                                                            href="{{ $sub2['url'] }}">{{ $sub2['title'] }}</a>
+                                                                        <a href="{{ $sub2['url'] }}">
+                                                                            {{ $sub2['title'] }}
+                                                                        </a>
                                                                     </li>
                                                                 @endforeach
                                                             </ul>

@@ -21,9 +21,11 @@
                         
                         <!-- Social -->
                         <ul class="social" style="margin-top: 0px !important; padding-block: 4px;">
-                            <li style="border-right: 1px solid #cccccc; border-left: 1px solid #cccccc;"><a
-                                    href="<?php echo e(base_url('auth')); ?>" style="padding-inline: 10px"><i
-                                        class="fa fa-user"></i> Login</a></li>
+                            <li style="border-right: 1px solid #cccccc; border-left: 1px solid #cccccc;">
+                                <a href="<?php echo e(base_url('auth')); ?>" style="padding-inline: 10px">
+                                    <i class="fa fa-user"></i> Login
+                                </a>
+                            </li>
                             
                         </ul>
                         <!--/ End Social -->
@@ -65,23 +67,41 @@
                                     }
                                 ?>
 
+                                <li class="d-block d-md-none">
+                                    <a href="<?php echo e(base_url('auth')); ?>" class="btn"
+                                        style="background: #2e2751">Login</a>
+                                </li>
+                                <li class="d-block d-md-none">
+                                    <a href="https://bappeda.magelangkab.go.id/" target="_blank"
+                                        class="btn bg-info">BAPPEDA</a>
+                                </li>
+
                                 <?php $__currentLoopData = $menu; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $nav): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <li class="<?php echo e($nav['index'] == $active1 ? 'active' : ''); ?>">
-                                        <a href="<?php echo e($nav['url']); ?>"><?php echo e($nav['title']); ?><i
-                                                class="<?php echo e($nav['child'] != null ? 'fa fa-caret-down' : ''); ?>"></i></a>
+                                        <a href="<?php echo e($nav['url']); ?>">
+                                            <?php echo e($nav['title']); ?>
+
+                                            <i class="<?php echo e($nav['child'] != null ? 'fa fa-caret-down' : ''); ?>"></i>
+                                        </a>
                                         <?php if($nav['child'] != null): ?>
                                             <ul class="dropdown">
                                                 <?php $__currentLoopData = $nav['child']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sub): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <li class="<?php echo e($sub['index'] == $active2 ? 'active' : ''); ?>">
-                                                        <a href="<?php echo e($sub['url']); ?>"><?php echo e($sub['title']); ?><i
-                                                                class="<?php echo e($sub['child'] != null ? 'fa fa-caret-right' : ''); ?>"></i></a>
+                                                        <a href="<?php echo e($sub['url']); ?>">
+                                                            <?php echo e($sub['title']); ?>
+
+                                                            <i
+                                                                class="<?php echo e($sub['child'] != null ? 'fa fa-caret-right' : ''); ?>"></i>
+                                                        </a>
                                                         <?php if($sub['child'] != null): ?>
                                                             <ul class="dropdown submenu">
                                                                 <?php $__currentLoopData = $sub['child']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sub2): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                     <li
                                                                         class="<?php echo e($sub2['index'] == $active ? 'active' : ''); ?>">
-                                                                        <a
-                                                                            href="<?php echo e($sub2['url']); ?>"><?php echo e($sub2['title']); ?></a>
+                                                                        <a href="<?php echo e($sub2['url']); ?>">
+                                                                            <?php echo e($sub2['title']); ?>
+
+                                                                        </a>
                                                                     </li>
                                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                             </ul>

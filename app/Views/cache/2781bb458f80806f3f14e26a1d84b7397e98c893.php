@@ -223,7 +223,9 @@
                         }
                     },
                     error: function(data) {
-                        console.log(data);
+                        $('#' + form.id + ' #inputform #alert_info #txt_alert').html("Error saat kirim data.");
+                        $('#' + form.id + ' #inputform #alert_info').fadeIn("slow").delay(1000).slideUp(
+                            'slow');
                     }
                 });
             } else {
@@ -265,6 +267,11 @@
                             $('#' + form.id + ' #checktoken #alert_info').fadeIn("slow").delay(1000).slideUp(
                                 'slow');
                         }
+                    },
+                    error: function(data) {
+                        $('#' + form.id + ' #checktoken #alert_info #txt_alert').html("Error saat kirim data.");
+                        $('#' + form.id + ' #checktoken #alert_info').fadeIn("slow").delay(1000).slideUp(
+                            'slow');
                     }
                 });
             } else {
