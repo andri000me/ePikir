@@ -29,6 +29,17 @@ $routes->group('bappeda', ['namespace' => 'App\Modules\Bappeda\Controllers', 'fi
 		$routes->get('delete/(:any)', 'Carousel::deleteCarousel/$1');
 	});
 
+	// Bidang
+	$subroutes->group('bidang', function ($routes) {
+		$routes->add('', 'Bidang::index');
+		$routes->add('list', 'Bidang::index');
+		$routes->get('active/(:any)/(:any)', 'Bidang::changeActive/$1/$2');
+		$routes->get('add', 'Bidang::addBidang');
+		$routes->add('save', 'Bidang::saveBidang');
+		$routes->get('edit/(:any)', 'Bidang::editBidang/$1');
+		$routes->get('delete/(:any)', 'Bidang::deleteBidang/$1');
+	});
+
 	// Profil
 	$subroutes->group('profil', function ($routes) {
 		// Tentang Kami
@@ -77,13 +88,23 @@ $routes->group('bappeda', ['namespace' => 'App\Modules\Bappeda\Controllers', 'fi
 		});
 
 		// Rencana Kerja
-		$routes->group('renja', function ($subroutes) {
-			$subroutes->add('', 'Renja::index');
-			$subroutes->add('list', 'Renja::index');
-			$subroutes->add('add', 'Renja::addRenja');
-			$subroutes->add('save', 'Renja::saveRenja');
-			$subroutes->add('edit/(:any)', 'Renja::editRenja/$1');
-			$subroutes->add('delete/(:any)', 'Renja::deleteRenja/$1');
+		// $routes->group('renja', function ($subroutes) {
+		// 	$subroutes->add('', 'Renja::index');
+		// 	$subroutes->add('list', 'Renja::index');
+		// 	$subroutes->add('add', 'Renja::addRenja');
+		// 	$subroutes->add('save', 'Renja::saveRenja');
+		// 	$subroutes->add('edit/(:any)', 'Renja::editRenja/$1');
+		// 	$subroutes->add('delete/(:any)', 'Renja::deleteRenja/$1');
+		// });
+
+		// Info Publik 
+		$routes->group('info', function ($subroutes) {
+			$subroutes->add('', 'InfoPublik::index');
+			$subroutes->add('list', 'InfoPublik::index');
+			$subroutes->add('add', 'InfoPublik::addInfo');
+			$subroutes->add('save', 'InfoPublik::saveInfo');
+			$subroutes->add('edit/(:any)', 'InfoPublik::editInfo/$1');
+			$subroutes->add('delete/(:any)', 'InfoPublik::deleteInfo/$1');
 		});
 
 		// Berita

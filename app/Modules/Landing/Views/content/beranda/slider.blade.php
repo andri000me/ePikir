@@ -23,7 +23,7 @@
                                     <h1 style="text-shadow: 1px 1px 2px white; text-transform: none;">
                                         {!! $item->judul_carousel !!}</h1>
                                     <p style="text-shadow: 1px 1px 2px #2e2751; color: white">
-                                        {{ $item->ket_carousel }}
+                                        {!! $item->ket_carousel !!}
                                     </p>
                                     {{-- </div> --}}
 

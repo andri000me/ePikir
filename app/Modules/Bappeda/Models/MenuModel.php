@@ -213,6 +213,15 @@ class MenuModel
                 "icon"      => 'la la-desktop',
                 "child"     => null,
             ),
+            // Bidang
+            array(
+                "header"    => null,
+                "title"     => "Bidang",
+                "url"       => base_url('bappeda/bidang'),
+                "index"     => 11,
+                "icon"      => 'la la-briefcase',
+                "child"     => null,
+            ),
             // Profil
             array(
                 "header"    => null,
@@ -273,9 +282,16 @@ class MenuModel
                         "icon"      => null,
                         "child"     => null,
                     ),
+                    // array(
+                    //     "title"    => "Rencana Kerja",
+                    //     "url"       => base_url('bappeda/publikasi/renja'),
+                    //     "index"     => '5.3',
+                    //     "icon"      => null,
+                    //     "child"     => null,
+                    // ),
                     array(
-                        "title"    => "Rencana Kerja",
-                        "url"       => base_url('bappeda/publikasi/renja'),
+                        "title"    => "Info Publik",
+                        "url"       => base_url('bappeda/publikasi/info'),
                         "index"     => '5.3',
                         "icon"      => null,
                         "child"     => null,

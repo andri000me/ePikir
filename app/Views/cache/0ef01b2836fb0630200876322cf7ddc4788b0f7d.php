@@ -7,37 +7,34 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-9 col-12 mb-2 breadcrumb-new">
-                    <h3 class="content-header-title mb-0 d-inline-block">Galeri</h3>
+                    <h3 class="content-header-title mb-0 d-inline-block">Bidang</h3>
                     <div class="row breadcrumbs-top d-inline-block">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="<?php echo e(base_url('bappeda')); ?>">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="#">Publikasi</a></li>
-                                <li class="breadcrumb-item active">Galeri</li>
+                                <li class="breadcrumb-item active">Bidang</li>
                             </ol>
                         </div>
                     </div>
                 </div>
 
                 <div class="content-header-right col-md-3 col-12 mb-2">
-                    <a href="<?php echo e(base_url('bappeda/publikasi/galeri/add')); ?>" class="btn btn-block btn-info"><i
+                    <a href="<?php echo e(base_url('bappeda/bidang/add')); ?>" class="btn btn-block btn-info"><i
                             class="la la-plus"></i> Tambah Data</a>
                 </div>
+
             </div>
             <div class="content-body">
-                <!-- Basic CKEditor start -->
-
 
                 <?php echo show_alert(); ?>
 
 
-                <!-- Zero configuration table -->
                 <section id="configuration">
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">List Galeri</h4>
+                                    <h4 class="card-title">List Bidang</h4>
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
                                         <ul class="list-inline mb-0">
@@ -48,40 +45,33 @@
                                 </div>
                                 <div class="card-content collapse show">
                                     <div class="card-body card-dashboard">
-                                        <table class="table table-striped table-bordered table-responsive" id="list_tbl"
-                                            style="font-size: 10pt">
+                                        <table class="table table-striped table-bordered table-responsive" id="list_tbl">
                                             <thead>
                                                 <tr class="text-center">
                                                     <th>#</th>
                                                     <th>Aksi</th>
                                                     <th>Aktif</th>
-                                                    <th>Kategori</th>
-                                                    <th>Judul</th>
-                                                    <th>Jenis</th>
+                                                    <th>Nama Bidang</th>
                                                     <th>Keterangan</th>
-                                                    <th>Waktu Kegiatan</th>
-                                                    <th>File</th>
+                                                    <th>Icon</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php $__currentLoopData = $galeri; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php $__currentLoopData = $bidang; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <tr>
-                                                        <td align="center" width="30"><?php echo e($key + 1); ?></td>
+                                                        <td align="center"><?php echo e($key + 1); ?></td>
                                                         <td nowrap align="center">
                                                             <button type="button" onclick="showModal(this)"
-                                                                data-jenis="<?php echo e($val->jenis_galeri == 1 ? 'Foto' : 'Video'); ?>"
-                                                                data-kategori="<?php echo e($val->nama_kategori); ?>"
-                                                                data-judul="<?php echo e($val->judul_galeri); ?>"
-                                                                data-isi="<?php echo e($val->ket_galeri); ?>"
-                                                                data-foto="<?php echo e($val->file_foto != null ? (!realpath('upload/galeri/' . $val->file_foto) ? base_url('assets/img/noimage/no_img3.jpg') : base_url('upload/galeri/' . $val->file_foto)) : ($val->link_video != null ? 'https://i.ytimg.com/vi_webp/' . get_segment($val->link_video) . '/sddefault.webp' : base_url('assets/img/noimage/no_img3.jpg'))); ?>"
-                                                                data-link="<?php echo e('https://www.youtube.com/embed/' . get_segment($val->link_video)); ?>"
+                                                                data-judul="<?php echo e($val->nama_bidang); ?>"
+                                                                data-isi="<?php echo e($val->ket_bidang); ?>"
+                                                                data-icon="<?php echo e($val->icon_bidang); ?>"
                                                                 class="btn btn-sm btn-primary" title="Lihat Detail"><i
                                                                     class="la la-eye font-small-3"></i></button>
-                                                            <a href="<?php echo e(base_url('bappeda/publikasi/galeri/edit/' . encode($val->id_galeri))); ?>"
+                                                            <a href="<?php echo e(base_url('bappeda/bidang/edit/' . encode($val->id_bidang))); ?>"
                                                                 class="btn btn-info btn-sm" title="Update Data"><i
                                                                     class="la la-pencil-square-o font-small-3"></i></a>
                                                             <button type="button" onclick="hapusData(this, true)"
-                                                                data-link="<?php echo e(base_url('bappeda/publikasi/galeri/delete/' . encode($val->id_galeri))); ?>"
+                                                                data-link="<?php echo e(base_url('bappeda/bidang/delete/' . encode($val->id_bidang))); ?>"
                                                                 class="btn btn-sm btn-danger" title="Hapus Data"><i
                                                                     class="la la-trash-o font-small-3"></i></button>
 
@@ -89,29 +79,15 @@
                                                         <td align="center">
                                                             <input type="checkbox" class="switch" id="check_active"
                                                                 data-group-cls="btn-group-sm"
-                                                                data-id="<?php echo e(encode($val->id_galeri)); ?>"
+                                                                data-id="<?php echo e(encode($val->id_bidang)); ?>"
                                                                 onchange="changeActive(this)"
                                                                 <?php echo e($val->active == 1 ? 'checked' : ''); ?> />
                                                         </td>
-                                                        <td align="center"><?php echo e($val->nama_kategori); ?></td>
-                                                        <td width="150">
-                                                            <?php echo e(character_limiter($val->judul_galeri, 50, '...')); ?></td>
+                                                        <td><?php echo character_limiter($val->nama_bidang, 50, '...'); ?></td>
+                                                        <td><?php echo character_limiter($val->ket_bidang, 150, '...'); ?></td>
                                                         <td align="center">
-                                                            <?php echo e($val->jenis_galeri == 1 ? 'Foto' : 'Video'); ?>
-
-                                                        </td>
-                                                        <td><?php echo character_limiter($val->ket_galeri, 90, '...'); ?></td>
-                                                        <td align="center">
-                                                            <?php echo e(formatTanggalTtd($val->waktu_kegiatan)); ?></td>
-                                                        <td align="center">
-                                                            <a class="file_foto"
-                                                                <?php echo e($val->jenis_galeri == 2 ? 'data-fancybox-type=iframe' : ''); ?>
-
-                                                                href="<?php echo e($val->jenis_galeri == 1 ? base_url('upload/galeri/' . $val->file_foto) : 'https://www.youtube.com/embed/' . get_segment($val->link_video)); ?>">
-                                                                <img class="xIMG"
-                                                                    src="<?php echo e($val->file_foto != null ? (!realpath('upload/galeri/' . $val->file_foto) ? base_url('assets/img/noimage/no_img3.jpg') : base_url('upload/galeri/' . $val->file_foto)) : ($val->link_video != null ? 'https://i.ytimg.com/vi_webp/' . get_segment($val->link_video) . '/sddefault.webp' : base_url('assets/img/noimage/no_img3.jpg'))); ?>"
-                                                                    alt="#" width="70" />
-                                                            </a>
+                                                            <i class="<?php echo e($val->icon_bidang); ?>"
+                                                                style="font-size: 20pt"></i>
                                                         </td>
                                                     </tr>
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -123,7 +99,6 @@
                         </div>
                     </div>
                 </section>
-                <!--/ Zero configuration table -->
             </div>
         </div>
     </div>
@@ -136,23 +111,18 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div id="modal_header" class="modal-header bg-primary">
-                    <h4 class="modal-title white" id="modal_title">Detail Galeri</h4>
+                    <h4 class="modal-title white" id="modal_title">Detail Bidang</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
 
                 <div class="modal-body" id="modal_body">
-                    <div>
-                        <label>Jenis: </label> <label id="jenis">Jenis Galeri</label> /
-                        <label>Kategori: </label> <label id="kategori">Nama Kategori</label>
-                    </div>
-                    <div id="judul" class="h4 font-weight-bold">Judul Galeri</div>
-                    <hr>
-                    <div id="foto">Foto Galeri</div>
+                    <div id="judul" class="h4 font-weight-bold">Nama Bidang</div>
+                    <div id="icon">Icon Bidang</div>
                     <hr>
                     <div id="isi">
-                        <p>Isi Galeri</p>
+                        <p>Keterangan Bidang</p>
                     </div>
                 </div>
 
@@ -168,7 +138,7 @@
     <link rel="stylesheet" href="<?php echo e(assets_url . 'app-assets/vendors/css/extensions/sweetalert.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo e(base_url('assets/external/DataTables/datatables.min.css')); ?>" />
     <!-- Fancybox -->
-    <link rel="stylesheet" href="<?php echo e(base_url('assets/external/Fancybox/jquery.fancybox.css')); ?>">
+    
     <!-- Switch -->
     <link rel="stylesheet" type="text/css" href="<?php echo e(assets_url . 'app-assets/css/plugins/forms/switch.css'); ?>">
     <!-- Toast -->
@@ -196,8 +166,7 @@
     <script src="<?php echo e(assets_url . 'app-assets/vendors/js/extensions/sweetalert.min.js'); ?>" type="text/javascript">
     </script>
     <!-- Fancybox -->
-    <script type="text/javascript" src="<?php echo e(base_url('assets/external/Fancybox/jquery.fancybox.js')); ?>"></script>
-    <script type="text/javascript" src="<?php echo e(base_url('assets/external/Fancybox/jquery.fancybox.pack.js')); ?>"></script>
+    
     <!-- Switch -->
     <script src="<?php echo e(assets_url . 'app-assets/vendors/js/forms/toggle/bootstrap-checkbox.min.js'); ?>"
         type="text/javascript"></script>
@@ -212,9 +181,7 @@
         $('#list_tbl').dataTable();
     </script>
 
-    <script type="text/javascript">
-        $('.file_foto').fancybox({});
-    </script>
+    
 
     <script>
         $('.switch:checkbox').checkboxpicker({
@@ -237,7 +204,7 @@
                 act = 1;
                 checked = false;
             }
-            $.get("<?php echo e(base_url('bappeda/publikasi/galeri/active/')); ?>/" + act + '/' + id,
+            $.get("<?php echo e(base_url('bappeda/bidang/active/')); ?>/" + act + '/' + id,
                 function(dt) {
                     var data = JSON.parse(dt);
                     $(".loading-page").hide();
@@ -259,21 +226,14 @@
 
     <script>
         function showModal(data) {
-            var jenis = $(data).data().jenis;
-            var kategori = $(data).data().kategori;
             var judul = $(data).data().judul;
             var isi = $(data).data().isi;
-            var foto = $(data).data().foto;
-            var link = $(data).data().link;
-            var file = '<img class="xIMG w-50"  src="' + foto + '">';
-            if (jenis == 'Video') {
-                file = '<iframe class"xIMG" width="420" height="345" src="' + link + '"> </iframe>';
-            }
+            var icon = $(data).data().icon;
 
-            $('#modal_view #modal_body #jenis').html(jenis);
-            $('#modal_view #modal_body #kategori').html(kategori);
             $('#modal_view #modal_body #judul').html(judul);
-            $('#modal_view #modal_body #foto').html(file);
+            $('#modal_view #modal_body #icon').html(
+                '<i class="' + icon + '" style="font-size: 20pt;"></i>'
+            );
             $('#modal_view #modal_body #isi').html('<p class="text-justify">' + isi + '</p>');
 
             $('#modal_view').modal({
@@ -284,4 +244,4 @@
     </script>
 <?php $__env->stopPush(); ?>
 
-<?php echo $__env->make('template/master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\PROJECT\xampp\htdocs\epikir_new\app\Modules\Bappeda\Views/content/galeri/list_galeri.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('template/master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\PROJECT\xampp\htdocs\epikir_new\app\Modules\Bappeda\Views/content/bidang/list_bidang.blade.php ENDPATH**/ ?>

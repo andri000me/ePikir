@@ -4,6 +4,7 @@ namespace App\Modules\Landing\Controllers;
 
 use App\Modules\Landing\Models\CarouselModel;
 use App\Modules\Landing\Models\BeritaModel;
+use App\Modules\Landing\Models\BidangModel;
 use App\Modules\Landing\Models\GaleriModel;
 
 class Beranda extends BaseController
@@ -19,10 +20,12 @@ class Beranda extends BaseController
     {
         helper('text');
         $m_carousel = new CarouselModel();
+        $m_bidang = new BidangModel();
         $m_berita = new BeritaModel();
         $m_galeri = new GaleriModel();
 
         $this->v_data['carousel']   = $m_carousel->getData(null, 3);
+        $this->v_data['bidang']     = $m_bidang->getData(null, 3);
         $this->v_data['berita']     = $m_berita->getData(null, 5);
         $this->v_data['galeri']     = $m_galeri->getData(null, 6);
 

@@ -111,17 +111,17 @@
             padding: 0px;
         }
 
-        .text-content h2 i {
-            margin-right: 10px;
-            width: 30px;
-            height: 30px;
-            line-height: 30px;
-            border-radius: 100%;
-            color: #fff;
-            text-align: center;
-            font-size: 14px;
-            background: #ff9800;
-        }
+        /* .text-content h2 i {
+                margin-right: 10px;
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+                border-radius: 100%;
+                color: #fff;
+                text-align: center;
+                font-size: 14px;
+                background: #ff9800;
+            } */
 
     </style>
 <?php $__env->stopPush(); ?>

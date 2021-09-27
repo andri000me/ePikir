@@ -12,45 +12,20 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-12 wow fadeInUp" data-wow-delay="0.4s">
-                <!-- Single Table -->
-                <div class="single-table">
-                    <div class="single-service" style="padding: 30px 20px 30px 20px; border-top: 5px solid #2e2751;">
-                        <i class="fa fa-users"></i>
-                        <h2><a href="javascript:void(0)">Subid Litbang Pemerintahan Sosial & Budaya</a></h2>
-                        <hr>
-                        <p>Lingkup Penelitian dan Pengembangan Penyelenggaraan Pemerintahan,
-                            Pengkajian Peraturan, Sosial dan Kependudukan </p>
+            <?php $__currentLoopData = $bidang; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <div class="col-lg-4 col-12 wow fadeInUp" data-wow-delay="0.4s">
+                    <!-- Single Table -->
+                    <div class="single-table">
+                        <div class="single-service" style="padding: 30px 20px 30px 20px; border-top: 5px solid #2e2751;">
+                            <i class="<?php echo e($item->icon_bidang); ?>"></i>
+                            <h2><a href="javascript:void(0)"><?php echo e($item->nama_bidang); ?></a></h2>
+                            <hr>
+                            <p><?php echo e($item->ket_bidang); ?></p>
+                        </div>
                     </div>
+                    <!-- End Single Table-->
                 </div>
-                <!-- End Single Table-->
-            </div>
-            <div class="col-lg-4 col-12 wow fadeInUp" data-wow-delay="0.4s">
-                <!-- Single Table -->
-                <div class="single-table">
-                    <div class="single-service" style="padding: 30px 20px 30px 20px; border-top: 5px solid #2e2751;">
-                        <i class="fa fa-line-chart"></i>
-                        <h2><a href="javascript:void(0)">Subid Litbang Ekonomi & Pengembangan Wilayah</a></h2>
-                        <hr>
-                        <p>welcome to our consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt a
-                            tristique tortor maximus</p>
-                    </div>
-                </div>
-                <!-- End Single Table-->
-            </div>
-            <div class="col-lg-4 col-12 wow fadeInUp" data-wow-delay="0.4s">
-                <!-- Single Table -->
-                <div class="single-table">
-                    <div class="single-service" style="padding: 30px 20px 30px 20px; border-top: 5px solid #2e2751;">
-                        <i class="fa fa-cogs"></i>
-                        <h2><a href="javascript:void(0)">Subid Pengembangan & Penerapan IPTEK</a></h2>
-                        <hr>
-                        <p>welcome to our consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt a
-                            tristique tortor maximus</p>
-                    </div>
-                </div>
-                <!-- End Single Table-->
-            </div>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>
 </section>
@@ -71,7 +46,7 @@
             position: relative;
             margin-top: 30px;
             overflow: hidden;
-            min-height: 250px;
+            min-height: 285px;
         }
 
     </style>
