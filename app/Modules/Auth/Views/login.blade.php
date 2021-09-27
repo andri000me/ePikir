@@ -48,6 +48,18 @@
     <link rel="stylesheet" type="text/css" href="{{ base_url('theme/login/css/main.css') }}">
     <!--===============================================================================================-->
     <link href="{{ base_url('assets/css/loading.css') }}" type="text/css" rel="stylesheet">
+
+    {{-- <style>
+        @media screen and (max-width: 575px) {
+            .g-recaptcha {
+                transform: scale(0.77);
+                -webkit-transform: scale(0.77);
+                transform-origin: 0 0;
+                -webkit-transform-origin: 0 0;
+            }
+        }
+
+    </style> --}}
 </head>
 
 <body>
@@ -122,7 +134,8 @@
                             <i class="fa fa-lock"></i>
                         </span>
                     </div>
-                    <div class="form-group" style="margin-left: 8px; margin-block: 5px;">
+
+                    <div class="form-group" style="margin: 10px auto;">
                         <div class="g-recaptcha" data-sitekey="{{ g_site_key }}"></div>
                     </div>
 

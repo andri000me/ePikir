@@ -11,7 +11,7 @@ if (!function_exists('views')) {
             $v_path = APPPATH . 'Views';
         }
 
-        $blade = new Blade($v_path, APPPATH . 'Views/cache');
+        $blade = new Blade($v_path, WRITEPATH . 'cache');
 
         // Custom directive -> call @alert (name)
         $blade->compiler()->directive('alert', function ($name) {

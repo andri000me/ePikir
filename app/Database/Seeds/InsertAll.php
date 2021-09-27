@@ -20,5 +20,7 @@ class InsertAll extends Seeder
 		$this->call('InsertNoSurat');
 		$this->call('InsertKategoriGaleri');
 		$this->call('InsertGaleri');
+		$this->call('InsertBidang');
+		$this->call('InsertInfoPublik');
 	}
 }
