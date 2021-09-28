@@ -70,7 +70,7 @@
                                                 <input type="text" name="icon_bidang" id="icon_bidang"
                                                     class="form-control col-md-4" placeholder="Pilih icon yang sesuai"
                                                     value="{{ isset($bidang) && $bidang != null ? $bidang->icon_bidang : '' }}"
-                                                    readonly>
+                                                    readonly required>
                                                 <div class="col-md-2">
                                                     <button type="button" class="btn btn-success"
                                                         onclick="showModalIcon(this)">

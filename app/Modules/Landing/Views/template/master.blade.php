@@ -4,7 +4,7 @@
 <head>
     <!-- Meta tag -->
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
     <!-- ==== Document Meta ==== -->
@@ -21,14 +21,6 @@
     <meta property="og:image"
         content="{{ isset($meta) ? $meta['image'] : base_url('assets/img/logo/logo_kab_sm.png') }}" />
 
-
-    {{-- <!-- ==== Document Meta ==== -->
-    <meta name="author" content="epikir.magelangkab.go.id">
-    <meta name="description" content="ePikir Kabupaten Magelang">
-    <meta property="og:url" content="https://epikir.magelangkab.go.id/" />
-    <meta name="keywords"
-        content="ePikir Kabupaten Magelang, epikir, Kabupaten Magelang, litbang, riset, penelitian, bappeda, litbangda, bappedalitbangda, litbang magelang">
-    <meta property="og:title" content="ePikir Kabupaten Magelang" /> --}}
 
     <!-- Title Tag -->
     <title>e-Pikir &#8739; BAPPEDA LITBANGDA Kab. Magelang</title>
