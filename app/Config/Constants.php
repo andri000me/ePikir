@@ -33,8 +33,8 @@ define("views", "\App\Modules\/");
 // -------------------------------------------------------------
 // Google reCaptcha
 // -------------------------------------------------------------
-define('g_site_key', '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI');
-define('g_secret_key', '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe');
+define('g_site_key', '');
+define('g_secret_key', '');
 
 /*
  | --------------------------------------------------------------------------
