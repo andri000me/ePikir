@@ -84,8 +84,8 @@ phpunit
 # Composer
 #-------------------------
 vendor/
-Migrations/
-Seeds/
+app/Database/Migrations/*
+app/Database/Seeds/*
 
 #-------------------------
 # IDE / Development Files
