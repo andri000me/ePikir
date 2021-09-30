@@ -5,6 +5,7 @@ Aplikasi layanan perizinan penelitian & pengabdian masyarakat dari BAPPEDA & LIT
 ![bidang](https://user-images.githubusercontent.com/44487637/135436831-5572c39b-e08d-48b4-8ea4-cf58fe147ad3.JPG)
 ![grafik](https://user-images.githubusercontent.com/44487637/135436835-0ad2120e-5265-432e-8812-65af3235b3d3.JPG)
 ![layanan](https://user-images.githubusercontent.com/44487637/135436837-45ba2a44-e75c-49f7-9402-a5fd76db5c33.JPG)
+![verifikasi token](https://user-images.githubusercontent.com/44487637/135439443-13af3313-a58c-4f8f-b5d6-8ccbc4267e83.JPG)
 ![Login](https://user-images.githubusercontent.com/44487637/135437245-33bfeaeb-44ed-4a44-86ba-cbb4fde62dad.JPG)
 ![Admin](https://user-images.githubusercontent.com/44487637/135437252-d8bb8d03-9dbe-44c4-b2ca-f1ae2a67728b.JPG)
 
@@ -18,3 +19,4 @@ Aplikasi layanan perizinan penelitian & pengabdian masyarakat dari BAPPEDA & LIT
 
 2. CREATE DATABASE & SETTING CONFIG IN FILE .env
 3. RUN MIGRATION DATABASE
+
